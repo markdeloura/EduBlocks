@@ -98,11 +98,22 @@ nav .login {
     border-radius: 5px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    float: left;
+    float: right;
     height: 100%;
     margin: 0;
     display: flex;
     align-items: center;
+}
+
+.margin-button:hover{
+    border: solid white 2px;
+}
+
+.margin-button {
+    margin-left: 20px;
+    margin-top: 7px;
+    border: solid white 2px;
+    border-radius: 10px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -258,9 +269,28 @@ table.primary td {
 }
 
 #workspace {
-    height: calc(100vh - 3em);
+    height: calc(100vh - 5.5em);
     position: relative;
-    margin-top: 3em;
+}
+
+.toolbar {
+    margin-top: 50px;
+    height: 2.5em;
+    background-color: #343350;
+    display: flex;
+}
+
+.toolbar-column{
+    flex: 50%;
+}
+
+
+
+
+.toolbar a {
+    margin-right: 0.6em;
+    height: 2.5em;
+    border-radius: 0px;
 }
 
 .toggleViewButton {

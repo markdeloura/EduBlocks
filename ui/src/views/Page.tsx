@@ -14,6 +14,7 @@ import ImageModal from './ImageModal';
 const copy = require('copy-text-to-clipboard');
 import Nav from './Nav';
 
+
 const Cookies = require("js-cookie")
 
 import OverModal from './OverwriteModal';
@@ -928,13 +929,9 @@ export default class Page extends Component<Props, State> {
             let blocklyEditor = document.getElementById('blockly') as HTMLBodyElement;
             let pythonEditor = document.getElementById('python') as HTMLBodyElement;
             let editorElement = document.getElementById('editor') as HTMLBodyElement;
-            let toggleElement = document.getElementById('toggleViewButton') as HTMLBodyElement;
-            let exitElement = document.getElementById('ExitSplit') as HTMLBodyElement;
 
             blocklyEditor.style.width = "60%";
             editorElement.style.width = "40%";
-            toggleElement.style.display = "none";
-            exitElement.style.display = "block";
 
             window.dispatchEvent(new Event('resize'))
 
@@ -952,11 +949,7 @@ export default class Page extends Component<Props, State> {
             split = false;
             let editorElement = document.getElementById('editor') as HTMLBodyElement;
             let blocklyEditor = document.getElementById('blockly') as HTMLBodyElement;
-            let exitElement = document.getElementById('ExitSplit') as HTMLBodyElement;
-            let toggleElement = document.getElementById('toggleViewButton') as HTMLBodyElement;
             
-            toggleElement.style.display = "block";
-            exitElement.style.display = "none";
 
             window.dispatchEvent(new Event('resize'))
 
@@ -1140,6 +1133,9 @@ export default class Page extends Component<Props, State> {
                     downloadHex={this.hasCapability('HexDownload') ? () => this.downloadHex() : undefined}
                     openCode={() => this.openFile()}
                     saveCode={() => this.saveFile()}
+                    blocks={() => this.splitView(false) && window.dispatchEvent(new Event('resize')) && this.switchView("blocks")}
+                    python={() => this.splitView(false) && this.switchView("python")}
+                    splitview={() => this.splitView(true) && window.dispatchEvent(new Event('resize'))}
                     newCode={() => this.new()}
                     openSamples={() => this.openSamples()}
                     openThemes={() => this.openThemes()}
@@ -1150,7 +1146,7 @@ export default class Page extends Component<Props, State> {
                 />
 
                 <section id='workspace'>
-                    <button
+{/*                     <button
                         id='toggleViewButton'
                         class='toggleViewButton'
                         onClick={() => this.toggleView()}
@@ -1169,7 +1165,7 @@ export default class Page extends Component<Props, State> {
 
                         Exit Split View
 
-                    </button>
+                    </button> */}
                     
 
                     <BlocklyView
