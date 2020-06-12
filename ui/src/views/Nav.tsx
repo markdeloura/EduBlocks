@@ -82,6 +82,11 @@ export default class Nav extends Component<Props, {}> {
                     {GlobalVars.openFiles}
                 </a>
 
+                <a class='button icon-plus margin-button' id="new" title='Create new file' href='javascript:void(0)'
+                    onClick={() => this.props.newCode()}>
+                    {navLabels[0]}
+                </a>
+
 
                 
 
@@ -103,11 +108,6 @@ export default class Nav extends Component<Props, {}> {
                        onClick={() => this.props.openSamples()}>
                         {navLabels[3]}
                     </a> */}
-
-                    <a class='button icon-plus margin-button' id="new" title='Create new file' href='javascript:void(0)'
-                        onClick={() => this.props.newCode()}>
-                        {navLabels[0]}
-                    </a>
 
                     <a class='button icon-cog settings' title='Settings' href='javascript:void(0)'
                        onClick={() => this.props.onFunction()}>
@@ -150,7 +150,7 @@ export default class Nav extends Component<Props, {}> {
                     }
 
                     {downloadHex &&
-                    <a class='button icon-flash button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 0px !important;"
+                    <a class='button icon-flash button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 0px !important; background-color: #15BAD4 !important;"
                        onClick={() => flashHex()}>
                         Flash Hex
                     </a>
