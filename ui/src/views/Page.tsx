@@ -58,6 +58,7 @@ interface FileFirebaseSelectModalOption {
 
 interface State {
     platform?: PlatformInterface;
+    currentPlatform: any;
     viewMode: ViewMode;
     includeTurtle: boolean;
     modal: null | 'platform' | 'turtle' | 'IE' | 'generating' | 'extensionsnew' |  'share' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
@@ -111,6 +112,7 @@ export default class Page extends Component<Props, State> {
         this.state = {
             viewMode: ViewModeBlockly,
             modal: 'platform',
+            currentPlatform: "",
             includeTurtle: false,
             prevModal: null,
             extensionsActive: [],
@@ -212,6 +214,7 @@ export default class Page extends Component<Props, State> {
     }
 
     public componentDidMount() {
+        this.activeButton("blocks")
         let currentTheme = Cookies.get("theme")
 
         if (this.isIE()){
@@ -262,17 +265,7 @@ export default class Page extends Component<Props, State> {
 
     }
     
-    }
-
-    private toggleView(): 0 {
-        switch (this.state.viewMode) {
-            case ViewModeBlockly:
-                return this.switchView(ViewModePython);
-
-            case ViewModePython:
-                return this.switchView(ViewModeBlockly);
-        }
-    }
+    }   
 
     private switchView(viewMode: ViewMode): 0 {
         switch (viewMode) {
@@ -624,6 +617,7 @@ export default class Page extends Component<Props, State> {
             this.props.app.saveHex(this.state.fileName, python, this.state.extensionsActive);
         }
     }
+    
 
     private async selectPlatform(platformKey: Platform) {
         this.closeModal()
@@ -665,6 +659,7 @@ export default class Page extends Component<Props, State> {
 
         this.setState({
             platform,
+            currentPlatform: platformKey,
             modal: null,
             extensionsActive: platform.defaultExtensions,
         });
@@ -923,6 +918,39 @@ export default class Page extends Component<Props, State> {
         }
     }
 
+    private activeButton(view: string){
+        if (view === "blocks"){
+            let blockview = document.getElementById('blocksview') as HTMLBodyElement;
+            let pythonview = document.getElementById('pythonview') as HTMLBodyElement;
+            let splitview = document.getElementById('splitview') as HTMLBodyElement;
+
+            blockview.style.opacity = "100%";
+            pythonview.style.opacity = "40%";
+            splitview.style.opacity = "40%";
+        }
+
+        if (view === "pythonview"){
+            let blockview = document.getElementById('blocksview') as HTMLBodyElement;
+            let pythonview = document.getElementById('pythonview') as HTMLBodyElement;
+            let splitview = document.getElementById('splitview') as HTMLBodyElement;
+
+            blockview.style.opacity = "40%";
+            pythonview.style.opacity = "100%";
+            splitview.style.opacity = "40%";
+        }
+
+        if (view === "split"){
+            let blockview = document.getElementById('blocksview') as HTMLBodyElement;
+            let pythonview = document.getElementById('pythonview') as HTMLBodyElement;
+            let splitview = document.getElementById('splitview') as HTMLBodyElement;
+
+            blockview.style.opacity = "40%";
+            pythonview.style.opacity = "40%";
+            splitview.style.opacity = "100%";
+        }
+        return "Activebutton"
+    }
+
     private async splitView(toggle: boolean){
         if (toggle === true){
             split = true;
@@ -961,6 +989,22 @@ export default class Page extends Component<Props, State> {
             this.switchView(ViewModeBlockly);
 
         }
+    }
+
+    private async hexflashing(){
+        const python = this.state.doc.python;
+
+            if (python) {
+                this.setState({ modal: 'progress', progress: 0 });
+
+                try {
+                    await this.props.app.flashHex(python, this.state.extensionsActive, (progress) => {
+                        this.setState({ progress });
+                    });
+                } finally {
+                    this.setState({ modal: null });
+                }
+            }
     }
     
 
@@ -1133,10 +1177,11 @@ export default class Page extends Component<Props, State> {
                     downloadHex={this.hasCapability('HexDownload') ? () => this.downloadHex() : undefined}
                     openCode={() => this.openFile()}
                     saveCode={() => this.saveFile()}
-                    blocks={() => this.splitView(false) && window.dispatchEvent(new Event('resize')) && this.switchView("blocks")}
-                    python={() => this.splitView(false) && this.switchView("python")}
-                    splitview={() => this.splitView(true) && window.dispatchEvent(new Event('resize'))}
-                    newCode={() => this.new()}
+                    flashHex={() => this.hexflashing()}
+                    blocks={() => this.splitView(false) && window.dispatchEvent(new Event('resize')) && this.activeButton("blocks") && this.switchView("blocks")}
+                    python={() => this.splitView(false) && this.activeButton("pythonview") && this.switchView("python")}
+                    splitview={() => this.splitView(true) && window.dispatchEvent(new Event('resize')) && this.activeButton("split")}
+                    newCode={() => this.selectPlatform(this.state.currentPlatform) && this.new()}
                     openSamples={() => this.openSamples()}
                     openThemes={() => this.openThemes()}
                     onFunction={() => this.openAdvancedFunctionDialog()}

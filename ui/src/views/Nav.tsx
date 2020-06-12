@@ -15,6 +15,8 @@ interface Props {
 
     blocks(): void;
 
+    flashHex(): void;
+
     python(): void;
 
     splitview(): void;
@@ -49,7 +51,7 @@ interface Props {
 
 export default class Nav extends Component<Props, {}> {
     public render() {
-        const {downloadHex, openTerminal: sendCode, downloadPython} = this.props;
+        const {downloadHex, openTerminal: sendCode, downloadPython, flashHex} = this.props;
 
         return (
             <>
@@ -68,15 +70,16 @@ export default class Nav extends Component<Props, {}> {
                     {navLabels[2]}
                 </a>
 
+                <a class='button icon-share margin-button button' title='Save a file' href='javascript:void(0)'
+                    onClick={() => this.props.saveCode()}>
+                    Share
+                </a>
+
                 <a class='button icon-folder-open margin-button' title='Open a file' href='javascript:void(0)'
                     onClick={() => this.props.openCode()}>
                     {GlobalVars.openFiles}
                 </a>
 
-                <a class='button icon-plus margin-button' id="new" title='Create new file' href='javascript:void(0)'
-                    onClick={() => this.props.newCode()}>
-                    {navLabels[0]}
-                </a>
 
                 
 
@@ -99,23 +102,14 @@ export default class Nav extends Component<Props, {}> {
                         {navLabels[3]}
                     </a> */}
 
+                    <a class='button icon-plus margin-button' id="new" title='Create new file' href='javascript:void(0)'
+                        onClick={() => this.props.newCode()}>
+                        {navLabels[0]}
+                    </a>
+
                     <a class='button icon-cog' title='Settings' href='javascript:void(0)'
                        onClick={() => this.props.onFunction()}>
                     </a>
-
-                    {downloadHex &&
-                    <a class='button icon-flash button-green' title='Download file to flash to micro:bit' href='javascript:void(0)'
-                       onClick={() => downloadHex()}>
-                        {navLabels[8]}
-                    </a>
-                    }
-
-                    {downloadPython &&
-                    <a class='button icon-download button-green' title='Download Python Source Code' href='javascript:void(0)'
-                       onClick={() => downloadPython()}>
-                        {navLabels[9]}
-                    </a>
-                    }
 
                     
 
@@ -125,27 +119,49 @@ export default class Nav extends Component<Props, {}> {
 
             <div class="toolbar">
                 <div class="toolbar-column">
-                    <a class='button icon-cog' title='Settings' href='javascript:void(0)' style="background-color: #D63664;"
+                    <a class='button icon-cog toolbar-opacity' id="blocksview" title='Settings' href='javascript:void(0)' style="background-color: #D63664;"
                         onClick={() => this.props.blocks()}>
                         Blocks
                     </a>
-                    <a class='button icon-cog' title='Settings' href='javascript:void(0)' style="background-color: #4457A0;"
+                    <a class='button icon-cog toolbar-opacity' title='Settings' id="pythonview" href='javascript:void(0)' style="background-color: #4457A0;"
                         onClick={() => this.props.python()}>
                         Python
                     </a>
-                    <a class='button icon-cog' title='Settings' href='javascript:void(0)' style="background-color: #EB9A40;"
+                    <a class='button icon-cog toolbar-opacity' title='Settings' id="splitview" href='javascript:void(0)' style="background-color: #EB9A40;"
                         onClick={() => this.props.splitview()}>
                         Split 
                     </a>
                 </div>
                 <div class="toolbar-column">
                     {sendCode &&
-                    <a class='button icon-play button-green' title='Run your code' href='javascript:void(0)' style="float:right; margin-right: 0px !important;"
+                    <a class='button icon-play button-green ' title='Run your code' href='javascript:void(0)' style="float:right; margin-right: 0px !important;"
                        onClick={() => sendCode()}>
                         {navLabels[5]}
                     </a>
                     }
+
+                    {downloadHex &&
+                    <a class='button icon-flash button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 0px !important;"
+                       onClick={() => flashHex()}>
+                        Flash Hex
+                    </a>
+                    }      
+
+                    {downloadHex &&
+                    <a class='button icon-download button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 12px !important;"
+                       onClick={() => downloadHex()}>
+                        {navLabels[8]}
+                    </a>
+                    }   
+
+                    {downloadPython &&
+                    <a class='button icon-download button-green' title='Download Python Source Code' href='javascript:void(0)' style="float:right; margin-right: 0px !important;"
+                       onClick={() => downloadPython()}>
+                        {navLabels[9]}
+                    </a>
+                    }
                 </div>
+                
             </div>
             
             </>

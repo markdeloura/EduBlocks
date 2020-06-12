@@ -112,7 +112,7 @@ nav .login {
 .margin-button {
     margin-left: 20px;
     margin-top: 7px;
-    border: solid white 2px;
+    border: solid white 2px !important;
     border-radius: 10px;
 }
 
@@ -264,6 +264,8 @@ table.primary td {
     margin-left: 20px;
 }
 
+
+
 .file {
     display: none;
 }
@@ -285,12 +287,18 @@ table.primary td {
 }
 
 
-
+.toolbar-opacity {
+    opacity: 40%;
+}
 
 .toolbar a {
     margin-right: 0.6em;
     height: 2.5em;
     border-radius: 0px;
+}
+
+.toolbar a:focus {
+    background-color: teal;
 }
 
 .toggleViewButton {
