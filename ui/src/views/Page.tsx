@@ -312,6 +312,22 @@ export default class Page extends Component<Props, State> {
             this.setState({includeTurtle: false})
         }
 
+        let workspace = document.getElementById('workspace') as HTMLBodyElement;
+        let splitview = document.getElementById('splitview') as HTMLBodyElement;
+        let run = document.getElementById('run') as HTMLBodyElement;
+        let stop = document.getElementById('stop') as HTMLBodyElement;
+
+        run.style.display = "none";
+        stop.style.display = "block";
+        workspace.style.width = "60%";
+        splitview.style.pointerEvents = "none";
+
+        this.activeButton("blocks")
+        this.switchView("blocks");
+        this.splitView(false);
+
+        window.dispatchEvent(new Event('resize'))
+
         if (this.remoteShellView) {
             this.remoteShellView.focus();
             this.remoteShellView.reset();
@@ -734,6 +750,17 @@ export default class Page extends Component<Props, State> {
 
 
     private onTerminalClose() {
+        let workspace = document.getElementById('workspace') as HTMLBodyElement;
+        let splitview = document.getElementById('splitview') as HTMLBodyElement;
+        let run = document.getElementById('run') as HTMLBodyElement;
+        let stop = document.getElementById('stop') as HTMLBodyElement;
+
+        run.style.display = "block";
+        stop.style.display = "none";
+
+        workspace.style.width = "100%";
+        splitview.style.pointerEvents = "auto";
+        window.dispatchEvent(new Event('resize'))
         this.closeModal();
     }
 
@@ -1178,6 +1205,7 @@ export default class Page extends Component<Props, State> {
                     openCode={() => this.openFile()}
                     saveCode={() => this.saveFile()}
                     flashHex={() => this.hexflashing()}
+                    closeTerminal={() => this.onTerminalClose()}
                     blocks={() => this.splitView(false) && window.dispatchEvent(new Event('resize')) && this.activeButton("blocks") && this.switchView("blocks")}
                     python={() => this.splitView(false) && this.activeButton("pythonview") && this.switchView("python")}
                     splitview={() => this.splitView(true) && window.dispatchEvent(new Event('resize')) && this.activeButton("split")}

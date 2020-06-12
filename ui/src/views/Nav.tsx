@@ -30,6 +30,8 @@ interface Props {
 
     openPlatforms(): void;
 
+    closeTerminal(): void;
+
     modeQuestion(): void;
 
     newCode(): void;
@@ -51,7 +53,7 @@ interface Props {
 
 export default class Nav extends Component<Props, {}> {
     public render() {
-        const {downloadHex, openTerminal: sendCode, downloadPython, flashHex} = this.props;
+        const {downloadHex, openTerminal: sendCode, downloadPython, flashHex, closeTerminal} = this.props;
 
         return (
             <>
@@ -134,9 +136,16 @@ export default class Nav extends Component<Props, {}> {
                 </div>
                 <div class="toolbar-column">
                     {sendCode &&
-                    <a class='button icon-play button-green ' title='Run your code' href='javascript:void(0)' style="float:right; margin-right: 0px !important;"
+                    <a class='button icon-play button-green ' title='Run your code' href='javascript:void(0)' style="float:right; margin-right: 0px !important;" id="run"
                        onClick={() => sendCode()}>
                         {navLabels[5]}
+                    </a>
+                    }
+
+                    {sendCode &&
+                    <a class='button icon-cancel-circled button-red' title='Run your code' href='javascript:void(0)' style="float:right; margin-right: 0px !important; display:none;" id="stop"
+                       onClick={() => closeTerminal()}>
+                        Stop
                     </a>
                     }
 

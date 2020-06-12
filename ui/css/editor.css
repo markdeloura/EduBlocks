@@ -271,12 +271,12 @@ table.primary td {
 }
 
 #workspace {
-    height: calc(100vh - 5.5em);
+    height: calc(100vh - 4.5em);
     position: relative;
 }
 
 .toolbar {
-    margin-top: 50px;
+    margin-top: 48px;
     height: 2.5em;
     background-color: #343350;
     display: flex;
@@ -356,13 +356,13 @@ table.primary td {
 
 #terminal-dialog {
     position: fixed;
-    z-index: 10001;
-    left: 20px;
-    top: 20px;
-    right: 20px;
-    bottom: 20px;
-    border: solid 1px #000;
+    z-index: -1;
+    top: 59px;
+    right: 0px;
+    bottom: 0px;
     line-height: 20px;
+    width: 40%;
+    float: right;
 }
 
 
@@ -544,6 +544,11 @@ button{
     background-color: #49B04D !important;
 }
 
+.button-red {
+    background-color: red !important;
+    height: 39px !important;
+}
+
 
 .ImageModalOption button {
     height: 37px;
@@ -557,7 +562,7 @@ button{
 ---------------------------------------------------------------- */
 
 .TrinketView__Container {
-    height: calc(100% - 28px);
+    height: 100%;
     position: relative;
     background: white;
 }
