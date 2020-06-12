@@ -85,8 +85,8 @@ export default class Nav extends Component<Props, {}> {
 
                 
 
-                <input id='bmenub' type='checkbox' class='show'/>
-                <label for='bmenub' id="burgermenu" class='burger pseudo button icon-menu'/>
+             {/*    <input id='bmenub' type='checkbox' class='show'/>
+                <label for='bmenub' id="burgermenu" class='burger pseudo button icon-menu'/> */}
 
 
                 <div class='menu' id="menubar">
@@ -109,7 +109,7 @@ export default class Nav extends Component<Props, {}> {
                         {navLabels[0]}
                     </a>
 
-                    <a class='button icon-cog' title='Settings' href='javascript:void(0)'
+                    <a class='button icon-cog settings' title='Settings' href='javascript:void(0)'
                        onClick={() => this.props.onFunction()}>
                     </a>
 
@@ -121,15 +121,15 @@ export default class Nav extends Component<Props, {}> {
 
             <div class="toolbar">
                 <div class="toolbar-column">
-                    <a class='button icon-cog toolbar-opacity' id="blocksview" title='Settings' href='javascript:void(0)' style="background-color: #D63664;"
+                    <a class='tab-button icon-blocks toolbar-opacity' id="blocksview" title='Settings' href='javascript:void(0)' style="background-color: #D63664;"
                         onClick={() => this.props.blocks()}>
                         Blocks
                     </a>
-                    <a class='button icon-cog toolbar-opacity' title='Settings' id="pythonview" href='javascript:void(0)' style="background-color: #4457A0;"
+                    <a class='tab-button icon-python toolbar-opacity' title='Settings' id="pythonview" href='javascript:void(0)' style="background-color: #4457A0;"
                         onClick={() => this.props.python()}>
                         Python
                     </a>
-                    <a class='button icon-cog toolbar-opacity' title='Settings' id="splitview" href='javascript:void(0)' style="background-color: #EB9A40;"
+                    <a class='tab-button icon-view-mode toolbar-opacity' title='Settings' id="splitview" href='javascript:void(0)' style="background-color: #EB9A40;"
                         onClick={() => this.props.splitview()}>
                         Split 
                     </a>

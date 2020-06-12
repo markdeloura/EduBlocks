@@ -109,8 +109,13 @@ nav .login {
     border: solid white 2px;
 }
 
+.settings{
+    padding: 0px;
+    margin-right: 0px !important;
+}
+
 .margin-button {
-    margin-left: 20px;
+    margin-left: 8px;
     margin-top: 7px;
     border: solid white 2px !important;
     border-radius: 10px;
@@ -264,6 +269,30 @@ table.primary td {
     margin-left: 20px;
 }
 
+.tab-button {
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+    padding: 0.3em 0.9em;
+    vertical-align: middle;
+    background: #0074d9;
+    color: #fff;
+    border: 0;
+    border-radius: 0.2em;
+    width: auto;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0.3em 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 0.2em;
+    height: auto;
+    box-shadow: 0 0 transparent inset;
+}
 
 
 .file {
