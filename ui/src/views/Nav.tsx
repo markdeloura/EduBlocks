@@ -21,6 +21,12 @@ interface Props {
 
     splitview(): void;
 
+    zoomcontrols(): any;
+
+    pyzoomin(): void;
+
+    pyzoomout(): void;
+
     // downloadPython(): void;
     downloadHex?(): void;
 
@@ -126,7 +132,7 @@ export default class Nav extends Component<Props, {}> {
                         Blocks
                     </a>
                     <a class='tab-button icon-python toolbar-opacity' title='Settings' id="pythonview" href='javascript:void(0)' style="background-color: #4457A0;"
-                        onClick={() => this.props.python()}>
+                        onClick={() => this.props.zoomcontrols() && this.props.python() }>
                         Python
                     </a>
                     <a class='tab-button icon-view-mode toolbar-opacity' title='Settings' id="splitview" href='javascript:void(0)' style="background-color: #EB9A40;"
@@ -136,39 +142,49 @@ export default class Nav extends Component<Props, {}> {
                 </div>
                 <div class="toolbar-column">
                     {sendCode &&
-                    <a class='button icon-play button-green ' title='Run your code' href='javascript:void(0)' style="float:right; margin-right: 0px !important;" id="run"
+                    <a class='button icon-play button-green ' title='Run your code' href='javascript:void(0)' style="float:right; margin-right: 0px !important; margin-left: 10px;" id="run"
                        onClick={() => sendCode()}>
                         {navLabels[5]}
                     </a>
                     }
 
                     {sendCode &&
-                    <a class='button icon-cancel-circled button-red' title='Run your code' href='javascript:void(0)' style="float:right; margin-right: 0px !important; display:none;" id="stop"
+                    <a class='button icon-cancel-circled button-red' title='Run your code' href='javascript:void(0)' style="float:right; margin-right: 0px !important; display:none; margin-left: 10px;" id="stop"
                        onClick={() => closeTerminal()}>
                         Stop
                     </a>
                     }
 
                     {downloadHex &&
-                    <a class='button icon-flash button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 0px !important; background-color: #15BAD4 !important;"
+                    <a class='button icon-flash button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 0px !important; background-color: #15BAD4 !important; margin-left: 10px;"
                        onClick={() => flashHex()}>
                         Flash Hex
                     </a>
                     }      
 
                     {downloadHex &&
-                    <a class='button icon-download button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 12px !important;"
+                    <a class='button icon-download button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 12px !important; margin-left: 10px;"
                        onClick={() => downloadHex()}>
                         {navLabels[8]}
                     </a>
                     }   
 
                     {downloadPython &&
-                    <a class='button icon-download button-green' title='Download Python Source Code' href='javascript:void(0)' style="float:right; margin-right: 0px !important;"
+                    <a class='button icon-download button-green' title='Download Python Source Code' href='javascript:void(0)' style="float:right; margin-right: 0px !important; margin-left: 10px;"
                        onClick={() => downloadPython()}>
                         {navLabels[9]}
                     </a>
                     }
+
+                    <a class='button icon-zoom-out zoomControls' id="zoomout" title='Run your code' href='javascript:void(0)'  
+                       onClick={() => this.props.pyzoomout()}>
+                        Zoom out
+                    </a>
+
+                    <a class='button icon-zoom-in zoomControls' id="zoomin" title='Run your code' href='javascript:void(0)'
+                       onClick={() => this.props.pyzoomin()}>
+                        Zoom In
+                    </a>
                 </div>
                 
             </div>

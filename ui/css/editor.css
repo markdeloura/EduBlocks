@@ -338,6 +338,7 @@ table.primary td {
 #workspace {
     height: calc(100vh - 4.5em);
     position: relative;
+    margin-top: 5.271em;
 }
 
 .toolbar {
@@ -345,6 +346,11 @@ table.primary td {
     height: 2.5em;
     background-color: #343350;
     display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .toolbar-column{
@@ -417,7 +423,10 @@ table.primary td {
     right: 0;
     width: 100%;
     bottom: 0;
+    font-size: 16;
 }
+
+.zoomControls{float:right; margin-right: 0px !important; margin-left: 10px; background-color: #15BAD4 !important; display: none;}
 
 #terminal-dialog {
     position: fixed;

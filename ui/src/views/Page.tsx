@@ -284,6 +284,11 @@ export default class Page extends Component<Props, State> {
                 blockEditor.style.display = "none";
                 pyEditor.style.display = "block";
                 this.setState({ viewMode: 'python' });
+                let zoomin = document.getElementById('zoomin') as HTMLBodyElement;
+                let zoomout = document.getElementById('zoomout') as HTMLBodyElement;
+        
+                zoomin.style.display = "block";
+                zoomout.style.display = "block";
 
                 return 0;
 
@@ -344,6 +349,26 @@ export default class Page extends Component<Props, State> {
 
     private onPythonChange(python: string) {
         this.updateFromPython(python);
+    }
+
+    private showZoomControls() {
+        let zoomin = document.getElementById('zoomin') as HTMLBodyElement;
+        let zoomout = document.getElementById('zoomout') as HTMLBodyElement;
+
+        zoomin.style.display = "block";
+        zoomout.style.display = "block";
+        return ""
+        console.log("Hi")
+    }
+
+    private hideZoomControls() {
+        let zoomin = document.getElementById('zoomin') as HTMLBodyElement;
+        let zoomout = document.getElementById('zoomout') as HTMLBodyElement;
+
+        zoomin.style.display = "none";
+        zoomout.style.display = "none";
+        return ""
+    
     }
 
 
@@ -444,7 +469,20 @@ export default class Page extends Component<Props, State> {
         return new Promise( resolve => setTimeout(resolve, ms) );
     }
 
-    
+    private async pythonZoom(direction: string) {
+        if (direction === "in"){
+            let python = document.getElementById('editor') as HTMLBodyElement;
+            var style = window.getComputedStyle(python , null).getPropertyValue('font-size');
+            var fontSize = parseFloat(style); 
+            python.style.fontSize = (fontSize + 5) + 'px';
+        }
+        if (direction === "out"){
+            let python = document.getElementById('editor') as HTMLBodyElement;
+            var style = window.getComputedStyle(python , null).getPropertyValue('font-size');
+            var fontSize = parseFloat(style); 
+            python.style.fontSize = (fontSize - 5) + 'px';
+        }
+    }
     
 
     private async shareFirebaseFile(file: firebase.storage.Reference) {
@@ -1204,11 +1242,14 @@ export default class Page extends Component<Props, State> {
                     downloadHex={this.hasCapability('HexDownload') ? () => this.downloadHex() : undefined}
                     openCode={() => this.openFile()}
                     saveCode={() => this.saveFile()}
+                    pyzoomin={() => this.pythonZoom("in")}
+                    pyzoomout={() => this.pythonZoom("out")}
                     flashHex={() => this.hexflashing()}
+                    zoomcontrols={() => this.hexflashing()}
                     closeTerminal={() => this.onTerminalClose()}
-                    blocks={() => this.splitView(false) && window.dispatchEvent(new Event('resize')) && this.activeButton("blocks") && this.switchView("blocks")}
+                    blocks={() => this.splitView(false) && window.dispatchEvent(new Event('resize')) && this.activeButton("blocks") && this.hideZoomControls() && this.switchView("blocks")}
                     python={() => this.splitView(false) && this.activeButton("pythonview") && this.switchView("python")}
-                    splitview={() => this.splitView(true) && window.dispatchEvent(new Event('resize')) && this.activeButton("split")}
+                    splitview={() => this.splitView(true) && window.dispatchEvent(new Event('resize')) && this.activeButton("split") && this.showZoomControls()}
                     newCode={() => this.selectPlatform(this.state.currentPlatform) && this.new()}
                     openSamples={() => this.openSamples()}
                     openThemes={() => this.openThemes()}
