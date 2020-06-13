@@ -27,6 +27,8 @@ interface Props {
 
     pyzoomout(): void;
 
+    share(): void;
+
     // downloadPython(): void;
     downloadHex?(): void;
 
@@ -79,7 +81,7 @@ export default class Nav extends Component<Props, {}> {
                 </a>
 
                 <a class='button icon-share margin-button button' title='Save a file' href='javascript:void(0)'
-                    onClick={() => this.props.saveCode()}>
+                    onClick={() => this.props.share()}>
                     Share
                 </a>
 
@@ -156,7 +158,7 @@ export default class Nav extends Component<Props, {}> {
                     }
 
                     {downloadHex &&
-                    <a class='button icon-flash button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 0px !important; background-color: #15BAD4 !important; margin-left: 10px;"
+                    <a class='button icon-flash button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 0px !important; background-color: #644A9E !important;"
                        onClick={() => flashHex()}>
                         Flash Hex
                     </a>

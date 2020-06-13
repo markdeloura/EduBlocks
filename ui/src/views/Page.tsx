@@ -60,6 +60,7 @@ interface State {
     platform?: PlatformInterface;
     currentPlatform: any;
     viewMode: ViewMode;
+    isSaved: any;
     includeTurtle: boolean;
     modal: null | 'platform' | 'turtle' | 'IE' | 'generating' | 'extensionsnew' |  'share' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
     prevModal: null | 'platform' | 'turtle' | 'IE' | 'generating' | 'share' | 'extensionsnew' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
@@ -71,8 +72,6 @@ interface State {
     files: FileFirebaseSelectModalOption[];
 }
 
-
-// Labels
 
 export class GlobalVars {
     public static openFiles: any = "Open";
@@ -113,6 +112,7 @@ export default class Page extends Component<Props, State> {
             viewMode: ViewModeBlockly,
             modal: 'platform',
             currentPlatform: "",
+            isSaved: "",
             includeTurtle: false,
             prevModal: null,
             extensionsActive: [],
@@ -213,9 +213,11 @@ export default class Page extends Component<Props, State> {
 
     }
 
+
+
     public componentDidMount() {
-        this.activeButton("blocks")
-        let currentTheme = Cookies.get("theme")
+        this.activeButton("blocks");
+        let currentTheme = Cookies.get("theme");
 
         if (this.isIE()){
             this.setState({ modal: "IE" })
@@ -371,7 +373,6 @@ export default class Page extends Component<Props, State> {
     
     }
 
-
     private async openFile() {
         const user = firebase.auth().currentUser;
         if (user) {
@@ -402,6 +403,9 @@ export default class Page extends Component<Props, State> {
         this.closeModal();
         let self = this;
         let newFileName = "";
+        
+        this.setState({isSaved: file});
+
         await console.log("Opening file...")
         if (file.name.indexOf("(Python)") !== -1 && this.state.platform!.key !== "Python"){
             this.selectPlatform("Python");
@@ -462,7 +466,7 @@ export default class Page extends Component<Props, State> {
 
     private async deleteFirebaseFile(file: firebase.storage.Reference) {
         file.delete();
-        this.closeModal();
+        await this.closeModal();     
     } 
 
     private delay(ms: number) {
@@ -486,6 +490,14 @@ export default class Page extends Component<Props, State> {
     
 
     private async shareFirebaseFile(file: firebase.storage.Reference) {
+
+    
+
+        if (this.state.isSaved.length < 1) {
+            alert("Please save this file first")
+        }
+        else{
+
         let filePlatform = ""
         if (file.name.indexOf("(Python)") !== -1){
             filePlatform = "Python"
@@ -499,13 +511,14 @@ export default class Page extends Component<Props, State> {
         if (file.name.indexOf("(CircuitPython)") !== -1){
             filePlatform = "CircuitPython"
         }
-        let fileURL = await file.getDownloadURL();
+        let fileURL = await this.state.isSaved.getDownloadURL();
         let newFileURL = fileURL.substring(0, fileURL.indexOf('&token='));
         const encoded = btoa(newFileURL);
         const edublocksLink = "https://app.edublocks.org/#share?" + filePlatform + "?" + encoded;
         await this.setState({ shareURL: edublocksLink});
         await console.log(this.state.shareURL);
         await this.setState({ modal: "shareoptions", prevModal: null});
+    }
     }
 
     private async runShareOptions(func: ShareOptions) {
@@ -633,6 +646,11 @@ export default class Page extends Component<Props, State> {
                     }
     
                     const ref = firebase.storage().ref(`blocks/${user.uid}/${this.state.fileName}${plat}`);
+
+                    let fileURL = await ref;
+
+                    this.setState({ isSaved: fileURL});
+
                     const task = ref.putString(xml, undefined, {
                         contentType: 'text/xml',
                     });
@@ -649,6 +667,8 @@ export default class Page extends Component<Props, State> {
                     }, function () {
                         self.closeModal();
                     });
+
+                    
                 } else {
                     await this.props.app.saveFile(this.state.fileName, xml, 'xml', 'text/xml;charset=utf-8');
                 }
@@ -1113,8 +1133,6 @@ export default class Page extends Component<Props, State> {
                 }
             }
         }
-
-
     }
 
     
@@ -1243,6 +1261,7 @@ export default class Page extends Component<Props, State> {
                     openCode={() => this.openFile()}
                     saveCode={() => this.saveFile()}
                     pyzoomin={() => this.pythonZoom("in")}
+                    share={() => this.shareFirebaseFile(this.state.isSaved)}
                     pyzoomout={() => this.pythonZoom("out")}
                     flashHex={() => this.hexflashing()}
                     zoomcontrols={() => this.hexflashing()}
