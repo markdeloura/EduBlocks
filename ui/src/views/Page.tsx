@@ -25,7 +25,7 @@ import FirebaseSelectModal from './FirebaseSelectModal';
 
 import TrinketView from './TrinketView';
 
-type AdvancedFunction = 'Export Python' | 'Themes' | 'Flash Hex' | 'Extensions' | 'Switch Language' | 'Split View';
+type AdvancedFunction = 'Export Python' | 'Themes' | 'Samples' | 'Extensions' | 'Switch Language' | 'Split View';
 let AdvancedFunctions: AdvancedFunction[] = ['Export Python', 'Themes', "Switch Language", "Split View"];
 
 type ShareOptions = 'Copy Shareable URL' | 'Copy Embed Code' | 'Share to Google Classroom' | 'Share to Microsoft Teams';
@@ -209,7 +209,7 @@ export default class Page extends Component<Props, State> {
 
         (document.getElementById("filename") as HTMLInputElement).value = "";
 
-        this.setState({fileName: "Untitled"});
+        this.setState({fileName: "Untitled", isSaved: ""});
 
     }
 
@@ -876,11 +876,6 @@ export default class Page extends Component<Props, State> {
     private getAdvancedFunctionList(): SelectModalOption[] {
         let advancedFunctions = AdvancedFunctions;
 
-        if (this.state.platform && this.state.platform.capabilities.indexOf('HexFlash') !== -1) {
-            advancedFunctions = [...advancedFunctions, 'Flash Hex'];
-            advancedFunctions = [...advancedFunctions, 'Extensions'];
-        }
-
         return advancedFunctions.map((func) => ({
             label: func,
             obj: func,
@@ -1109,6 +1104,12 @@ export default class Page extends Component<Props, State> {
             this.splitView(true)    
         }
 
+        if (func === 'Split View') {
+            this.splitView(true)    
+        }
+
+
+
 
         if (func === 'Switch Language') {
             this.setState({ modal: 'languages' });
@@ -1116,22 +1117,6 @@ export default class Page extends Component<Props, State> {
 
         if (func === 'Extensions') {
             await this.openExtensions();
-        }
-
-        if (func === 'Flash Hex') {
-            const python = this.state.doc.python;
-
-            if (python) {
-                this.setState({ modal: 'progress', progress: 0 });
-
-                try {
-                    await this.props.app.flashHex(python, this.state.extensionsActive, (progress) => {
-                        this.setState({ progress });
-                    });
-                } finally {
-                    this.setState({ modal: null });
-                }
-            }
         }
     }
 

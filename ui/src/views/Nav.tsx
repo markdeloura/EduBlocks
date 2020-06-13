@@ -171,6 +171,13 @@ export default class Nav extends Component<Props, {}> {
                     </a>
                     }   
 
+                    {downloadHex &&
+                    <a class='button icon-download button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 12px !important; margin-left: 10px;"
+                       onClick={() => downloadHex()}>
+                        {navLabels[8]}
+                    </a>
+                    }   
+
                     {downloadPython &&
                     <a class='button icon-download button-green' title='Download Python Source Code' href='javascript:void(0)' style="float:right; margin-right: 0px !important; margin-left: 10px;"
                        onClick={() => downloadPython()}>
@@ -180,12 +187,10 @@ export default class Nav extends Component<Props, {}> {
 
                     <a class='button icon-zoom-out zoomControls' id="zoomout" title='Run your code' href='javascript:void(0)'  
                        onClick={() => this.props.pyzoomout()}>
-                        Zoom out
                     </a>
 
                     <a class='button icon-zoom-in zoomControls' id="zoomin" title='Run your code' href='javascript:void(0)'
                        onClick={() => this.props.pyzoomin()}>
-                        Zoom In
                     </a>
                 </div>
                 
