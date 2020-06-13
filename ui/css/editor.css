@@ -367,6 +367,7 @@ table.primary td {
 
 .toolbar-opacity {
     opacity: 40%;
+    visibility:visible;
 }
 
 .toolbar a {
