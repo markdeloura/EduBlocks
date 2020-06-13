@@ -158,18 +158,11 @@ export default class Nav extends Component<Props, {}> {
                     }
 
                     {downloadHex &&
-                    <a class='button icon-flash button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 0px !important; background-color: #644A9E !important;"
+                    <a class='button icon-flash button-green' id="HexFlashButton" title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 0px !important; background-color: #644A9E !important;"
                        onClick={() => flashHex()}>
                         Flash Hex
                     </a>
                     }      
-
-                    {downloadHex &&
-                    <a class='button icon-download button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 12px !important; margin-left: 10px;"
-                       onClick={() => downloadHex()}>
-                        {navLabels[8]}
-                    </a>
-                    }   
 
                     {downloadHex &&
                     <a class='button icon-download button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 12px !important; margin-left: 10px;"
@@ -187,10 +180,12 @@ export default class Nav extends Component<Props, {}> {
 
                     <a class='button icon-zoom-out zoomControls' id="zoomout" title='Run your code' href='javascript:void(0)'  
                        onClick={() => this.props.pyzoomout()}>
+                        Zoom Out
                     </a>
 
                     <a class='button icon-zoom-in zoomControls' id="zoomin" title='Run your code' href='javascript:void(0)'
                        onClick={() => this.props.pyzoomin()}>
+                        Zoom In
                     </a>
                 </div>
                 

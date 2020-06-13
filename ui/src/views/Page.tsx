@@ -26,7 +26,7 @@ import FirebaseSelectModal from './FirebaseSelectModal';
 import TrinketView from './TrinketView';
 
 type AdvancedFunction = 'Export Python' | 'Themes' | 'Samples' | 'Extensions' | 'Switch Language' | 'Split View';
-let AdvancedFunctions: AdvancedFunction[] = ['Export Python', 'Themes', "Switch Language", "Split View"];
+let AdvancedFunctions: AdvancedFunction[] = ['Samples', 'Export Python', 'Themes', "Switch Language", "Split View"];
 
 type ShareOptions = 'Copy Shareable URL' | 'Copy Embed Code' | 'Share to Google Classroom' | 'Share to Microsoft Teams';
 let ShareOptions: ShareOptions[] = ['Copy Shareable URL', 'Copy Embed Code', 'Share to Google Classroom', 'Share to Microsoft Teams'];
@@ -478,16 +478,16 @@ export default class Page extends Component<Props, State> {
             let python = document.getElementById('editor') as HTMLBodyElement;
             var style = window.getComputedStyle(python , null).getPropertyValue('font-size');
             var fontSize = parseFloat(style); 
-            python.style.fontSize = (fontSize + 5) + 'px';
+            python.style.fontSize = (fontSize + 3) + 'px';
         }
         if (direction === "out"){
             let python = document.getElementById('editor') as HTMLBodyElement;
             var style = window.getComputedStyle(python , null).getPropertyValue('font-size');
             var fontSize = parseFloat(style); 
-            python.style.fontSize = (fontSize - 5) + 'px';
+            python.style.fontSize = (fontSize - 3) + 'px';
         }
     }
-    
+
 
     private async shareFirebaseFile(file: firebase.storage.Reference) {
 
@@ -702,6 +702,7 @@ export default class Page extends Component<Props, State> {
             this.setState({"fileName": "code"});
             filebox!.style.display = "none";
         }
+
         else{
             let filebox = document.getElementById("filename");
             filebox!.style.display = "block";
@@ -1004,9 +1005,9 @@ export default class Page extends Component<Props, State> {
             let pythonview = document.getElementById('pythonview') as HTMLBodyElement;
             let splitview = document.getElementById('splitview') as HTMLBodyElement;
 
-            blockview.style.opacity = "100%";
-            pythonview.style.opacity = "40%";
-            splitview.style.opacity = "40%";
+            blockview.classList.add("active-mode");
+            pythonview.classList.remove("active-mode");
+            splitview.classList.remove("active-mode");
         }
 
         if (view === "pythonview"){
@@ -1014,9 +1015,9 @@ export default class Page extends Component<Props, State> {
             let pythonview = document.getElementById('pythonview') as HTMLBodyElement;
             let splitview = document.getElementById('splitview') as HTMLBodyElement;
 
-            blockview.style.opacity = "40%";
-            pythonview.style.opacity = "100%";
-            splitview.style.opacity = "40%";
+            blockview.classList.remove("active-mode");
+            pythonview.classList.add("active-mode");
+            splitview.classList.remove("active-mode");
         }
 
         if (view === "split"){
@@ -1024,9 +1025,9 @@ export default class Page extends Component<Props, State> {
             let pythonview = document.getElementById('pythonview') as HTMLBodyElement;
             let splitview = document.getElementById('splitview') as HTMLBodyElement;
 
-            blockview.style.opacity = "40%";
-            pythonview.style.opacity = "40%";
-            splitview.style.opacity = "100%";
+            blockview.classList.remove("active-mode");
+            pythonview.classList.remove("active-mode");
+            splitview.classList.add("active-mode");
         }
         return "Activebutton"
     }
@@ -1100,16 +1101,13 @@ export default class Page extends Component<Props, State> {
             
         }
 
-        if (func === 'Split View') {
-            this.splitView(true)    
+        if (func === 'Samples') {
+            this.openSamples();   
         }
 
         if (func === 'Split View') {
             this.splitView(true)    
         }
-
-
-
 
         if (func === 'Switch Language') {
             this.setState({ modal: 'languages' });

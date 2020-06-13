@@ -109,6 +109,7 @@ nav .login {
 .settings{
     padding: 0px;
     margin-right: 0px !important;
+    text-align: center;
 }
 
 .margin-button {
@@ -367,7 +368,13 @@ table.primary td {
 
 .toolbar-opacity {
     opacity: 40%;
+    -webkit-opacity: 0.4;
     visibility:visible;
+}
+
+.active-mode{
+    opacity: 100%;
+    -webkit-opacity: 1;
 }
 
 .toolbar a {
@@ -434,7 +441,13 @@ table.primary td {
     font-size: 11;
 }
 
-.zoomControls{float:right; margin-right: 0px !important; margin-left: 10px; background-color: #15BAD4 !important; display: none;}
+.zoomControls{float:right; margin-right: 0px !important; margin-left: 10px; background-color: #15BAD4 !important; display: none;};
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  margin: 0 0 0 0 !important;
+  }
+
 
 #terminal-dialog {
     position: fixed;
