@@ -452,7 +452,18 @@ table.primary td {
 #terminal-dialog {
     position: fixed;
     z-index: -1;
-    top: 92px;
+    top: 52px;
+    right: 0px;
+    bottom: 0px;
+    line-height: 20px;
+    width: 40%;
+    float: right;
+}
+
+#remote-terminal-dialog {
+    position: fixed;
+    z-index: -1;
+    top: 93px;
     right: 0px;
     bottom: 0px;
     line-height: 20px;

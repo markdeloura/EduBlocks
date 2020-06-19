@@ -96,7 +96,7 @@ export default class RemoteShellView extends Component<TerminalViewProps, {}> im
 
   public render() {
     return (
-      <div style={{ display: this.props.visible ? 'block' : 'none' }} id='terminal-dialog'>
+      <div style={{ display: this.props.visible ? 'block' : 'none' }} id='remote-terminal-dialog'>
         <div id='term' ref={(div) => this.termDiv = div}></div>
       </div>
     );
