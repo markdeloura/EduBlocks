@@ -97,14 +97,6 @@ export default class RemoteShellView extends Component<TerminalViewProps, {}> im
   public render() {
     return (
       <div style={{ display: this.props.visible ? 'block' : 'none' }} id='terminal-dialog'>
-        <div class='terminal-help'>
-          <span class='help-item' onClick={() => this.onCloseClick()}>
-            <span class='key'>ESC</span> = Close terminal
-          </span>
-          <span class='help-item' onClick={() => this.onStopClick()}>
-            <span class='key'>Ctrl</span> + <span class='key'>C</span> = Stop program
-          </span>
-        </div>
         <div id='term' ref={(div) => this.termDiv = div}></div>
       </div>
     );
