@@ -41,7 +41,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     init: function () {
       this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("screen"), "wn")
-        .appendField(".bgcolour(")
+        .appendField(".bgcolor(")
       this.appendValueInput('text')
         .setCheck(null);
       this.appendDummyInput()
