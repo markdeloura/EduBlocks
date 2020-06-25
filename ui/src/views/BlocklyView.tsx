@@ -17,15 +17,15 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
   private workspace?: Blockly.WorkspaceSvg;
   private xml: string | null = null;
 
-  public componentWillReceiveProps(nextProps: BlocklyViewProps) {
+  public async componentWillReceiveProps(nextProps: BlocklyViewProps) {
     if (nextProps.visible) {
-      if (this.xml !== nextProps.xml) {
-        this.setXml(nextProps.xml);
-      }
-
       // Reload blockly if the extensions have changed
       if (!_.isEqual(this.props.extensionsActive, nextProps.extensionsActive)) {
         this.loadBlockly(nextProps.extensionsActive);
+      }
+
+      if (this.xml !== nextProps.xml) {
+        await this.setXml(nextProps.xml);
       }
     }
   }
@@ -81,8 +81,6 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
       this.workspace.addChangeListener(Blockly.Events.disableOrphans);
       
       Blockly.Generator.prototype.INDENT = '\t';
-
-      this.setXml(this.xml);
     }
   }
 

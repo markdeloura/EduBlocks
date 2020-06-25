@@ -4,10 +4,10 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
   var bordercolour = "#b3235a";
   var inputcolour = "#ff0066";
 
-  Blockly.Blocks['events_start_here'] = {
+  Blocks['events_start_here'] = { 
     init: function() {
       this.appendDummyInput()
-          .appendField("Start code"); 
+          .appendField("# Start code"); 
           // other option is "#!/usr/bin/python3"
       this.setNextStatement(true, null);
       this.setColour("#F8CB3F");
