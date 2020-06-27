@@ -339,6 +339,7 @@ export default class Page extends Component<Props, State> {
 
         this.activeButton("blocks")
         this.switchView("blocks");
+        this.hideZoomControls();
         this.splitView(false);
 
         window.dispatchEvent(new Event('resize'))
@@ -846,6 +847,21 @@ export default class Page extends Component<Props, State> {
         splitview.style.pointerEvents = "auto";
         window.dispatchEvent(new Event('resize'))
         this.closeOutput();
+
+        if (window.innerWidth < 980) {
+            this.switchView(ViewModeBlockly);
+            this.activeButton("blocks");
+         }
+         else {
+            this.switchView(ViewModeBlockly);
+            this.splitView(false);
+
+            split = true
+            this.splitView(true);
+
+            this.activeButton("split");
+         }
+
     }
 
 

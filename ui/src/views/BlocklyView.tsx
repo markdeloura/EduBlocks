@@ -19,17 +19,16 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
 
   
 
-  public componentWillReceiveProps(nextProps: BlocklyViewProps) {
+  public async componentWillReceiveProps(nextProps: BlocklyViewProps) {
     if (nextProps.visible) {
       // Reload blockly if the extensions have changed
       if (!_.isEqual(this.props.extensionsActive, nextProps.extensionsActive)) {
         this.loadBlockly(nextProps.extensionsActive);
       }
-
-
-      try {this.setXml(nextProps.xml);}
-      catch(e){}
     }
+
+    try{await this.setXml(nextProps.xml);}
+    catch(e){}
   }
 
   public async componentDidMount() {
@@ -46,7 +45,7 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
         this.workspace.dispose();
       }
       const toolbox = await getToolBoxXml(extensionsActive);
-
+      
 
       this.workspace = Blockly.inject(this.blocklyDiv, {
 
@@ -85,6 +84,7 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
       this.workspace.addChangeListener(Blockly.Events.disableOrphans);
       
       Blockly.Generator.prototype.INDENT = '\t';
+
     }
   }
 
