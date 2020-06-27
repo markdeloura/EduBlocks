@@ -3,6 +3,103 @@ body {
     background-color: #1B173D;
 }
 
+#wrapper {
+    display: flex;
+    width: 630px;
+    height: 455px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    float:left;
+    clear:left;
+}
+
+#inner-div h1 {
+    padding-bottom: 0;
+    margin: 0;
+    line-height: 30px;
+}
+
+#inner-div h2 {
+    padding-top: 0;
+    margin: 0;
+    font-weight: 50;
+}
+
+#left {
+    flex: 0 0 40%;
+    text-align: center;
+    background-color: #1B173D;
+    border-top-left-radius: 13px;
+    border-bottom-left-radius: 13px;
+}
+  
+#right {
+    flex: 1;
+    background-color: #f9f9f9;
+    text-align: left !important;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.green {
+    color: #4455A5;
+}
+
+.red {
+    color: #E71D64;
+}
+
+.pink-button {
+    background-color: #E71D64;
+}
+
+.modal-pfp{
+    height: 125px;
+    border-radius: 50%;
+}
+
+#inner-div {
+    padding: 35% 0;
+    color: white;
+}
+
+#inner-div-right {
+    padding: 6% 0;
+    margin-left: 15px;
+}
+
+#file-list{
+    height: 278px;
+    width: 96%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+#mode-image {
+    padding: 0;
+}
+
+#file-buttons{
+    font-size: 20px;
+    padding: 0;
+    width: 20%;
+}
+
+.open-button{
+    margin-right: 17px;
+}
+
+table tr{
+    height: 50px;
+}
+
+table {
+    width: 100%;
+    
+}
+
+
 .blocklyWidgetDiv .fieldTextInput {
     height: 0 !important;
     width: 0 !important;
@@ -221,7 +318,8 @@ nav .login img {
 }
 
 .SelectModal__close {
-    color: #fff;
+    color: black;
+    font-size: 26 !important;
 }
 
 .SelectModel__content {

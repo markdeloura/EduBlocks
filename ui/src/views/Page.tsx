@@ -62,6 +62,8 @@ interface State {
     viewMode: ViewMode;
     isSaved: any;
     includeTurtle: boolean;
+    output: null | 'trinket';
+    prevOutput: null | 'trinket';
     modal: null | 'platform' | 'turtle' | 'IE' | 'generating' | 'extensionsnew' |  'share' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
     prevModal: null | 'platform' | 'turtle' | 'IE' | 'generating' | 'share' | 'extensionsnew' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
     extensionsActive: Extension[];
@@ -75,7 +77,9 @@ interface State {
 
 export class GlobalVars {
     public static openFiles: any = "Open";
-  }
+    public static photoURL: any = "images/default-profile-image.png";
+    public static userName: any = "";
+}
 
 export let split = false;
 
@@ -111,6 +115,8 @@ export default class Page extends Component<Props, State> {
         this.state = {
             viewMode: ViewModeBlockly,
             modal: 'platform',
+            output: null,
+            prevOutput: null,
             currentPlatform: "",
             isSaved: "",
             includeTurtle: false,
@@ -211,12 +217,14 @@ export default class Page extends Component<Props, State> {
 
         this.setState({fileName: "Untitled", isSaved: ""});
 
+        try {this.onTerminalClose()}
+        catch(e){}
+
     }
 
 
 
     public componentDidMount() {
-        this.activeButton("blocks");
         let currentTheme = Cookies.get("theme");
 
         if (this.isIE()){
@@ -310,7 +318,7 @@ export default class Page extends Component<Props, State> {
             return;
         }
 
-        this.setState({ modal: 'terminal' });
+        this.setState({ output: 'trinket' });
 
         if (this.state.doc.python.indexOf("turtle") !== -1 || this.state.doc.python.indexOf("processing") !== -1 || this.state.doc.python.indexOf("pygal") !== -1) {
             this.setState({includeTurtle: true})
@@ -399,6 +407,13 @@ export default class Page extends Component<Props, State> {
         }
     }
 
+    private async openLocalFile() {
+        const xml = await this.props.app.openFile();
+        this.readBlocklyContents(xml);
+        await this.closeModal();
+        this.onTerminalClose();
+    }
+
     private async openFirebaseFile(file: firebase.storage.Reference) {
         this.closeModal();
         let self = this;
@@ -447,6 +462,8 @@ export default class Page extends Component<Props, State> {
         (document.getElementById("filename") as HTMLInputElement).value = newFileName;
 
         this.setState({fileName: newFileName});
+
+        this.onTerminalClose();
         file.getDownloadURL().then(function (url) {
             const xhr = new XMLHttpRequest();
             xhr.responseType = 'text';
@@ -739,22 +756,30 @@ export default class Page extends Component<Props, State> {
             extensionsActive: platform.defaultExtensions,
         });
 
-        if (split === true){
+        if (window.innerWidth < 1100) {
             this.switchView(ViewModeBlockly);
-
+            this.activeButton("blocks");
+         }
+         else {
+            this.switchView(ViewModeBlockly);
             await this.splitView(false);
 
             split = true
             this.splitView(true);
-        }
-        else{
-            this.switchView(ViewModeBlockly);
-        }
+
+            this.activeButton("split");
+         }
+
     }
 
 
     private closeModal() {
         this.setState({ modal: this.state.prevModal, prevModal: null });
+        
+    }
+
+    private closeOutput() {
+        this.setState({ output: null });
         
     }
 
@@ -820,7 +845,7 @@ export default class Page extends Component<Props, State> {
         workspace.style.width = "100%";
         splitview.style.pointerEvents = "auto";
         window.dispatchEvent(new Event('resize'))
-        this.closeModal();
+        this.closeOutput();
     }
 
 
@@ -1308,7 +1333,7 @@ export default class Page extends Component<Props, State> {
                 {this.hasCapability('TrinketShell') &&
                     <TrinketView
                         pythonCode={this.getPythonCode()}
-                        visible={this.state.modal === 'terminal'}
+                        visible={this.state.output === 'trinket'}
                         turtle={this.state.includeTurtle === true}
                         onClose={() => this.onTerminalClose()}
                     />
@@ -1320,6 +1345,7 @@ export default class Page extends Component<Props, State> {
                     selectLabel='Open'
                     buttons={[]}
                     visible={this.state.modal === 'files'}
+                    localFile={() => this.openLocalFile()}
                     onSelect={(file: FileFirebaseSelectModalOption) => this.openFirebaseFile(file.ref)}
                     onDelete={(file: FileFirebaseSelectModalOption) => this.deleteFirebaseFile(file.ref)}
                     onShare={(file: FileFirebaseSelectModalOption) => this.shareFirebaseFile(file.ref)}

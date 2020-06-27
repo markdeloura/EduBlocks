@@ -1,6 +1,6 @@
 import React = require('preact');
 import { Component } from 'preact';
-import {generic} from './Page';
+import { GlobalVars } from './Page';
 
 interface FirebaseSelectModalProps<T extends FirebaseSelectModalOption> {
   title: string;
@@ -14,6 +14,8 @@ interface FirebaseSelectModalProps<T extends FirebaseSelectModalOption> {
   onSelect(option: T): void;
   onDelete(option: T): void;
   onShare(option: T): void;
+
+  localFile(): void;
 }
 
 interface FirebaseSelectModalState {
@@ -31,56 +33,56 @@ export interface FirebaseSelectModalButton {
 }
 
 export default class FirebaseSelectModal<T extends FirebaseSelectModalOption> extends Component<FirebaseSelectModalProps<T>, FirebaseSelectModalState> {
-  private getButtons(): FirebaseSelectModalButton[] {
-    return [
-      ...this.props.buttons,
-      { key: 'close', label: 'Close', position: 'right' },
-    ];
-  }
 
   public render() {
     const getOptions = () => this.props.options.map((option) => ([
-      <div class='SelectModal__cell SelectModal__cell--text'>
+      /*<div class='SelectModal__cell SelectModal__cell--text'>
         <span>{option.label}</span>
       </div>,
       <div class='SelectModal__cell SelectModal__cell--action'>
-        {/* <button style="background-color: #49B04D" id="sharebutton" class="buttonMenu icon-share" onClick={() => this.props.onShare(option)}>{navLabels[11]}</button> */}
-        <button class="buttonMenu error" id="deletebutton" onClick={() => this.props.onDelete(option)}>{generic[4]}</button>
+         <button style="background-color: #49B04D" id="sharebutton" class="buttonMenu icon-share" onClick={() => this.props.onShare(option)}>{navLabels[11]}</button> 
+        <button class="buttonMenu error" id="deletebutton" onClick={() => this.props.onDelete(option)}>{generic[4]button>}</
         <button onClick={() => this.props.onSelect(option)}>{generic[0]}</button>
-      </div>,
+      </div>*/
+      
+      <tr>
+        <td>{option.label}</td>
+        <td id="file-buttons">
+          <a href="#" title="Open" onClick={() => this.props.onSelect(option)}><i class="far fa-folder-open open-button green"></i></a>
+          <a href="#" title="Delete" onClick={() => this.props.onDelete(option)}><i class="far fa-times-circle red"></i></a></td>
+      </tr>,
     ]));
 
     return (
-      <div class='SelectModal modal' style="min-width: 60%">
-
+      <div class='modal'>
         <input id='modal_1' type='checkbox' disabled={true} checked={this.props.visible} />
-
         <label for='modal_1' class='overlay'></label>
-
-        <article class='SelectModel__container'>
-
-          <header class='SelectModal__header'>
-            <h3>{generic[12]}</h3>
-            <a class='SelectModal__close close' onClick={() => this.props.onButtonClick('close')}>&times;</a>
-          </header>
-
-          <section class='SelectModel__content'>
-            <div class='SelectModal__grid'>
-              {getOptions()}
-            </div>
-          </section>
-
-          <footer class='SelectModal__buttons'>
-            {
-              this.getButtons().map((button) => (
-                <button style={{ float: button.position, [`margin-${button.position === 'left' ? 'right' : 'left'}`]: '8px' }} onClick={() => this.props.onButtonClick(button.key)}>{generic[3]}</button>
-              ))
-            }
-          </footer>
-
-        </article>
-
+      <div id="wrapper">
+      <div id="left">
+        <div id="inner-div">
+          <img class="modal-pfp" src={GlobalVars.photoURL}></img>
+          <h1>Hello,</h1>
+          <h2>{GlobalVars.userName}</h2>
+          <button class="pink-button" onClick={() => this.props.localFile()}>Open Local File</button>
+        </div>
       </div>
+      <div id="right">
+        <div id="inner-div-right">
+          <div>
+            <h1>My Files</h1>
+            <a class='SelectModal__close close' style="top: 2.4em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
+          </div>
+          <div id="file-list">
+            <table type="primary">
+              <tbody>
+              {getOptions()}
+              </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
     );
   }
 }

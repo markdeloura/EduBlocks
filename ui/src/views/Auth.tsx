@@ -113,6 +113,8 @@ export default class Auth extends React.Component<AuthProps, State> {
     public render() {
         if (this.state.user) {
             GlobalVars.openFiles = "Files"
+            GlobalVars.photoURL = this.state.user.photoURL
+            GlobalVars.userName = this.state.user.displayName
             return <div className='login'>
                 {this.state.user.photoURL ? <a onClick={this.logOutAccount}> <img id="loginimage" src={this.state.user.photoURL} alt='' /> </a>: <a onClick={this.logOutAccount}><img id="loginimage" src="images/default-profile-image.png" alt='' /> </a>}
             </div>;
