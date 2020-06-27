@@ -62,8 +62,8 @@ interface State {
     viewMode: ViewMode;
     isSaved: any;
     includeTurtle: boolean;
-    output: null | 'trinket';
-    prevOutput: null | 'trinket';
+    output: null | 'trinket' | 'remote';
+    prevOutput: null | 'trinket' | 'remote';
     modal: null | 'platform' | 'turtle' | 'IE' | 'generating' | 'extensionsnew' |  'share' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
     prevModal: null | 'platform' | 'turtle' | 'IE' | 'generating' | 'share' | 'extensionsnew' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
     extensionsActive: Extension[];
@@ -1341,7 +1341,7 @@ export default class Page extends Component<Props, State> {
                 {this.hasCapability('RemoteShell') &&
                     <RemoteShellView
                         ref={(c) => this.initTerminal(c)}
-                        visible={this.state.modal === 'terminal'}
+                        visible={this.state.output === 'remote'}
                         onClose={() => this.onTerminalClose()}
                     />
                 }

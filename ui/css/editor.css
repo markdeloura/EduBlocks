@@ -318,6 +318,11 @@ nav .login img {
 }
 
 .SelectModal__close {
+    color: white;
+    font-size: 26 !important;
+}
+
+.file__close {
     color: black;
     font-size: 26 !important;
 }

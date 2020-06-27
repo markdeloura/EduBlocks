@@ -31,6 +31,8 @@ export default class PythonView extends Component<PythonViewProps, {}> {
 
     this.editor = ace.edit(this.editorDiv);
 
+    this.editor.setReadOnly(true);
+
     this.editor.setTheme('ace/theme/monokai');
     this.editor.getSession().setMode('ace/mode/python');
     this.editor.setOptions({

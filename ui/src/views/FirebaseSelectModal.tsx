@@ -70,7 +70,7 @@ export default class FirebaseSelectModal<T extends FirebaseSelectModalOption> ex
         <div id="inner-div-right">
           <div>
             <h1>My Files</h1>
-            <a class='SelectModal__close close' style="top: 2.4em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
+            <a class='file__close close' style="top: 2.4em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
           </div>
           <div id="file-list">
             <table type="primary">
