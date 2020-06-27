@@ -15,6 +15,9 @@ interface BlocklyViewProps {
 export default class BlocklyView extends Component<BlocklyViewProps, {}> {
   private blocklyDiv?: Element;
   private workspace?: Blockly.WorkspaceSvg;
+  private xml: string | null = null;
+
+  
 
   public componentWillReceiveProps(nextProps: BlocklyViewProps) {
     if (nextProps.visible) {
@@ -23,6 +26,7 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
         this.loadBlockly(nextProps.extensionsActive);
       }
 
+
       try {this.setXml(nextProps.xml);}
       catch(e){}
     }
@@ -30,6 +34,7 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
 
   public async componentDidMount() {
     this.loadBlockly(this.props.extensionsActive);
+    console.log(this.xml);
   }
 
   
