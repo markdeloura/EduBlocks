@@ -756,7 +756,7 @@ export default class Page extends Component<Props, State> {
             extensionsActive: platform.defaultExtensions,
         });
 
-        if (window.innerWidth < 1100) {
+        if (window.innerWidth < 980) {
             this.switchView(ViewModeBlockly);
             this.activeButton("blocks");
          }
