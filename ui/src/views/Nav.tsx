@@ -78,14 +78,19 @@ export default class Nav extends Component<Props, {}> {
                     {navLabels[2]}
                 </a>
 
-                <a class='button icon-share margin-button button' title='Save a file' href='javascript:void(0)'
+                <a class='button icon-share margin-button button' id="nav_share" title='Save a file' href='javascript:void(0)'
                     onClick={() => this.props.share()}>
                     Share
                 </a>
 
-                <a class='button icon-folder-open margin-button' title='Open a file' href='javascript:void(0)'
+                <a class='button icon-folder-open margin-button' id="nav_open" title='Open a file' href='javascript:void(0)'
                     onClick={() => this.props.openCode()}>
-                    {GlobalVars.openFiles}
+                    Open
+                </a>
+
+                <a class='button icon-folder-open margin-button' id="nav_files" title='Open a file' href='javascript:void(0)'
+                    onClick={() => this.props.openCode()}>
+                    Files
                 </a>
 
                 <a class='button icon-plus margin-button' id="new" title='Create new file' href='javascript:void(0)'

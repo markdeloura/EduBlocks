@@ -4,6 +4,9 @@ import * as firebaseui from 'firebaseui';
 import * as React from 'preact';
 import {navLabels} from './Page';
 
+import $ = require("jquery");
+
+
 import { GlobalVars } from './Page';
 
 
@@ -81,7 +84,6 @@ export default class Auth extends React.Component<AuthProps, State> {
 
     private logOutAccount() {
         firebase.auth().signOut().then(function () {
-            GlobalVars.openFiles = "Open";
         }, function (error) {
             // An error happened.
         });
@@ -97,10 +99,16 @@ export default class Auth extends React.Component<AuthProps, State> {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 console.log(user);
+                $('#nav_share').css('display', 'inline-block');
+                $('#nav_open').css('display', 'none');
+                $('#nav_files').css('display', 'inline-block');
                 self.setState({
                     user: user,
                 });
             } else {
+                $('#nav_share').css('display', 'none');
+                $('#nav_open').css('display', 'inline-block');
+                $('#nav_files').css('display', 'none');
                 self.setState({
                     user: null,
                 });
