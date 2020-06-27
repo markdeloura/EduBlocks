@@ -15,7 +15,6 @@ interface BlocklyViewProps {
 export default class BlocklyView extends Component<BlocklyViewProps, {}> {
   private blocklyDiv?: Element;
   private workspace?: Blockly.WorkspaceSvg;
-  private xml: string | null = null;
 
   public componentWillReceiveProps(nextProps: BlocklyViewProps) {
     if (nextProps.visible) {
