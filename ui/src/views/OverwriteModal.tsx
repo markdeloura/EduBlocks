@@ -27,27 +27,22 @@ export default class OverModal<T extends OverModalOption> extends Component<Over
 
     return (
       <div class='modal'>
-        <input id='modal_1' type='checkbox' disabled={true} checked={this.props.visible} />
-        <label for='modal_1' class='overlay'></label>
-        <article class="AlertModel__container"> 
-          <header class="SelectModal__header">
-            <h3>{this.props.title}</h3>
-            <a class='SelectModal__close close' onClick={() => this.props.onButtonClick('close')}>&times;</a>
-          </header>
+      <input id='modal_1' type='checkbox' disabled={true} checked={this.props.visible} />
+      <label for='modal_1' class='overlay'></label>
+      <div class="float-container">
 
-          <section class='SelectModel__content'>
-            {this.props.text}
-          </section>
-          <footer class="alertFooter">
-            <label for="modal_1" class="button dangerous" onClick={() => this.props.onButtonClick('close')}>
-              {generic[6]}
-            </label>
-            <label for="modal_1" class="button buttonFloatRight buttonMarginRight" onClick={() => this.props.onYes('yes')}>
-              {generic[5]}
-            </label>
-          </footer>
-        </article>
+        <div class="float-child">
+          <h2>Just to check...</h2>
+          <h4>Changing mode will wipe your code, are you sure you want to change modes without saving your work?</h4>
+        </div>
+        
+        <div class="float-child-2">
+          <a href="#" onClick={() => this.props.onYes('yes')}><img src="images/yes.png"></img></a>
+          <a href="#" onClick={() => this.props.onButtonClick('close')}><img src="images/no.png" ></img></a>
+        </div>
+        
       </div>
+    </div>
     );
   }
 }

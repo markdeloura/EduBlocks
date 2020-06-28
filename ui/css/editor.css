@@ -310,12 +310,47 @@ nav .login img {
     overflow: hidden;
 }
 
-
-.SelectModal__header {
-    background: #1B173D;
-    color: #fff;
-    border-bottom: none !important;
+.float-container {
+    border: 3px solid #fff;
+    padding: 20px;
 }
+
+.float-child {
+    width: 450px;
+    float: left;
+    height: 205px;
+    margin: auto;
+    position: relative;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #1B173D;
+    color: white;
+}  
+
+.float-child h2 {
+    padding: 0;
+}
+
+.float-child h4 {
+    font-weight: 100;
+}
+
+.float-container img {
+    height: 93px;
+    margin-top: 4.5px;
+    margin-bottom: 2px;
+}
+
+.float-container img:hover{
+    transform: scale(1.07);
+}
+
+.float-child-2 {
+    width: 130px;
+    margin-left: 15px;
+    height: auto;
+    float: left;
+}  
 
 .SelectModal__close {
     color: white;
@@ -325,6 +360,15 @@ nav .login img {
 .file__close {
     color: black;
     font-size: 26 !important;
+}
+
+.content {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.card, .modal .overlay ~ * {
+    background: none !important;
 }
 
 .SelectModel__content {
