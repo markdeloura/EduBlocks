@@ -313,6 +313,7 @@ nav .login img {
 .float-container {
     border: 3px solid #fff;
     padding: 20px;
+    width: 600px;
 }
 
 .float-child {
