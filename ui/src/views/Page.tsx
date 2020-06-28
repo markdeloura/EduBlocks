@@ -99,7 +99,7 @@ generic = ["Open",
             "No", 
             "Attention!",  
             "There is no code to run!", 
-            "Changing mode will make you lose your code, do you wish to continue?", 
+            "Changing mode will wipe your code, are you sure you want to change modes without saving your work?", 
             "Uploading...", 
             "Select your mode",
             "Files"];
@@ -957,7 +957,7 @@ export default class Page extends Component<Props, State> {
             "No", 
             "Attention!", 
             "There is no code to run!", 
-            "Changing mode will make you lose your code, do you wish to continue?", 
+            "Changing mode will wipe your code, are you sure you want to change modes without saving your work?", 
             "Uploading...", 
             "Select your mode",
             "Files"];

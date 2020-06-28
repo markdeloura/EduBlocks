@@ -33,7 +33,7 @@ export default class OverModal<T extends OverModalOption> extends Component<Over
 
         <div class="float-child">
           <h2>Just to check...</h2>
-          <h4>Changing mode will wipe your code, are you sure you want to change modes without saving your work?</h4>
+          <h4>{generic[9]}</h4>
         </div>
         
         <div class="float-child-2">
