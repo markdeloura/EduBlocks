@@ -2,7 +2,6 @@ import React = require('preact');
 import {Component} from 'preact';
 import Auth from './Auth';
 import {navLabels} from './Page';
-import { GlobalVars } from './Page';
 
 interface Props {
     platformImg?: string;

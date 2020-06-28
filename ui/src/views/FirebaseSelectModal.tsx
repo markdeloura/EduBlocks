@@ -60,7 +60,7 @@ export default class FirebaseSelectModal<T extends FirebaseSelectModalOption> ex
       <div id="wrapper">
       <div id="left">
         <div id="inner-div">
-          <img class="modal-pfp" src={GlobalVars.photoURL}></img>
+        {GlobalVars.photoURL ? <img class="modal-pfp" src={GlobalVars.photoURL}></img> : <img class="modal-pfp" src="images/default-profile-image.png"></img>}
           <h1>Hello,</h1>
           <h2>{GlobalVars.userName}</h2>
           <button class="pink-button" onClick={() => this.props.localFile()}>Open Local File</button>
