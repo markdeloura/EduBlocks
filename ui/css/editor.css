@@ -319,7 +319,7 @@ nav .login img {
 .float-child {
     width: 450px;
     float: left;
-    height: 205px;
+    height: 175px;
     margin: auto;
     position: relative;
     border-radius: 15px;
@@ -337,7 +337,7 @@ nav .login img {
 }
 
 .float-container img {
-    height: 93px;
+    height: 77px;
     margin-top: 4.5px;
     margin-bottom: 2px;
 }
