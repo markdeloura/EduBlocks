@@ -17,23 +17,24 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
   private workspace?: Blockly.WorkspaceSvg;
   private xml: string | null = null;
 
-  
-
   public async componentWillReceiveProps(nextProps: BlocklyViewProps) {
     if (nextProps.visible) {
+
       // Reload blockly if the extensions have changed
       if (!_.isEqual(this.props.extensionsActive, nextProps.extensionsActive)) {
         this.loadBlockly(nextProps.extensionsActive);
       }
     }
 
-    try{await this.setXml(nextProps.xml);}
-    catch(e){}
+    if (this.props.visible) {
+      if (this.xml !== nextProps.xml) {
+        await this.setXml(nextProps.xml);
+      }
+    }
   }
 
   public async componentDidMount() {
     this.loadBlockly(this.props.extensionsActive);
-    console.log(this.xml);
   }
 
   
@@ -45,7 +46,7 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
         this.workspace.dispose();
       }
       const toolbox = await getToolBoxXml(extensionsActive);
-      
+
 
       this.workspace = Blockly.inject(this.blocklyDiv, {
 
@@ -58,7 +59,6 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
           minScale: 0.3,
           scaleSpeed: 1.2,
         },
-        
         media: 'blockly/media/',
         collapse: false,
         toolbox,
@@ -85,6 +85,7 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
       
       Blockly.Generator.prototype.INDENT = '\t';
 
+      this.setXml(this.xml);
     }
   }
 
