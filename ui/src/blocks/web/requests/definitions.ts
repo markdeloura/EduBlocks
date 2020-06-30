@@ -41,6 +41,23 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     }
   };
 
+  Blocks['json_reference'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField(new Blockly.FieldVariable("r"), "r")
+          .appendField(".json()[");
+      this.appendValueInput("input")
+          .setCheck(null);
+      this.appendDummyInput()
+          .appendField("]");
+      this.setInputsInline(true);
+      this.setOutput(true, null);
+      this.setColour("#FF69B4");
+   this.setTooltip("Reference some JSON code");
+   this.setHelpUrl("");
+    }
+  };
+
   Blocks['requests_post'] = {
     init: function () {
       this.appendDummyInput()

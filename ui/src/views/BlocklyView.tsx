@@ -26,9 +26,10 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
       }
     }
 
-    if (this.props.visible) {
+    if (this.props.visible) { 
       if (this.xml !== nextProps.xml) {
-        await this.setXml(nextProps.xml);
+        try{await this.setXml(nextProps.xml);}
+        catch(e){}
       }
     }
   }
@@ -59,8 +60,12 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
           minScale: 0.3,
           scaleSpeed: 1.2,
         },
+        
         media: 'blockly/media/',
         collapse: false,
+        renderer: "pxt",
+        
+        
         toolbox,
       }) as Blockly.WorkspaceSvg;
 
@@ -80,12 +85,15 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
 
       Blockly.svgResize(this.workspace);
 
+      
+
       // disable blocks that aren't attached to the start block
       this.workspace.addChangeListener(Blockly.Events.disableOrphans);
       
       Blockly.Generator.prototype.INDENT = '\t';
 
-      this.setXml(this.xml);
+      try{this.setXml(this.xml);}
+      catch(e){}
     }
   }
 
