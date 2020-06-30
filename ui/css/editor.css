@@ -224,7 +224,8 @@ nav .login {
   
   .dropdown {
     position: relative;
-    display: inline-block;
+    float: right;
+    display: block;
   }
   
   .dropdown-content {
@@ -921,7 +922,27 @@ button{
     content: "\f1b9";
 }
 
-.blocklyTreeIconCustom.scroll::before {
+.blocklyTreeIconCustom.gigglebot::before {
+    content: "\f1b9";
+}
+
+.blocklyTreeIconCustom.drivebit::before {
+    content: "\f1b9";
+}
+
+.blocklyTreeIconCustom.bitbot::before {
+    content: "\f1b9";
+}
+
+.blocklyTreeIconCustom.movemini::before {
+    content: "\f1b9";
+}
+
+.blocklyTreeIconCustom.minibit::before {
+    content: "\f1b9";
+}
+
+.blocklyTreeIconCustom.scrollbit::before {
     content: "\f06e";
 }
 
@@ -1041,6 +1062,27 @@ button{
 .blocklyTreeIconCustom.graphs::before {
     content: "\f200";
 }
+
+.blocklyTreeIconCustom.general::before {
+    content: "\f0a9";
+}  
+
+.blocklyTreeIconCustom.inputs::before {
+    content: "\f0a9";
+}  
+
+.blocklyTreeIconCustom.outputs::before {
+    content: "\f0a9";
+}  
+
+.blocklyTreeIconCustom.boards::before {
+    content: "\f0a9";
+}  
+
+.blocklyTreeIconCustom.internal::before {
+    content: "\f0a9";
+}  
+    
 
 .blocklyTreeIconCustom.random::before {
     content: "\f074";

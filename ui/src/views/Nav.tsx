@@ -8,7 +8,7 @@ interface Props {
 
     openSamples(): void;
 
-    openExtensions?(): void;
+    openExtensions(): void;
 
     openThemes(): void;
 
@@ -58,7 +58,7 @@ interface Props {
 
 export default class Nav extends Component<Props, {}> {
     public render() {
-        const {downloadHex, openTerminal: sendCode, downloadPython, flashHex, closeTerminal} = this.props;
+        const {downloadHex, openTerminal: sendCode, downloadPython, flashHex, closeTerminal, openExtensions} = this.props;
 
         return (
             <>
@@ -162,14 +162,21 @@ export default class Nav extends Component<Props, {}> {
                     {downloadHex &&
                     <a class='button icon-flash button-green' id="HexFlashButton" title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 0px !important; background-color: #644A9E !important;"
                        onClick={() => flashHex()}>
-                        Flash Hex
+                        Flash
                     </a>
                     }      
 
                     {downloadHex &&
-                    <a class='button icon-download button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 12px !important; margin-left: 10px;"
+                    <a class='button icon-download button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 12px !important;"
                        onClick={() => downloadHex()}>
                         {navLabels[8]}
+                    </a>
+                    }   
+
+                    {downloadHex &&
+                    <a class='button icon-puzzle button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-left: 10px; background-color: #D63664 !important;" 
+                       onClick={() => openExtensions()}>
+                        Extensions
                     </a>
                     }   
 

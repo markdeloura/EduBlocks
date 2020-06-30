@@ -820,17 +820,23 @@ export default class Page extends Component<Props, State> {
 
 
     private openExtensions() {
+        this.splitView(false)
         this.setState({ modal: 'extensionsnew' });
     }
 
-    private selectExtension(extension: Extension) {
-        this.closeModal();
+    private async selectExtension(extension: Extension) {
 
         const { extensionsActive } = this.state;
 
-        this.setState({
+        this.switchView("blocks");
+
+        await this.setState({
             extensionsActive: [...extensionsActive, extension],
         });
+
+        await this.splitView(true);
+
+        await this.closeModal();
     }
 
 
@@ -1249,7 +1255,7 @@ export default class Page extends Component<Props, State> {
                         selectLabel={generic[2]}
                         buttons={[]}
                         visible={this.state.modal === 'extensionsnew'}
-                        onSelect={(extension) => this.selectExtension(extension.label as Extension)}
+                        onSelect={async (extension) => this.selectExtension(extension.label as Extension)}
                         onButtonClick={(key) => key === 'close' && this.closeModal()}
                     />
                 }
@@ -1287,6 +1293,7 @@ export default class Page extends Component<Props, State> {
                     pyzoomin={() => this.pythonZoom("in")}
                     share={() => this.shareFirebaseFile(this.state.isSaved)}
                     pyzoomout={() => this.pythonZoom("out")}
+                    openExtensions={() => this.openExtensions()}
                     flashHex={() => this.hexflashing()}
                     closeTerminal={() => this.onTerminalClose()}
                     blocks={() => this.splitView(false) && window.dispatchEvent(new Event('resize')) && this.activeButton("blocks") && this.hideZoomControls() && this.switchView("blocks")}
