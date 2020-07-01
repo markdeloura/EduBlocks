@@ -9832,7 +9832,9 @@ declare module Blockly.WidgetDiv {
 
 declare module Blockly {
 
-    class Workspace extends Workspace__Class { }
+    class Workspace extends Workspace__Class {
+      svgBlockCanvas_: any;
+}
     /** Fake class which should be extended to avoid inheriting static properties */
     class Workspace__Class  { 
     

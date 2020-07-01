@@ -4,6 +4,8 @@ import { getToolBoxXml } from '../blocks';
 import { Extension } from '../types';
 import _ = require('lodash');
 
+/// <reference path="screenshot.d.ts" />
+
 interface BlocklyViewProps {
   visible: boolean;
   xml: string | null;
@@ -37,8 +39,6 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
   public async componentDidMount() {
     this.loadBlockly(this.props.extensionsActive);
   }
-
-  
 
   private async loadBlockly(extensionsActive: Extension[]) {
     if (this.blocklyDiv) {
@@ -81,11 +81,9 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
         }
       });
 
-      
-
       Blockly.svgResize(this.workspace);
 
-      
+      this.workspace.configureContextMenu = this.customContextMenuFn;
 
       // disable blocks that aren't attached to the start block
       this.workspace.addChangeListener(Blockly.Events.disableOrphans);
@@ -95,6 +93,17 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
       try{this.setXml(this.xml);}
       catch(e){}
     }
+  }
+
+  private customContextMenuFn(options: any) {
+    var option = {
+      enabled: true,
+      text: "Download Screenshot",
+      callback: function() {
+        exportPNG()
+      }
+    };
+    options.push(option);
   }
 
   private getXml(): string {
