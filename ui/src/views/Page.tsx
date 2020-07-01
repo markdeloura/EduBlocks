@@ -5,6 +5,9 @@ import { App, Capability, Extension, Platform, PlatformInterface } from '../type
 import * as firebase from 'firebase/app';
 import { AuthModal } from './Auth';
 import AlertModal from './AlertModal';
+
+import SettingsModal from './SettingsModal';
+
 import IEModal from './IEModal';
 import LoadModal from './LoadModal';
 import UploadModal from './UploadModal';
@@ -24,9 +27,6 @@ import SelectModal, { SelectModalOption } from './SelectModal';
 import FirebaseSelectModal from './FirebaseSelectModal';
 
 import TrinketView from './TrinketView';
-
-type AdvancedFunction = 'Export Python' | 'Themes' | 'Samples' | 'Extensions' | 'Switch Language' | 'Split View';
-let AdvancedFunctions: AdvancedFunction[] = ['Samples', 'Export Python', 'Themes', "Switch Language", "Split View"];
 
 type ShareOptions = 'Copy Shareable URL' | 'Copy Embed Code' | 'Share to Google Classroom' | 'Share to Microsoft Teams';
 let ShareOptions: ShareOptions[] = ['Copy Shareable URL', 'Copy Embed Code', 'Share to Google Classroom', 'Share to Microsoft Teams'];
@@ -64,8 +64,8 @@ interface State {
     includeTurtle: boolean;
     output: null | 'trinket' | 'remote';
     prevOutput: null | 'trinket' | 'remote';
-    modal: null | 'platform' | 'turtle' | 'IE' | 'generating' | 'extensionsnew' |  'share' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
-    prevModal: null | 'platform' | 'turtle' | 'IE' | 'generating' | 'share' | 'extensionsnew' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
+    modal: null | 'platform' | 'settings' | 'turtle' | 'IE' | 'generating' | 'extensionsnew' |  'share' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
+    prevModal: null | 'platform' | 'settings' | 'turtle' | 'IE' | 'generating' | 'share' | 'extensionsnew' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
     extensionsActive: Extension[];
     progress: number;
     shareURL: string;
@@ -224,7 +224,23 @@ export default class Page extends Component<Props, State> {
 
 
 
-    public componentDidMount() {
+    public async componentDidMount() {
+
+        $(function() {
+            $('.tab-title').on('click', function(e) {
+                e.preventDefault();
+                var _self = $(this);
+                $('.tab').removeClass('active');
+                _self.parent().addClass('active');
+            });
+
+            $('.lang').on('click', function(e) {
+                var _self = $(this);
+                $('.lang').removeClass('green-lang');
+                _self.addClass('green-lang');
+            });
+        });
+
         let currentTheme = Cookies.get("theme");
 
         if (this.isIE()){
@@ -274,6 +290,12 @@ export default class Page extends Component<Props, State> {
             history.pushState(null, "", location.href.split("#")[0]);
 
     }
+
+    await this.splitView(true);
+
+    await this.activeButton("split");
+    
+    await this.setState({modal: "platform"});
     
     }   
 
@@ -721,6 +743,8 @@ export default class Page extends Component<Props, State> {
             filebox!.style.display = "none";
         }
 
+        
+
         else{
             let filebox = document.getElementById("filename");
             filebox!.style.display = "block";
@@ -771,6 +795,7 @@ export default class Page extends Component<Props, State> {
             this.activeButton("split");
          }
 
+
     }
 
 
@@ -810,12 +835,13 @@ export default class Page extends Component<Props, State> {
         this.setState({ modal: 'themes' });
     }
 
-    private selectTheme(theme: string) {
-        this.closeModal();
+    private async selectTheme(theme: string) {
 
         Cookies.set("theme", theme, { expires: 100000 })
 
         document.body.className = `theme-${theme}`;
+
+        await this.closeModal();
     }
 
 
@@ -912,22 +938,26 @@ export default class Page extends Component<Props, State> {
     }
     
 
-    private openPlatforms() {
-        this.new();
+    private async openPlatforms() {
+        await this.splitView(false);
+        await this.switchView("blocks");
+        const doc: DocumentState = {
+            xml: null,
+            python: null,
+            pythonClean: true,
+        };
+        
+        this.setState({ doc });
+
+        await this.new();
+
+        await this.splitView(true);
+
         this.setState({ modal: 'platform' });
     }
 
     private modeQuestion() {
         this.setState({ modal: 'codeOverwrite' });
-    }
-
-    private getAdvancedFunctionList(): SelectModalOption[] {
-        let advancedFunctions = AdvancedFunctions;
-
-        return advancedFunctions.map((func) => ({
-            label: func,
-            obj: func,
-        }));
     }
 
     private getShareOptionsList(): SelectModalOption[] {
@@ -1134,37 +1164,6 @@ export default class Page extends Component<Props, State> {
                 }
             }
     }
-    
-
-    private async runAdvancedFunction(func: AdvancedFunction) {
-        if (func === 'Export Python') {
-            await this.downloadPython();
-            await this.closeModal();
-            
-        }
-
-        if (func === 'Themes') {
-            await this.openThemes();
-            
-        }
-
-        if (func === 'Samples') {
-            this.openSamples();   
-        }
-
-        if (func === 'Split View') {
-            this.splitView(true)    
-        }
-
-        if (func === 'Switch Language') {
-            this.setState({ modal: 'languages' });
-        }
-
-        if (func === 'Extensions') {
-            await this.openExtensions();
-        }
-    }
-
     
 
     public render() {
@@ -1395,13 +1394,18 @@ export default class Page extends Component<Props, State> {
                     onButtonClick={(key) => key === 'close' && this.closeModal()}
                 />
 
-                <SelectModal
+                <SettingsModal
                     title={navLabels[4]}
-                    selectLabel={generic[1]}
-                    buttons={[]}
                     visible={this.state.modal === 'functions'}
-                    options={this.getAdvancedFunctionList()}
-                    onSelect={(func) => this.runAdvancedFunction(func.label as AdvancedFunction)}
+                    defaultTheme={() => this.selectTheme('Default')}
+                    selectLabel="Settings"
+                    darkTheme={() => this.selectTheme("Dark")}
+                    lightTheme={() => this.selectTheme('Light')}
+                    selectLanguage={(lang) => this.runLanguages(lang as Languages)}
+                    buttons={[]}
+                    onSelect={(theme) => this.selectTheme(theme.label)}
+                    onSampleSelect={(file) => this.selectSample(file.label)}
+                    options={this.state.platform ? this.props.app.getSamples(this.state.platform.key).map((label) => ({ label })) : []}
                     onButtonClick={(key) => key === 'close' && this.closeModal()}
                 />
 

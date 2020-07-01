@@ -34,6 +34,7 @@ export default class PythonView extends Component<PythonViewProps, {}> {
     this.editor.setReadOnly(true);
 
     this.editor.setTheme('ace/theme/monokai');
+    this.editor.$blockScrolling = Infinity;
     this.editor.getSession().setMode('ace/mode/python');
     this.editor.setOptions({
       fontSize: "13pt"

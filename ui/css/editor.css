@@ -10,8 +10,161 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-    float:left;
-    clear:left;
+    float: left;
+    clear: left;
+}
+
+.settings-container {
+    width: 630px !important;
+    height: 450px !important;
+}
+
+.tab-content a {
+    cursor: pointer;
+}
+
+.tab-content b {
+    margin-bottom: 10px;
+}
+
+.tab-content {
+    display: none;
+    width: 100%;
+    max-height: 100%;
+    background: #fff;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.tab.active+.tab-content {
+    display: block;
+}
+
+
+/* Styling tabs - this is enough for mobile - just like an accordion */
+
+.tab-content {
+    padding: 10px;
+}
+
+.tab {
+    text-align: center;
+}
+
+
+/* Styling for desktop - vertical tabs */
+
+.tab {
+    width: 35%;
+    border-top-left-radius: 15px;
+    padding-bottom: 0px !important;
+}
+
+.tab a {
+    width: 130px;
+    background-color: #E71D64;
+}
+
+.tab h1 {
+    padding-bottom: 30px;
+    margin: 0;
+    color: white;
+    line-height: 30px;
+    padding-top: 75px;
+}
+
+.tab-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 65%;
+    min-height: 100%;
+    padding: 20px;
+}
+
+.tab-content h1 {
+    padding-top: 10px;
+}
+
+
+/*   this is optional */
+
+.tabs-container {
+    height: 100%;
+    background: #1B173D;
+    border-radius: 15px;
+}
+
+
+/* Float four columns side by side */
+
+.settings-column {
+    float: left;
+    width: 33.3%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+
+/* Remove extra left and right margins, due to padding */
+
+.samples {
+    width: 365px !important;
+}
+
+.samples-card {
+    height: 180px !important;
+}
+
+.green-lang {
+    background-color: yellowgreen !important;
+}
+
+.settings-row {
+    margin: 0 -5px;
+    height: 320px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+
+/* Clear floats after the columns */
+
+.settings-row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+/* Style the counter cards */
+
+.settings-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    background-color: #f1f1f1;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    padding-top: 10px;
+    min-height: 127px;
+    text-overflow: ellipsis;
+}
+
+.settings-card h3 {
+    padding-bottom: 10px !important;
+    font-size: 17px;
+}
+
+.settings-card img {
+    height: 75px;
+}
+
+.tab.active a {
+    background-color: yellowgreen;
+}
+
+.settings-card:hover {
+    transform: scale(1.045);
 }
 
 #inner-div h1 {
@@ -33,7 +186,7 @@ body {
     border-top-left-radius: 13px;
     border-bottom-left-radius: 13px;
 }
-  
+
 #right {
     flex: 1;
     background-color: #f9f9f9;
@@ -54,7 +207,7 @@ body {
     background-color: #E71D64;
 }
 
-.modal-pfp{
+.modal-pfp {
     height: 125px;
     border-radius: 50%;
 }
@@ -69,7 +222,7 @@ body {
     margin-left: 15px;
 }
 
-#file-list{
+#file-list {
     height: 278px;
     width: 96%;
     overflow: scroll;
@@ -80,31 +233,28 @@ body {
     padding: 0;
 }
 
-#file-buttons{
+#file-buttons {
     font-size: 20px;
     padding: 0;
     width: 20%;
 }
 
-.open-button{
+.open-button {
     margin-right: 17px;
 }
 
-table tr{
+table tr {
     height: 50px;
 }
 
 table {
     width: 100%;
-    
 }
-
 
 .blocklyWidgetDiv .fieldTextInput {
     height: 0 !important;
     width: 0 !important;
 }
-
 
 .blocklyFlyoutLabelIcon {
     font-family: 'Font Awesome\ 5 Free';
@@ -113,27 +263,28 @@ table {
     fill: white;
 }
 
- progress {
-	background-color: #b5b5b5;
-	border: 0;
-	width: 100%;
-	height: 18px;
-	border-radius: 9px;
-}
- progress::-webkit-progress-bar {
-	background-color: #b5b5b5;
+progress {
+    background-color: #b5b5b5;
+    border: 0;
+    width: 100%;
+    height: 18px;
     border-radius: 9px;
 }
- progress::-webkit-progress-value {
-	background: #E71D64;
-	border-radius: 9px;
+
+progress::-webkit-progress-bar {
+    background-color: #b5b5b5;
+    border-radius: 9px;
 }
+
+progress::-webkit-progress-value {
+    background: #E71D64;
+    border-radius: 9px;
+}
+
 .html5-progress-bar progress::-moz-progress-bar {
-	background: #E71D64;
-
-	border-radius: 9px;
+    background: #E71D64;
+    border-radius: 9px;
 }
-
 
 .blocklyTreeIconCustom {
     background: none !important;
@@ -147,7 +298,6 @@ table {
     min-height: 45px;
     vertical-align: middle;
 }
-
 
 .loading-message {
     font-size: 100px;
@@ -174,8 +324,7 @@ nav .button {
 }
 
 nav {
-    background: #1B173D; 
-   
+    background: #1B173D;
 }
 
 .Nav__platformImg {
@@ -183,7 +332,7 @@ nav {
     height: 2em;
 }
 
-nav .show:checked ~ .menu {
+nav .show:checked~.menu {
     background-color: #585858;
 }
 
@@ -199,11 +348,11 @@ nav .login {
     align-items: center;
 }
 
-.margin-button:hover{
+.margin-button:hover {
     border: solid white 2px;
 }
 
-.settings{
+.settings {
     padding: 0px;
     margin-right: 0px !important;
     text-align: center;
@@ -220,50 +369,52 @@ nav .login {
     color: white;
     font-size: 16px;
     border: none;
-  }
-  
-  .dropdown {
+}
+
+.dropdown {
     position: relative;
     float: right;
     display: block;
-  }
-  
-  .dropdown-content {
+}
+
+.dropdown-content {
     display: none;
     position: absolute;
     right: 5px;
     background-color: #f1f1f1;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-  }
-  
-  .dropdown-content a {
+}
+
+.dropdown-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-  }
-  
-  .dropdown-content a:hover {background-color: #ddd;}
-  
-  .dropdown:hover .dropdown-content {display: block;}
+}
 
-  #loginimage {
-      cursor: pointer;
-      margin-top: 7px;
-  }
-  
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+#loginimage {
+    cursor: pointer;
+    margin-top: 7px;
+}
 
 @media only screen and (max-width: 600px) {
-    #filename{
+    #filename {
         display: none !important;
     }
     nav .login {
         width: 130px;
     }
 }
-
 
 @media only screen and (max-width: 1000px) {
     .margin-button {
@@ -272,10 +423,9 @@ nav .login {
 }
 
 @media (max-width: 80em) {
-.SelectModel__container {
-    min-width: 53%;
-}
-
+    .SelectModel__container {
+        min-width: 53%;
+    }
 }
 
 nav .login img {
@@ -285,13 +435,14 @@ nav .login img {
     margin-right: 0.5em;
 }
 
-
 .pseudo.button {
     color: white !important;
 }
 
+
 /* `SelectModal` Component
 ---------------------------------------------------------------- */
+
 .SelectModel__container {
     background: none !important;
     border: solid 1px #000 !important;
@@ -327,7 +478,7 @@ nav .login img {
     padding: 20px;
     background-color: #1B173D;
     color: white;
-}  
+}
 
 .float-child h2 {
     padding: 0;
@@ -343,7 +494,7 @@ nav .login img {
     margin-bottom: 2px;
 }
 
-.float-container img:hover{
+.float-container img:hover {
     transform: scale(1.07);
 }
 
@@ -352,7 +503,7 @@ nav .login img {
     margin-left: 15px;
     height: auto;
     float: left;
-}  
+}
 
 .SelectModal__close {
     color: white;
@@ -369,7 +520,8 @@ nav .login img {
     border-bottom-right-radius: 15px;
 }
 
-.card, .modal .overlay ~ * {
+.card,
+.modal .overlay~* {
     background: none !important;
 }
 
@@ -383,19 +535,17 @@ nav .login img {
     overflow: hidden;
 }
 
-
 .SelectModal__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(100px, 1fr));
     align-items: center;
 }
 
-
-.SelectModal__cell--text > span {
+.SelectModal__cell--text>span {
     line-height: 40px;
 }
 
-.SelectModal__cell--action > button {
+.SelectModal__cell--action>button {
     float: right;
 }
 
@@ -404,15 +554,13 @@ nav .login img {
     color: #FFFFFF !important;
 }
 
-#ext:hover{
+#ext:hover {
     border-color: #1B173D;
     border-width: 2px;
 }
 
-
-
-.blocklyTreeIconCustom{
-    line-height: 51px !important; 
+.blocklyTreeIconCustom {
+    line-height: 51px !important;
 }
 
 nav .brand {
@@ -428,16 +576,14 @@ button {
 }
 
 .blocklyText {
-
     cursor: default;
     fill: #fff;
     font-family: "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
     font-size: 12pt;
     font-weight: bold !important;
-
 }
 
-.myLabelStyle > .blocklyFlyoutLabelText {
+.myLabelStyle>.blocklyFlyoutLabelText {
     fill: white;
 }
 
@@ -445,7 +591,6 @@ button {
     background-color: none !important;
     border: black 1px;
 }
-
 
 table.primary td {
     padding: .3em .6em;
@@ -482,12 +627,11 @@ table.primary td {
     box-shadow: 0 0 transparent inset;
 }
 
-
 .file {
     display: none;
 }
 
-.SelectModal__cell--text{
+.SelectModal__cell--text {
     margin-right: 20px;
 }
 
@@ -510,18 +654,17 @@ table.primary td {
     overflow: hidden;
 }
 
-.toolbar-column{
+.toolbar-column {
     flex: 50%;
 }
-
 
 .toolbar-opacity {
     opacity: 40%;
     -webkit-opacity: 0.4;
-    visibility:visible;
+    visibility: visible;
 }
 
-.active-mode{
+.active-mode {
     opacity: 100%;
     -webkit-opacity: 1;
 }
@@ -577,7 +720,7 @@ table.primary td {
     background: #e7e7e7;
 }
 
-.show-editor{
+.show-editor {
     display: block !important;
 }
 
@@ -590,13 +733,19 @@ table.primary td {
     font-size: 11;
 }
 
-.zoomControls{float:right; margin-right: 0px !important; margin-left: 10px; background-color: #15BAD4 !important; display: none;};
+.zoomControls {
+    float: right;
+    margin-right: 0px !important;
+    margin-left: 10px;
+    background-color: #15BAD4 !important;
+    display: none;
+}
 
+;
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-  margin: 0 0 0 0 !important;
-  }
-
+    margin: 0 0 0 0 !important;
+}
 
 #terminal-dialog {
     position: fixed;
@@ -620,11 +769,9 @@ table.primary td {
     float: right;
 }
 
-
 a {
     color: #1B173D
 }
-
 
 #term {
     height: 100%;
@@ -633,7 +780,6 @@ a {
 
 .blocklySvg {
     background-image: url("https://edublocks.org/rsz_newpythonbackground.png") !important;
-
 }
 
 .blocklyTreeRow {
@@ -647,27 +793,28 @@ a {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-  }
-  
-.flex-container > div {
+}
+
+.flex-container>div {
     margin: 10px;
     text-align: center;
     line-height: 75px;
     font-size: 30px;
     margin: 0 auto;
-  }
+}
 
-.card header, .modal .overlay ~ * header {
+.card header,
+.modal .overlay~* header {
     font-weight: bold;
     position: relative;
     border-bottom: 1px solid #eee;
     background-color: #1B173D;
     color: white;
-  }
+}
 
-.modal > input:checked ~ .overlay ~ * {
+.modal>input:checked~.overlay~* {
     border-radius: 15px;
-   }
+}
 
 .loader {
     border: 16px solid #f3f3f3;
@@ -675,29 +822,41 @@ a {
     border-top: 16px solid #E71D64;
     width: 120px;
     height: 120px;
-    -webkit-animation: spin 2s linear infinite; /* Safari */
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
     animation: spin 2s linear infinite;
-  }
-  
-  /* Safari */
-  @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+}
+
+
+/* Safari */
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 
 /* Specifying rounded toolbox borders. */
+
 div.blocklyTreeRow {
     border-radius: 4px;
     padding-left: 6px !important;
-
 }
 
-button{
+button {
     background: #4455A5;
 }
 
@@ -721,7 +880,7 @@ button{
     box-shadow: 0 0 11px rgba(33, 33, 33, .2);
 }
 
-.ImageModalOption > * {
+.ImageModalOption>* {
     display: block;
 }
 
@@ -758,14 +917,11 @@ button{
     padding-left: 20px;
 }
 
-.LoginModal__close{
-    
+.LoginModal__close {
     color: white;
 }
 
-
-
-.ImageHelpIconContainer{
+.ImageHelpIconContainer {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -785,7 +941,6 @@ button{
     height: 39px !important;
 }
 
-
 .ImageModalOption button {
     height: 37px;
 }
@@ -793,6 +948,7 @@ button{
 .ImageModalOption .icon-help-circled {
     margin-left: 7px;
 }
+
 
 /* `TrinketView` Component
 ---------------------------------------------------------------- */
@@ -834,6 +990,7 @@ button{
     }
 }
 
+
 /* Blockly Toolbox Icons */
 
 .blocklyTreeIconCustom.basic::before {
@@ -851,7 +1008,6 @@ button{
 .blocklyTreeIconCustom.gpiozero::before {
     content: "\f0eb";
 }
-
 
 .blocklyTreeIconCustom.sonic::before {
     content: "\f001";
@@ -916,7 +1072,6 @@ button{
 .blocklyTreeIconCustom.cpx::before {
     content: "\f02d";
 }
-
 
 .blocklyTreeIconCustom.robot::before {
     content: "\f1b9";
@@ -1002,8 +1157,20 @@ button{
     content: "\f2f9";
 }
 
+.blocklyTreeIconClosedLtr {
+    background: none !important;
+    font-family: 'Font Awesome\ 5 Free';
+    font-weight: 900;
+    font-size: 1.3rem;
+    margin: 0 .25em;
+    width: 30px !important;
+    height: 100% !important;
+    line-height: 45px;
+    min-height: 45px;
+    vertical-align: middle;
+}
 
-.blocklyTreeIconClosedLtr {    
+.blocklyTreeIcon {
     background: none !important;
     font-family: 'Font Awesome\ 5 Free';
     font-weight: 900;
@@ -1014,9 +1181,9 @@ button{
     line-height: 45px;
     min-height: 45px;
     vertical-align: middle;
-  }
-  
-  .blocklyTreeIcon {    
+}
+
+.blocklyTreeIconOpen {
     background: none !important;
     font-family: 'Font Awesome\ 5 Free';
     font-weight: 900;
@@ -1027,29 +1194,15 @@ button{
     line-height: 45px;
     min-height: 45px;
     vertical-align: middle;
-  }
-  
-  .blocklyTreeIconOpen {
-    background: none !important;
-    font-family: 'Font Awesome\ 5 Free';
-    font-weight: 900;
-    font-size: 1.3rem;
-    margin: 0 .25em;
-    width: 30px !important;
-    height: 100% !important;
-    line-height: 45px;
-    min-height: 45px;
-    vertical-align: middle;
-  }
-  
-  .blocklyTreeIconOpen::before{
+}
+
+.blocklyTreeIconOpen::before {
     content: "\f0ab";
-  }
+}
 
-  
-  .blocklyTreeIconClosedLtr::before{
+.blocklyTreeIconClosedLtr::before {
     content: "\f0a9";
-  }
+}
 
 .blocklyTreeIconCustom.definitions::before {
     content: "\f02d";
@@ -1065,24 +1218,23 @@ button{
 
 .blocklyTreeIconCustom.general::before {
     content: "\f0a9";
-}  
+}
 
 .blocklyTreeIconCustom.inputs::before {
     content: "\f0a9";
-}  
+}
 
 .blocklyTreeIconCustom.outputs::before {
     content: "\f0a9";
-}  
+}
 
 .blocklyTreeIconCustom.boards::before {
     content: "\f0a9";
-}  
+}
 
 .blocklyTreeIconCustom.internal::before {
     content: "\f0a9";
-}  
-    
+}
 
 .blocklyTreeIconCustom.random::before {
     content: "\f074";
@@ -1092,7 +1244,7 @@ button{
     content: "\f53f";
 }
 
-iframe > body {
+iframe>body {
     background: white !important;
 }
 
@@ -1475,10 +1627,10 @@ library-item_featured-item_3V2-t {
 }
 
 input:-moz-placeholder {
-    box-shadow:none !important;
+    box-shadow: none !important;
 }
 
-library-item_library-item_1DcMO:hover{
+library-item_library-item_1DcMO:hover {
     border: #1B173D;
 }
 
@@ -1524,7 +1676,7 @@ library-item_library-item_1DcMO:hover{
     border: 0.25rem solid hsla(0, 0%, 0%, 0.15);
 }
 
-.ReactModal__Overlay{
+.ReactModal__Overlay {
     z-index: 20000;
 }
 
@@ -1549,7 +1701,6 @@ library-item_library-item_1DcMO:hover{
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-
 
 .library_library-scroll-grid_1jyXm {
     display: -webkit-box;
@@ -1620,4 +1771,3 @@ library-item_library-item_1DcMO:hover{
     padding-top: 0.4rem;
     font-weight: bold;
 }
-
