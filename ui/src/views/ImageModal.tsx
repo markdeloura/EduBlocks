@@ -38,23 +38,27 @@ export default class ImageModal<T extends ImageModalOption> extends Component<Im
 
     return (
       <div class='modal'>
-        <input id='modal_1' type='checkbox' disabled={true} checked={this.props.visible} />
-        <label for='modal_1' class='overlay'></label>
-        <article style="width: 870px;" id="imagemodal">
-          <header style="text-align: center;" id="imageheader">
-            <h3 style="margin: 0 !important;">{this.props.title}</h3>
-          </header>
-
+      <input id='modal_1' type='checkbox' disabled={true} checked={this.props.visible} />
+      <label for='modal_1' class='overlay'></label>
+      <div id="wrapper" style="width: 49% !important">
+        <div id="left">
+          <div id="inner-div-image">
+            <img id="mode-logo" src="images/weblogo.png"></img>
+            <h1 style="padding: 10px; font-size: 28px; line-height: 33px; padding-top: 10px !important; font-weight: 600;">Welcome!</h1>
+            <h1 style="padding: 25px; font-size: 28px; line-height: 33px; padding-top: 10px !important; font-weight: 500;">Select a mode to continue</h1>
+          </div>
+        </div>
+        <div id="right">
+          <div id="inner-div-right">
           <section class='content' id="imagecontent">
             <div class='ImageModalOptionContainer'>
               {getOptions()}
             </div>
           </section>
-          <footer id="imagefooter"> 
-
-          </footer>
-        </article>
+        </div>
       </div>
+    </div>
+    </div>
     );
   }
 }

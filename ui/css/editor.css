@@ -73,6 +73,10 @@ body {
     padding-top: 75px;
 }
 
+#mode-logo {
+    width: 85%;
+}
+
 .tab-content {
     position: absolute;
     top: 0;
@@ -244,6 +248,11 @@ body {
 
 #inner-div {
     padding: 35% 0;
+    color: white;
+}
+
+#inner-div-image {
+    margin-top: 38%;
     color: white;
 }
 
@@ -483,10 +492,6 @@ nav .login img {
     background: none !important;
 }
 
-.content {
-    background: #fff;
-}
-
 .alertFooter {
     background: #fff;
     overflow: hidden;
@@ -521,6 +526,12 @@ nav .login img {
 .float-container img {
     height: 77px;
     margin-top: 4.5px;
+    margin-bottom: 2px;
+}
+
+#buttons-ok img {
+    height: 90px !important;
+    margin-top: 22px !important;
     margin-bottom: 2px;
 }
 
@@ -755,7 +766,7 @@ table.primary td {
 
 #editor {
     position: absolute;
-    top: 0;
+    top: -1;
     right: 0;
     width: 100%;
     bottom: 0;

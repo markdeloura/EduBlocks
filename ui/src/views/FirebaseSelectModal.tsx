@@ -44,7 +44,7 @@ export default class FirebaseSelectModal<T extends FirebaseSelectModalOption> ex
         <button class="buttonMenu error" id="deletebutton" onClick={() => this.props.onDelete(option)}>{generic[4]button>}</
         <button onClick={() => this.props.onSelect(option)}>{generic[0]}</button>
       </div>*/
-      
+
       <tr>
         <td>{option.label}</td>
         <td id="file-buttons">
@@ -57,32 +57,32 @@ export default class FirebaseSelectModal<T extends FirebaseSelectModalOption> ex
       <div class='modal'>
         <input id='modal_1' type='checkbox' disabled={true} checked={this.props.visible} />
         <label for='modal_1' class='overlay'></label>
-      <div id="wrapper">
-      <div id="left">
-        <div id="inner-div">
-        {GlobalVars.photoURL ? <img class="modal-pfp" src={GlobalVars.photoURL}></img> : <img class="modal-pfp" src="images/default-profile-image.png"></img>}
-          <h1>Hello,</h1>
-          <h2>{GlobalVars.userName}</h2>
-          <button class="pink-button" onClick={() => this.props.localFile()}>Open Local File</button>
+        <div id="wrapper">
+          <div id="left">
+            <div id="inner-div">
+              {GlobalVars.photoURL ? <img class="modal-pfp" src={GlobalVars.photoURL}></img> : <img class="modal-pfp" src="images/default-profile-image.png"></img>}
+              <h1>Hello,</h1>
+              <h2>{GlobalVars.userName}</h2>
+              <button class="pink-button" onClick={() => this.props.localFile()}>Open Local File</button>
+            </div>
+          </div>
+          <div id="right">
+            <div id="inner-div-right">
+              <div>
+                <h1>My Files</h1>
+                <a class='file__close close' style="top: 2.4em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
+              </div>
+              <div id="file-list">
+                <table type="primary">
+                  <tbody>
+                    {getOptions()}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div id="right">
-        <div id="inner-div-right">
-          <div>
-            <h1>My Files</h1>
-            <a class='file__close close' style="top: 2.4em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
-          </div>
-          <div id="file-list">
-            <table type="primary">
-              <tbody>
-              {getOptions()}
-              </tbody>
-              </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
     );
   }
 }

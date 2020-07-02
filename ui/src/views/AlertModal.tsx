@@ -32,24 +32,18 @@ export default class AlertModal<T extends AlertModalOption> extends Component<Al
       <div class='modal'>
         <input id='modal_1' type='checkbox' disabled={true} checked={this.props.visible} />
         <label for='modal_1' class='overlay'></label>
-        <article class="AlertModel__container"> 
-          <header class="SelectModal__header">
-            <h3>{this.props.title}</h3>
-            <a class='SelectModal__close close' onClick={() => this.props.onButtonClick('close')}>&times;</a>
-          </header>
+        <div class="float-container">
 
-          <section class='SelectModel__content' id="modaltext">
-            {this.props.text}
-            <br></br>
-            <div style="text-align: center; font-weight: bolder;">{this.props.text2}</div>
-            
-          </section>
-          <footer class="alertFooter">
-            <label for="modal_1" class="button dangerous" onClick={() => this.props.onButtonClick('close')}>
-              {generic[3]}
-            </label>
-          </footer>
-        </article>
+          <div class="float-child" style="height: 145px !important;">
+            <h2>{this.props.title}</h2>
+            <h4>{this.props.text}</h4>
+          </div>
+
+          <div class="float-child-2" id="buttons-ok">
+            <a href="#" onClick={() => this.props.onButtonClick('close')}><img src="images/ok.png" ></img></a>
+          </div>
+
+        </div>
       </div>
     );
   }

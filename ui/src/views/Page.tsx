@@ -1287,9 +1287,9 @@ export default class Page extends Component<Props, State> {
                 />
 
                 <AlertModal
-                    title={generic[7]}
+                    title="Whoops..."
                     visible={this.state.modal === 'noCode'}
-                    text={generic[8]}
+                    text="There is no code to run! Drag and drop some blocks into the workspace before pressing the run button!"
                     onCancel={() => {
                     }}
                     onButtonClick={(key) => key === 'close' && this.closeModal()}
