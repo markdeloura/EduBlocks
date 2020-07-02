@@ -226,6 +226,8 @@ export default class Page extends Component<Props, State> {
 
     public async componentDidMount() {
 
+        let currentTheme = Cookies.get("theme");
+
         $(function() {
             $('.tab-title').on('click', function(e) {
                 e.preventDefault();
@@ -239,9 +241,28 @@ export default class Page extends Component<Props, State> {
                 $('.lang').removeClass('green-lang');
                 _self.addClass('green-lang');
             });
-        });
 
-        let currentTheme = Cookies.get("theme");
+            $('.theme').on('click', function(e) {
+                var _self = $(this);
+                $('.theme').removeClass('green-lang');
+                _self.addClass('green-lang');
+            });
+
+            if (currentTheme === "Default"){
+                $('.theme').removeClass('green-lang');
+                $('.default').addClass('green-lang');
+            }
+
+            if (currentTheme === "Dark"){
+                $('.theme').removeClass('green-lang');
+                $('.dark').addClass('green-lang');
+            }
+
+            if (currentTheme === "Light"){
+                $('.theme').removeClass('green-lang');
+                $('.light').addClass('green-lang');
+            }
+        });
 
         if (this.isIE()){
             this.setState({ modal: "IE" })

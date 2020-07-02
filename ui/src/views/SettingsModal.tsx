@@ -60,19 +60,25 @@ export default class SettingsModal<T extends SettingsModalOption> extends Compon
                   <h1>Settings</h1>
                 </div>
                 <div class="tab active"><a href="" class="tab-title button">General</a></div>
-                <div class="tab-content two" id="">
-                  <h1>General</h1>
-                  <a class='file__close close' style="top: 1.75em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
-                </div>
-
-                <div class="tab"><a href="" class="tab-title button">Appearance</a></div>
-                <div class="tab-content one" id="">
-                  <h1>Appearance</h1>
-                  <a class='file__close close' style="top: 1.75em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
-                  <div class="settings-row">
+                <div class="tab-content" id="">
+                  <h1 style="padding-bottom: 5px;">General</h1>
+                  <a class='file__close close' style="top: 1.2em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
+                  <b>Extras</b>
+                  <div class="settings-row general" style="padding-top: 10px;">
                     <a onClick={() => this.props.defaultTheme()}>
                       <div class="settings-column">
                         <div class="settings-card">
+                          <img src="images/export.png"></img>
+                          <h3>Export .py</h3>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <b>Appearance</b>
+                  <div class="settings-row general" style="padding-top: 10px;">
+                    <a onClick={() => this.props.defaultTheme()}>
+                      <div class="settings-column">
+                        <div class="settings-card theme default green-lang">
                           <img src="images/default.png"></img>
                           <h3>Default</h3>
                         </div>
@@ -81,7 +87,7 @@ export default class SettingsModal<T extends SettingsModalOption> extends Compon
 
                     <a onClick={() => this.props.lightTheme()}>
                       <div class="settings-column">
-                        <div class="settings-card">
+                        <div class="settings-card theme light">
                           <img src="images/light.png"></img>
                           <h3>Light</h3>
                         </div>
@@ -89,8 +95,8 @@ export default class SettingsModal<T extends SettingsModalOption> extends Compon
                     </a>
 
                     <a onClick={() => this.props.darkTheme()}>
-                      <div class="settings-column">
-                        <div class="settings-card">
+                      <div class="settings-column theme">
+                        <div class="settings-card dark">
                           <img src="images/dark.png"></img>
                           <h3>Dark</h3>
                         </div>
@@ -102,7 +108,7 @@ export default class SettingsModal<T extends SettingsModalOption> extends Compon
                 <div class="tab"><a href="" class="tab-title button">Samples</a></div>
                 <div class="tab-content" id="">
                   <h1>Samples</h1>
-                  <a class='file__close close' style="top: 1.75em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
+                  <a class='file__close close' style="top: 1.2em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
                   <div class="settings-row samples">
                     {getOptions()}
                   </div>
@@ -111,8 +117,8 @@ export default class SettingsModal<T extends SettingsModalOption> extends Compon
                 <div class="tab"><a href="" class="tab-title button">Language</a></div>
                 <div class="tab-content" id="">
                   <h1>Language</h1>
-                  <a class='file__close close' style="top: 1.75em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
-                  <div class="settings-row">
+                  <a class='file__close close' style="top: 1.2em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
+                  <div class="settings-row large-height">
                     <a onClick={() => this.props.selectLanguage("English")}>
                       <div class="settings-column">
                         <div class="settings-card lang green-lang">
@@ -154,7 +160,7 @@ export default class SettingsModal<T extends SettingsModalOption> extends Compon
                 <div class="tab"><a href="" class="tab-title button">About</a></div>
                 <div class="tab-content" id="">
                   <h1>About</h1>
-                  <a class='file__close close' style="top: 1.75em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
+                  <a class='file__close close' style="top: 1.2em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
                   <b>Version: </b>4.0.0
 
                           <div class="settings-row" style="margin-top: 20px;">

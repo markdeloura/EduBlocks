@@ -162,6 +162,22 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     }
   };
 
+  Blocks['requests_url_func'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable("r"), "r")
+        .appendField(".")
+        .appendField(new Blockly.FieldDropdown([["url", "url"], ["text", "text"], ["encoding", "encoding"], ["content", "content"], ["json", "json"], ["raw", "raw"], ["status_code", "status_code"], ["headers", "headers"], ["history", "history"], ["ok", "ok"]]), "NAME")
+        .appendField("()");
+      this.setInputsInline(true);
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour("#FF69B4");
+      this.setTooltip("");
+      this.setHelpUrl("");
+    }
+  };
+
   Blocks['requests_cookies'] = {
     init: function () {
       this.appendDummyInput()

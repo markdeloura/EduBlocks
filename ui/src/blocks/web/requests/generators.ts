@@ -75,6 +75,15 @@ export default function define(Python: Blockly.BlockGenerators) {
     return [code, Blockly.Python.ORDER_ATOMIC];
   };
 
+  Python['requests_url_func'] = function (block) {
+    var variable_r = Blockly.Python.variableDB_.getName(block.getFieldValue('r'), Blockly.Variables.NAME_TYPE);
+    var dropdown_name = block.getFieldValue('NAME');
+    // TODO: Assemble Python into code variable.
+    var code = variable_r + '.' + dropdown_name + "()\n";
+    // TODO: Change ORDER_NONE to the correct strength.
+    return code;
+  };
+
 
   Python['requests_cookies'] = function (block) {
     var variable_r = Blockly.Python.variableDB_.getName(block.getFieldValue('r'), Blockly.Variables.NAME_TYPE);

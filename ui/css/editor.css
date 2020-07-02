@@ -82,8 +82,22 @@ body {
     padding: 20px;
 }
 
+#video-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -100;
+}
+
+#videoElement {
+    width: 100%;
+    height: 100%;
+    background-color: lawngreen;
+}
+
 .tab-content h1 {
-    padding-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 
@@ -93,6 +107,11 @@ body {
     height: 100%;
     background: #1B173D;
     border-radius: 15px;
+    padding-top: 27px;
+}
+
+.large-height {
+    height: 340px !important;
 }
 
 
@@ -122,9 +141,18 @@ body {
 
 .settings-row {
     margin: 0 -5px;
-    height: 320px;
+    height: 155px;
     overflow: scroll;
+    padding-top: 5px;
     overflow-x: hidden;
+}
+
+.settings-row.samples {
+    height: 335px !important;
+}
+
+.settings-row.general {
+    overflow: hidden;
 }
 
 
@@ -153,6 +181,7 @@ body {
 .settings-card h3 {
     padding-bottom: 10px !important;
     font-size: 17px;
+    padding-top: 0px !important;
 }
 
 .settings-card img {
