@@ -10,7 +10,11 @@ interface SettingsModalProps<T extends SettingsModalOption> {
   lightTheme(): void;
   defaultTheme(): void;
 
+  greenScreen(toggle: boolean): void;
+
   selectLanguage(lang: string): void;
+
+  downloadPython(): void;
 
   buttons: SettingsModalButton[];
   options: T[];
@@ -23,6 +27,10 @@ interface SettingsModalProps<T extends SettingsModalOption> {
 
 interface SettingsModalState {
 
+}
+
+function playAudio(url: any) {
+  new Audio(url).play();
 }
 
 export interface SettingsModalOption {
@@ -38,14 +46,14 @@ export interface SettingsModalButton {
 export default class SettingsModal<T extends SettingsModalOption> extends Component<SettingsModalProps<T>, SettingsModalState> {
   public render() {
     const getOptions = () => this.props.options.map((option) => ([
-        <a onClick={() => this.props.onSampleSelect(option)}>
-          <div class="settings-column">
-            <div class="settings-card samples-card">
-              <img src={"images/" + option.label + ".png"}></img>
-              <h3>{option.label}</h3>
-            </div>
+      <a onClick={() => this.props.onSampleSelect(option)}>
+        <div class="settings-column">
+          <div class="settings-card samples-card">
+            <img src={"images/" + option.label + ".png"}></img>
+            <h3>{option.label}</h3>
           </div>
-        </a>,
+        </div>
+      </a>,
     ]));
 
     return (
@@ -62,14 +70,32 @@ export default class SettingsModal<T extends SettingsModalOption> extends Compon
                 <div class="tab active"><a href="" class="tab-title button">General</a></div>
                 <div class="tab-content" id="">
                   <h1 style="padding-bottom: 5px;">General</h1>
-                  <a class='file__close close' style="top: 1.2em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
+                  <a class='file__close close' style="top: 32px !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
                   <b>Extras</b>
                   <div class="settings-row general" style="padding-top: 10px;">
-                    <a onClick={() => this.props.defaultTheme()}>
+                    <a onClick={() => this.props.downloadPython()}>
                       <div class="settings-column">
                         <div class="settings-card">
                           <img src="images/export.png"></img>
                           <h3>Export .py</h3>
+                        </div>
+                      </div>
+                    </a>
+
+                    <a onClick={() => this.props.greenScreen(true)}>
+                      <div class="settings-column" id="camera-on">
+                        <div class="settings-card">
+                          <img src="images/greenscreen.png"></img>
+                          <h3>Camera On</h3>
+                        </div>
+                      </div>
+                    </a>
+
+                    <a onClick={() => this.props.greenScreen(false)}>
+                      <div class="settings-column" style="display: none;" id="camera-off">
+                        <div class="settings-card">
+                          <img src="images/greenscreen.png"></img>
+                          <h3>Camera Off</h3>
                         </div>
                       </div>
                     </a>
@@ -108,7 +134,7 @@ export default class SettingsModal<T extends SettingsModalOption> extends Compon
                 <div class="tab"><a href="" class="tab-title button">Samples</a></div>
                 <div class="tab-content" id="">
                   <h1>Samples</h1>
-                  <a class='file__close close' style="top: 1.2em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
+                  <a class='file__close close' style="top: 32px !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
                   <div class="settings-row samples">
                     {getOptions()}
                   </div>
@@ -117,7 +143,7 @@ export default class SettingsModal<T extends SettingsModalOption> extends Compon
                 <div class="tab"><a href="" class="tab-title button">Language</a></div>
                 <div class="tab-content" id="">
                   <h1>Language</h1>
-                  <a class='file__close close' style="top: 1.2em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
+                  <a class='file__close close' style="top: 32px !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
                   <div class="settings-row large-height">
                     <a onClick={() => this.props.selectLanguage("English")}>
                       <div class="settings-column">
@@ -160,7 +186,7 @@ export default class SettingsModal<T extends SettingsModalOption> extends Compon
                 <div class="tab"><a href="" class="tab-title button">About</a></div>
                 <div class="tab-content" id="">
                   <h1>About</h1>
-                  <a class='file__close close' style="top: 1.2em !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
+                  <a class='file__close close' style="top: 32px !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
                   <b>Version: </b>4.0.0
 
                           <div class="settings-row" style="margin-top: 20px;">
@@ -188,8 +214,8 @@ export default class SettingsModal<T extends SettingsModalOption> extends Compon
                         </div>
                       </div>
                     </a>
-                    <a class="pseudo button" href="">Click me!</a>
                   </div>
+                  <a class="pseudo button" onClick={() => playAudio("https://edublocks.org/honk.mp3")}>Click me!</a>
                 </div>
               </div>
             </div>

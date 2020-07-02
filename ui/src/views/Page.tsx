@@ -6,6 +6,8 @@ import * as firebase from 'firebase/app';
 import { AuthModal } from './Auth';
 import AlertModal from './AlertModal';
 
+/// <reference path="screenshot.d.ts" />
+
 import SettingsModal from './SettingsModal';
 
 import IEModal from './IEModal';
@@ -64,7 +66,7 @@ interface State {
     includeTurtle: boolean;
     output: null | 'trinket' | 'remote';
     prevOutput: null | 'trinket' | 'remote';
-    modal: null | 'platform' | 'settings' | 'turtle' | 'IE' | 'generating' | 'extensionsnew' |  'share' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
+    modal: null | 'platform' | 'settings' | 'turtle' | 'IE' | 'generating' | 'extensionsnew' | 'share' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
     prevModal: null | 'platform' | 'settings' | 'turtle' | 'IE' | 'generating' | 'share' | 'extensionsnew' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
     extensionsActive: Extension[];
     progress: number;
@@ -83,6 +85,8 @@ export class GlobalVars {
 
 export let split = false;
 
+export let green = false;
+
 export let classroom = "";
 
 
@@ -90,23 +94,23 @@ export let navLabels: string[] = new Array();
 navLabels = ["New", "Open", "Save", "Samples", "Extras", "Run", "Login", "Untitled", "Download Hex", "Download", "Themes", "Share"];
 
 export let generic: string[] = new Array();
-generic = ["Open", 
-            "Go", 
-            "Select", 
-            "Close", 
-            "Delete", 
-            "Yes", 
-            "No", 
-            "Attention!",  
-            "There is no code to run!", 
-            "Changing mode will wipe your code, are you sure you want to change modes without saving your work?", 
-            "Uploading...", 
-            "Select your mode",
-            "Files"];
+generic = ["Open",
+    "Go",
+    "Select",
+    "Close",
+    "Delete",
+    "Yes",
+    "No",
+    "Attention!",
+    "There is no code to run!",
+    "Changing mode will wipe your code, are you sure you want to change modes without saving your work?",
+    "Uploading...",
+    "Select your mode",
+    "Files"];
 
 export default class Page extends Component<Props, State> {
-    
-    
+
+
     public remoteShellView?: RemoteShellView;
 
     constructor() {
@@ -138,9 +142,9 @@ export default class Page extends Component<Props, State> {
         let ua = navigator.userAgent;
 
         var is_ie = ua.indexOf("MSIE ") > -1 || ua.indexOf("Trident/") > -1;
-        
-        return is_ie; 
-      }
+
+        return is_ie;
+    }
 
     private async readBlocklyContents(xml: string) {
         if (this.state.doc.xml === xml) {
@@ -155,7 +159,7 @@ export default class Page extends Component<Props, State> {
 
         this.setState({ doc });
 
-        if (split === true){
+        if (split === true) {
             this.switchView(ViewModeBlockly);
 
             await this.splitView(false);
@@ -163,12 +167,12 @@ export default class Page extends Component<Props, State> {
             split = true
             this.splitView(true);
         }
-        else{
+        else {
             this.switchView(ViewModeBlockly);
         }
     }
 
-    
+
 
     private updateFromBlockly(xml: string, python: string) {
         if (
@@ -215,10 +219,10 @@ export default class Page extends Component<Props, State> {
 
         (document.getElementById("filename") as HTMLInputElement).value = "";
 
-        this.setState({fileName: "Untitled", isSaved: ""});
+        this.setState({ fileName: "Untitled", isSaved: "" });
 
-        try {this.onTerminalClose()}
-        catch(e){}
+        try { this.onTerminalClose() }
+        catch (e) { }
 
     }
 
@@ -228,43 +232,43 @@ export default class Page extends Component<Props, State> {
 
         let currentTheme = Cookies.get("theme");
 
-        $(function() {
-            $('.tab-title').on('click', function(e) {
+        $(function () {
+            $('.tab-title').on('click', function (e) {
                 e.preventDefault();
                 var _self = $(this);
                 $('.tab').removeClass('active');
                 _self.parent().addClass('active');
             });
 
-            $('.lang').on('click', function(e) {
+            $('.lang').on('click', function (e) {
                 var _self = $(this);
                 $('.lang').removeClass('green-lang');
                 _self.addClass('green-lang');
             });
 
-            $('.theme').on('click', function(e) {
+            $('.theme').on('click', function (e) {
                 var _self = $(this);
                 $('.theme').removeClass('green-lang');
                 _self.addClass('green-lang');
             });
 
-            if (currentTheme === "Default"){
+            if (currentTheme === "Default") {
                 $('.theme').removeClass('green-lang');
                 $('.default').addClass('green-lang');
             }
 
-            if (currentTheme === "Dark"){
+            if (currentTheme === "Dark") {
                 $('.theme').removeClass('green-lang');
                 $('.dark').addClass('green-lang');
             }
 
-            if (currentTheme === "Light"){
+            if (currentTheme === "Light") {
                 $('.theme').removeClass('green-lang');
                 $('.light').addClass('green-lang');
             }
         });
 
-        if (this.isIE()){
+        if (this.isIE()) {
             this.setState({ modal: "IE" })
         }
 
@@ -277,20 +281,20 @@ export default class Page extends Component<Props, State> {
             this.selectPlatform(platformKey);
         }
 
-        if( locURL.indexOf('#share') >= 0){
-            if( locURL.indexOf('?Python') >= 0){
+        if (locURL.indexOf('#share') >= 0) {
+            if (locURL.indexOf('?Python') >= 0) {
                 this.selectPlatform("Python");
             }
-            
-            if( locURL.indexOf('?MicroBit') >= 0){
+
+            if (locURL.indexOf('?MicroBit') >= 0) {
                 this.selectPlatform("MicroBit");
             }
 
-            if( locURL.indexOf('?CircuitPython') >= 0){
+            if (locURL.indexOf('?CircuitPython') >= 0) {
                 this.selectPlatform("CircuitPython");
             }
 
-            if( locURL.indexOf('?RaspberryPi') >= 0){
+            if (locURL.indexOf('?RaspberryPi') >= 0) {
                 this.selectPlatform("RaspberryPi");
             }
 
@@ -310,15 +314,15 @@ export default class Page extends Component<Props, State> {
             this.delay(400);
             history.pushState(null, "", location.href.split("#")[0]);
 
+        }
+
+        await this.splitView(true);
+
+        await this.activeButton("split");
+
+        await this.setState({ modal: "platform" });
+
     }
-
-    await this.splitView(true);
-
-    await this.activeButton("split");
-    
-    await this.setState({modal: "platform"});
-    
-    }   
 
     private switchView(viewMode: ViewMode): 0 {
         switch (viewMode) {
@@ -339,18 +343,18 @@ export default class Page extends Component<Props, State> {
                 this.setState({ viewMode: 'python' });
                 let zoomin = document.getElementById('zoomin') as HTMLBodyElement;
                 let zoomout = document.getElementById('zoomout') as HTMLBodyElement;
-        
+
                 zoomin.style.display = "block";
                 zoomout.style.display = "block";
 
                 return 0;
 
             case ViewModeSplit:
-                    let blocksEditor = document.getElementById('blockly') as HTMLBodyElement;
-                    this.setState({ viewMode: 'blocks' });
-                    this.setState({ viewMode: 'python' });
-                    blocksEditor.style.display = "block";
-                    return 0;
+                let blocksEditor = document.getElementById('blockly') as HTMLBodyElement;
+                this.setState({ viewMode: 'blocks' });
+                this.setState({ viewMode: 'python' });
+                blocksEditor.style.display = "block";
+                return 0;
         }
     }
 
@@ -364,10 +368,10 @@ export default class Page extends Component<Props, State> {
         this.setState({ output: 'trinket' });
 
         if (this.state.doc.python.indexOf("turtle") !== -1 || this.state.doc.python.indexOf("processing") !== -1 || this.state.doc.python.indexOf("pygal") !== -1) {
-            this.setState({includeTurtle: true})
-        } 
-        else{
-            this.setState({includeTurtle: false})
+            this.setState({ includeTurtle: true })
+        }
+        else {
+            this.setState({ includeTurtle: false })
         }
 
         let workspace = document.getElementById('workspace') as HTMLBodyElement;
@@ -422,7 +426,7 @@ export default class Page extends Component<Props, State> {
         zoomin.style.display = "none";
         zoomout.style.display = "none";
         return ""
-    
+
     }
 
     private async openFile() {
@@ -462,50 +466,50 @@ export default class Page extends Component<Props, State> {
         this.closeModal();
         let self = this;
         let newFileName = "";
-        
-        this.setState({isSaved: file});
+
+        this.setState({ isSaved: file });
 
         await console.log("Opening file...")
-        if (file.name.indexOf("(Python)") !== -1 && this.state.platform!.key !== "Python"){
+        if (file.name.indexOf("(Python)") !== -1 && this.state.platform!.key !== "Python") {
             this.selectPlatform("Python");
             newFileName = file.name.replace(" (Python)", "");
-            
+
         }
-        if (file.name.indexOf("(RPi)") !== -1 && this.state.platform!.key !== "RaspberryPi"){
+        if (file.name.indexOf("(RPi)") !== -1 && this.state.platform!.key !== "RaspberryPi") {
             this.selectPlatform("RaspberryPi");
             newFileName = file.name.replace(" (RPi)", "");
-            
+
         }
-        if (file.name.indexOf("(microbit)") !== -1 && this.state.platform!.key !== "MicroBit"){
+        if (file.name.indexOf("(microbit)") !== -1 && this.state.platform!.key !== "MicroBit") {
             this.selectPlatform("MicroBit");
             newFileName = file.name.replace(" (microbit)", "");
-            
+
         }
-        if (file.name.indexOf("(CircuitPython)") !== -1 && this.state.platform!.key !== "CircuitPython"){
+        if (file.name.indexOf("(CircuitPython)") !== -1 && this.state.platform!.key !== "CircuitPython") {
             this.selectPlatform("CircuitPython");
             newFileName = file.name.replace(" (CircuitPython)", "");
-            
+
         }
 
-        if (file.name.indexOf("(Python)") !== -1 && this.state.platform!.key === "Python"){
+        if (file.name.indexOf("(Python)") !== -1 && this.state.platform!.key === "Python") {
             newFileName = file.name.replace(" (Python)", "");
-            
+
         }
-        if (file.name.indexOf("(RPi)") !== -1 && this.state.platform!.key === "RaspberryPi"){
+        if (file.name.indexOf("(RPi)") !== -1 && this.state.platform!.key === "RaspberryPi") {
             newFileName = file.name.replace(" (RPi)", "");
-            
+
         }
-        if (file.name.indexOf("(microbit)") !== -1 && this.state.platform!.key === "MicroBit"){
+        if (file.name.indexOf("(microbit)") !== -1 && this.state.platform!.key === "MicroBit") {
             newFileName = file.name.replace(" (microbit)", "");
-            
+
         }
-        if (file.name.indexOf("(CircuitPython)") !== -1 && this.state.platform!.key === "CircuitPython"){
+        if (file.name.indexOf("(CircuitPython)") !== -1 && this.state.platform!.key === "CircuitPython") {
             newFileName = file.name.replace(" (CircuitPython)", "");
         }
 
         (document.getElementById("filename") as HTMLInputElement).value = newFileName;
 
-        this.setState({fileName: newFileName});
+        this.setState({ fileName: newFileName });
 
         this.onTerminalClose();
         file.getDownloadURL().then(function (url) {
@@ -527,24 +531,24 @@ export default class Page extends Component<Props, State> {
 
     private async deleteFirebaseFile(file: firebase.storage.Reference) {
         file.delete();
-        await this.closeModal();     
-    } 
+        await this.closeModal();
+    }
 
     private delay(ms: number) {
-        return new Promise( resolve => setTimeout(resolve, ms) );
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 
     private async pythonZoom(direction: string) {
-        if (direction === "in"){
+        if (direction === "in") {
             let python = document.getElementById('editor') as HTMLBodyElement;
-            var style = window.getComputedStyle(python , null).getPropertyValue('font-size');
-            var fontSize = parseFloat(style); 
+            var style = window.getComputedStyle(python, null).getPropertyValue('font-size');
+            var fontSize = parseFloat(style);
             python.style.fontSize = (fontSize + 3) + 'px';
         }
-        if (direction === "out"){
+        if (direction === "out") {
             let python = document.getElementById('editor') as HTMLBodyElement;
-            var style = window.getComputedStyle(python , null).getPropertyValue('font-size');
-            var fontSize = parseFloat(style); 
+            var style = window.getComputedStyle(python, null).getPropertyValue('font-size');
+            var fontSize = parseFloat(style);
             python.style.fontSize = (fontSize - 3) + 'px';
         }
     }
@@ -552,165 +556,165 @@ export default class Page extends Component<Props, State> {
 
     private async shareFirebaseFile(file: firebase.storage.Reference) {
 
-    
+
 
         if (this.state.isSaved.length < 1) {
             alert("Please save this file first")
         }
-        else{
+        else {
 
-        let filePlatform = ""
-        if (file.name.indexOf("(Python)") !== -1){
-            filePlatform = "Python"
+            let filePlatform = ""
+            if (file.name.indexOf("(Python)") !== -1) {
+                filePlatform = "Python"
+            }
+            if (file.name.indexOf("(RPi)") !== -1) {
+                filePlatform = "RaspberryPi"
+            }
+            if (file.name.indexOf("(microbit)") !== -1) {
+                filePlatform = "MicroBit"
+            }
+            if (file.name.indexOf("(CircuitPython)") !== -1) {
+                filePlatform = "CircuitPython"
+            }
+            let fileURL = await this.state.isSaved.getDownloadURL();
+            let newFileURL = fileURL.substring(0, fileURL.indexOf('&token='));
+            const encoded = btoa(newFileURL);
+            const edublocksLink = "https://app.edublocks.org/#share?" + filePlatform + "?" + encoded;
+            await this.setState({ shareURL: edublocksLink });
+            await console.log(this.state.shareURL);
+            await this.setState({ modal: "shareoptions", prevModal: null });
         }
-        if (file.name.indexOf("(RPi)") !== -1){
-            filePlatform = "RaspberryPi"
-        }
-        if (file.name.indexOf("(microbit)") !== -1){
-            filePlatform = "MicroBit"
-        }
-        if (file.name.indexOf("(CircuitPython)") !== -1){
-            filePlatform = "CircuitPython"
-        }
-        let fileURL = await this.state.isSaved.getDownloadURL();
-        let newFileURL = fileURL.substring(0, fileURL.indexOf('&token='));
-        const encoded = btoa(newFileURL);
-        const edublocksLink = "https://app.edublocks.org/#share?" + filePlatform + "?" + encoded;
-        await this.setState({ shareURL: edublocksLink});
-        await console.log(this.state.shareURL);
-        await this.setState({ modal: "shareoptions", prevModal: null});
-    }
     }
 
     private async runShareOptions(func: ShareOptions) {
-        if (func === 'Share to Google Classroom'){
+        if (func === 'Share to Google Classroom') {
             let shareableURL = "https://api.shrtco.de/v2/shorten?url=" + encodeURIComponent(this.state.shareURL);
-            this.setState({ modal: "generating"});
-            
+            this.setState({ modal: "generating" });
+
             const response = await fetch(
                 shareableURL
             );
-        
+
             const body = await response.json();
 
             console.log(this.state.shareURL)
             await this.closeModal()
-            if (response.ok){
+            if (response.ok) {
                 const shortLink = "https://share.edublocks.org/" + body.result.code
                 await console.log(this.state.shareURL)
-                await this.setState({ shareURL: shortLink});
-                window.open("https://classroom.google.com/u/0/share?url=" + encodeURIComponent(this.state.shareURL) + "&usegapi=1&id=I0_1591303124637&parent=https%3A%2F%2Fwww.gstatic.com&pfname=%2FI0_1591303123749&rpctoken=58755424&jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en.utl9jrRztb8.O%2Fam%3DwQE%2Fd%3D1%2Fct%3Dzgms%2Frs%3DAGLTcCOUgIiKp6EMsn7UOgLQFm23i5pjzQ%2Fm%3D__features__",'1591307119253','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=600,top=300')
+                await this.setState({ shareURL: shortLink });
+                window.open("https://classroom.google.com/u/0/share?url=" + encodeURIComponent(this.state.shareURL) + "&usegapi=1&id=I0_1591303124637&parent=https%3A%2F%2Fwww.gstatic.com&pfname=%2FI0_1591303123749&rpctoken=58755424&jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en.utl9jrRztb8.O%2Fam%3DwQE%2Fd%3D1%2Fct%3Dzgms%2Frs%3DAGLTcCOUgIiKp6EMsn7UOgLQFm23i5pjzQ%2Fm%3D__features__", '1591307119253', 'width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=600,top=300')
                 this.closeModal()
             }
 
-            else{console.log(console.error());}
+            else { console.log(console.error()); }
         }
-        if (func === 'Share to Microsoft Teams'){
+        if (func === 'Share to Microsoft Teams') {
             let shareableURL = "https://api.shrtco.de/v2/shorten?url=" + encodeURIComponent(this.state.shareURL);
-            this.setState({ modal: "generating"});
-            
+            this.setState({ modal: "generating" });
+
             const response = await fetch(
                 shareableURL
             );
-        
+
             const body = await response.json();
 
             console.log(this.state.shareURL)
             await this.closeModal()
-            if (response.ok){
+            if (response.ok) {
                 const shortLink = "https://share.edublocks.org/" + body.result.code
                 await console.log(this.state.shareURL)
-                await this.setState({ shareURL: shortLink});
-                window.open("https://teams.microsoft.com/share?href=" + encodeURIComponent(this.state.shareURL),'1591307119253','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=600,top=300')
+                await this.setState({ shareURL: shortLink });
+                window.open("https://teams.microsoft.com/share?href=" + encodeURIComponent(this.state.shareURL), '1591307119253', 'width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=600,top=300')
                 this.closeModal()
             }
 
-            else{console.log(console.error());}
+            else { console.log(console.error()); }
         }
         if (func === 'Copy Shareable URL') {
             let shareableURL = "https://api.shrtco.de/v2/shorten?url=" + encodeURIComponent(this.state.shareURL);
-            this.setState({ modal: "generating"});
-            
+            this.setState({ modal: "generating" });
+
             const response = await fetch(
                 shareableURL
             );
-        
+
             const body = await response.json();
 
             console.log(this.state.shareURL)
             await this.closeModal()
-            if (response.ok){
+            if (response.ok) {
                 const shortLink = "https://share.edublocks.org/" + body.result.code
                 await console.log(this.state.shareURL)
-                await this.setState({ shareURL: shortLink});
+                await this.setState({ shareURL: shortLink });
                 await copy(this.state.shareURL)
                 await this.closeModal()
-                await this.setState({ modal: "share"});
+                await this.setState({ modal: "share" });
             }
 
-            else{console.log(console.error());}
+            else { console.log(console.error()); }
         }
 
         if (func === 'Copy Embed Code') {
             let shareableURL = "https://api.shrtco.de/v2/shorten?url=" + encodeURIComponent(this.state.shareURL);
-            this.setState({ modal: "generating"});
+            this.setState({ modal: "generating" });
 
             const response = await fetch(
                 shareableURL
             );
-        
+
             const body = await response.json();
 
             console.log(shareableURL)
-            
-            if (response.ok){
+
+            if (response.ok) {
                 const embedLink = '<iframe src="https://share.edublocks.org/' + body.result.code + '" height="600px" width="900px"></iframe>'
                 await console.log(embedLink)
-                await this.setState({ shareURL: embedLink});
+                await this.setState({ shareURL: embedLink });
                 await copy(this.state.shareURL)
-                await this.setState({ modal: "share"});
+                await this.setState({ modal: "share" });
             }
 
-            else{console.log(console.error());}
-        }  
+            else { console.log(console.error()); }
+        }
     }
 
     private async saveFile() {
         const xml = this.state.doc.xml;
 
-        if (this.state.extensionsActive.length > 1){
-            await this.setState({ modal: "error", "prevModal": null});
+        if (this.state.extensionsActive.length > 1) {
+            await this.setState({ modal: "error", "prevModal": null });
         }
 
         else {
             if (xml) {
                 const user = firebase.auth().currentUser;
-    
+
                 if (user) {
                     let self = this;
                     this.setState({
                         modal: 'progress',
                     });
                     let plat = "";
-    
-                    if (this.state.platform!.key === "Python"){
+
+                    if (this.state.platform!.key === "Python") {
                         plat = " (Python)"
                     }
-                    if (this.state.platform!.key === "MicroBit"){
+                    if (this.state.platform!.key === "MicroBit") {
                         plat = " (microbit)"
                     }
-                    if (this.state.platform!.key === "RaspberryPi"){
+                    if (this.state.platform!.key === "RaspberryPi") {
                         plat = " (RPi)"
                     }
-                    if (this.state.platform!.key === "CircuitPython"){
+                    if (this.state.platform!.key === "CircuitPython") {
                         plat = " (CircuitPython)"
                     }
-    
+
                     const ref = firebase.storage().ref(`blocks/${user.uid}/${this.state.fileName}${plat}`);
 
                     let fileURL = await ref;
 
-                    this.setState({ isSaved: fileURL});
+                    this.setState({ isSaved: fileURL });
 
                     const task = ref.putString(xml, undefined, {
                         contentType: 'text/xml',
@@ -729,7 +733,7 @@ export default class Page extends Component<Props, State> {
                         self.closeModal();
                     });
 
-                    
+
                 } else {
                     await this.props.app.saveFile(this.state.fileName, xml, 'xml', 'text/xml;charset=utf-8');
                 }
@@ -752,21 +756,51 @@ export default class Page extends Component<Props, State> {
             this.props.app.saveHex(this.state.fileName, python, this.state.extensionsActive);
         }
     }
-    
+
+    private greenscreen(togglegreen: boolean) {
+        let blocklySVG = document.getElementsByClassName("blocklySvg") as HTMLCollectionOf<HTMLElement>;
+        let cameraon = document.getElementById("camera-on") as HTMLBodyElement;
+        let cameraoff = document.getElementById("camera-off") as HTMLBodyElement;
+
+        if (togglegreen === true) {
+            greenScreen();
+            var blocklybackground = blocklySVG[0];
+            blocklybackground.style.background = "none";
+
+            cameraon.style.display = "none";
+            cameraoff.style.display = "block";
+
+            green = true;
+
+            this.closeModal();
+        }
+
+        if (togglegreen === false) {
+            greenScreenOff();
+            var blocklybackground = blocklySVG[0];
+            blocklybackground.style.background = "white";
+
+            cameraon.style.display = "block";
+            cameraoff.style.display = "none";
+
+            green = false;
+
+            this.closeModal();
+        }
+    }
+
 
     private async selectPlatform(platformKey: Platform) {
         this.closeModal()
         const platform = await getPlatform(platformKey);
 
-        if (platformKey === "CircuitPython"){
+        if (platformKey === "CircuitPython") {
             let filebox = document.getElementById("filename");
-            this.setState({"fileName": "code"});
+            this.setState({ "fileName": "code" });
             filebox!.style.display = "none";
         }
 
-        
-
-        else{
+        else {
             let filebox = document.getElementById("filename");
             filebox!.style.display = "block";
         }
@@ -774,11 +808,11 @@ export default class Page extends Component<Props, State> {
         if (platformKey === 'RaspberryPi') {
             let ip: string | null = null;
 
-           if (window.location.protocol === 'https:') {
+            if (window.location.protocol === 'https:') {
                 alert('Need to switch to HTTP to access Raspberry Pi mode...');
                 window.location.protocol = 'http:';
                 return;
-            } 
+            }
 
             if (navigator.platform.indexOf('arm') !== -1) {
                 await this.props.app.initConnection('localhost');
@@ -802,11 +836,16 @@ export default class Page extends Component<Props, State> {
             extensionsActive: platform.defaultExtensions,
         });
 
+        if (green === true){
+            await this.greenscreen(false);
+            await this.greenscreen(true);
+        }
+
         if (window.innerWidth < 980) {
             this.switchView(ViewModeBlockly);
             this.activeButton("blocks");
-         }
-         else {
+        }
+        else {
             this.switchView(ViewModeBlockly);
             await this.splitView(false);
 
@@ -814,20 +853,18 @@ export default class Page extends Component<Props, State> {
             this.splitView(true);
 
             this.activeButton("split");
-         }
-
-
+        }
     }
 
 
     private closeModal() {
         this.setState({ modal: this.state.prevModal, prevModal: null });
-        
+
     }
 
     private closeOutput() {
         this.setState({ output: null });
-        
+
     }
 
 
@@ -848,7 +885,7 @@ export default class Page extends Component<Props, State> {
 
         await this.readBlocklyContents(xml);
 
-        
+
     }
 
 
@@ -904,8 +941,8 @@ export default class Page extends Component<Props, State> {
         if (window.innerWidth < 980) {
             this.switchView(ViewModeBlockly);
             this.activeButton("blocks");
-         }
-         else {
+        }
+        else {
             this.switchView(ViewModeBlockly);
             this.splitView(false);
 
@@ -913,7 +950,7 @@ export default class Page extends Component<Props, State> {
             this.splitView(true);
 
             this.activeButton("split");
-         }
+        }
 
     }
 
@@ -952,12 +989,12 @@ export default class Page extends Component<Props, State> {
         this.setState({ modal: 'functions' });
     }
 
-    
+
 
     private fileChange(fileName: string) {
         this.setState({ fileName });
     }
-    
+
 
     private async openPlatforms() {
         await this.splitView(false);
@@ -967,7 +1004,7 @@ export default class Page extends Component<Props, State> {
             python: null,
             pythonClean: true,
         };
-        
+
         this.setState({ doc });
 
         await this.new();
@@ -1004,20 +1041,20 @@ export default class Page extends Component<Props, State> {
             GlobalVars.openFiles = "Open";
 
             navLabels = ["New", "Open", "Save", "Samples", "Extras", "Run", "Login", "Untitled", "Download Hex", "Download", "Themes", "Share"];
-            
-            generic = ["Open", 
-            "Go", 
-            "Select", 
-            "Close", 
-            "Delete", 
-            "Yes", 
-            "No", 
-            "Attention!", 
-            "There is no code to run!", 
-            "Changing mode will wipe your code, are you sure you want to change modes without saving your work?", 
-            "Uploading...", 
-            "Select your mode",
-            "Files"];
+
+            generic = ["Open",
+                "Go",
+                "Select",
+                "Close",
+                "Delete",
+                "Yes",
+                "No",
+                "Attention!",
+                "There is no code to run!",
+                "Changing mode will wipe your code, are you sure you want to change modes without saving your work?",
+                "Uploading...",
+                "Select your mode",
+                "Files"];
 
             document.getElementById("menubar")!.innerHTML = navLabels[0];
             document.getElementById("menubar")!.innerHTML = generic[0];
@@ -1028,20 +1065,20 @@ export default class Page extends Component<Props, State> {
             GlobalVars.openFiles = "Ouvrir";
 
             navLabels = ["Nouveau", "Ouvrir", "Sauvegarder", "Exemples", "Préférences", "Exécuter", "S'identifier", "Sans Titre", "Télécharger Hex", "Télécharger", "Thèmes", "Partager"];
-            
-            generic = [ "Ouvert", 
-                        "Aller", 
-                        "Sélectionner", 
-                        "Fermer", 
-                        "Effacer", 
-                        "Oui", 
-                        "Non", 
-                        "Attention!", 
-                        "Il n’y a pas de code à exécuter!", 
-                        "Changer le mode te fera perdre ton code, souhaites-tu continuer?",
-                        "Téléchargement...", 
-                        "Sélectionnez votre mode",
-                        "Des dossiers"];
+
+            generic = ["Ouvert",
+                "Aller",
+                "Sélectionner",
+                "Fermer",
+                "Effacer",
+                "Oui",
+                "Non",
+                "Attention!",
+                "Il n’y a pas de code à exécuter!",
+                "Changer le mode te fera perdre ton code, souhaites-tu continuer?",
+                "Téléchargement...",
+                "Sélectionnez votre mode",
+                "Des dossiers"];
 
             document.getElementById("menubar")!.innerHTML = generic[0];
             document.getElementById("menubar")!.innerHTML = navLabels[0];
@@ -1052,20 +1089,20 @@ export default class Page extends Component<Props, State> {
             GlobalVars.openFiles = "Öffnen";
 
             navLabels = ["Neu", "Öffnen", "Speichern", "Proben", "Extras", "Ausführen", "Login", "Unbetitelt", "Herunterladen Hex", "Herunterladen", "Themen", "Teilen"];
-            
-            generic = [ "Öffnen", 
-                        "Los", 
-                        "Markieren", 
-                        "Schließen", 
-                        "Löschen", 
-                        "Ja", 
-                        "Nein", 
-                        "Achtung!", 
-                        "Es ist kein Code zum Ausführen!", 
-                        "Wenn sie den Modus ändern, wird ihr Code gelöscht. Möchten sie fortfahren?", 
-                        "Wird hochgeladen...", 
-                        "Wählen sie ihren Modus aus",
-                        "Dateien"];
+
+            generic = ["Öffnen",
+                "Los",
+                "Markieren",
+                "Schließen",
+                "Löschen",
+                "Ja",
+                "Nein",
+                "Achtung!",
+                "Es ist kein Code zum Ausführen!",
+                "Wenn sie den Modus ändern, wird ihr Code gelöscht. Möchten sie fortfahren?",
+                "Wird hochgeladen...",
+                "Wählen sie ihren Modus aus",
+                "Dateien"];
 
             document.getElementById("menubar")!.innerHTML = generic[0];
             document.getElementById("menubar")!.innerHTML = navLabels[0];
@@ -1076,20 +1113,20 @@ export default class Page extends Component<Props, State> {
             GlobalVars.openFiles = "Agor";
 
             navLabels = ["Newydd", "Agor", "Cadw", "Samplau", "Yn ychwanegol", "Rhedeg", "Mewngofnodi", "Heb enw", "Lawrlwython Hex", "Lawrlwython", "Themâu", "Rhannu"];
-            
-            generic = [ "Agor", 
-                        "Mynd", 
-                        "Dewis", 
-                        "Cau", 
-                        "Dileu", 
-                        "Ie", 
-                        "Na", 
-                        "Eich sylw!", 
-                        "Nid oes cod i'w redeg!", 
-                        "Fe fydd newid modd yn achosi colled cod, ydych chi esiau parhau?", 
-                        "Yn lanlwytho...", 
-                        "Dewiswch eith modd",
-                        "Ffeiliau"];
+
+            generic = ["Agor",
+                "Mynd",
+                "Dewis",
+                "Cau",
+                "Dileu",
+                "Ie",
+                "Na",
+                "Eich sylw!",
+                "Nid oes cod i'w redeg!",
+                "Fe fydd newid modd yn achosi colled cod, ydych chi esiau parhau?",
+                "Yn lanlwytho...",
+                "Dewiswch eith modd",
+                "Ffeiliau"];
 
             document.getElementById("menubar")!.innerHTML = generic[0];
             document.getElementById("menubar")!.innerHTML = navLabels[0];
@@ -1097,8 +1134,8 @@ export default class Page extends Component<Props, State> {
         }
     }
 
-    private activeButton(view: string){
-        if (view === "blocks"){
+    private activeButton(view: string) {
+        if (view === "blocks") {
             let blockview = document.getElementById('blocksview') as HTMLBodyElement;
             let pythonview = document.getElementById('pythonview') as HTMLBodyElement;
             let splitview = document.getElementById('splitview') as HTMLBodyElement;
@@ -1108,7 +1145,7 @@ export default class Page extends Component<Props, State> {
             splitview.classList.remove("active-mode");
         }
 
-        if (view === "pythonview"){
+        if (view === "pythonview") {
             let blockview = document.getElementById('blocksview') as HTMLBodyElement;
             let pythonview = document.getElementById('pythonview') as HTMLBodyElement;
             let splitview = document.getElementById('splitview') as HTMLBodyElement;
@@ -1118,7 +1155,7 @@ export default class Page extends Component<Props, State> {
             splitview.classList.remove("active-mode");
         }
 
-        if (view === "split"){
+        if (view === "split") {
             let blockview = document.getElementById('blocksview') as HTMLBodyElement;
             let pythonview = document.getElementById('pythonview') as HTMLBodyElement;
             let splitview = document.getElementById('splitview') as HTMLBodyElement;
@@ -1130,15 +1167,18 @@ export default class Page extends Component<Props, State> {
         return "Activebutton"
     }
 
-    private async splitView(toggle: boolean){
-        if (toggle === true){
+    private async splitView(toggle: boolean) {
+        if (toggle === true) {
             split = true;
             let blocklyEditor = document.getElementById('blockly') as HTMLBodyElement;
             let pythonEditor = document.getElementById('python') as HTMLBodyElement;
             let editorElement = document.getElementById('editor') as HTMLBodyElement;
+            let video = document.getElementById("video") as HTMLBodyElement;
 
             blocklyEditor.style.width = "60%";
             editorElement.style.width = "40%";
+
+            video.style.width = "60%";
 
             window.dispatchEvent(new Event('resize'))
 
@@ -1152,11 +1192,15 @@ export default class Page extends Component<Props, State> {
 
         }
 
-        if (toggle === false){
+        if (toggle === false) {
             split = false;
             let editorElement = document.getElementById('editor') as HTMLBodyElement;
             let blocklyEditor = document.getElementById('blockly') as HTMLBodyElement;
-            
+            let video = document.getElementById("video") as HTMLBodyElement;
+
+            video.style.width = "100%";
+
+            video.style.transform = "scale(1.4)";
 
             window.dispatchEvent(new Event('resize'))
 
@@ -1170,22 +1214,22 @@ export default class Page extends Component<Props, State> {
         }
     }
 
-    private async hexflashing(){
+    private async hexflashing() {
         const python = this.state.doc.python;
 
-            if (python) {
-                this.setState({ modal: 'progress', progress: 0 });
+        if (python) {
+            this.setState({ modal: 'progress', progress: 0 });
 
-                try {
-                    await this.props.app.flashHex(python, this.state.extensionsActive, (progress) => {
-                        this.setState({ progress });
-                    });
-                } finally {
-                    this.setState({ modal: null });
-                }
+            try {
+                await this.props.app.flashHex(python, this.state.extensionsActive, (progress) => {
+                    this.setState({ progress });
+                });
+            } finally {
+                this.setState({ modal: null });
             }
+        }
     }
-    
+
 
     public render() {
         const availablePlatforms = getPlatformList();
@@ -1266,7 +1310,7 @@ export default class Page extends Component<Props, State> {
                     onCancel={() => {
                     }}
                     onButtonClick={(key) => key === 'close' && this.closeModal()}
-                /> 
+                />
 
                 {this.getExtensions().length > 0 &&
                     <ExtensionModal
@@ -1283,8 +1327,8 @@ export default class Page extends Component<Props, State> {
                 <AlertModal
                     title={navLabels[11]}
                     visible={this.state.modal === 'share'}
-                    text= {this.state.shareURL}
-                    text2= "Copied to clipboard"
+                    text={this.state.shareURL}
+                    text2="Copied to clipboard"
                     onCancel={() => {
                     }}
                     onButtonClick={(key) => key === 'close' && this.closeModal()}
@@ -1329,7 +1373,7 @@ export default class Page extends Component<Props, State> {
                 />
 
                 <section id='workspace'>
-{/*                     <button
+                    {/*                     <button
                         id='toggleViewButton'
                         class='toggleViewButton'
                         onClick={() => this.toggleView()}
@@ -1349,7 +1393,7 @@ export default class Page extends Component<Props, State> {
                         Exit Split View
 
                     </button> */}
-                    
+
 
                     <BlocklyView
                         visible={this.state.viewMode === 'blocks'}
@@ -1421,7 +1465,9 @@ export default class Page extends Component<Props, State> {
                     defaultTheme={() => this.selectTheme('Default')}
                     selectLabel="Settings"
                     darkTheme={() => this.selectTheme("Dark")}
+                    greenScreen={(toggle) => this.greenscreen(toggle)}
                     lightTheme={() => this.selectTheme('Light')}
+                    downloadPython={() => this.downloadPython()}
                     selectLanguage={(lang) => this.runLanguages(lang as Languages)}
                     buttons={[]}
                     onSelect={(theme) => this.selectTheme(theme.label)}

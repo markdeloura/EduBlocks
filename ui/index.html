@@ -96,20 +96,6 @@
         goog.isString = function(val) {
             return typeof val == 'string';
         };
-
-        var video = document.querySelector("#videoElement");
-
-        if (navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({
-                    video: true
-                })
-                .then(function(stream) {
-                    video.srcObject = stream;
-                })
-                .catch(function(err0r) {
-                    console.log("Something went wrong!");
-                });
-        }
     </script>
 
     <script>
@@ -125,6 +111,7 @@
 
     <script src="consoleimg.min.js"></script>
     <script src="screenshot.js"></script>
+    <script src="greenscreen.js"></script>
 </body>
 
 </html>

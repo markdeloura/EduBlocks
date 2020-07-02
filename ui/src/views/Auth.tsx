@@ -98,7 +98,6 @@ export default class Auth extends React.Component<AuthProps, State> {
         let self = this;
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
-                console.log(user);
                 $('#nav_share').css('display', 'inline-block');
                 $('#nav_open').css('display', 'none');
                 $('#nav_files').css('display', 'inline-block');

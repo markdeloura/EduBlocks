@@ -199,12 +199,9 @@ export default class Nav extends Component<Props, {}> {
                 </div>
                 
             </div>
-
             <div id="video-container">
-        <video autoPlay={true} id="videoElement">
-        
-        </video>
-    </div>
+                <video id="video" autoPlay></video>
+            </div>
             
             </>
         );
