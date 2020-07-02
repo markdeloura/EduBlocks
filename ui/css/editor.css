@@ -737,7 +737,6 @@ table.primary td {
     width: 100%;
     overflow: hidden;
     height: 100%;
-    background-color: white;
 }
 
 #python {
@@ -808,7 +807,8 @@ a {
 }
 
 .blocklySvg {
-    background-image: url("https://edublocks.org/rsz_newpythonbackground.png") !important;
+    /* background-image: url("https://edublocks.org/rsz_newpythonbackground.png") !important; */
+    background: none !important;
 }
 
 .blocklyTreeRow {
