@@ -1,6 +1,6 @@
 import React = require('preact');
 import { Component } from 'preact';
-import {generic} from './Page';
+import {generic} from '../Page';
 
 interface SelectModalProps<T extends SelectModalOption> {
   title: string;

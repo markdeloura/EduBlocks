@@ -1,7 +1,7 @@
 import React = require('preact');
 import { Component } from 'preact';
 
-interface ImageModalProps<T extends ImageModalOption> {
+interface StartModalProps<T extends StartModalOption> {
   title: string;
   visible: boolean;
   options: T[];
@@ -10,17 +10,17 @@ interface ImageModalProps<T extends ImageModalOption> {
   onSelect(option: T): void;
 }
 
-interface ImageModalState {
+interface StartModalState {
 
 }
 
-export interface ImageModalOption {
+export interface StartModalOption {
   title: string;
   image: string;
   help: string;
 }
 
-export default class ImageModal<T extends ImageModalOption> extends Component<ImageModalProps<T>, ImageModalState> {
+export default class StartModal<T extends StartModalOption> extends Component<StartModalProps<T>, StartModalState> {
   public render() {
     const getOptions = () => (
       this.props.options.map((option) => (

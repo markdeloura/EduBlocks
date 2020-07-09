@@ -1,6 +1,6 @@
 import React = require('preact');
 import { Component } from 'preact';
-import { GlobalVars } from './Page';
+import { GlobalVars } from '../Page';
 
 interface FirebaseSelectModalProps<T extends FirebaseSelectModalOption> {
   title: string;
@@ -56,7 +56,7 @@ export default class FirebaseSelectModal<T extends FirebaseSelectModalOption> ex
     return (
       <div class='modal'>
         <input id='modal_1' type='checkbox' disabled={true} checked={this.props.visible} />
-        <label for='modal_1' class='overlay'></label>
+        <label for='modal_1' class='overlay' onClick={() => this.props.onButtonClick('close')}></label>
         <div id="wrapper">
           <div id="left">
             <div id="inner-div">

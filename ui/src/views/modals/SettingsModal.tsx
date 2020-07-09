@@ -59,7 +59,7 @@ export default class SettingsModal<T extends SettingsModalOption> extends Compon
     return (
       <div class='modal'>
         <input id='modal_1' type='checkbox' disabled={true} checked={this.props.visible} />
-        <label for='modal_1' class='overlay'></label>
+        <label for='modal_1' class='overlay' onClick={() => this.props.onButtonClick('close')}></label>
         <div class="settings-container" style="background-color: #1b173d !important;">
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -121,8 +121,8 @@ export default class SettingsModal<T extends SettingsModalOption> extends Compon
                     </a>
 
                     <a onClick={() => this.props.darkTheme()}>
-                      <div class="settings-column theme">
-                        <div class="settings-card dark">
+                      <div class="settings-column">
+                        <div class="settings-card theme dark">
                           <img src="images/dark.png"></img>
                           <h3>Dark</h3>
                         </div>

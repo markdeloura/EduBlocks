@@ -4,29 +4,30 @@ import { getPlatform, getPlatformList } from '../platforms';
 import { App, Capability, Extension, Platform, PlatformInterface } from '../types';
 import * as firebase from 'firebase/app';
 import { AuthModal } from './Auth';
-import AlertModal from './AlertModal';
+import AlertModal from './modals/AlertModal';
 
 /// <reference path="screenshot.d.ts" />
 
-import SettingsModal from './SettingsModal';
+import SettingsModal from './modals/SettingsModal';
 
-import IEModal from './IEModal';
-import LoadModal from './LoadModal';
-import UploadModal from './UploadModal';
-import ExtensionModal from './ExtensionModal';
+import IEModal from './modals/IEModal';
+import LoadModal from './modals/LoadModal';
+import UploadModal from './modals/UploadModal';
+import ExtensionModal from './modals/ExtensionModal';
 import BlocklyView from './BlocklyView';
-import ImageModal from './ImageModal';
+import StartModal from './modals/StartModal';
+import ShareModal from './modals/ShareModal';
 const copy = require('copy-text-to-clipboard');
 import Nav from './Nav';
 
 
 const Cookies = require("js-cookie")
 
-import OverModal from './OverwriteModal';
+import OverModal from './modals/OverwriteModal';
 import PythonView from './PythonView';
 import RemoteShellView from './RemoteShellView';
-import SelectModal, { SelectModalOption } from './SelectModal';
-import FirebaseSelectModal from './FirebaseSelectModal';
+import SelectModal, { SelectModalOption } from './modals/SelectModal';
+import FirebaseSelectModal from './modals/FirebaseSelectModal';
 
 import TrinketView from './TrinketView';
 
@@ -66,8 +67,8 @@ interface State {
     includeTurtle: boolean;
     output: null | 'trinket' | 'remote';
     prevOutput: null | 'trinket' | 'remote';
-    modal: null | 'platform' | 'settings' | 'turtle' | 'IE' | 'generating' | 'extensionsnew' | 'share' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
-    prevModal: null | 'platform' | 'settings' | 'turtle' | 'IE' | 'generating' | 'share' | 'extensionsnew' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
+    modal: null | 'platform' | 'settings' | 'shareerror' | 'turtle' | 'IE' | 'generating' | 'extensionsnew' | 'share' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
+    prevModal: null | 'platform' | 'settings' | 'shareerror' |'turtle' | 'IE' | 'generating' | 'share' | 'extensionsnew' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
     extensionsActive: Extension[];
     progress: number;
     shareURL: string;
@@ -559,7 +560,7 @@ export default class Page extends Component<Props, State> {
 
 
         if (this.state.isSaved.length < 1) {
-            alert("Please save this file first")
+            this.setState( {modal: "shareerror"} );
         }
         else {
 
@@ -586,7 +587,7 @@ export default class Page extends Component<Props, State> {
         }
     }
 
-    private async runShareOptions(func: ShareOptions) {
+    private async runShareOptions(func: string) {
         if (func === 'Share to Google Classroom') {
             let shareableURL = "https://api.shrtco.de/v2/shorten?url=" + encodeURIComponent(this.state.shareURL);
             this.setState({ modal: "generating" });
@@ -954,9 +955,6 @@ export default class Page extends Component<Props, State> {
 
     }
 
-
-
-
     private hasCapability(capability: Capability) {
         if (!this.state.platform) return false;
 
@@ -1016,15 +1014,6 @@ export default class Page extends Component<Props, State> {
 
     private modeQuestion() {
         this.setState({ modal: 'codeOverwrite' });
-    }
-
-    private getShareOptionsList(): SelectModalOption[] {
-        let shareOptions = ShareOptions;
-
-        return shareOptions.map((func) => ({
-            label: func,
-            obj: func,
-        }));
     }
 
     private getLanguagesList(): SelectModalOption[] {
@@ -1236,7 +1225,7 @@ export default class Page extends Component<Props, State> {
 
         return (
             <div id='page'>
-                <ImageModal
+                <StartModal
                     title={generic[11]}
                     options={availablePlatforms}
                     visible={this.state.modal === 'platform'}
@@ -1254,6 +1243,15 @@ export default class Page extends Component<Props, State> {
                     title={generic[7]}
                     visible={this.state.modal === 'pythonOverwritten'}
                     text={generic[8]}
+                    onCancel={() => {
+                    }}
+                    onButtonClick={(key) => key === 'close' && this.closeModal()}
+                />
+
+                <AlertModal
+                    title="Whoops..."
+                    visible={this.state.modal === 'shareerror'}
+                    text="Please save this file to your account first before sharing it!"
                     onCancel={() => {
                     }}
                     onButtonClick={(key) => key === 'close' && this.closeModal()}
@@ -1476,14 +1474,13 @@ export default class Page extends Component<Props, State> {
                     onButtonClick={(key) => key === 'close' && this.closeModal()}
                 />
 
-                <SelectModal
-                    title={navLabels[11]}
-                    selectLabel={generic[1]}
-                    buttons={[]}
+                <ShareModal
+                    title={generic[11]}
                     visible={this.state.modal === 'shareoptions'}
-                    options={this.getShareOptionsList()}
-                    onSelect={(func) => this.runShareOptions(func.label as ShareOptions)}
+                    share={(share) => this.runShareOptions(share)}
                     onButtonClick={(key) => key === 'close' && this.closeModal()}
+                    onCancel={() => {
+                    }}
                 />
 
                 <SelectModal
