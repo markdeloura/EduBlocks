@@ -1055,6 +1055,10 @@ button {
     content: "\f303";
 }
 
+.blocklyTreeIconCustom.ml::before {
+    content: "\f1b3";
+}
+
 .blocklyTreeIconCustom.minecraft::before {
     content: "\f1b2";
 }

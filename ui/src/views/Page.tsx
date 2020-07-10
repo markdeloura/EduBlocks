@@ -5,6 +5,7 @@ import { App, Capability, Extension, Platform, PlatformInterface } from '../type
 import * as firebase from 'firebase/app';
 import { AuthModal } from './Auth';
 import AlertModal from './modals/AlertModal';
+import fs = require('fs');
 
 /// <reference path="screenshot.d.ts" />
 
@@ -277,11 +278,6 @@ export default class Page extends Component<Props, State> {
 
         var locURL = window.location.href.toString();
 
-        if (window.location.hash) {
-            const platformKey = window.location.hash.slice(1) as unknown as Platform;
-            this.selectPlatform(platformKey);
-        }
-
         if (locURL.indexOf('#share') >= 0) {
             if (locURL.indexOf('?Python') >= 0) {
                 this.selectPlatform("Python");
@@ -322,6 +318,37 @@ export default class Page extends Component<Props, State> {
         await this.activeButton("split");
 
         await this.setState({ modal: "platform" });
+
+        
+
+/*         try{
+        if (window.location.hash) {
+            const platformKey = window.location.hash.slice(1) as unknown as Platform;
+            this.selectPlatform(platformKey);
+            await this.closeModal();
+        }
+        }
+        catch(e){console.log("Platform not found")} */
+
+        if (locURL.indexOf('#mlstarter') >= 0) {
+            this.selectPlatform("Python");
+            let self = this;
+
+            const xhr = new XMLHttpRequest();
+            xhr.responseType = 'text';
+            xhr.onload = function (event) {
+                let mlfile = xhr.responseText;
+                let apikey = window.location.href.substring(window.location.href.lastIndexOf("?") + 1);
+                let keytext = '<field name="text">' + apikey + '</field>';
+                mlfile = mlfile.replace('<field name="text">KEYHERE</field>', keytext);
+                self.readBlocklyContents(mlfile);
+            };
+            xhr.open('GET', "https://firebasestorage.googleapis.com/v0/b/edublocks-38d74.appspot.com/o/blocks%2FKxirQcjaclMBi3dv0D2bI7GZnXt1%2FML%20Starter%20(Python)?alt=media&token=e2e3da3e-9533-4ca8-873f-759d00a6097a");
+            xhr.send();
+            this.setState({ modal: null });
+
+            this.delay(400);
+        }
 
     }
 
@@ -368,7 +395,7 @@ export default class Page extends Component<Props, State> {
 
         this.setState({ output: 'trinket' });
 
-        if (this.state.doc.python.indexOf("turtle") !== -1 || this.state.doc.python.indexOf("processing") !== -1 || this.state.doc.python.indexOf("pygal") !== -1) {
+        if (this.state.doc.python.indexOf("requests") !== -1 || this.state.doc.python.indexOf("mlmodel") !== -1 || this.state.doc.python.indexOf("mltext") !== -1) {
             this.setState({ includeTurtle: true })
         }
         else {
@@ -716,6 +743,8 @@ export default class Page extends Component<Props, State> {
                     let fileURL = await ref;
 
                     this.setState({ isSaved: fileURL });
+
+                    console.log(await ref.getDownloadURL());
 
                     const task = ref.putString(xml, undefined, {
                         contentType: 'text/xml',
