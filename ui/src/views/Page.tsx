@@ -5,7 +5,6 @@ import { App, Capability, Extension, Platform, PlatformInterface } from '../type
 import * as firebase from 'firebase/app';
 import { AuthModal } from './Auth';
 import AlertModal from './modals/AlertModal';
-import fs = require('fs');
 
 /// <reference path="screenshot.d.ts" />
 
