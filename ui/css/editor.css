@@ -1110,6 +1110,10 @@ button {
     content: "\f14e";
 }
 
+.blocklyTreeIconCustom.microphone::before {
+    content: "\f3c9";
+}
+
 .blocklyTreeIconCustom.speech::before {
     content: "\f4ad";
 }
