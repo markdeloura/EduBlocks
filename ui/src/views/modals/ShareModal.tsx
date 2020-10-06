@@ -27,7 +27,7 @@ export default class ShareModal<T extends ShareModalOption> extends Component<Sh
       <div class='modal'>
         <input id='modal_1' type='checkbox' disabled={true} checked={this.props.visible} />
         <label for='modal_1' class='overlay' onClick={() => this.props.onButtonClick('close')}></label>
-        <div id="wrapper" style="width: 750px !important">
+        <div id="wrapper" style="width: 775px !important">
           <div id="left">
             <div id="inner-div-image" style="margin-top: 52%;">
               <img id="mode-logo" src="images/share/share.png"></img>
