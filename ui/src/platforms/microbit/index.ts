@@ -14,7 +14,7 @@ export function newMicrobitPlatform(): PlatformInterface {
       'GiggleBot',
       //Automated Extensions under here
 
-      'edubit',
+      'EDUBIT',
 
       'DriveBit',
 

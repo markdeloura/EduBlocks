@@ -63,10 +63,9 @@ def i2cWrite(register,data):
     i2c.write(I2C_ADDRESS,buffer)
 
 
-def init():
+def power_state_monitor():
     global flag
     global oldPowerState
-
 
     if flag == 0:
         oldPowerState = is_power_on()
@@ -74,12 +73,12 @@ def init():
 
     if is_power_on():
         if oldPowerState == False:
-            brake_motor(M1)
-            brake_motor(M2)
-            disable_servo(S1)
-            disable_servo(S2)
-            disable_servo(S3)
-            reset()
+           brake_motor(M1)
+           brake_motor(M2)
+           disable_servo(S1)
+           disable_servo(S2)
+           disable_servo(S3)
+           reset()
         oldPowerState = True
     else:
         oldPowerState = False
@@ -180,13 +179,13 @@ def set_led(color,state):
         Yellow.write_digital(state)
         Green.write_digital(state)
 
-def read_sound_sensor():
+def read_sound_value():
     return SOUND_BIT_PIN.read_analog()
 
 def read_pot_value():
     return POTENTIO_BIT_PIN.read_analog()
 
-def read_IR_sensor():
+def read_IR_value():
     return IR_BIT_PIN.read_digital()
 
 def is_IR_sensor_triggered():

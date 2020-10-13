@@ -167,7 +167,7 @@ export async function getToolBoxXml(extensions: Extension[]) {
   }
 
   //Automated Extensions under here
-  if (extensions.indexOf('edubit') !== -1) {
+  if (extensions.indexOf('EDUBIT') !== -1) {
     (await import('./microbit/edubit/definitions')).default(Blockly.Blocks);
     (await import('./microbit/edubit/generators')).default(Blockly.Python as any);
     toolBoxXml += fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'microbit', 'edubit', 'toolbox.xml'));
@@ -255,7 +255,7 @@ export function getBeforeScript(extensions: Extension[]) {
     return fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'microbit', 'Minibit', 'Minibit.py'));
   }
   //Automated Scripts under here
-  if (extensions.indexOf('edubit') !== -1) {
+  if (extensions.indexOf('EDUBIT') !== -1) {
     return fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'microbit', 'edubit', 'edubit.py')); 
   }
   if (extensions.indexOf('DriveBit') !== -1) {
