@@ -1,3 +1,3 @@
-declare function fsUniversalHex(code: any): any;
+declare function fsUniversalHex(code: any, filename: any): any;
 
 

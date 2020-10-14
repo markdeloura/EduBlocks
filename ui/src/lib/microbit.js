@@ -10,12 +10,12 @@ function saveFile(fileName, data, ext, type) {
     return Promise.resolve(void 0);
   }
 
-async function fsUniversalHex(code) {
+async function fsUniversalHex(code, filename) {
     var FS = microbitFsWrapper();
 
     FS.setupFilesystem().then(function() {
         FS.write('main.py', code);
         var result = FS.getUniversalHex()
-        saveFile("Hello", result, 'hex', 'application/octet-stream')
+        saveFile(filename, result, 'hex', 'application/octet-stream')
     });
 }

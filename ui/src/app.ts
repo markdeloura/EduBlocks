@@ -82,7 +82,7 @@ export function newApp(): App {
 
     // await io.saveFile(fileName, hex, 'hex', 'application/octet-stream');
 
-    await console.log(fsUniversalHex(combinedScript))
+    await console.log(fsUniversalHex(combinedScript, 'microbit-' + fileName))
 
   }
 
