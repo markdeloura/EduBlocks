@@ -14,7 +14,7 @@
       </value>
     </block>
     <block type="disable_servo"></block>
-    <block type="sets_servo">
+    <block type="set_servo_position">
       <value name="position">
         <shadow type="textinline">
           <field name="text">90</field>

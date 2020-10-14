@@ -135,7 +135,7 @@ def disable_servo(servo):
     else:
         i2cWrite(servo,0)
 
-def sets_servo_position(servo,position):
+def set_servo_position(servo,position):
     position = limit(position,0,180)
 
     pulseWidth = int(position * 20 / 18 + 50)

@@ -72,10 +72,10 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       }
     };
 
-    Blocks['sets_servo'] = {
+    Blocks['set_servo_position'] = {
       init: function() {
         this.appendDummyInput()
-            .appendField("sets_servo_position(")
+            .appendField("set_servo_position(")
             .appendField(new Blockly.FieldDropdown([["S1","S1"], ["S2","S2"], ["S3","S3"], ["All","All"]]), "servo")
             .appendField(", position = ");
         this.appendValueInput("position")
@@ -86,7 +86,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour("#ff4800");
-     this.setTooltip("Sets servo position");
+     this.setTooltip("Set servo position");
      this.setHelpUrl("https://github.com/Bhavithiran97/micropython-edubit");
       }
     };
