@@ -4,7 +4,6 @@ import { flashMicroBit } from './platforms/microbit/flash';
 import { newSamples } from './samples';
 import { newServerConnection, ServerConnection } from './server';
 import { App, Extension, TerminalInterface } from './types';
-import { getHexFile } from './lib/hexlify';
 
 /// <reference path="./lib/microbit.d.ts" />
 
