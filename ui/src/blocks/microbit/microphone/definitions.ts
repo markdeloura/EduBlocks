@@ -25,6 +25,18 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     }
   };
 
+  Blocks['microphone_sound'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("microphone.sound_level()")
+      this.setOutput(true, null);
+      this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
+      this.setColour('#008080');
+      this.setTooltip("Reference the onboard microphone level");
+      this.setHelpUrl("");
+    }
+  };
+
   Blocks['microphone_wassound'] = {
     init: function() {
       this.appendDummyInput()

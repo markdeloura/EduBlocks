@@ -13,6 +13,14 @@ export default function define(Python: Blockly.BlockGenerators) {
     return [code, Blockly.Python.ORDER_ATOMIC];
   };
 
+  Python['microphone_sound'] = function(block) {
+    // TODO: Assemble Python into code variable.
+    var code = 'microphone.sound_level()'
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.Python.ORDER_ATOMIC];
+  };
+
+
   Python['microphone_wassound'] = function(block) {
     var value_level = Blockly.Python.valueToCode(block, 'level', Blockly.Python.ORDER_ATOMIC);
     // TODO: Assemble Python into code variable.
