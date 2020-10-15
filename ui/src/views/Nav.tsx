@@ -167,7 +167,7 @@ export default class Nav extends Component<Props, {}> {
                     }       */}
 
                     {downloadHex &&
-                    <a class='button icon-download button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 12px !important;"
+                    <a class='button icon-download button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 0px;"
                        onClick={() => downloadHex()}>
                         {navLabels[8]}
                     </a>
