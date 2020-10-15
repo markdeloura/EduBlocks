@@ -58,7 +58,7 @@ interface Props {
 
 export default class Nav extends Component<Props, {}> {
     public render() {
-        const {downloadHex, openTerminal: sendCode, downloadPython, flashHex, closeTerminal, openExtensions} = this.props;
+        const {downloadHex, openTerminal: sendCode, downloadPython, closeTerminal, openExtensions} = this.props;
 
         return (
             <>
