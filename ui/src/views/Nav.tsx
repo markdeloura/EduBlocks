@@ -160,18 +160,19 @@ export default class Nav extends Component<Props, {}> {
                     }
 
                     {downloadHex &&
-                    <a class='button icon-flash button-green' id="HexFlashButton" title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 0px !important; background-color: #644A9E !important;"
+                    <a class='button icon-download button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 0px;"
+                       onClick={() => downloadHex()}>
+                        {navLabels[8]}
+                    </a>
+                    }   
+
+                    {downloadHex &&
+                    <a class='button icon-flash button-green' id="HexFlashButton" title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 10px !important; background-color: #644A9E !important;"
                        onClick={() => flashHex()}>
                         Flash
                     </a>
                     }      
 
-                    {downloadHex &&
-                    <a class='button icon-download button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 10px;"
-                       onClick={() => downloadHex()}>
-                        {navLabels[8]}
-                    </a>
-                    }   
 
                     {downloadHex &&
                     <a class='button icon-puzzle button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-left: 10px; background-color: #D63664 !important;" 
