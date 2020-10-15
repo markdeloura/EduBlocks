@@ -1,6 +1,4 @@
 import * as DAPjs from '../../lib/dapjs';
-import { getHexFile } from '../../lib/hexlify';
-
 /// <reference path="./lib/microbit.d.ts" />
 
 export async function flashMicroBit(python: string, onProgress: (progress: number) => void) {
@@ -28,25 +26,12 @@ export async function flashMicroBit(python: string, onProgress: (progress: numbe
     // Push binary to board
     await window.daplink.connect();
 
-    let output;
-
     try {
       flashUniversalHex(python)
     } catch (e) {
       alert(e.message);
       return;
     }
-
-
-
-    // // Encode firmware for flashing
-    // const enc = await new TextEncoder();
-    // const image = await enc.encode(output).buffer;
-
-    // await console.log('Flashing');
-    // await window.daplink.flash(image);
-    // await console.log('Finished flashing!');
-    // await window.daplink.disconnect();
   
     } catch (e) {
     console.log('Error flashing: ' + e);
