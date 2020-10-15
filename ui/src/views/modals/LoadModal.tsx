@@ -25,7 +25,7 @@ export default class LoadModal<T extends LoadModalOption> extends Component<Load
       <div class='modal'>
         <input id='modal_1' type='checkbox' disabled={true} checked={this.props.visible} />
         <label for='modal_1' class='overlay'></label>
-        <article style="border-radius: 50%; background-color: #1B173D !important; padding: 16px;"> 
+        <article style="border-radius: 50%; background-color: #1B173D !important; padding: 25px;"> 
           <section style="padding: 0px !important;" id="modaltext">
             <div class="loader" style="margin: 0 auto;"></div>
           </section>

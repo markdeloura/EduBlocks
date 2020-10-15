@@ -607,7 +607,7 @@ export default class Page extends Component<Props, State> {
             let fileURL = await this.state.isSaved.getDownloadURL();
             let newFileURL = fileURL.substring(0, fileURL.indexOf('&token='));
             const encoded = btoa(newFileURL);
-            const edublocksLink = "https://app.edublocks.org/#share?" + filePlatform + "?" + encoded;
+            const edublocksLink = "https://beta.app.edublocks.org/#share?" + filePlatform + "?" + encoded;
             await this.setState({ shareURL: edublocksLink });
             await console.log(this.state.shareURL);
             await this.setState({ modal: "shareoptions", prevModal: null });
@@ -743,8 +743,6 @@ export default class Page extends Component<Props, State> {
                     let fileURL = await ref;
 
                     this.setState({ isSaved: fileURL });
-
-                    console.log(await ref.getDownloadURL());
 
                     const task = ref.putString(xml, undefined, {
                         contentType: 'text/xml',
