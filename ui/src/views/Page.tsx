@@ -1234,7 +1234,7 @@ export default class Page extends Component<Props, State> {
         const python = this.state.doc.python;
 
         if (python) {
-            this.setState({ modal: 'progress', progress: 0 });
+            this.setState({ modal: 'generating' });
 
             try {
                 await this.props.app.flashHex(python, this.state.extensionsActive, (progress) => {

@@ -147,7 +147,7 @@ body {
 .settings-row {
     margin: 0 -5px;
     height: 155px;
-    overflow: scroll;
+    overflow: auto;
     padding-top: 5px;
     overflow-x: hidden;
 }
