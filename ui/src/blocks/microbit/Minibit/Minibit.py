@@ -1,12 +1,12 @@
 from microbit import *
-import neopixel
+# import neopixel
 from utime import ticks_us, sleep_us
 
 class miniBit:
     def __init__(self):
         pass
 
-    leds = neopixel.NeoPixel(pin13, 4)
+    # leds = neopixel.NeoPixel(pin13, 4)
 
     def forward(self, speed):
         if (speed > 1023) or (speed < 1):

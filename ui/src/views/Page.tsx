@@ -1239,9 +1239,12 @@ export default class Page extends Component<Props, State> {
             try {
                 await this.props.app.flashHex(python, this.state.extensionsActive, (progress) => {
                     this.setState({ progress });
+                    if (this.state.progress === 1){
+                        this.closeModal()
+                    }
                 });
             } finally {
-                this.setState({ modal: null });
+                
             }
         }
     }

@@ -19,3 +19,22 @@ async function fsUniversalHex(code, filename) {
         saveFile(filename, result, 'hex', 'application/octet-stream')
     });
 }
+
+function flashUniversalHex(code) {
+    var FS = microbitFsWrapper();
+
+    FS.setupFilesystem().then(async function() {
+        FS.write('main.py', code);
+        
+        let output = FS.getUniversalHex()
+        
+        const enc = await new TextEncoder();
+        const image = await enc.encode(output).buffer;
+
+        console.log('Flashing');
+        await window.daplink.flash(image);
+        console.log('Finished flashing!');
+        await window.daplink.disconnect();
+
+    });
+}
