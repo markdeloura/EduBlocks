@@ -189,7 +189,7 @@ export default class SettingsModal<T extends SettingsModalOption> extends Compon
                   <a class='file__close close' style="top: 32px !important;" onClick={() => this.props.onButtonClick('close')}>Close</a>
                   <b>Version: </b>4.0.0
 
-                          <div class="settings-row" style="margin-top: 20px;">
+                          <div class="settings-row" style="margin-top: 20px; margin-bottom: 10px;">
                     <a href="https://edublocks.org/#contact">
                       <div class="settings-column">
                         <div class="settings-card">
@@ -215,6 +215,8 @@ export default class SettingsModal<T extends SettingsModalOption> extends Compon
                       </div>
                     </a>
                   </div>
+                  <b>Sponsored by: </b><br></br>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Arm_logo_2017.svg/1200px-Arm_logo_2017.svg.png" height="40" style="margin-top: 10px;"></img>
                   <a class="pseudo button" onClick={() => playAudio("https://edublocks.org/honk.mp3")}>Click me!</a>
                 </div>
               </div>
