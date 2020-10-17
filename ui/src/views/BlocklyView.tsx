@@ -4,6 +4,8 @@ import { getToolBoxXml } from '../blocks';
 import { Extension } from '../types';
 import _ = require('lodash');
 
+/// <reference path="screenshot.d.ts" />
+
 interface BlocklyViewProps {
   visible: boolean;
   xml: string | null;
@@ -17,15 +19,19 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
   private workspace?: Blockly.WorkspaceSvg;
   private xml: string | null = null;
 
-  public componentWillReceiveProps(nextProps: BlocklyViewProps) {
+  public async componentWillReceiveProps(nextProps: BlocklyViewProps) {
     if (nextProps.visible) {
-      if (this.xml !== nextProps.xml) {
-        this.setXml(nextProps.xml);
-      }
 
       // Reload blockly if the extensions have changed
       if (!_.isEqual(this.props.extensionsActive, nextProps.extensionsActive)) {
         this.loadBlockly(nextProps.extensionsActive);
+      }
+    }
+
+    if (this.props.visible) { 
+      if (this.xml !== nextProps.xml) {
+        try{await this.setXml(nextProps.xml);}
+        catch(e){}
       }
     }
   }
@@ -33,8 +39,6 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
   public async componentDidMount() {
     this.loadBlockly(this.props.extensionsActive);
   }
-
-  
 
   private async loadBlockly(extensionsActive: Extension[]) {
     if (this.blocklyDiv) {
@@ -56,8 +60,20 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
           minScale: 0.3,
           scaleSpeed: 1.2,
         },
+
+        grid: {
+          spacing: 30,
+          length: 7,
+          colour: "rgba(189, 195, 199, 0.52)",
+          snap: false
+        },
+
+        
         media: 'blockly/media/',
         collapse: false,
+        renderer: "pxt",
+        
+        
         toolbox,
       }) as Blockly.WorkspaceSvg;
 
@@ -73,14 +89,29 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
         }
       });
 
-      
-
       Blockly.svgResize(this.workspace);
 
+      this.workspace.configureContextMenu = this.customContextMenuFn;
+
+      // disable blocks that aren't attached to the start block
+      this.workspace.addChangeListener(Blockly.Events.disableOrphans);
+      
       Blockly.Generator.prototype.INDENT = '\t';
 
-      this.setXml(this.xml);
+      try{this.setXml(this.xml);}
+      catch(e){}
     }
+  }
+
+  private customContextMenuFn(options: any) {
+    var option = {
+      enabled: true,
+      text: "Download Screenshot",
+      callback: function() {
+        exportPNG()
+      }
+    };
+    options.push(option);
   }
 
   private getXml(): string {
@@ -102,14 +133,50 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
   }
 
   private setXml(xml: string | null) {
+
     if (!this.workspace) {
       throw new Error('No workspace!');
     }
 
     this.workspace.clear();
 
+    // console.log("in setXML")
+    
+    var start = null;
+    var new_xml = '<xml xmlns="https://developers.google.com/blockly/xml"><block type="events_start_here" id="DI_start_here" x="'+ 100 + '" y="43" deletable="false" movable="false"></block></xml>';
+
     if (typeof xml === 'string') {
-      const textToDom = Blockly.Xml.textToDom(xml);
+      // check if we have a top hat
+      start = xml.search("DI_start_here");
+
+      if (start < 0) {
+        // console.log("top hat not found")
+        var first_block_position = xml.search("<block")
+        var start_block_xml = '<block type="events_start_here" id="DI_start_here" x="'+ 100 + '" y="43" deletable="false" movable="false">'
+
+        if (first_block_position < 0)
+        // no block were found, we have an empty XML coming in 
+        {   
+          console.log("no blocks were found")
+          // new_xml will be used as is
+        } else {
+          // insert new top hat in the XML code
+          var pos_from_end_of_string = -1 * ("</xml>".length)
+          var new_xml = xml.slice(0, first_block_position) + start_block_xml + "<next>" + xml.slice(first_block_position, pos_from_end_of_string) + "</next></block>" + xml.slice(pos_from_end_of_string);
+        }
+        const textToDom = Blockly.Xml.textToDom(new_xml);
+        Blockly.Xml.domToWorkspace(textToDom, this.workspace);
+
+      } else {
+        // top hat found
+        // do not use new_xml, but use the provided xml as is
+        const textToDom = Blockly.Xml.textToDom(xml);
+        Blockly.Xml.domToWorkspace(textToDom, this.workspace);
+      }
+    }
+    else {
+      // opening a new file
+      const textToDom = Blockly.Xml.textToDom(new_xml);
       Blockly.Xml.domToWorkspace(textToDom, this.workspace);
     }
   }

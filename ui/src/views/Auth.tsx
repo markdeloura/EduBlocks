@@ -4,6 +4,9 @@ import * as firebaseui from 'firebaseui';
 import * as React from 'preact';
 import {navLabels} from './Page';
 
+import $ = require("jquery");
+
+
 import { GlobalVars } from './Page';
 
 
@@ -81,7 +84,6 @@ export default class Auth extends React.Component<AuthProps, State> {
 
     private logOutAccount() {
         firebase.auth().signOut().then(function () {
-            GlobalVars.openFiles = "Open";
         }, function (error) {
             // An error happened.
         });
@@ -96,11 +98,16 @@ export default class Auth extends React.Component<AuthProps, State> {
         let self = this;
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
-                console.log(user);
+                $('#nav_share').css('display', 'inline-block');
+                $('#nav_open').css('display', 'none');
+                $('#nav_files').css('display', 'inline-block');
                 self.setState({
                     user: user,
                 });
             } else {
+                $('#nav_share').css('display', 'none');
+                $('#nav_open').css('display', 'inline-block');
+                $('#nav_files').css('display', 'none');
                 self.setState({
                     user: null,
                 });
@@ -113,9 +120,10 @@ export default class Auth extends React.Component<AuthProps, State> {
     public render() {
         if (this.state.user) {
             GlobalVars.openFiles = "Files"
+            GlobalVars.photoURL = this.state.user.photoURL
+            GlobalVars.userName = this.state.user.displayName
             return <div className='login'>
-                {this.state.user.photoURL ? <img id="loginimage" src={this.state.user.photoURL} alt='' /> : <img id="loginimage" src="images/default-profile-image.png" alt='' />}
-                <button style='background: rgba(0, 0, 0, 0); padding: 0.1em !important;' onClick={this.logOutAccount} data-tooltip='Log Out'><span id="name">{this.state.user.displayName}</span></button>
+                {this.state.user.photoURL ? <a onClick={this.logOutAccount}> <img id="loginimage" src={this.state.user.photoURL} alt='' /> </a>: <a onClick={this.logOutAccount}><img id="loginimage" src="images/default-profile-image.png" alt='' /> </a>}
             </div>;
         }
 

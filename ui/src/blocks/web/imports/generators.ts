@@ -1,4 +1,30 @@
 export default function define(Python: Blockly.BlockGenerators) {
+
+  Python['events_start_here'] = function (block) {
+    const code = '# Start Code Here\n';
+    return code;
+  };
+
+  Python['import_mltext'] = function (block) {
+    const code = 'from mltext import *\n';
+    return code;
+  };
+
+  Python['import_mlmodel'] = function (block) {
+    const code = 'from mlmodel import *\n';
+    return code;
+  };
+
+  Python['import_mlimages'] = function (block) {
+    const code = 'from mlimages import *\n';
+    return code;
+  };
+
+  Python['import_imagedata'] = function (block) {
+    const code = 'from imagedata import *\n';
+    return code;
+  };
+
   Python['import_time'] = function (block) {
     const code = 'import time\n';
     return code;

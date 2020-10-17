@@ -4,7 +4,9 @@ import { flashMicroBit } from './platforms/microbit/flash';
 import { newSamples } from './samples';
 import { newServerConnection, ServerConnection } from './server';
 import { App, Extension, TerminalInterface } from './types';
-import { getHexFile } from './lib/hexlify';
+
+/// <reference path="./lib/microbit.d.ts" />
+
 
 export function newApp(): App {
   let connection: ServerConnection | undefined;
@@ -77,10 +79,12 @@ export function newApp(): App {
 
 
     const combinedScript = getCombinedScript(python, extensions);
+ 
+    // const hex = getHexFile(combinedScript);
 
-    const hex = getHexFile(combinedScript);
+    // await io.saveFile(fileName, hex, 'hex', 'application/octet-stream');
 
-    await io.saveFile(fileName, hex, 'hex', 'application/octet-stream');
+    await fsUniversalHex(combinedScript, 'microbit-' + fileName)
 
   }
 

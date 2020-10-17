@@ -4,6 +4,11 @@ export default function define(Python: Blockly.BlockGenerators) {
     return code;
   };
 
+  Python['events_start_here'] = function (block) {
+    const code = '# Start code here\n';
+    return code;
+  };
+
   Python['import_signal'] = function (block) {
     const code = 'from signal import pause\n';
     return code;
@@ -12,6 +17,16 @@ export default function define(Python: Blockly.BlockGenerators) {
   Python['import_utime'] = function (block) {
     const code = 'import utime\n';
     return code;
+  };
+
+  Python['comma'] = function(block) {
+    var value_in1 = Blockly.Python.valueToCode(block, 'in1', Blockly.Python.ORDER_ATOMIC);
+    var dropdown_commadd = block.getFieldValue('commadd');
+    var value_in2 = Blockly.Python.valueToCode(block, 'in2', Blockly.Python.ORDER_ATOMIC);
+    // TODO: Assemble Python into code variable.
+    var code = value_in1 + dropdown_commadd + value_in2;
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.Python.ORDER_ATOMIC];
   };
 
   Python['pause_s'] = function (block) {

@@ -56,6 +56,14 @@ export async function getToolBoxXml(extensions: Extension[]) {
     (await import('./web/processing/generators')).default(Blockly.Python as any);
     toolBoxXml += fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'web', 'processing', 'toolbox.xml'));
 
+    (await import('./web/requests/definitions')).default(Blockly.Blocks);
+    (await import('./web/requests/generators')).default(Blockly.Python as any);
+    toolBoxXml += fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'web', 'requests', 'toolbox.xml'));
+
+    (await import('./web/ml4kids/definitions')).default(Blockly.Blocks);
+    (await import('./web/ml4kids/generators')).default(Blockly.Python as any);
+    toolBoxXml += fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'web', 'ml4kids', 'toolbox.xml'));
+
   }
 
   if (extensions.indexOf('CircuitPython General') !== -1) {
@@ -144,6 +152,10 @@ export async function getToolBoxXml(extensions: Extension[]) {
     (await import('./microbit/music/definitions')).default(Blockly.Blocks);
     (await import('./microbit/music/generators')).default(Blockly.Python as any);
     toolBoxXml += fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'microbit', 'music', 'toolbox.xml'));
+
+    (await import('./microbit/microphone/definitions')).default(Blockly.Blocks);
+    (await import('./microbit/microphone/generators')).default(Blockly.Python as any);
+    toolBoxXml += fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'microbit', 'microphone', 'toolbox.xml'));
 
     (await import('./microbit/neopixel/definitions')).default(Blockly.Blocks);
     (await import('./microbit/neopixel/generators')).default(Blockly.Python as any);

@@ -58,7 +58,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour('#F89621');
       this.setTooltip('Pass to the next command');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -78,10 +78,42 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     },
   };
 
+  Blocks['brackets'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("(");
+      this.appendValueInput("NAME")
+          .setCheck(null);
+      this.appendDummyInput()
+          .appendField(")");
+      this.setInputsInline(true);
+      this.setOutput(true, null);
+      this.setColour('#F89621');
+   this.setTooltip("Brackets");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blocks['upper_lower'] = {
+    init: function() {
+      this.appendValueInput("string")
+          .setCheck(null);
+      this.appendDummyInput()
+          .appendField(".")
+          .appendField(new Blockly.FieldDropdown([["upper","upper"], ["lower","lower"]]), "upperlower")
+          .appendField("()");
+      this.setInputsInline(true);
+      this.setOutput(true, null);
+      this.setColour("#F89621");
+   this.setTooltip("Convert string to upper or lower case");
+   this.setHelpUrl("");
+    }
+  };
+
   Blocks['global'] = {
     init: function () {
       this.appendDummyInput()
-        .appendField('global ')
+        .appendField('global ');
       this.appendValueInput("text")
         .setCheck(null);
       this.setPreviousStatement(true, null);
@@ -104,7 +136,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour('#F89621');
       this.setTooltip('Use this to print a variable, a number, or even a string if you put in the quotes yourself.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -121,7 +153,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
       this.setColour('#F89621');
       this.setTooltip('Changes to an int');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -171,7 +203,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
       this.setColour('#F89621');
       this.setTooltip('Changes to an str');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 }

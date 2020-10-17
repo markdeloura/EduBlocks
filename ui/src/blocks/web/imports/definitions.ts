@@ -1,5 +1,66 @@
 export default function define(Blocks: Blockly.BlockDefinitions) {
 
+  Blocks['events_start_here'] = { 
+    init: function() {
+      this.appendDummyInput()
+          .appendField("# Start Code Here"); 
+          // other option is "#!/usr/bin/python3"
+      this.setNextStatement(true, null);
+      this.setColour("#FFBF00");
+      Blockly.BlockSvg.START_HAT = true;
+      // this.setTooltip(DexterMsg.Blockly.Blocks.Events.TOOLTIP_START_BLOCK);
+      // this.setHelpUrl('');
+    }
+  };
+
+
+  Blocks['import_mlmodel'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField('from mlmodel import *');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour("#ff0066");
+      this.setTooltip('Imports the mlmodel library.');
+      this.setHelpUrl('');
+    },
+  };
+
+  Blocks['import_mltext'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField('from mltext import *');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour("#ff0066");
+      this.setTooltip('Imports the mltext library.');
+      this.setHelpUrl('');
+    },
+  };
+
+  Blocks['import_mlimages'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField('from mlimages import *');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour("#ff0066");
+      this.setTooltip('Imports the mlimages library.');
+      this.setHelpUrl('');
+    },
+  };
+
+  Blocks['import_imagedata'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField('from imagedata import *');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour("#ff0066");
+      this.setTooltip('Imports the mlimages library.');
+      this.setHelpUrl('');
+    },
+  };
   
   Blocks['import_time'] = {
     init: function () {
@@ -9,7 +70,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#FF0066");
       this.setTooltip('Imports the time library.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -21,7 +82,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#FF0066");
       this.setTooltip('Imports the pygal library.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
  
@@ -33,7 +94,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#FF0066");
       this.setTooltip('Imports the pygal library.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -45,7 +106,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#FF0066");
       this.setTooltip('Imports the signal library.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -57,7 +118,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#FF0066");
       this.setTooltip('Pause');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -69,7 +130,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#FF0066");
       this.setTooltip('Imports the random library.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -96,7 +157,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#FF0066");
       this.setTooltip('Pass to the next command');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -147,7 +208,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#FF0066");
       this.setTooltip('Use this to print a variable, a number, or even a string if you put in the quotes yourself.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -336,7 +397,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#FF0066");
       this.setTooltip('');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -350,7 +411,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#FF0066");
       this.setTooltip('Imports the math library.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -362,7 +423,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#FF0066");
       this.setTooltip('Imports the audio library.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -412,7 +473,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#FF0066");
       this.setTooltip('Use this to print to the output box.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -442,7 +503,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#FF0066");
       this.setTooltip('');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -483,7 +544,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#FF0066");
       this.setTooltip('');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -502,7 +563,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#FF0066");
       this.setTooltip('');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -708,7 +769,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
       this.setColour("#FF0066");
       this.setTooltip('negates a Boolean value');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -720,7 +781,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#FF0066");
       this.setTooltip('breaks out of a loop');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 

@@ -1,8 +1,14 @@
 export default function define(Python: Blockly.BlockGenerators) {
+
+  Python['events_start_here'] = function (block) {
+    const code = '# Start code\n';
+    return code;
+  };
+  
   Python['import_time'] = function (block) {
     const code = 'import time\n';
     return code;
-  };
+  }; 
 
   Python['import_signal'] = function (block) {
     const code = 'from signal import pause\n';

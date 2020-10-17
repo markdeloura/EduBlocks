@@ -7,7 +7,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#C2E434");
       this.setTooltip('Imports the requests library.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -19,7 +19,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour("#C2E434");
       this.setTooltip('Imports the JSON library.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
