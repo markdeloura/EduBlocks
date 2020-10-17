@@ -44,6 +44,8 @@ export function newApp(): App {
     newpy = newpy.replace('from iotloranode import loraNode', '');
     //Automated Extensions under here
 
+    newpy = newpy.replace('from EDUBIT import *', '');
+
     newpy = newpy.replace('from DriveBit import *', '');
 
     newpy = newpy.replace('from BitBotXL import *', '');
