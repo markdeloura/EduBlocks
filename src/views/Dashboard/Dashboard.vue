@@ -88,11 +88,6 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Button from "@/components/Button/Button.vue";
-import SelectCard from "@/components/SelectCard/SelectCard.vue";
-import ImageCard from "@/components/ImageCard/ImageCard.vue";
-import ListItem from "@/components/ListItem/ListItem.vue";
-import CreateProjectModal from "@/components/Modals/CreateProjectModal/CreateProjectModal.vue";
 import { modalState } from "@/components/Modals/ModalState";
 import Dashboard from "./Dashboard";
 import { state } from "@/state";
@@ -100,13 +95,6 @@ import { platforms, Platform } from "@/platforms/platforms";
 
 export default defineComponent({
 	name: "Dashboard",
-	components: {
-		Button,
-		SelectCard,
-		ImageCard,
-		ListItem,
-		CreateProjectModal
-	},
 	setup() {
 		const view: Dashboard = new Dashboard();
 
