@@ -1,0 +1,264 @@
+
+.blocklyTreeIconCustom {
+    background: none !important;
+    font-family: 'Font Awesome\ 5 Free';
+    font-weight: 900;
+    font-size: 16px;
+    vertical-align: middle;
+    line-height: normal;
+    text-align: center;
+    width: 1.25em;
+    color: white;
+}
+
+/* Blockly Toolbox Icons */
+
+.blocklyTreeIconCustom.basic::before {
+    content: "\f144";
+}
+
+.blocklyTreeIconCustom.turtle::before {
+    content: "\f303";
+}
+
+.blocklyTreeIconCustom.ml::before {
+    content: "\f1b3";
+}
+
+.blocklyTreeIconCustom.minecraft::before {
+    content: "\f1b2";
+}
+
+.blocklyTreeIconCustom.edu\:bit::before {
+    content: "\f1b2";
+}
+
+.blocklyTreeIconCustom.gpiozero::before {
+    content: "\f0eb";
+}
+
+.blocklyTreeIconCustom.sonic::before {
+    content: "\f001";
+}
+
+.blocklyTreeIconCustom.pimoroni::before {
+    content: "\f714";
+}
+
+.blocklyTreeIconCustom.requests::before {
+    content: "\f0c1";
+}
+
+.blocklyTreeIconCustom.sense::before {
+    content: "\f7bf";
+}
+
+.blocklyTreeIconCustom.bitio::before {
+    content: "\f11b";
+}
+
+.blocklyTreeIconCustom.variables::before {
+    content: "\f52c";
+}
+
+.blocklyTreeIconCustom.radio::before {
+    content: "\f519";
+}
+
+.blocklyTreeIconCustom.display::before {
+    content: "\f00a";
+}
+
+.blocklyTreeIconCustom.buttons::before {
+    content: "\f192";
+}
+
+.blocklyTreeIconCustom.accelerometer::before {
+    content: "\f0b2";
+}
+
+.blocklyTreeIconCustom.compass::before {
+    content: "\f14e";
+}
+
+.blocklyTreeIconCustom.microphone::before {
+    content: "\f3c9";
+}
+
+.blocklyTreeIconCustom.speech::before {
+    content: "\f4ad";
+}
+
+.blocklyTreeIconCustom.music::before {
+    content: "\f001";
+}
+
+.blocklyTreeIconCustom.audio::before {
+    content: "\f001";
+}
+
+.blocklyTreeIconCustom.neopixel::before {
+    content: "\f0eb";
+}
+
+.blocklyTreeIconCustom.cpx::before {
+    content: "\f02d";
+}
+
+.blocklyTreeIconCustom.robot::before {
+    content: "\f1b9";
+}
+
+.blocklyTreeIconCustom.gigglebot::before {
+    content: "\f1b9";
+}
+
+.blocklyTreeIconCustom.drivebit::before {
+    content: "\f1b9";
+}
+
+.blocklyTreeIconCustom.bitbot::before {
+    content: "\f1b9";
+}
+
+.blocklyTreeIconCustom.movemini::before {
+    content: "\f1b9";
+}
+
+.blocklyTreeIconCustom.minibit::before {
+    content: "\f1b9";
+}
+
+.blocklyTreeIconCustom.scrollbit::before {
+    content: "\f06e";
+}
+
+.blocklyTreeIconCustom.pins::before {
+    content: "\f140";
+}
+
+.blocklyTreeIconCustom.digital::before {
+    content: "\f140";
+}
+
+.blocklyTreeIconCustom.analog::before {
+    content: "\f3fd";
+}
+
+.blocklyTreeIconCustom.touch::before {
+    content: "\f577";
+}
+
+.blocklyTreeIconCustom.servo::before {
+    content: "\f013";
+}
+
+.blocklyTreeIconCustom.pwm::before {
+    content: "\f201";
+}
+
+.blocklyTreeIconCustom.dotstar::before {
+    content: "\f5c0";
+}
+
+.blocklyTreeIconCustom.advanced::before {
+    content: "\f055";
+}
+
+.blocklyTreeIconCustom.picamera::before {
+    content: "\f030";
+}
+
+.blocklyTreeIconCustom.imports::before {
+    content: "\f093";
+}
+
+.blocklyTreeIconCustom.statements::before {
+    content: "\f12a";
+}
+
+.blocklyTreeIconCustom.logic::before {
+    content: "\f362";
+}
+
+.blocklyTreeIconCustom.lists::before {
+    content: "\f03a";
+}
+
+.blocklyTreeIconCustom.loops::before {
+    content: "\f2f9";
+}
+
+.blocklyTreeIconClosedLtr {
+    background: none !important;
+    font-family: 'Font Awesome\ 5 Free';
+    font-weight: 900;
+    font-size: 1.3rem;
+    margin: 0 .25em;
+    width: 30px !important;
+    height: 100% !important;
+    line-height: 45px;
+    min-height: 45px;
+    vertical-align: middle;
+}
+
+.blocklyTreeIconOpen {
+    background: none !important;
+    font-family: 'Font Awesome\ 5 Free';
+    font-weight: 900;
+    font-size: 1.3rem;
+    margin: 0 .25em;
+    width: 30px !important;
+    height: 100% !important;
+    line-height: 45px;
+    min-height: 45px;
+    vertical-align: middle;
+}
+
+.blocklyTreeIconOpen::before {
+    content: "\f0ab";
+}
+
+.blocklyTreeIconClosedLtr::before {
+    content: "\f0a9";
+}
+
+.blocklyTreeIconCustom.definitions::before {
+    content: "\f02d";
+}
+
+.blocklyTreeIconCustom.math::before {
+    content: "\f698";
+}
+
+.blocklyTreeIconCustom.graphs::before {
+    content: "\f200";
+}
+
+.blocklyTreeIconCustom.general::before {
+    content: "\f0a9";
+}
+
+.blocklyTreeIconCustom.inputs::before {
+    content: "\f0a9";
+}
+
+.blocklyTreeIconCustom.outputs::before {
+    content: "\f0a9";
+}
+
+.blocklyTreeIconCustom.boards::before {
+    content: "\f0a9";
+}
+
+.blocklyTreeIconCustom.internal::before {
+    content: "\f0a9";
+}
+
+.blocklyTreeIconCustom.random::before {
+    content: "\f074";
+}
+
+.blocklyTreeIconCustom.processing::before {
+    content: "\f53f";
+}
