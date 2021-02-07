@@ -17,7 +17,7 @@ const Python: PlatformOptions = reactive({
 const MicroBit: PlatformOptions = reactive({
 	id: 2,
 	title: Platform.MicroBit,
-	image: "/images/platforms/microbit.png",
+	image: "/images/platforms/BBC micro:bit.png",
 	color: "bg-green-400"
 })
 

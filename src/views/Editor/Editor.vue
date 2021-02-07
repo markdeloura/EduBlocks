@@ -103,7 +103,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onBeforeUnmount } from "vue";
 import { Editor, Views, pythonCode } from "./Editor";
 import { state } from "@/state";
 import { codemirror } from "vue-codemirror-lite";
@@ -117,6 +117,10 @@ export default defineComponent({
 	},
 	setup() {
 		const view: Editor = new Editor();
+
+		onBeforeUnmount(() => {
+			view.reset();
+		});
 
 		return { view, state, Views, pythonCode };
 	}
