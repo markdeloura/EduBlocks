@@ -15,6 +15,7 @@
 				/>
 			</div>
 			<input
+				v-model="modelValue"
 				:type="type"
 				class="block w-full border-gray-300 rounded-md appearance-none sm:text-sm focus:border-pink-500 focus:outline-none focus:ring-pink-500"
 				:class="[icon ? 'pl-10' : '']"
