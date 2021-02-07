@@ -1,9 +1,14 @@
 import { files } from "@/providers/files";
 import { Platform } from "@/platforms/platforms";
+import router from "@/router/index";
 
 export default class Projects {
 	public getFirebaseFiles(): any {
 		return files.getAllFilesFromFirebase();
+	}
+
+	public goToLoginPage(): void {
+		router.push({path: "/login"});
 	}
 
 	public removePlatformFromFileName(name: string): string {

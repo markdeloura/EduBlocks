@@ -10,7 +10,7 @@
 						<Icon
 							:name="icon"
 							class="w-5 h-5 fill-current"
-							is-filled="true"
+							is-filled
 						/>
 					</div>
 				</div>

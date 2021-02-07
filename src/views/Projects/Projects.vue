@@ -51,7 +51,7 @@
 		</div>
 	</div>
 	<div
-		v-if="files.isLoading.value !== true && files.fileList.value.length < 1"
+		v-if="files.isLoading.value !== true && files.fileList.value.length < 1 && authentication.currentUser.value"
 		class="flex flex-wrap content-center justify-center w-full h-full"
 	>
 		<div class="space-y-6">
@@ -102,10 +102,37 @@
 			</div>
 		</div>
 	</div>
+	<div
+		v-if="!authentication.currentUser.value"
+		class="flex flex-wrap content-center justify-center w-full h-full"
+	>
+		<div class="space-y-6">
+			<div class="flex justify-center w-full">
+				<i class="text-gray-300 text-9xl fas fa-cloud-upload-alt" />
+			</div>
+			<div class="w-full space-y-2 text-center">
+				<h1 class="block text-2xl font-semibold">
+					Sorry! You need an account
+				</h1>
+				<p class="text-lg text-gray-400">
+					Create a free EduBlocks Cloud Account to easily save <br> and share projects
+				</p>
+			</div>
+			<div class="flex justify-center w-full space-x-4">
+				<Button
+					text="Login/Register"
+					icon="login"
+					variant="Primary"
+					class="h-11"
+					@click="view.goToLoginPage()"
+				/>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent, onMounted, watchEffect } from "vue";
 import Projects from "./Projects";
 import { authentication } from "@/providers/auth";
 import { modalState } from "@/components/Modals/ModalState";
@@ -118,6 +145,12 @@ export default defineComponent({
 
 		onMounted(() => {
 			view.getFirebaseFiles();
+		});
+
+		watchEffect(() => {
+			if (!authentication.currentUser.value) {
+				files.fileList.value = [];
+			}
 		});
 
 		return { view, authentication, files, modalState };
