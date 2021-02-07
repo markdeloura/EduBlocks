@@ -25,7 +25,7 @@ const RaspberryPi: PlatformOptions = reactive({
 	id: 3,
 	title: Platform.RaspberryPi,
 	image: "/images/platforms/Raspberry Pi.png",
-	color: "bg-raspberrypi"
+	color: "bg-pink-600"
 })
 
 const CircuitPython: PlatformOptions = reactive({

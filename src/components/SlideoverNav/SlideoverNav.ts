@@ -1,5 +1,6 @@
 import router from "@/router/index";
 import { ref, Ref } from "vue";
+import { modalState } from "@/components/Modals/ModalState";
 
 /**
  * Define schema for navigation options
@@ -11,6 +12,9 @@ interface NavOptions {
 	path: string;
 }
 
+/**
+ * Stores slideover nav open/close state
+ */
 export const isSlideOverNavOpen: Ref<boolean> = ref(false);
 
 /**
@@ -28,13 +32,29 @@ export class SlideoverNav {
 		{id: 5, text: "Classroom", icon: "users", path: "/classroom"},
 		{id: 6, text: "Settings", icon: "cog", path: "/settings"},
 	]
-
+	
+	/**
+	 * Navigate to a specified router path
+	 * @param {string} path
+	 */
 	public navigateToRoute(path: string): void {
 		isSlideOverNavOpen.value = false;
 		router.push({path});
 	}
 
+	/**
+	 * Close the slide over navigation bar
+	 */
 	public closeSlideOverNav(): void{
 		isSlideOverNavOpen.value = false;
+	}
+
+	/**
+	 * Close the slide over navigation bar, redirect to homepage and open the new project modal
+	 */
+	public closeAndOpenNewProject(): void{
+		router.push({path: "/"});
+		this.closeSlideOverNav();
+		modalState.createProjectModal = true;
 	}
 }

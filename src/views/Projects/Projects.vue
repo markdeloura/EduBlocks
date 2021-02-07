@@ -18,6 +18,7 @@
 					icon="plus"
 					variant="Primary"
 					class=" h-11"
+					@click="modalState.createProjectModal = true"
 				/>
 			</div>
 		</div>
@@ -94,6 +95,7 @@
 					icon="plus"
 					variant="Primary"
 					class=" h-11"
+					@click="modalState.createProjectModal = true"
 				/>
 			</div>
 		</div>
@@ -104,6 +106,7 @@
 import { defineComponent, onMounted } from "vue";
 import Projects from "./Projects";
 import { authentication } from "@/providers/auth";
+import { modalState } from "@/components/Modals/ModalState";
 import { files } from "@/providers/files";
 
 export default defineComponent({
@@ -115,7 +118,7 @@ export default defineComponent({
 			view.getFirebaseFiles();
 		});
 
-		return { view, authentication, files };
+		return { view, authentication, files, modalState };
 	}
 });
 </script>

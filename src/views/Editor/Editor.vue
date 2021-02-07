@@ -45,7 +45,6 @@
 			</div>
 			
 			<div class="ml-auto h-11 pb-2 -mt-0.5 flex space-x-4">
-				{{ state.filename }}
 				<div
 					v-if="view.state.saveButton"
 					class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-pink-500 rounded cursor-pointer"

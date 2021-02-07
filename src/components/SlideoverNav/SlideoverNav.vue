@@ -5,11 +5,11 @@
 	>
 		<div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
 			<div
-				class="fixed inset-0 z-50 transition-opacity"
+				class="fixed inset-0 z-50 transition-opacity" 
 			>
-				<div class="absolute inset-0 p-4 border-r-2 w-60 bg-gray-50">
-					<nav class="flex flex-col h-full">
-						<div class="flex items-center flex-shrink-0 mb-6">
+				<div class="absolute inset-0 w-60 bg-gray-50">
+					<div class="flex flex-wrap content-center w-full bg-white border-b-2 h-14">
+						<div class="flex items-center flex-shrink-0 w-full px-4 pt-0.5">
 							<img
 								class="block w-auto h-8 lg:hidden"
 								src="/images/brand/edublocks-small.svg"
@@ -23,47 +23,45 @@
 								@click="component.closeSlideOverNav()"
 							/>
 						</div>
-						<Button
-							icon="plus"
-							text="New Project"
-							variant="Primary"
-							class="w-full mb-4"
-						/>
-						<div class="h-full space-y-1">
-							<MenuItem
-								v-for="option in component.navOptions"
-								:key="option"
-								:icon="option.icon"
-								:text="option.text"
-								:class="[router.currentRoute.value.name === option.text ? 'bg-white border-gray-300' : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900 cursor-pointer']"
-								@click="component.navigateToRoute(option.path)"
-							/>
-						</div>
-						<div class="h-24">
-							<div
-								class="mt-1 space-y-1"
-								aria-labelledby="projects-headline"
-							>
-								<a
-									href="#"
-									class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50"
-								>
-									<span class="truncate">
-										Report an issue
-									</span>
-								</a>
-
-								<a
-									href="#"
-									class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50"
-								>
-									<span class="truncate">
-										Help & Support
-									</span>
-								</a>
+					</div>
+					<div class="w-full p-4 border-r-2 nav-height">
+						<nav class="flex flex-col h-full">
+							<div class="h-full space-y-1">
+								<MenuItem
+									v-for="option in component.navOptions"
+									:key="option"
+									:icon="option.icon"
+									:text="option.text"
+									:class="[router.currentRoute.value.name === option.text ? 'bg-white border-gray-300' : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900 cursor-pointer']"
+									@click="component.navigateToRoute(option.path)"
+								/>
 							</div>
-						</div>
-					</nav>
+							<div class="h-24">
+								<div
+									class="mt-1 space-y-1"
+									aria-labelledby="projects-headline"
+								>
+									<a
+										href="#"
+										class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50"
+									>
+										<span class="truncate">
+											Report an issue
+										</span>
+									</a>
+
+									<a
+										href="#"
+										class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50"
+									>
+										<span class="truncate">
+											Help & Support
+										</span>
+									</a>
+								</div>
+							</div>
+						</nav>
+					</div>
 				</div>
 			</div>
 			<div
@@ -92,3 +90,9 @@ export default defineComponent({
 	}
 });
 </script>
+
+<style scoped>
+.nav-height {
+	height: calc(100% - 3.5rem);
+}
+</style>

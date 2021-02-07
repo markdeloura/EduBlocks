@@ -27,9 +27,14 @@
 				</div>
 			</div>
 			<div>
-				<h1 class="pb-4 text-2xl font-semibold">
-					My Projects
-				</h1>
+				<div class="pb-4 text-2xl font-semibold">
+					<span
+						class="cursor-pointer hover:opacity-75"
+						@click="view.navigateToRoute('/projects')"
+					>
+						Recent Projects
+					</span>
+				</div>
 				<div class="w-full pb-1 overflow-x-auto">
 					<div class="grid w-full grid-flow-col gap-5 auto-cols-max">
 						<IconCard
@@ -41,9 +46,14 @@
 				</div>
 			</div>
 			<div>
-				<h1 class="pb-4 text-2xl font-semibold">
-					Guides
-				</h1>
+				<div class="pb-4 text-2xl font-semibold">
+					<span
+						class="cursor-pointer hover:opacity-75"
+						@click="view.navigateToRoute('/guides')"
+					>
+						Guides
+					</span>
+				</div>
 				<div class="w-full overflow-x-auto">
 					<div class="grid w-full grid-flow-col gap-5 auto-cols-max">
 						<ImageCard
@@ -55,9 +65,14 @@
 				</div>
 			</div>
 			<div>
-				<h1 class="pb-4 text-2xl font-semibold">
-					Community Projects
-				</h1>
+				<div class="pb-4 text-2xl font-semibold">
+					<span
+						class="cursor-pointer hover:opacity-75"
+						@click="view.navigateToRoute('/showcase')"
+					>
+						Community Projects
+					</span>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -68,16 +83,14 @@
 import { defineComponent } from "vue";
 import { modalState } from "@/components/Modals/ModalState";
 import Home from "./Home";
-import { state } from "@/state";
-import { platforms, Platform } from "@/platforms/platforms";
-import router from "@/router/index";
+import { platforms } from "@/platforms/platforms";
 
 export default defineComponent({
 	name: "Dashboard",
 	setup() {
 		const view: Home = new Home();
 
-		return { view, platforms, Platform, modalState, state, router };
+		return { view, platforms, modalState };
 	}
 });
 </script>
