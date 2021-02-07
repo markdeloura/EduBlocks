@@ -40,7 +40,43 @@ export default class Projects {
 		return output;
 	}
 
+	public getPlatformVariantFromFileName(name: string): string {
+		let output: string = "";
+		if (name.includes("(Python)")) {
+			output = "Blue";
+		}
+		else if (name.includes("(microbit)")) {
+			output = "Green";
+		}
+		else if (name.includes("(CircuitPython)")) {
+			output = "Purple";
+		}
+		else if (name.includes("(RPi)")) {
+			output = "Red";
+		}
+		return output;
+	}
+
+	public getPlatformIconFromFileName(name: string): string {
+		let output: string = "";
+		if (name.includes("(Python)")) {
+			output = "python";
+		}
+		else if (name.includes("(microbit)")) {
+			output = "microbit";
+		}
+		else if (name.includes("(CircuitPython)")) {
+			output = "circuitpython";
+		}
+		else if (name.includes("(RPi)")) {
+			output = "raspberrypi";
+		}
+		return output;
+	}
+
 	public delete(ref: firebase.default.storage.Reference): void {
 		files.deleteFirebaseFile(ref);
 	}
 }
+
+export const projects: Projects = new Projects();

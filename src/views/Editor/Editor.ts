@@ -207,7 +207,6 @@ export class Editor {
 				Blockly.Xml.workspaceToDom(blocklyWorkspace)
 		  );
 		  if (!blocklyWorkspace.isDragging()) {
-				console.log(Blockly.Python.workspaceToCode(blocklyWorkspace));
 				pythonCode.value = Blockly.Python.workspaceToCode(blocklyWorkspace);
 		  }
 		});

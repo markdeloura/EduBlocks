@@ -31,6 +31,8 @@
 				:item1="view.removePlatformFromFileName(file.label)"
 				:item2="view.getPlatformFromFileName(file.label)"
 				:item3="`${file.metadata.size.toString()} B`"
+				:icon="view.getPlatformIconFromFileName(file.label)"
+				:variant="view.getPlatformVariantFromFileName(file.label)"
 			>
 				<Icon
 					name="trash"

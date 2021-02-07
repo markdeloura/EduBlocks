@@ -22,12 +22,15 @@
 							:image="platform.image"
 							:tile-class="platform.color"
 							:text="platform.title"
+							@click="view.createNewProjectWithPlatform(platform.title)"
 						/>
 					</div>
 				</div>
 			</div>
-			<div>
-				<div class="pb-4 text-2xl font-semibold">
+			<div v-if="files.isLoading.value !== true && files.fileList.value.length < 1 || !authentication.currentUser">
+				<div
+					class="pb-4 text-2xl font-semibold"
+				>
 					<span
 						class="cursor-pointer hover:opacity-75"
 						@click="view.navigateToRoute('/projects')"
@@ -38,9 +41,12 @@
 				<div class="w-full pb-1 overflow-x-auto">
 					<div class="grid w-full grid-flow-col gap-5 auto-cols-max">
 						<IconCard
-							variant="Primary"
-							title="Turtle Project"
-							subtitle="Python 3"
+							v-for="file in files.fileList.value.slice(0, 5)"
+							:key="file"
+							:icon="projects.getPlatformIconFromFileName(file.label)"
+							:variant="projects.getPlatformVariantFromFileName(file.label)"
+							:title="projects.removePlatformFromFileName(file.label)"
+							:subtitle="projects.getPlatformFromFileName(file.label)"
 						/>
 					</div>
 				</div>
@@ -73,6 +79,15 @@
 						Community Projects
 					</span>
 				</div>
+				<div class="w-full overflow-x-auto">
+					<div class="grid w-full grid-flow-col gap-5 auto-cols-max">
+						<ImageCard
+							image="https://2.bp.blogspot.com/-aaurWADxbdg/WLMz556Ly5I/AAAAAAAAAUI/H9LJA--YuxA8Fuli2np57UsCtMccaSofwCLcB/w1200-h630-p-k-no-nu/edublocks.jpg"
+							subtitle="Python 3"
+							title="Hello"
+						/>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -80,17 +95,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 import { modalState } from "@/components/Modals/ModalState";
 import Home from "./Home";
 import { platforms } from "@/platforms/platforms";
+import { projects } from "@/views/Projects/Projects";
+import { files } from "@/providers/files";
+import { authentication } from "@/providers/auth";
 
 export default defineComponent({
 	name: "Dashboard",
 	setup() {
 		const view: Home = new Home();
 
-		return { view, platforms, modalState };
+		onMounted(() => {
+			files.getAllFilesFromFirebase();
+		});
+
+		return { view, platforms, modalState, projects, files, authentication };
 	}
 });
 </script>

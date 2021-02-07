@@ -3,8 +3,15 @@
 		<div class="w-full h-full">
 			<div class="flex flex-wrap items-center h-full space-x-4">
 				<div class="flex-shrink-0">
-					<div class="flex flex-wrap content-center justify-center w-10 h-10 font-extrabold text-blue-500 bg-blue-200 rounded-full">
-						PY
+					<div
+						class="flex flex-wrap content-center justify-center w-10 h-10 font-extrabold rounded-full"
+						:class="component.getVariant()"
+					>
+						<Icon
+							:name="icon"
+							class="w-5 h-5 fill-current"
+							is-filled="true"
+						/>
 					</div>
 				</div>
 				<div class="flex-1 min-w-0">
@@ -34,7 +41,7 @@ import { ListItem } from "./ListItem";
 export default defineComponent({
 	name: "ListItem",
 	props: {
-		image: String,
+		icon: String,
 		item1: String,
 		item2: String,
 		item3: String,

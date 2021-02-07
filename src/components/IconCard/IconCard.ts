@@ -36,12 +36,12 @@ export class IconCard {
 				currentVariant.push("bg-blue-100", "text-blue-400");
 				break;
 			case Variants.Red:
-				currentVariant.push("bg-red-100", "text-red-500");
+				currentVariant.push("bg-pink-100", "text-pink-700");
 				break;
 			case Variants.Purple:
 				currentVariant.push("bg-purple-100", "text-purple-500");
 				break;
-			case Variants.Primary:
+			case Variants.Green:
 				currentVariant.push("bg-green-100", "text-green-500");
 				break;
 		}

@@ -1,38 +1,48 @@
 import { Data } from "@/types";
-import { Platform } from "@/platforms/platforms";
+
+export enum Variants {
+	Primary = "Primary",
+	Blue = "Blue",
+	Green = "Green",
+	Red = "Red",
+	Purple = "Purple",
+}
 
 /**
- * Main list item class
+ * Main ListItem class
  */
 export class ListItem {
 	/**
-	 * List item setup
+	 * ListItem class setup
 	 */
-	private variant: Platform;
+	private variant: Variants;
 
 	constructor(props: Data) {
-		this.variant = props.variant as Platform;
+		this.variant = props.variant as Variants;
 	}
-    
+	
 	/**
-	 * Get the classes for the specified variant
+	 * Get the classes for the specified ListItem variant
 	 * @returns string
 	 */
 	public getVariant(): string {
 		const currentVariant: Array<string> = [];
 
 		switch (this.variant) {
-			case Platform.Python:
-				currentVariant.push("bg-gradient-to-r", "from-blue-400", "to-blue-500");
+			case Variants.Primary:
+				currentVariant.push("bg-navy-100", "text-navy-500");
 				break;
-			case Platform.MicroBit:
-				currentVariant.push("bg-gradient-to-r", "from-green-400", "to-green-500");
+			case Variants.Blue:
+				currentVariant.push("bg-blue-100", "text-blue-400");
 				break;
-			case Platform.RaspberryPi:
-				currentVariant.push("bg-gradient-to-r", "from-red-400", "to-red-500");
+			case Variants.Red:
+				currentVariant.push("bg-pink-100", "text-pink-700");
 				break;
-			case Platform.CircuitPython:
-				currentVariant.push("bg-gradient-to-r", "from-purple-400", "to-purple-500");
+			case Variants.Purple:
+				currentVariant.push("bg-purple-100", "text-purple-500");
+				break;
+			case Variants.Green:
+				currentVariant.push("bg-green-100", "text-green-500");
 				break;
 		}
 
