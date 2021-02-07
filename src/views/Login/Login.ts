@@ -1,7 +1,12 @@
 import { authentication } from "@/providers/auth";
 import { FirebaseProviders } from "@/types";
 import router from "@/router/index";
-import { onMounted, watchEffect } from "vue";
+import { onMounted, watchEffect, reactive } from "vue";
+
+class LoginState {
+	public email: string = "";
+	public password: string = "";
+}
 
 export default class Login {
 	public init(): void {
@@ -14,12 +19,14 @@ export default class Login {
 		});
 	}
 
+	public state: LoginState = reactive(new LoginState());
+
 	public login(): void {
-		authentication.signInUserWithEmailAndPassword("hello@example.com", "password");
+		authentication.signInUserWithEmailAndPassword(this.state.email, this.state.password);
 	}
 
 	public register(): void {
-		authentication.registerUserWithEmailAndPassword("hello@example.com", "password");
+		authentication.registerUserWithEmailAndPassword(this.state.email, this.state.password);
 	}
 	
 	public socialLogin(provider: FirebaseProviders): void {

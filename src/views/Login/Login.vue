@@ -19,6 +19,7 @@
 						<div class="mt-1">
 							<Input
 								id="email"
+								v-model="view.state.email"
 								name="email"
 								type="email"
 								autocomplete="email"
@@ -37,6 +38,7 @@
 						<div class="mt-1">
 							<Input
 								id="password"
+								v-model="view.state.password"
 								name="password"
 								type="password"
 								required
