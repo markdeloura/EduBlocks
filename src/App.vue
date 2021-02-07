@@ -2,6 +2,9 @@
 	<component :is="this.$route.meta.layout || 'DefaultLayout'">
 		<router-view />
 	</component>
+	
+	<!-- Modals -->
+	<CreateProjectModal />
 </template>
 
 <script lang="ts">
@@ -14,6 +17,6 @@ export default defineComponent({
 	components: {
 		DefaultLayout,
 		BlankLayout
-	},
+	}
 });
 </script>

@@ -1,16 +1,15 @@
 <template>
-	<div class="fullBlockly">
-		<div
-			ref="blocklyDiv"
-			class="blocklyDiv"
-		/>
-		<xml
-			ref="blocklyToolbox"
-			style="display:none"
-		>
-			<slot />
-		</xml>
-	</div>
+	<div
+		ref="blocklyDiv"
+		:class="size"
+		class="w-full h-full overflow-hidden rounded rounded-tl-none blocklyDiv"
+	/>
+	<xml
+		ref="blocklyToolbox"
+		style="display:none"
+	>
+		<slot />
+	</xml>
 </template>
 
 <script>
@@ -20,6 +19,9 @@ import { editor } from "@/views/Editor/Editor.ts";
 
 export default defineComponent({
 	name: "BlocklyComponent",
+	props: {
+		size: String
+	},
 	setup() {
 		return { blocklyDiv };
 	},
@@ -40,25 +42,11 @@ export default defineComponent({
 </script>
 
 <style lang="postcss">
-.blocklyDiv {
-  width: 100%;
-  height: calc(100vh - 7rem);
-  overflow: hidden;
-}
-
 .blocklyFlyoutLabelText {
   fill: white;
 }
 
 .blocklyMainBackground {
   stroke-width: 0 !important;
-}
-
-.splitBlockly {
-  width: 60%;
-}
-
-.fullBlockly {
-  width: 60%;
 }
 </style>

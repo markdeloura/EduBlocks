@@ -206,7 +206,7 @@ export default {
 
 		viewBoxComponent() {
 			if (this.isFilled) {
-				return this.viewBox !== "0 0 24 24" ? this.viewBox : "0 0 20 20";
+				return this.viewBox !== "0 0 20 20" ? this.viewBox : "0 0 24 24";
 			}
 			else {
 				return this.viewBox;

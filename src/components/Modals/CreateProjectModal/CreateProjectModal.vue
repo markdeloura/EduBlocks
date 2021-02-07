@@ -18,7 +18,7 @@
 					aria-hidden="true"
 					@click="modalState.createProjectModal = false"
 				>
-					<div class="absolute inset-0 bg-gray-400 opacity-75 backdrop-blur" />
+					<div class="absolute inset-0 bg-gray-400 opacity-70" />
 				</div>
 			</transition>
 
@@ -53,6 +53,7 @@
 							label="Mode"
 							:image="'/images/platforms/' + state.mode + '.png'"
 							:options="platforms"
+							:selected="state.mode"
 						/>
 					</div>
 					<div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">

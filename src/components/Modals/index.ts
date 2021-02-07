@@ -6,6 +6,6 @@ import CreateProjectModal from "@/components/Modals/CreateProjectModal/CreatePro
 // Register all modals globally
 export default {
 	install(app: App): void {
-		app.component("Avatar", CreateProjectModal);
+		app.component("CreateProjectModal", CreateProjectModal);
 	}
 };

@@ -1,3 +1,6 @@
+import router from "@/router/index";
+import { ref, Ref } from "vue";
+
 /**
  * Define schema for navigation options
  */
@@ -8,10 +11,12 @@ interface NavOptions {
 	path: string;
 }
 
+export const isSlideOverNavOpen: Ref<boolean> = ref(false);
+
 /**
  * Main navbar class
  */
-export class MainNav {
+export class SlideoverNav {
 	/**
 	 * Define options for the navbar
 	 */
@@ -23,4 +28,13 @@ export class MainNav {
 		{id: 5, text: "Classroom", icon: "users", path: "/classroom"},
 		{id: 6, text: "Settings", icon: "cog", path: "/settings"},
 	]
+
+	public navigateToRoute(path: string): void {
+		isSlideOverNavOpen.value = false;
+		router.push({path});
+	}
+
+	public closeSlideOverNav(): void{
+		isSlideOverNavOpen.value = false;
+	}
 }

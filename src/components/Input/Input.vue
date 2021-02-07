@@ -16,9 +16,11 @@
 			</div>
 			<input
 				:type="type"
-				class="block w-full border-gray-300 appearance-none sm:text-sm rounded-md focus:border-pink-500 focus:outline-none focus:ring-pink-500"
+				class="block w-full border-gray-300 rounded-md appearance-none sm:text-sm focus:border-pink-500 focus:outline-none focus:ring-pink-500"
 				:class="[icon ? 'pl-10' : '']"
 				:placeholder="placeholder"
+				autocomplete="on"
+				:required="required"
 				@input="$emit('update:modelValue', $event.target.value)"
 			>
 		</div>
@@ -38,6 +40,7 @@ export default defineComponent({
 		icon: String,
 		label: String,
 		placeholder: String,
+		required: Boolean,
 		modelValue: {
 			type: String,
 			default: ""

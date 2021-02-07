@@ -1,0 +1,33 @@
+﻿/*edublocks
+CodeMirror theme file created with CodeMirror-Themes
+https://github.com/mkaminsky11/codemirror-themes*/
+.cm-s-edublocks.CodeMirror{background:rgba(17,24,39,1) !important;}
+.cm-s-edublocks.CodeMirror{color:rgba(248,248,242,1) !important;}
+.cm-s-edublocks div.CodeMirror-selected{background:rgba(73,72,62,1) !important;}
+.cm-s-edublocks .CodeMirror-gutters{background:rgba(21,29,45,0.7) !important;}
+.cm-s-edublocks .CodeMirror-guttermarker{color:rgba(255,255,255,1) !important;}
+.cm-s-edublocks .CodeMirror-guttermarker-subtle{color:rgba(208,208,208,1) !important;}
+.cm-s-edublocks .CodeMirror-linenumber{color:rgba(208,208,208,1) !important;}
+.cm-s-edublocks .CodeMirror-cursor{border-color:rgba(248,248,242,1) !important;}
+.cm-s-edublocks span.cm-comment{color:rgba(173,173,173,1) !important;}
+.cm-s-edublocks span.cm-atom{color:rgba(174,129,255,1) !important;}
+.cm-s-edublocks span.cm-number{color:rgba(174,129,255,1) !important;}
+.cm-s-edublocks span.cm-property{color:rgba(166,226,46,1) !important;}
+.cm-s-edublocks span.cm-attribute{color:rgba(166,226,46,1) !important;}
+.cm-s-edublocks span.cm-keyword{color:rgba(249,38,114,1) !important;}
+.cm-s-edublocks span.cm-string{color:rgba(230,219,116,1) !important;}
+.cm-s-edublocks span.cm-string-2{color:rgba(248,248,242,1) !important;}
+.cm-s-edublocks span.cm-variable{color:rgba(248,248,242,1) !important;}
+.cm-s-edublocks span.cm-variable-2{color:rgba(158,255,255,1) !important;}
+.cm-s-edublocks span.cm-def{color:rgba(253,151,31,1) !important;}
+.cm-s-edublocks span.cm-bracket{color:rgba(249,38,114,1) !important;}
+.cm-s-edublocks span.cm-tag{color:rgba(249,38,114,1) !important;}
+.cm-s-edublocks span.cm-link{color:rgba(174,129,255,1) !important;}
+.cm-s-edublocks span.cm-error{background:rgba(249,38,114,1) !important;}
+.cm-s-edublocks span.cm-error{color:rgba(248,248,240,1) !important;}
+.cm-s-edublocks .CodeMirror-activeline-background{color:rgba(248,248,242,1) !important;}
+.cm-s-edublocks .CodeMirror-matchingbracket{color:rgba(255,255,255,1) !important;}
+.cm-s-edublocks .CodeMirror-gutters { border-right-color: transparent; }
+.CodeMirror { border-radius: 0.375rem; height: 100%; overflow: hidden; position: static; }
+.blocklyToolboxDiv { z-index: 10; }
+.blocklyMainWorkspaceScrollbar { z-index: 10; }

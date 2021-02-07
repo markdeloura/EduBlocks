@@ -1,19 +1,45 @@
+import { reactive } from "vue";
+
 export enum Platform {
 	Python = "Python 3",
-	MicroBit = "micro:bit",
+	MicroBit = "BBC micro:bit",
 	RaspberryPi = "Raspberry Pi",
 	CircuitPython = "CircuitPython",
 } 
+
+const Python: PlatformOptions = reactive({
+	id: 1,
+	title: Platform.Python,
+	image: "/images/platforms/Python 3.png",
+	color: "bg-navy-500"
+})
+
+const MicroBit: PlatformOptions = reactive({
+	id: 2,
+	title: Platform.MicroBit,
+	image: "/images/platforms/microbit.png",
+	color: "bg-green-400"
+})
+
+const RaspberryPi: PlatformOptions = reactive({
+	id: 3,
+	title: Platform.RaspberryPi,
+	image: "/images/platforms/Raspberry Pi.png",
+	color: "bg-raspberrypi"
+})
+
+const CircuitPython: PlatformOptions = reactive({
+	id: 4,
+	title: Platform.CircuitPython,
+	image: "/images/platforms/CircuitPython.png",
+	color: "bg-purple-500"
+})
 
 interface PlatformOptions {
 	id: number;
 	title: Platform;
 	image: string;
+	color: string;
 }
 
-export const python: PlatformOptions = { id: 1, title: Platform.Python, image:"/images/platforms/Python 3.png" };
-export const microbit: PlatformOptions = { id: 2, title: Platform.MicroBit, image:"/images/platforms/micro:bit.png" };
-export const raspberrypi: PlatformOptions = { id: 3, title: Platform.RaspberryPi, image:"/images/platforms/Raspberry Pi.png" };
-export const circuitpython: PlatformOptions = { id: 4, title: Platform.CircuitPython, image:"/images/platforms/CircuitPython.png" };
-
-export const platforms: Array<PlatformOptions> = [ python, microbit, raspberrypi, circuitpython];
+export const platforms: Array<PlatformOptions> = [ Python, MicroBit, RaspberryPi, CircuitPython];

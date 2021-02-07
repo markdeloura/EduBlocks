@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/await-thenable */
 import { reactive, ref, Ref } from "vue";
 import router from "@/router/index";
 import { modalState } from "@/components/Modals/ModalState";
 import { state } from "@/state";
 import { Platform } from "@/platforms/platforms";
 import { getToolboxXml } from "@/platforms/blocks";
+import { isSlideOverNavOpen } from "@/components/SlideoverNav/SlideoverNav";
 
 /**
  * Define template reference for the blockly div component
@@ -13,7 +15,7 @@ export const blocklyDiv: Ref = ref();
 /**
  * Available views within the editor
  */
-enum Views {
+export enum Views {
 	Split = "Split",
 	Blocks = "Blocks",
 	Python = "Python",
@@ -23,10 +25,10 @@ enum Views {
  * Editor State. Stores information/config
  */
 class EditorState {
+	public mode: Platform | undefined;
 	public view: Views = Views.Split;
-	public xml: string = "";
-	public python: string = "";
 	public blockly: boolean = true;
+	public pythonEditor: boolean = true;
 	public nav: boolean = true;
 	public toolbar: boolean = true;
 	public output: boolean = false;
@@ -34,17 +36,19 @@ class EditorState {
 	public splitSwitch: boolean = true;
 	public blocksSwitch: boolean = true;
 	public pythonSwitch: boolean = true;
+	public runButton: boolean = true;
+	public shareButton: boolean = true;
+	public saveButton: boolean = true;
 }
 
-/**
- * Export Editor State class for use in other files
- */
-export const editorState: EditorState = reactive(new EditorState());
+export const pythonCode: Ref<string> = ref("");
+export const xmlCode: Ref<string> = ref("");
 
 /**
  * Main Editor Class
  */
-class Editor {
+export class Editor {
+	public state: EditorState = reactive(new EditorState());
 	/**
 	 * Load the editor
 	 */
@@ -59,17 +63,17 @@ class Editor {
 	public reset(): void {
 		state.filename = "";
 		state.mode = Platform.Python;
-		editorState.view = Views.Split;
-		editorState.xml = "";
-		editorState.python = "";
-		editorState.blockly = true;
-		editorState.nav = true;
-		editorState.toolbar = true;
-		editorState.output = false;
-		editorState.readOnly = false;
-		editorState.splitSwitch = true;
-		editorState.blocksSwitch = true;
-		editorState.pythonSwitch = true;
+		pythonCode.value = "";
+		xmlCode.value = "";
+		this.state.view = Views.Split;
+		this.state.blockly = true;
+		this.state.nav = true;
+		this.state.toolbar = true;
+		this.state.output = false;
+		this.state.readOnly = false;
+		this.state.splitSwitch = true;
+		this.state.blocksSwitch = true;
+		this.state.pythonSwitch = true;
 	}
 
 	/**
@@ -78,6 +82,38 @@ class Editor {
 	public goHome(): void {
 		this.reset();
 		router.push({path: "/"});
+	}
+
+	public openSlideOverNav(): void {
+		isSlideOverNavOpen.value = true;
+	}
+
+	public resizeWindow(): void {
+		window.dispatchEvent(new Event("resize"));
+	}
+
+	public async switchView(view: Views): Promise<void> {
+		switch (view) {
+			case Views.Split:
+				this.state.blockly = true;
+				this.state.pythonEditor = true;
+				this.state.view = Views.Split;
+				await window.dispatchEvent(new Event("resize"));
+				await this.resizeWindow();
+				break;
+			case Views.Blocks:
+				this.state.blockly = true;
+				this.state.pythonEditor = false;
+				this.state.view = Views.Blocks;
+				await window.dispatchEvent(new Event("resize"));
+				await this.resizeWindow();
+				break;
+			case Views.Python:
+				this.state.blockly = false; 
+				this.state.pythonEditor = true;
+				this.state.view = Views.Python;
+				break;
+		}
 	}
 
 	public setXml(xml?: string | null): void {
@@ -165,15 +201,14 @@ class Editor {
 		);
 	
 		blocklyWorkspace.addChangeListener(Blockly.Events.disableOrphans);
-	
-		editorState.python = Blockly.Python.workspaceToCode(blocklyWorkspace);
-	
+		
 		blocklyWorkspace.addChangeListener(() => {
-		  editorState.xml = Blockly.Xml.domToPrettyText(
+			xmlCode.value = Blockly.Xml.domToPrettyText(
 				Blockly.Xml.workspaceToDom(blocklyWorkspace)
 		  );
 		  if (!blocklyWorkspace.isDragging()) {
-				editorState.python = Blockly.Python.workspaceToCode(blocklyWorkspace);
+				console.log(Blockly.Python.workspaceToCode(blocklyWorkspace));
+				pythonCode.value = Blockly.Python.workspaceToCode(blocklyWorkspace);
 		  }
 		});
 	

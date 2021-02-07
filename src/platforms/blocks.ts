@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { state } from "@/state"
+import { Platform } from "@/platforms/platforms"
 
 export let toolboxXML: string;
 
@@ -13,7 +14,7 @@ export async function getToolboxXml() {
     Blockly.Python as any
   );
 
-  if (state.mode === "Python 3") {
+  if (state.mode === Platform.Python) {
     (await import("@/platforms/python/blocks/imports/definitions")).default(
       Blockly.Blocks
     );
@@ -119,7 +120,7 @@ export async function getToolboxXml() {
     toolboxXML += require("@/platforms/python/blocks/requests/toolbox.xml");
   }
 
-  if (state.mode === "micro:bit") {
+  if (state.mode === Platform.MicroBit) {
     (await import("@/platforms/microbit/blocks/basic/definitions")).default(
       Blockly.Blocks
     );

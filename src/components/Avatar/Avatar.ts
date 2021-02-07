@@ -1,4 +1,5 @@
 import { ref, Ref } from "vue";
+import { authentication } from "@/providers/auth";
 
 /**
  * Define schema for profile dropdown options
@@ -21,8 +22,9 @@ export class Avatar {
 	/**
 	 * Temporary sign out function
 	 */
-	private signOut(): void {
-		console.log("Hello World");
+	public signOut(): void {
+		this.isDropdownOpen.value = false;
+		authentication.signOut();
 	}
 
 	/**

@@ -1,6 +1,6 @@
 <template>
 	<router-link
-		class="inline-flex items-center px-4 pt-1 text-sm font-medium text-white border-b-2 border-transparent text-opacity-75 hover:text-opacity-90 transition-all"
+		class="inline-flex items-center px-4 pt-1 text-sm font-medium text-white border-b-2 border-transparent opacity-75 hover:opacity-90 transition-all"
 		:to="path"
 	>
 		<Icon
@@ -25,8 +25,10 @@ export default defineComponent({
 });
 </script>
 
-<style lang="postcss">
+<style>
 .router-link-active {
-	@apply border-pink-500 text-opacity-100 cursor-default !important;
+	border-bottom: #ff0066 solid;
+	opacity: 100%;
+	cursor: default;
 }
 </style>

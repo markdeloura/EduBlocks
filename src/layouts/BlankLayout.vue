@@ -1,5 +1,7 @@
 <template>
-	<slot />
+	<div class="w-screen layout">
+		<slot />
+	</div>
 </template>
 
 <script lang="ts">

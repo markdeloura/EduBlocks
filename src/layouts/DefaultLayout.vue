@@ -1,7 +1,12 @@
 <template>
-	<main-nav />
-	<div class="default-layout bg-gray-50">
-		<slot />
+	<Header />
+	<div class="layout bg-gray-50">
+		<div class="flex w-full h-full overflow-x-hidden">
+			<MainNav />
+			<div class="flex-1 w-full h-full overflow-y-auto">
+				<slot />
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -14,7 +19,7 @@ export default defineComponent({
 </script>
 
 <style>
-.default-layout {
-	height: calc(100vh - 4rem);
+.layout {
+	height: calc(100vh - 3.5rem);
 }
 </style>

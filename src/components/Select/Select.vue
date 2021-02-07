@@ -20,6 +20,7 @@
 				/>
 			</div>
 			<select
+				v-model="selected"
 				class="block w-full border-gray-300 appearance-none sm:text-sm rounded-md focus:border-pink-500 focus:outline-none focus:ring-pink-500"
 				:class="[icon || image ? 'pl-10' : '']"
 				@change="$emit('update:modelValue', $event.target.value)"
@@ -45,6 +46,7 @@ export default defineComponent({
 		image: String,
 		label: String,
 		options: Object,
+		selected: String,
 		modelValue: {
 			type: String,
 			default: ""

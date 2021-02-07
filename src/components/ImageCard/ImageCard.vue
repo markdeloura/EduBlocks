@@ -1,13 +1,13 @@
 <template>
-	<div class="w-1/3">
-		<div class="h-32 mb-4 bg-red-500">
+	<div class="w-60">
+		<div class="h-32 mb-4">
 			<img
 				:src="image"
 				class="object-cover w-full h-full"
 			>
 		</div>
 		<h1 class="text-sm font-medium text-pink-500">
-			{{ category }}
+			{{ subtitle }}
 		</h1>
 		<h1 class="mb-2 text-lg font-semibold leading-tight">
 			{{ title }}
@@ -22,7 +22,7 @@ export default defineComponent({
 	name: "ImageCard",
 	props: {
 		image: String,
-		category: String,
+		subtitle: String,
 		title: String
 	}
 });
