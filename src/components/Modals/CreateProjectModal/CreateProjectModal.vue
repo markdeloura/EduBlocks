@@ -1,7 +1,7 @@
 <template>
 	<div
 		v-show="modalState.createProjectModal"
-		class="fixed inset-0 z-10 overflow-y-auto"
+		class="fixed inset-0 overflow-y-auto z-75"
 	>
 		<div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
 			<transition

@@ -2,6 +2,9 @@ import * as firebase from "firebase/app";
 import "firebase/storage";
 import { authentication } from "./auth";
 import { ref, Ref, toRaw } from "vue";
+import { editor, xmlCode } from "@/views/Editor/Editor";
+import { Platform } from "@/platforms/platforms";
+import { state } from "@/state";
 
 interface FirebaseFiles {
 	label: string;
@@ -12,6 +15,8 @@ interface FirebaseFiles {
 
 class Files {    
 	public isLoading: Ref<boolean> = ref(false);
+
+	public hasSaved: Ref<boolean> = ref(false);
 
 	public fileList: Ref<Array<FirebaseFiles>> = ref([]);
 
@@ -42,6 +47,34 @@ class Files {
 		ref.delete().then(() => {
 			this.getAllFilesFromFirebase();
 		});
+	}
+
+	public saveFirebaseFile(): void {
+		let platformTitle: string = "";
+		if (authentication.currentUser.value) {
+			switch (state.mode) {
+				case Platform.Python:
+					platformTitle = "Python";
+					break;
+				case Platform.MicroBit:
+					platformTitle = "microbit";
+					break;
+				case Platform.RaspberryPi:
+					platformTitle = "RPi";
+					break;
+				case Platform.CircuitPython:
+					platformTitle = "CircuitPython";
+					break;
+			}
+			const ref: firebase.default.storage.Reference = firebase.default.storage().ref(`blocks/${authentication.currentUser.value.uid}/${state.filename} (${platformTitle})`);
+			console.log(xmlCode.value);
+			ref.putString(xmlCode.value).then(() => {
+				this.hasSaved.value = true;
+				setTimeout(() => {
+					this.hasSaved.value = false;
+				}, 2000);
+			});
+		}
 	}
 }
 

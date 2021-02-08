@@ -41,7 +41,7 @@
 				<div class="w-full pb-1 overflow-x-auto">
 					<div class="grid w-full grid-flow-col gap-5 auto-cols-max">
 						<IconCard
-							v-for="file in files.fileList.value.slice(0, 5)"
+							v-for="file in files.fileList.value.slice(0, 4)"
 							:key="file"
 							:icon="projects.getPlatformIconFromFileName(file.label)"
 							:variant="projects.getPlatformVariantFromFileName(file.label)"

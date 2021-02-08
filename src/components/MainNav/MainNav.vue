@@ -11,10 +11,9 @@
 					@click="router.push({path: option.path})"
 				/>
 			</div>
-			<div class="h-24">
+			<div class="">
 				<div
 					class="mt-1 space-y-1"
-					aria-labelledby="projects-headline"
 				>
 					<a
 						href="#"

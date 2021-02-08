@@ -46,20 +46,31 @@
 			
 			<div class="ml-auto h-11 pb-2 -mt-0.5 flex space-x-4">
 				<div
-					v-if="view.state.saveButton"
-					class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-pink-500 rounded cursor-pointer"
+					v-if="files.hasSaved.value"
+					class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-green-500 rounded"
+				>
+					<Icon
+						name="check"
+						class="w-5 h-5 mt-1 mr-2"
+					/>					
+					Saved!
+				</div>
+				<div
+					v-if="!files.hasSaved.value"
+					class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-gray-600 transition-all rounded cursor-pointer hover:text-pink-500"
+					@click="files.saveFirebaseFile()"
 				>
 					<i class="w-5 h-5 mr-2 -ml-1 text-lg far fa-save -mt-0.5 fa-fw" />
 					Save
 				</div>
 				<div
 					v-if="view.state.shareButton"
-					class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-pink-500 rounded cursor-pointer"
+					class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-gray-600 transition-all rounded cursor-pointer hover:text-pink-500"
 				>
 					<Icon
 						name="share"
 						
-						class="w-5 h-5 mr-2 -ml-1 pt-0.5"
+						class="w-5 h-5 mt-0.5 mr-2 -ml-1"
 					/>
 					Share
 				</div>
@@ -107,6 +118,7 @@ import { defineComponent, onBeforeUnmount } from "vue";
 import { Editor, Views, pythonCode } from "./Editor";
 import { state } from "@/state";
 import { codemirror } from "vue-codemirror-lite";
+import { files } from "@/providers/files";
 import "codemirror/mode/python/python";
 import "@/assets/edublocks.css";
 
@@ -122,7 +134,7 @@ export default defineComponent({
 			view.reset();
 		});
 
-		return { view, state, Views, pythonCode };
+		return { view, state, Views, pythonCode, files };
 	}
 });
 </script>

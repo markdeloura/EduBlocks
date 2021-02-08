@@ -71,7 +71,7 @@ export default class Projects {
 			output = "microbit";
 		}
 		else if (name.includes("(CircuitPython)")) {
-			output = "python";
+			output = "circuitpython";
 		}
 		else if (name.includes("(RPi)")) {
 			output = "raspberrypi";
