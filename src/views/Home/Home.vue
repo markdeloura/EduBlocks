@@ -27,7 +27,7 @@
 					</div>
 				</div>
 			</div>
-			<div v-if="files.isLoading.value !== true && files.fileList.value.length < 1 || !authentication.currentUser">
+			<div v-if="files.fileList.value.length > 1">
 				<div
 					class="pb-4 text-2xl font-semibold"
 				>
@@ -64,8 +64,8 @@
 					<div class="grid w-full grid-flow-col gap-5 auto-cols-max">
 						<ImageCard
 							image="https://2.bp.blogspot.com/-aaurWADxbdg/WLMz556Ly5I/AAAAAAAAAUI/H9LJA--YuxA8Fuli2np57UsCtMccaSofwCLcB/w1200-h630-p-k-no-nu/edublocks.jpg"
-							subtitle="Python 3"
-							title="Hello"
+							subtitle="Raspberry Pi"
+							title="Code with Minecraft"
 						/>
 					</div>
 				</div>
@@ -82,9 +82,9 @@
 				<div class="w-full overflow-x-auto">
 					<div class="grid w-full grid-flow-col gap-5 auto-cols-max">
 						<ImageCard
-							image="https://2.bp.blogspot.com/-aaurWADxbdg/WLMz556Ly5I/AAAAAAAAAUI/H9LJA--YuxA8Fuli2np57UsCtMccaSofwCLcB/w1200-h630-p-k-no-nu/edublocks.jpg"
+							image="https://edublocks.org/learnimages/turtle-spiral.png"
 							subtitle="Python 3"
-							title="Hello"
+							title="Multicoloured Spiral"
 						/>
 					</div>
 				</div>
@@ -95,7 +95,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent, onMounted, watchEffect } from "vue";
 import { modalState } from "@/components/Modals/ModalState";
 import Home from "./Home";
 import { platforms } from "@/platforms/platforms";
@@ -110,6 +110,12 @@ export default defineComponent({
 
 		onMounted(() => {
 			files.getAllFilesFromFirebase();
+		});
+
+		watchEffect(() => {
+			if (!authentication.currentUser.value) {
+				files.fileList.value = [];
+			}
 		});
 
 		return { view, platforms, modalState, projects, files, authentication };
