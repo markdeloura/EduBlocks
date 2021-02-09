@@ -6,6 +6,8 @@ import { state } from "@/state";
 import { Platform } from "@/platforms/platforms";
 import { getToolboxXml } from "@/platforms/blocks";
 import { isSlideOverNavOpen } from "@/components/SlideoverNav/SlideoverNav";
+import { authentication } from "@/providers/auth";
+import { files } from "@/providers/files";
 
 /**
  * Define template reference for the blockly div component
@@ -109,6 +111,15 @@ export class Editor {
 		this.state.pythonSwitch = true;
 		this.state.runButton = true;
 		this.state.stopButton = false;
+	}
+
+	public save(): void {
+		if (authentication.currentUser.value) {
+			files.saveFirebaseFile();
+		}
+		else { 
+			files.saveLocalFile();
+		 }
 	}
 
 	public async switchView(view: Views): Promise<void> {

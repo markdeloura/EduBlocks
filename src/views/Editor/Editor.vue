@@ -45,23 +45,25 @@
 			</div>
 			
 			<div class="ml-auto h-11 pb-2 -mt-0.5 flex space-x-4">
-				<div
-					v-if="files.hasSaved.value"
-					class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-green-500 rounded"
-				>
-					<Icon
-						name="check"
-						class="w-5 h-5 mt-1 mr-2"
-					/>					
-					Saved!
-				</div>
-				<div
-					v-if="!files.hasSaved.value"
-					class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-gray-600 transition-all rounded cursor-pointer hover:text-pink-500"
-					@click="files.saveFirebaseFile()"
-				>
-					<i class="w-5 h-5 mr-2 -ml-1 text-lg far fa-save -mt-0.5 fa-fw" />
-					Save
+				<div class="space-x-4">
+					<div
+						v-if="files.hasSaved.value"
+						class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-green-500 rounded"
+					>
+						<Icon
+							name="check"
+							class="w-5 h-5 mt-1 mr-2"
+						/>					
+						Saved!
+					</div>
+					<div
+						v-if="!files.hasSaved.value"
+						class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-gray-600 transition-all rounded cursor-pointer hover:text-pink-500"
+						@click="view.save()"
+					>
+						<i class="w-5 h-5 mr-2 -ml-1 text-lg far fa-save -mt-0.5 fa-fw" />
+						Save
+					</div>
 				</div>
 				<div
 					v-if="view.state.shareButton"

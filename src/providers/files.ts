@@ -8,6 +8,7 @@ import { modalState } from "@/components/Modals/ModalState";
 import { xmlCode } from "@/views/Editor/Editor";
 import { projects } from "@/views/Projects/Projects";
 import { editor } from "@/views/Editor/Editor";
+import { saveAs } from "file-saver";
 
 interface FirebaseFile {
 	label: string;
@@ -114,6 +115,15 @@ class Files {
 				}, 2000);
 			});
 		}
+	}
+
+	public saveLocalFile(): void {
+		const blob: Blob = new Blob([xmlCode.value], {type: "text/plain;charset=utf-8"});
+		let file: string = "untitled.xml";
+		if (state.filename) {
+			file = `${state.filename}.xml`;
+		}
+		saveAs(blob, file);
 	}
 
 	public openFirebaseFile(file: FirebaseFile): void {

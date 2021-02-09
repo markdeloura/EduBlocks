@@ -10,8 +10,10 @@
   "dependencies": {
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/postcss7-compat": "^2.0.2",
+    "@types/file-saver": "^2.0.1",
     "autoprefixer": "^9",
     "eslint-plugin-jsdoc": "^31.0.5",
+    "file-saver": "^2.0.5",
     "firebase": "8.0.0",
     "html-loader": "^1.3.2",
     "postcss": "^7",
