@@ -22,6 +22,8 @@ class Files {
 
 	public hasSaved: Ref<boolean> = ref(false);
 
+	public isFirebaseFile: Ref<boolean> = ref(false);
+
 	public fileList: Ref<Array<FirebaseFile>> = ref([]);
 
 	public firebaseBlocksRef: firebase.default.storage.Reference = firebase.default.storage().ref(`blocks/${authentication.currentUser.value?.uid}`);
@@ -110,6 +112,7 @@ class Files {
 			const ref: firebase.default.storage.Reference = firebase.default.storage().ref(`blocks/${authentication.currentUser.value.uid}/${state.filename}(${platformTitle})`);
 			ref.putString(xmlCode.value).then(() => {
 				this.hasSaved.value = true;
+				this.isFirebaseFile.value = true;
 				setTimeout(() => {
 					this.hasSaved.value = false;
 				}, 2000);
@@ -135,6 +138,7 @@ class Files {
 				state.filename = projects.removePlatformFromFileName(file.label);
 				state.mode = projects.getPlatformFromFileName(file.label);
 				editor.load();
+				this.isFirebaseFile.value = true;
 			});
 		});
 	}

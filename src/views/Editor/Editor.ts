@@ -68,12 +68,18 @@ export class Editor {
 		state.mode = Platform.Python;
 		pythonCode.value = "";
 		xmlCode.value = "";
+		files.isFirebaseFile.value = false;
 		this.state.view = Views.Split;
 		this.state.blockly = true;
 		this.state.nav = true;
 		this.state.toolbar = true;
 		this.state.output = false;
 		this.state.readOnly = false;
+		this.state.runButton = true;
+		this.state.stopButton = false;
+		this.state.runButton = true;
+		this.state.shareButton = true;
+		this.state.saveButton = true;
 		this.state.splitSwitch = true;
 		this.state.blocksSwitch = true;
 		this.state.pythonSwitch = true;
@@ -238,6 +244,9 @@ export class Editor {
 		  );
 		  if (!blocklyWorkspace.isDragging()) {
 				pythonCode.value = Blockly.Python.workspaceToCode(blocklyWorkspace);
+				if (files.isFirebaseFile) {
+					files.saveFirebaseFile();
+				}
 		  }
 		});
 	
