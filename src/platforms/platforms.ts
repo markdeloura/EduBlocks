@@ -1,6 +1,7 @@
 import { reactive } from "vue";
 
 export enum Platform {
+	None = "None",
 	Python = "Python 3",
 	MicroBit = "BBC micro:bit",
 	RaspberryPi = "Raspberry Pi",

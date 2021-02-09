@@ -45,13 +45,6 @@
 			</div>
 			
 			<div class="ml-auto h-11 pb-2 -mt-0.5 flex space-x-4">
-				<div
-					class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-gray-600 transition-all rounded cursor-pointer hover:text-pink-500"
-					@click="view.clear()"
-				>
-					<i class="w-5 h-5 mr-2 -ml-1 text-lg far fa-trash-alt -mt-0.5 fa-fw" />
-					Clear
-				</div>
 				<div class="space-x-4">
 					<div
 						v-if="files.hasSaved.value"
@@ -82,6 +75,13 @@
 						class="w-5 h-5 mt-0.5 mr-2 -ml-1"
 					/>
 					Share
+				</div>
+				<div
+					class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-gray-600 transition-all rounded cursor-pointer hover:text-pink-500"
+					@click="view.clear()"
+				>
+					<i class="w-5 h-5 mr-2 -ml-1 text-lg fas fa-sync -mt-0.5 fa-fw" />
+					Reset
 				</div>
 				<div
 					v-if="view.state.stopButton"
@@ -133,7 +133,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeUnmount } from "vue";
+import { defineComponent, onBeforeUnmount, onMounted } from "vue";
 import { Editor, Views, pythonCode, xmlCode } from "./Editor";
 import { state } from "@/state";
 import { codemirror } from "vue-codemirror-lite";
@@ -149,6 +149,10 @@ export default defineComponent({
 	},
 	setup() {
 		const view: Editor = new Editor();
+
+		onMounted(() => {
+			view.checkForMode();
+		});
 
 		onBeforeUnmount(() => {
 			view.reset();

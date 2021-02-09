@@ -5,7 +5,7 @@ import { Platform } from "@/platforms/platforms";
  * General application state. Stores information/config
  */
 class State {
-	public mode: Platform = Platform.Python;
+	public mode: Platform = Platform.None;
 	public filename: string = "";
 }
 

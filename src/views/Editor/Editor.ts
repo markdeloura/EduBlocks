@@ -60,12 +60,23 @@ export class Editor {
 		router.push({ path: "/editor" });
 	}
 
+	public checkForMode(): void {
+		if (state.mode === Platform.None) {
+			this.goHome();
+		}
+	}
+
 	/**
 	 * Reset the editor
 	 */
-	public reset(): void {
+	public reset(retainMode?: boolean): void {
+		if (retainMode) {
+			state.mode = state.mode;
+		}
+		else {
+			state.mode = Platform.None;
+		}
 		state.filename = "";
-		state.mode = Platform.Python;
 		pythonCode.value = "";
 		xmlCode.value = "";
 		files.isFirebaseFile.value = false;
@@ -129,7 +140,7 @@ export class Editor {
 	}
 
 	public clear(): void {
-		this.reset();
+		this.reset(true);
 		this.loadBlockly();
 	}
 
