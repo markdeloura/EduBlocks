@@ -128,6 +128,11 @@ export class Editor {
 		 }
 	}
 
+	public clear(): void {
+		this.reset();
+		this.loadBlockly();
+	}
+
 	public async switchView(view: Views): Promise<void> {
 		switch (view) {
 			case Views.Split:
@@ -202,7 +207,7 @@ export class Editor {
 		}
 	  }
 	
-	public async loadBlockly(_callback: Function): Promise<void> {
+	public async loadBlockly(): Promise<void> {
 		const toolbox: string = await getToolboxXml();
 	
 		if (Blockly.mainWorkspace) {
@@ -251,10 +256,6 @@ export class Editor {
 		});
 	
 		this.setXml(xmlCode.value);
-	
-		if (_callback) {
-		  _callback();
-		}
 	  }
 }
 
