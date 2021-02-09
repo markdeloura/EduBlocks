@@ -4,7 +4,7 @@
 		class="w-full p-4 pt-3 space-y-6"
 	>
 		<div class="sticky flex flex-wrap content-center mb-4 top-0.5 h-14 bg-gray-50">
-			<h1 class="pt-1 text-2xl font-extrabold">
+			<h1 class="pt-1 text-2xl font-semibold">
 				My Projects
 			</h1>
 			<div class="flex ml-auto space-x-4">
@@ -122,6 +122,12 @@
 				</p>
 			</div>
 			<div class="flex justify-center w-full space-x-4">
+				<Button
+					text="Open Local File"
+					icon="document_add"
+					class="text-pink-500 shadow-none h-11 hover:opacity-75"
+					@click="files.importFile()"
+				/>
 				<Button
 					text="Login/Register"
 					icon="login"
