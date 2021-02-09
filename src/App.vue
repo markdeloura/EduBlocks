@@ -5,6 +5,7 @@
 	
 	<!-- Modals -->
 	<CreateProjectModal />
+	<ImportProjectModal />
 </template>
 
 <script lang="ts">

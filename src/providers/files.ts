@@ -2,9 +2,10 @@ import * as firebase from "firebase/app";
 import "firebase/storage";
 import { authentication } from "./auth";
 import { ref, Ref, toRaw } from "vue";
-import { editor, xmlCode } from "@/views/Editor/Editor";
 import { Platform } from "@/platforms/platforms";
 import { state } from "@/state";
+import { modalState } from "@/components/Modals/ModalState";
+import { xmlCode } from "@/views/Editor/Editor";
 
 interface FirebaseFiles {
 	label: string;
@@ -49,6 +50,43 @@ class Files {
 		});
 	}
 
+	public openFile(): Promise<string> {
+		return new Promise<string>((resolve: any, reject: any) => {
+			function readSingleFile(e: Event): void {
+			  const file: Blob = (e.target as any).files[0];
+			  const name: string = (e.target as any).files[0].name;
+			  if (!file) {
+					return;
+				}
+		
+			  const reader: FileReader = new FileReader();
+		
+			  reader.onload = (e: ProgressEvent<FileReader>): void => {
+					const contents: string = (e.target as any).result;
+					resolve(contents);
+					state.filename = name.replace(".xml", "");
+			  };
+		
+			  reader.onerror = (): void => {
+					reject(new Error("Reader error"));
+			  };
+		
+			  reader.readAsText(file);
+			}
+		
+			const fileInput: HTMLInputElement = document.createElement("input");
+			fileInput.type = "file";
+			fileInput.accept = ".xml";
+			fileInput.addEventListener("change", readSingleFile, false);
+			fileInput.click();
+		  });
+	}
+
+	public async importFile(): Promise<void> {
+		xmlCode.value = await this.openFile();
+		modalState.importProjectModal = true;
+	}
+
 	public saveFirebaseFile(): void {
 		let platformTitle: string = "";
 		if (authentication.currentUser.value) {
@@ -67,7 +105,6 @@ class Files {
 					break;
 			}
 			const ref: firebase.default.storage.Reference = firebase.default.storage().ref(`blocks/${authentication.currentUser.value.uid}/${state.filename} (${platformTitle})`);
-			console.log(xmlCode.value);
 			ref.putString(xmlCode.value).then(() => {
 				this.hasSaved.value = true;
 				setTimeout(() => {

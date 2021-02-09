@@ -211,7 +211,7 @@ export class Editor {
 		  }
 		});
 	
-		this.setXml();
+		this.setXml(xmlCode.value);
 	
 		if (_callback) {
 		  _callback();

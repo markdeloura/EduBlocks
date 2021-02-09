@@ -5,6 +5,8 @@ import { reactive } from "vue";
  */
 class ModalState {
 	public createProjectModal: boolean = false
+	public importProjectModal: boolean = false
+	public importProjectXML: string = "";
 }
 
 /**

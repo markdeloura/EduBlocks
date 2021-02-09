@@ -115,7 +115,7 @@
 
 <script lang="ts">
 import { defineComponent, onBeforeUnmount } from "vue";
-import { Editor, Views, pythonCode } from "./Editor";
+import { Editor, Views, pythonCode, xmlCode } from "./Editor";
 import { state } from "@/state";
 import { codemirror } from "vue-codemirror-lite";
 import { files } from "@/providers/files";
@@ -134,7 +134,7 @@ export default defineComponent({
 			view.reset();
 		});
 
-		return { view, state, Views, pythonCode, files };
+		return { view, state, Views, pythonCode, files, xmlCode };
 	}
 });
 </script>

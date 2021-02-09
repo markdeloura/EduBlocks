@@ -12,6 +12,7 @@
 					text="Import"
 					icon="document_add"
 					class="text-pink-500 shadow-none h-11 hover:opacity-75"
+					@click="files.importFile()"
 				/>
 				<Button
 					text="New Project"
@@ -91,6 +92,7 @@
 					text="Import"
 					icon="document_add"
 					class="text-pink-500 shadow-none h-11 hover:opacity-75"
+					@click="files.importFile()"
 				/>
 				<Button
 					text="New Project"

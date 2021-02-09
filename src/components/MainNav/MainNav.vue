@@ -16,7 +16,6 @@
 					class="mt-1 space-y-1"
 				>
 					<a
-						href="#"
 						class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50"
 					>
 						<span class="truncate">
@@ -25,7 +24,6 @@
 					</a>
 
 					<a
-						href="#"
 						class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50"
 					>
 						<span class="truncate">
