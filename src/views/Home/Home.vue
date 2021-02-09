@@ -27,7 +27,7 @@
 					</div>
 				</div>
 			</div>
-			<div v-if="files.fileList.value.length > 1">
+			<div v-if="files.fileList.value.length >= 1">
 				<div
 					class="pb-4 text-2xl font-semibold"
 				>
@@ -47,6 +47,7 @@
 							:variant="projects.getPlatformVariantFromFileName(file.label)"
 							:title="projects.removePlatformFromFileName(file.label)"
 							:subtitle="projects.getPlatformFromFileName(file.label)"
+							@click="files.openFirebaseFile(file)"
 						/>
 					</div>
 				</div>
