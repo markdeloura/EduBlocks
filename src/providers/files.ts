@@ -6,8 +6,10 @@ import { Platform } from "@/platforms/platforms";
 import { state } from "@/state";
 import { modalState } from "@/components/Modals/ModalState";
 import { xmlCode } from "@/views/Editor/Editor";
+import { projects } from "@/views/Projects/Projects";
+import { editor } from "@/views/Editor/Editor";
 
-interface FirebaseFiles {
+interface FirebaseFile {
 	label: string;
 	ref: firebase.default.storage.Reference;
 	downloadURL: string;
@@ -19,7 +21,7 @@ class Files {
 
 	public hasSaved: Ref<boolean> = ref(false);
 
-	public fileList: Ref<Array<FirebaseFiles>> = ref([]);
+	public fileList: Ref<Array<FirebaseFile>> = ref([]);
 
 	public firebaseBlocksRef: firebase.default.storage.Reference = firebase.default.storage().ref(`blocks/${authentication.currentUser.value?.uid}`);
     
@@ -104,7 +106,7 @@ class Files {
 					platformTitle = "CircuitPython";
 					break;
 			}
-			const ref: firebase.default.storage.Reference = firebase.default.storage().ref(`blocks/${authentication.currentUser.value.uid}/${state.filename} (${platformTitle})`);
+			const ref: firebase.default.storage.Reference = firebase.default.storage().ref(`blocks/${authentication.currentUser.value.uid}/${state.filename}(${platformTitle})`);
 			ref.putString(xmlCode.value).then(() => {
 				this.hasSaved.value = true;
 				setTimeout(() => {
@@ -112,6 +114,19 @@ class Files {
 				}, 2000);
 			});
 		}
+	}
+
+	public openFirebaseFile(file: FirebaseFile): void {
+		fetch(file.downloadURL).then((response: Response) => {
+			return response.blob();
+		}).then((blob: Blob) => {
+			blob.text().then((xml: string) => {
+				xmlCode.value = xml;
+				state.filename = projects.removePlatformFromFileName(file.label);
+				state.mode = projects.getPlatformFromFileName(file.label);
+				editor.load();
+			});
+		});
 	}
 }
 

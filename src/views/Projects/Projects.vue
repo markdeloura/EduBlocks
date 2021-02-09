@@ -47,6 +47,7 @@
 				<Icon
 					name="chevron-right"
 					class="w-5 h-5 text-pink-500 transition-all cursor-pointer hover:text-pink-600"
+					@click="files.openFirebaseFile(file)"
 				/>
 			</ListItem>
 		</div>

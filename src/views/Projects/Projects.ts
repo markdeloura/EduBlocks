@@ -28,8 +28,8 @@ export default class Projects {
 		return output;
 	}
 
-	public getPlatformFromFileName(name: string): string {
-		let output: string = "";
+	public getPlatformFromFileName(name: string): Platform {
+		let output: Platform = Platform.Python;
 		if (name.includes("(Python)")) {
 			output = Platform.Python;
 		}
