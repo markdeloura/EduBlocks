@@ -12,12 +12,13 @@
 	</div>
 	<div
 		v-if="authentication.currentUser.value"
+		v-click-outside="component.closeDropdown"
 		class="relative z-50 ml-3"
 	>
 		<div>
 			<button
 				class="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
-				@click="component.isDropdownOpen.value = !component.isDropdownOpen.value"
+				@click="isDropdownOpen = !isDropdownOpen"
 			>
 				<img
 					v-if="authentication.currentUser.value.photoURL"
@@ -47,7 +48,7 @@
 			leave-to-class="transform scale-95 opacity-0"
 		>
 			<div
-				v-show="component.isDropdownOpen.value"
+				v-show="isDropdownOpen"
 				class="absolute right-0 z-50 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5"
 			>
 				<div class="px-4 py-3">
@@ -73,7 +74,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Avatar } from "./Avatar";
+import { Avatar, isDropdownOpen } from "./Avatar";
 import { authentication } from "@/providers/auth";
 import router from "@/router/index";
 
@@ -82,7 +83,7 @@ export default defineComponent({
 	setup() {
 		const component: Avatar = new Avatar();
 
-		return { component, authentication, router };
+		return { component, authentication, router, isDropdownOpen };
 	}
 });
 </script>

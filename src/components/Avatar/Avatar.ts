@@ -10,28 +10,21 @@ interface ProfileOptions {
 	action: Function;
 }
 
+export const isDropdownOpen: Ref<boolean> = ref(false);
+
 /**
  * Main avatar class
  */
 export class Avatar {
 	/**
-	 * Stores the open/close state of the dropdown menu
-	 */
-	public isDropdownOpen: Ref<boolean> = ref(false);
-
-	/**
 	 * Temporary sign out function
 	 */
 	public signOut(): void {
-		this.isDropdownOpen.value = false;
+		isDropdownOpen.value = false;
 		authentication.signOut();
 	}
 
-	/**
-	 * Define profile options for the dropdown menu
-	 */
-	public profileOptions: Array<ProfileOptions> = [
-		{id: 1, text: "Profile", action: this.signOut},
-		{id: 2, text: "Settings", action: this.signOut},
-	]
+	public closeDropdown(): void {
+		isDropdownOpen.value = false;
+	}
 } 

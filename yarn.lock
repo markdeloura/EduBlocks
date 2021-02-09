@@ -5520,13 +5520,6 @@ modern-normalize@^1.0.0:
   resolved "https://registry.yarnpkg.com/modern-normalize/-/modern-normalize-1.0.0.tgz#539d84a1e141338b01b346f3e27396d0ed17601e"
   integrity sha512-1lM+BMLGuDfsdwf3rsgBSrxJwAZHFIrQ8YR61xIqdHo0uNKI9M52wNpHSrliZATJp51On6JD0AfRxd4YGSU0lw==
 
-monaco-editor-webpack-plugin@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/monaco-editor-webpack-plugin/-/monaco-editor-webpack-plugin-3.0.0.tgz#47a1c16e990d743572f47b0a1abb6de36bbc4afb"
-  integrity sha512-oPuYInTZIT5ctj8gjx7VEzxZFjcIBJXazVOaF6wJ/TPCldF0Lb/58jEeKTERXr4nr1Yobgx2tVfKcfkncAlAHg==
-  dependencies:
-    loader-utils "^2.0.0"
-
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
