@@ -244,7 +244,7 @@ export class Editor {
 		  );
 		  if (!blocklyWorkspace.isDragging()) {
 				pythonCode.value = Blockly.Python.workspaceToCode(blocklyWorkspace);
-				if (files.isFirebaseFile) {
+				if (files.isFirebaseFile.value) {
 					files.saveFirebaseFile();
 				}
 		  }

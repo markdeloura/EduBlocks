@@ -31,7 +31,7 @@
 						{{ state.filename }}
 					</h1>
 				</div>
-				<div class="flex items-center ml-6">
+				<div class="flex items-center">
 					<Avatar />
 				</div>
 			</div>
