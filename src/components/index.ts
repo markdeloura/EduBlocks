@@ -17,6 +17,7 @@ import RouterTab from "@/components/RouterTab/RouterTab.vue";
 import MenuItem from "@/components/MenuItem/MenuItem.vue";
 import Select from "@/components/Select/Select.vue";
 import SelectCard from "@/components/SelectCard/SelectCard.vue";
+import Trinket from "@/components/Trinket/Trinket.vue";
 
 // Register all components globally
 export default {
@@ -37,5 +38,6 @@ export default {
 		app.component("MenuItem", MenuItem);
 		app.component("Select", Select);
 		app.component("SelectCard", SelectCard);
+		app.component("Trinket", Trinket);
 	}
 };

@@ -28,6 +28,6 @@ https://github.com/mkaminsky11/codemirror-themes*/
 .cm-s-edublocks .CodeMirror-activeline-background{color:rgba(248,248,242,1) !important;}
 .cm-s-edublocks .CodeMirror-matchingbracket{color:rgba(255,255,255,1) !important;}
 .cm-s-edublocks .CodeMirror-gutters { border-right-color: transparent; }
-.CodeMirror { border-radius: 0.375rem; height: 100%; overflow: hidden; position: static; }
+.CodeMirror { border-radius: 0.375rem; height: 100%; }
 .blocklyToolboxDiv { z-index: 10; }
 .blocklyMainWorkspaceScrollbar { z-index: 10; }

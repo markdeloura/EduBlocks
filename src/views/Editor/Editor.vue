@@ -75,8 +75,17 @@
 					Share
 				</div>
 				<div
+					v-if="view.state.stopButton"
+					class="flex flex-wrap content-center justify-center h-full px-4 font-semibold text-red-500 bg-red-200 border-2 border-red-400 rounded cursor-pointer"
+					@click="view.stop()"
+				>
+					<i class="w-5 h-5 mt-1 mr-2 -ml-1 text-md fas fa-stop fa-fw" />
+					Stop
+				</div>
+				<div
 					v-if="view.state.runButton"
 					class="flex flex-wrap content-center justify-center h-full px-4 font-semibold text-green-500 bg-green-100 border-2 border-green-300 rounded cursor-pointer"
+					@click="view.run()"
 				>
 					<i class="w-5 h-5 mt-1 mr-2 -ml-1 text-md fas fa-play fa-fw" />
 					Run
@@ -95,8 +104,8 @@
 			</div>
 			<div
 				v-if="view.state.pythonEditor"
-				class="w-3/6 h-full bg-gray-900 rounded-md"
-				:class="[view.state.view === Views.Python ? 'w-full rounded-tl-none relative' : 'w-3/6 ']"
+				class="w-1/2 h-full overflow-x-auto bg-gray-900 rounded-md"
+				:class="[view.state.view === Views.Python ? 'w-full rounded-tl-none relative' : '']"
 			>
 				<codemirror
 					:value="pythonCode"
@@ -108,6 +117,7 @@
 					class="w-full h-full rounded"
 				/>
 			</div>
+			<Trinket v-if="view.state.output" />
 		</div>
 	</div>
 	<SlideoverNav />

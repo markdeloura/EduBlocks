@@ -37,6 +37,7 @@ class EditorState {
 	public blocksSwitch: boolean = true;
 	public pythonSwitch: boolean = true;
 	public runButton: boolean = true;
+	public stopButton: boolean = false;
 	public shareButton: boolean = true;
 	public saveButton: boolean = true;
 }
@@ -90,6 +91,24 @@ export class Editor {
 
 	public resizeWindow(): void {
 		window.dispatchEvent(new Event("resize"));
+	}
+
+	public run(): void {
+		this.state.output = true;
+		this.state.pythonEditor = false;
+		this.state.blocksSwitch = false;
+		this.state.pythonSwitch = false;
+		this.state.runButton = false;
+		this.state.stopButton = true;
+	}
+
+	public stop(): void {
+		this.state.output = false;
+		this.state.pythonEditor = true;
+		this.state.blocksSwitch = true;
+		this.state.pythonSwitch = true;
+		this.state.runButton = true;
+		this.state.stopButton = false;
 	}
 
 	public async switchView(view: Views): Promise<void> {
