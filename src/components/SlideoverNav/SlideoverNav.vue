@@ -1,11 +1,14 @@
 <template>
 	<div
-		v-if="isSlideOverNavOpen"
+		v-show="isSlideOverNavOpen"
 		class="fixed inset-0 overflow-y-auto z-75"
 	>
-		<div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+		<div
+			v-show="isSlideOverNavOpen"
+			class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0"
+		>
 			<div
-				class="fixed inset-0 z-50 transition-opacity" 
+				class="fixed inset-0 z-50" 
 			>
 				<div class="absolute inset-0 w-60 bg-gray-50">
 					<div class="flex flex-wrap content-center w-full bg-white border-b-2 h-14">
@@ -64,15 +67,25 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<transition
+			enter-active-class="duration-200 ease-out"
+			enter-from-class="opacity-0"
+			enter-to-class="opacity-100"
+			leave-active-class="duration-200 ease-out"
+			leave-from-class="opacity-100"
+			leave-to-class="opacity-0"
+		>
 			<div
-				class="fixed inset-0 z-40 transition-opacity"
+				v-show="isSlideOverNavOpen"
+				class="fixed inset-0 z-40 transition-all"
 			>
 				<div
 					class="absolute inset-0 bg-gray-500 opacity-75 cursor-pointer"
 					@click="isSlideOverNavOpen = false"
 				/>
 			</div>
-		</div>
+		</transition>
 	</div>
 </template>
 
