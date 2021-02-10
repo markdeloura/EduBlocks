@@ -21,7 +21,7 @@
 				@click="modalState.createProjectModal = true"
 			/>
 		</PageHeading>
-		<div>
+		<div class="max-w-6xl mx-auto">
 			<ListItem
 				v-for="file in files.fileList.value"
 				:key="file"
