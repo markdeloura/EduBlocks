@@ -1,57 +1,53 @@
 <template>
 	<div
 		v-if="files.fileList.value.length > 0"
-		class="w-full p-4 pt-3 space-y-6"
+		class="m-4 mt-0"
 	>
-		<div class="sticky flex flex-wrap content-center mb-4 top-0.5 h-14 bg-gray-50">
-			<h1 class="pt-1 text-2xl font-semibold">
-				My Projects
-			</h1>
-			<div class="flex ml-auto space-x-4">
-				<Button
-					text="Import"
-					icon="document_add"
-					class="text-pink-500 shadow-none h-11 hover:opacity-75"
-					@click="files.importFile()"
-				/>
-				<Button
-					text="New Project"
-					icon="plus"
-					variant="Primary"
-					class=" h-11"
-					@click="modalState.createProjectModal = true"
-				/>
-			</div>
-		</div>
-		<div
-			class="w-full px-0 xl:px-16"
+		<PageHeading
+			title="My Projects"
+			sticky
 		>
-			<ListItem
-				v-for="file in files.fileList.value"
-				:key="file"
-				:item1="view.removePlatformFromFileName(file.label)"
-				:item2="view.getPlatformFromFileName(file.label)"
-				:item3="`${file.metadata.size.toString()} B`"
-				:icon="view.getPlatformIconFromFileName(file.label)"
-				:variant="view.getPlatformVariantFromFileName(file.label)"
-			>
-				<Icon
-					name="trash"
-					class="w-5 h-5 text-gray-400 transition-all cursor-pointer hover:text-red-500"
-					@click="view.delete(file.ref)"
-				/>
-				<Icon
-					name="link"
-					class="w-5 h-5 text-gray-400 transition-all cursor-pointer hover:text-blue-500"
-				/>
-				<Icon
-					name="chevron-right"
-					class="w-5 h-5 text-pink-500 transition-all cursor-pointer hover:text-pink-600"
-					@click="files.openFirebaseFile(file)"
-				/>
-			</ListItem>
-		</div>
+			<Button
+				text="Import"
+				icon="document_add"
+				class="text-pink-500 shadow-none h-11 hover:opacity-75"
+				@click="files.importFile()"
+			/>
+			<Button
+				text="New Project"
+				icon="plus"
+				variant="Primary"
+				class=" h-11"
+				@click="modalState.createProjectModal = true"
+			/>
+		</PageHeading>
+		<ListItem
+			v-for="file in files.fileList.value"
+			:key="file"
+			:item1="view.removePlatformFromFileName(file.label)"
+			:item2="view.getPlatformFromFileName(file.label)"
+			:item3="`${file.metadata.size.toString()} Bytes`"
+			:icon="view.getPlatformIconFromFileName(file.label)"
+			:variant="view.getPlatformVariantFromFileName(file.label)"
+			@click="files.openFirebaseFile(file)"
+		>
+			<Icon
+				name="trash"
+				class="w-5 h-5 text-gray-400 transition-all cursor-pointer hover:text-red-500"
+				@click="view.delete(file.ref)"
+			/>
+			<Icon
+				name="link"
+				class="w-5 h-5 text-gray-400 transition-all cursor-pointer hover:text-blue-500"
+			/>
+			<Icon
+				name="chevron-right"
+				class="w-5 h-5 text-pink-500 transition-all cursor-pointer hover:text-pink-600"
+				@click="files.openFirebaseFile(file)"
+			/>
+		</ListItem>
 	</div>
+
 	<div
 		v-if="files.isLoading.value !== true && files.fileList.value.length < 1 && authentication.currentUser.value"
 		class="flex flex-wrap content-center justify-center w-full h-full"

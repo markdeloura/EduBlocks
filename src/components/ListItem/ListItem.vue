@@ -1,5 +1,5 @@
 <template>
-	<div class="grid w-full h-16 grid-cols-4 grid-rows-1 px-2 transition-all hover:bg-gray-100">
+	<div class="grid w-full h-16 grid-cols-4 grid-rows-1 px-2 transition-all cursor-pointer hover:bg-gray-100">
 		<div class="w-full h-full">
 			<div class="flex flex-wrap items-center h-full space-x-4">
 				<div class="flex-shrink-0">
@@ -24,7 +24,7 @@
 		<div class="flex flex-wrap content-center w-full h-full pl-10 text-gray-400">
 			{{ item2 }}
 		</div>
-		<div class="flex flex-wrap content-center justify-center w-full h-full text-gray-400">
+		<div class="flex flex-wrap content-center w-full h-full pl-10 text-gray-400">
 			{{ item3 }}
 		</div>
 		<div class="flex flex-wrap content-center justify-end w-full h-full space-x-8 text-gray-400">

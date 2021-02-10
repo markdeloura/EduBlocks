@@ -1,5 +1,5 @@
 <template>
-	<div
+	<button
 		type="button"
 		class="inline-flex items-center px-4 py-2 text-base font-medium text-center text-white transition-all border border-transparent rounded-md shadow-sm appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2"
 		:class="component.getVariant()"
@@ -10,7 +10,7 @@
 			class="mr-2 -ml-1 w-7 h-7"
 		/>
 		<span class="w-full">{{ text }}</span>
-	</div>
+	</button>
 </template>
 
 <script lang="ts">

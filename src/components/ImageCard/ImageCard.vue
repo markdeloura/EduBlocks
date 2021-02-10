@@ -1,9 +1,9 @@
 <template>
-	<div class="w-60">
-		<div class="h-32 mb-4">
+	<div class="cursor-pointer w-60 group">
+		<div class="mb-4 h-36">
 			<img
 				:src="image"
-				class="object-cover w-full h-full"
+				class="object-cover w-full h-full transition-all group-hover:opacity-75"
 			>
 		</div>
 		<h1 class="text-sm font-medium text-pink-500">

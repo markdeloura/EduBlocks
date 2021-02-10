@@ -22,6 +22,7 @@
 				:placeholder="placeholder"
 				autocomplete="on"
 				:required="required"
+				:readonly="readonly"
 				@input="$emit('update:modelValue', $event.target.value)"
 			>
 		</div>
@@ -42,6 +43,7 @@ export default defineComponent({
 		label: String,
 		placeholder: String,
 		required: Boolean,
+		readonly: Boolean,
 		modelValue: {
 			type: String,
 			default: ""
