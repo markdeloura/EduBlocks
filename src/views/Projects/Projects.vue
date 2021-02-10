@@ -1,7 +1,7 @@
 <template>
 	<div
 		v-if="files.fileList.value.length > 0"
-		class="m-4 mt-0"
+		class="pb-3 m-4 mt-0"
 	>
 		<PageHeading
 			title="My Projects"

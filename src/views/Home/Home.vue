@@ -1,5 +1,5 @@
 <template>
-	<div class="m-4 space-y-8">
+	<div class="pb-3 m-4 space-y-8">
 		<div>
 			<PageHeading
 				title="Create New Project"
