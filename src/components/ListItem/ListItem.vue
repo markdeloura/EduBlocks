@@ -1,5 +1,5 @@
 <template>
-	<div class="grid w-full h-16 grid-cols-4 grid-rows-1 px-2 transition-all cursor-pointer hover:bg-gray-100">
+	<div class="grid w-full h-16 grid-cols-4 grid-rows-1 px-2 transition-all hover:bg-gray-100">
 		<div class="w-full h-full">
 			<div class="flex flex-wrap items-center h-full space-x-4">
 				<div class="flex-shrink-0">

@@ -30,7 +30,6 @@
 				:item3="`${file.metadata.size.toString()} Bytes`"
 				:icon="view.getPlatformIconFromFileName(file.label)"
 				:variant="view.getPlatformVariantFromFileName(file.label)"
-				@click="files.openFirebaseFile(file)"
 			>
 				<Icon
 					name="trash"
