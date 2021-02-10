@@ -79,11 +79,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, watchEffect } from "vue";
 
 import { modalState } from "@/components/Modals/ModalState";
 
-import { platforms } from "@/platforms/platforms";
+import { platforms, Platform } from "@/platforms/platforms";
 
 import { state } from "@/state";
 import { editor } from "@/views/Editor/Editor.ts";
@@ -91,6 +91,12 @@ import { editor } from "@/views/Editor/Editor.ts";
 export default defineComponent({
 	name: "CreateProjectModal",
 	setup() {
+		watchEffect(() => {
+			if (modalState.createProjectModal && state.mode === Platform.None) {
+				state.mode = Platform.Python;
+			}
+		});
+
 		return { modalState, platforms, state, editor };
 	}
 });
