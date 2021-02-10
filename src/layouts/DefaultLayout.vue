@@ -4,7 +4,7 @@
 		<div class="flex w-full h-full overflow-x-hidden">
 			<MainNav />
 			<div class="flex-1 w-full h-full overflow-y-auto">
-				<div class="mx-auto max-w-7xl">
+				<div class="h-full mx-auto max-w-7xl">
 					<slot />
 				</div>
 			</div>

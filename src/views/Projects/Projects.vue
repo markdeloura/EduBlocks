@@ -21,31 +21,33 @@
 				@click="modalState.createProjectModal = true"
 			/>
 		</PageHeading>
-		<ListItem
-			v-for="file in files.fileList.value"
-			:key="file"
-			:item1="view.removePlatformFromFileName(file.label)"
-			:item2="view.getPlatformFromFileName(file.label)"
-			:item3="`${file.metadata.size.toString()} Bytes`"
-			:icon="view.getPlatformIconFromFileName(file.label)"
-			:variant="view.getPlatformVariantFromFileName(file.label)"
-			@click="files.openFirebaseFile(file)"
-		>
-			<Icon
-				name="trash"
-				class="w-5 h-5 text-gray-400 transition-all cursor-pointer hover:text-red-500"
-				@click="view.delete(file.ref)"
-			/>
-			<Icon
-				name="link"
-				class="w-5 h-5 text-gray-400 transition-all cursor-pointer hover:text-blue-500"
-			/>
-			<Icon
-				name="chevron-right"
-				class="w-5 h-5 text-pink-500 transition-all cursor-pointer hover:text-pink-600"
+		<div>
+			<ListItem
+				v-for="file in files.fileList.value"
+				:key="file"
+				:item1="view.removePlatformFromFileName(file.label)"
+				:item2="view.getPlatformFromFileName(file.label)"
+				:item3="`${file.metadata.size.toString()} Bytes`"
+				:icon="view.getPlatformIconFromFileName(file.label)"
+				:variant="view.getPlatformVariantFromFileName(file.label)"
 				@click="files.openFirebaseFile(file)"
-			/>
-		</ListItem>
+			>
+				<Icon
+					name="trash"
+					class="w-5 h-5 text-gray-400 transition-all cursor-pointer hover:text-red-500"
+					@click="view.delete(file.ref)"
+				/>
+				<Icon
+					name="link"
+					class="w-5 h-5 text-gray-400 transition-all cursor-pointer hover:text-blue-500"
+				/>
+				<Icon
+					name="chevron-right"
+					class="w-5 h-5 text-pink-500 transition-all cursor-pointer hover:text-pink-600"
+					@click="files.openFirebaseFile(file)"
+				/>
+			</ListItem>
+		</div>
 	</div>
 
 	<div
