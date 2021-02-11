@@ -1,7 +1,7 @@
 <template>
 	<div
 		v-if="files.fileList.value.length > 0"
-		class="pb-3 m-4 mt-0"
+		class="px-8 py-6"
 	>
 		<PageHeading
 			title="My Projects"
@@ -21,7 +21,7 @@
 				@click="modalState.createProjectModal = true"
 			/>
 		</PageHeading>
-		<div class="max-w-6xl mx-auto">
+		<div>
 			<ListItem
 				v-for="file in files.fileList.value"
 				:key="file"
@@ -30,6 +30,7 @@
 				:item3="`${file.metadata.size.toString()} Bytes`"
 				:icon="view.getPlatformIconFromFileName(file.label)"
 				:variant="view.getPlatformVariantFromFileName(file.label)"
+				@rowClick="files.openFirebaseFile(file)"
 			>
 				<Icon
 					name="trash"

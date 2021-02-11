@@ -1,7 +1,7 @@
 <template>
 	<div
 		class="md:flex md:items-center md:justify-between bg-gray-50"
-		:class="[sticky ? 'sticky top-0.5 pt-3.5 pb-6' : '']"
+		:class="[sticky ? 'sticky top-0.5 pb-6 border-b mb-4' : '']"
 	>
 		<div class="flex-1 min-w-0">
 			<h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate">

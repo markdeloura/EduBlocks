@@ -1,6 +1,9 @@
 <template>
-	<div class="grid w-full h-16 grid-cols-4 grid-rows-1 px-2 transition-all hover:bg-gray-100">
-		<div class="w-full h-full">
+	<div class="grid w-full h-16 grid-cols-4 grid-rows-1 px-1 transition-all cursor-pointer hover:bg-gray-100">
+		<div
+			class="w-full h-full"
+			@click="this.$emit('rowClick')"
+		>
 			<div class="flex flex-wrap items-center h-full space-x-4">
 				<div class="flex-shrink-0">
 					<div
@@ -21,10 +24,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="flex flex-wrap content-center w-full h-full pl-10 text-gray-400">
+		<div
+			class="flex flex-wrap content-center w-full h-full pl-10 text-gray-400"
+			@click="this.$emit('rowClick')"
+		>
 			{{ item2 }}
 		</div>
-		<div class="flex flex-wrap content-center w-full h-full pl-10 text-gray-400">
+		<div
+			class="flex flex-wrap content-center w-full h-full pl-10 text-gray-400"
+			@click="this.$emit('rowClick')"
+		>
 			{{ item3 }}
 		</div>
 		<div class="flex flex-wrap content-center justify-end w-full h-full space-x-8 text-gray-400">
@@ -47,6 +56,7 @@ export default defineComponent({
 		item3: String,
 		variant: String
 	},
+	emits: ["rowClick"],
 	setup(props: Data) {
 		const component: ListItem = new ListItem(props);
 

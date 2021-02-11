@@ -1,5 +1,5 @@
 <template>
-	<div class="flex-none h-full p-4 border-r-2 w-60">
+	<div class="flex-none h-full p-4 py-6 border-r-2 w-60">
 		<nav class="flex flex-col h-full">
 			<div class="h-full space-y-1">
 				<MenuItem
@@ -16,7 +16,7 @@
 					class="mt-1 space-y-1"
 				>
 					<a
-						class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50"
+						class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md cursor-pointer group hover:text-gray-900 hover:bg-gray-50"
 					>
 						<span class="truncate">
 							Report an issue
@@ -24,7 +24,7 @@
 					</a>
 
 					<a
-						class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50"
+						class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md cursor-pointer group hover:text-gray-900 hover:bg-gray-50"
 					>
 						<span class="truncate">
 							Help & Support
