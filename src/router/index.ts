@@ -4,6 +4,8 @@ import Showcase from "../views/Showcase/Showcase.vue";
 import Editor from "../views/Editor/Editor.vue";
 import Login from "../views/Login/Login.vue";
 import Projects from "../views/Projects/Projects.vue";
+import Classroom from "../views/Classroom/Classroom.vue";
+import ClassroomDetail from "../views/Classroom/ClassroomDetail.vue";
 
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -25,6 +27,16 @@ const routes: Array<RouteRecordRaw> = [
 		path: "/projects",
 		name: "My Projects",
 		component: Projects,
+	},
+	{
+		path: "/classroom",
+		name: "Classroom",
+		component: Classroom,
+	},
+	{
+		path: "/classroom/:classID",
+		name: "ClassroomDetail",
+		component: ClassroomDetail,
 	},
 	{
 		path: "/editor",

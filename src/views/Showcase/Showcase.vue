@@ -1,5 +1,17 @@
 <template>
-	<h1>Hello</h1>
+	<div class="px-8 py-6">
+		<PageHeading
+			title="Showcase"
+			sticky
+		>
+			<Button
+				text="Add Project"
+				icon="plus"
+				variant="Primary"
+				class="h-11"
+			/>
+		</PageHeading>
+	</div>
 </template>
 
 <script lang="ts">

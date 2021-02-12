@@ -1,6 +1,6 @@
 <template>
 	<div
-		v-if="files.fileList.value.length > 0"
+		v-if="!files.isLoading.value && files.fileList.value.length > 0"
 		class="px-8 py-6"
 	>
 		<PageHeading
@@ -51,7 +51,7 @@
 	</div>
 
 	<div
-		v-if="files.isLoading.value !== true && files.fileList.value.length < 1 && authentication.currentUser.value"
+		v-if="!files.isLoading.value && files.fileList.value.length < 1 && authentication.currentUser.value"
 		class="flex flex-wrap content-center justify-center w-full h-full"
 	>
 		<div class="space-y-6">
