@@ -6,7 +6,7 @@ class CreateClassModalState {
 	public name: string = "";
 	public type: string = "";
 	public icon: string = "python";
-	public color: string = "";
+	public color: string = "Blue";
 }
 
 interface Option {
