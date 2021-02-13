@@ -4,6 +4,7 @@ import router from "./router";
 import components from "@/components/index";
 import modals from "@/components/Modals/index";
 import { authentication } from "@/providers/auth";
+import { listenForScreenSizeChange } from "@/providers/mobile";
 
 let app: ComponentPublicInstance | undefined;
 
@@ -23,6 +24,8 @@ const clickOutside: Directive = {
 
 authentication.auth.onAuthStateChanged(() => {
 	if (!app) {
+		listenForScreenSizeChange();
+		
 		app = createApp(App)
 			.use(router)
 			.use(components)

@@ -14,11 +14,11 @@
 					<div class="flex flex-wrap content-center w-full bg-white border-b-2 h-14">
 						<div class="flex items-center flex-shrink-0 w-full px-4 pt-0.5">
 							<img
-								class="block w-auto h-8 lg:hidden"
+								class="block w-auto h-8 xl:hidden"
 								src="/images/brand/edublocks-small.svg"
 							>
 							<img
-								class="hidden w-auto h-8 lg:block"
+								class="hidden w-auto h-8 xl:block"
 								src="/images/brand/edublocks.svg"
 							>
 							<i

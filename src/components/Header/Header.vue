@@ -4,17 +4,25 @@
 			<div class="flex justify-between h-14">
 				<div class="flex">
 					<div class="flex items-center flex-shrink-0">
+						<i
+							v-if="!isDesktopLayout"
+							class="z-50 mr-3 text-lg cursor-pointer fas fa-bars fa-fw"
+							@click="isSlideOverNavOpen = true"
+						/>
 						<img
-							class="block w-auto h-8 lg:hidden"
+							class="block w-auto h-8 xl:hidden"
 							src="/images/brand/edublocks-small.svg"
 						>
 						<img
-							class="hidden w-auto h-8 lg:block"
+							class="hidden w-auto h-8 xl:block"
 							src="/images/brand/edublocks.svg"
 						>
 					</div>
 				</div>
-				<div class="flex flex-wrap content-center h-full">
+				<div
+					v-if="isDesktopLayout"
+					class="flex flex-wrap content-center h-full"
+				>
 					<div class="bg-gray-100 border rounded-md h-9 w-96" />
 				</div>
 				<div class="flex items-center ml-6">
@@ -30,11 +38,13 @@
 import { defineComponent } from "vue";
 import router from "@/router/index";
 import { authentication } from "@/providers/auth";
+import { isDesktopLayout } from "@/providers/mobile";
+import { isSlideOverNavOpen } from "@/components/SlideoverNav/SlideoverNav";
 
 export default defineComponent({
 	name: "Header",
 	setup() {
-		return { router, authentication };
+		return { router, authentication, isDesktopLayout, isSlideOverNavOpen };
 	}
 });
 </script>

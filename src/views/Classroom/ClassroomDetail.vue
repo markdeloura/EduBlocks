@@ -1,7 +1,7 @@
 <template>
 	<div
 		v-if="view.currentClassroom.value"
-		class="w-full h-full px-8 py-6"
+		class="w-full h-full px-4 py-6 xl:px-8"
 	>
 		<div class="flex flex-row w-full h-full space-x-6">
 			<div class="flex-1 w-full h-full">
@@ -22,7 +22,7 @@
 					/>
 				</PageHeading>
 			</div>
-			<div class="sticky flex flex-col h-full space-y-6 w-80">
+			<div class="sticky flex flex-col w-64 h-full space-y-6 xl:w-80">
 				<div class="flex-none w-full p-6 bg-white rounded-lg shadow">
 					<h2
 						class="text-base font-medium text-gray-900"
@@ -65,7 +65,7 @@
 						<a
 							v-if="!view.isUserAdmin()"
 							class="block w-full px-4 py-2 text-sm font-medium text-center text-white transition-all bg-pink-500 border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-pink-600"
-							@click="view.getClassroomJoinCode()"
+							@click="view.leaveClassroom()"
 						>
 							Leave Classroom
 						</a>
@@ -127,6 +127,7 @@
 										<Icon
 											name="trash"
 											class="w-4 h-4 transition-all cursor-pointer hover:text-red-500"
+											@click="view.removeStudentFromClass(student.uid)"
 										/>
 									</div>
 								</div>

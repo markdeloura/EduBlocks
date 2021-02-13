@@ -1,5 +1,8 @@
 <template>
-	<div class="grid w-full h-16 grid-cols-4 grid-rows-1 px-1 transition-all cursor-pointer hover:bg-gray-100">
+	<div
+		class="grid w-full h-16 grid-rows-1 px-1 transition-all cursor-pointer hover:bg-gray-100"
+		:class="[isDesktopLayout ? 'grid-cols-4' : 'grid-cols-2']"
+	>
 		<div
 			class="w-full h-full"
 			@click="this.$emit('rowClick')"
@@ -25,12 +28,14 @@
 			</div>
 		</div>
 		<div
+			v-if="isDesktopLayout"
 			class="flex flex-wrap content-center w-full h-full pl-10 text-gray-400"
 			@click="this.$emit('rowClick')"
 		>
 			{{ item2 }}
 		</div>
 		<div
+			v-if="isDesktopLayout"
 			class="flex flex-wrap content-center w-full h-full pl-10 text-gray-400"
 			@click="this.$emit('rowClick')"
 		>
@@ -46,6 +51,7 @@
 import { defineComponent } from "vue";
 import { Data } from "@/types";
 import { ListItem } from "./ListItem";
+import { isDesktopLayout } from "@/providers/mobile";
 
 export default defineComponent({
 	name: "ListItem",
@@ -60,7 +66,7 @@ export default defineComponent({
 	setup(props: Data) {
 		const component: ListItem = new ListItem(props);
 
-		return { component };
+		return { component, isDesktopLayout };
 	}
 });
 </script>

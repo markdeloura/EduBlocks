@@ -1,5 +1,5 @@
 <template>
-	<div class="px-8 py-6">
+	<div class="w-full h-full px-4 py-6 xl:px-8">
 		<div v-if="authentication.currentUser.value">
 			<PageHeading
 				title="Classroom"

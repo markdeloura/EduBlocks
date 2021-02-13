@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="md:flex md:items-center md:justify-between bg-gray-50"
+		class="items-center md:flex md:justify-between bg-gray-50"
 		:class="[sticky ? 'sticky top-0.5 pb-6 border-b mb-4' : '']"
 	>
 		<div class="flex-1 min-w-0">
@@ -8,7 +8,7 @@
 				{{ title }}
 			</h2>
 		</div>
-		<div class="flex mt-4 space-x-4 md:mt-0 md:ml-4">
+		<div class="flex flex-row-reverse mt-4 space-x-4 xl:mt-0 xl:ml-4">
 			<slot />
 		</div>
 	</div>

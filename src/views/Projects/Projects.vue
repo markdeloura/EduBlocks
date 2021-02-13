@@ -1,7 +1,7 @@
 <template>
 	<div
 		v-if="!files.isLoading.value && files.fileList.value.length > 0"
-		class="px-8 py-6"
+		class="w-full h-full px-4 py-6 xl:px-8"
 	>
 		<PageHeading
 			title="My Projects"

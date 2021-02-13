@@ -9,11 +9,11 @@
 							@click="editor.openSlideOverNav()"
 						/>
 						<img
-							class="block w-auto h-8 lg:hidden"
+							class="block w-auto h-8 xl:hidden"
 							src="/images/brand/edublocks-small.svg"
 						>
 						<img
-							class="hidden w-auto h-8 lg:block"
+							class="hidden w-auto h-8 xl:block"
 							src="/images/brand/edublocks.svg"
 						>
 					</div>

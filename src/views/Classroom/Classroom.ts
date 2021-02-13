@@ -68,6 +68,20 @@ export default class Classroom {
 		});
 	}
 
+	public async removeStudentFromClass(userID: string | undefined): Promise<void> {
+		await authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).update({
+			students: firebase.default.firestore.FieldValue.arrayRemove(userID)
+		}).then(() => {
+			this.getClassroom(this.currentClassroom.value?.id);
+		});
+	}
+
+	public leaveClassroom(): void {
+		this.removeStudentFromClass(authentication.currentUser.value?.uid).then(() => {
+			router.push({path: "/classroom"});
+		});
+	}
+
 	public getClassroomJoinCode(): void {
 		const content: object = {
 			dynamicLinkInfo: {

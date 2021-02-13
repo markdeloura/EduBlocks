@@ -1,5 +1,5 @@
 <template>
-	<div class="flex-none h-full p-4 py-6 border-r-2 w-60">
+	<div class="flex-none w-56 h-full p-4 py-6 border-r-2 xl:w-60">
 		<nav class="flex flex-col h-full">
 			<div class="h-full space-y-1">
 				<MenuItem
