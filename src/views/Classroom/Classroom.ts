@@ -93,6 +93,17 @@ export default class Classroom {
 		});
 	}
 
+	public isUserAdmin(): boolean {
+		let isUserAdmin: boolean = false;
+		if (this.currentClassroom.value?.data.admins.includes(authentication.currentUser.value?.uid)) {
+			isUserAdmin = true;
+		}
+		if (this.currentClassroom.value?.data.students.includes(authentication.currentUser.value?.uid)) {
+			isUserAdmin = false;
+		}
+		return isUserAdmin;
+	}
+
 	public async createNewClass(name: string, type: string, color: string, icon: string): Promise<void> {
 		await authentication.db.collection("classrooms").add({
 			name: name,

@@ -10,9 +10,14 @@
 					sticky
 				>
 					<Button
+						v-if="view.isUserAdmin()"
 						text="New"
 						icon="plus"
 						variant="Primary"
+						class="h-11"
+					/>
+					<div
+						v-if="!view.isUserAdmin()"
 						class="h-11"
 					/>
 				</PageHeading>
@@ -51,14 +56,22 @@
 					</div>
 					<div class="mt-6 space-y-4">
 						<a
-							class="block w-full px-4 py-2 text-sm font-medium text-center text-white transition-all bg-pink-500 border border-gray-300 rounded-md shadow-sm hover:bg-pink-600"
+							v-if="view.isUserAdmin()"
+							class="block w-full px-4 py-2 text-sm font-medium text-center text-white transition-all bg-pink-500 border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-pink-600"
 							@click="view.getClassroomJoinCode()"
 						>
 							Add Students
 						</a>
 						<a
-							href="#"
-							class="block w-full px-4 py-2 text-sm font-medium text-center text-gray-700 transition-all bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
+							v-if="!view.isUserAdmin()"
+							class="block w-full px-4 py-2 text-sm font-medium text-center text-white transition-all bg-pink-500 border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-pink-600"
+							@click="view.getClassroomJoinCode()"
+						>
+							Leave Classroom
+						</a>
+						<a
+							v-if="view.isUserAdmin()"
+							class="block w-full px-4 py-2 text-sm font-medium text-center text-gray-700 transition-all bg-white border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-gray-50"
 						>
 							Delete Classroom
 						</a>
@@ -66,9 +79,16 @@
 				</div>
 				<div class="flex-1 w-full h-full p-6 overflow-y-hidden bg-white rounded-lg shadow">
 					<h2
+						v-if="view.isUserAdmin()"
 						class="text-base font-medium text-gray-900"
 					>
-						Students
+						Students ({{ view.currentClassroomStudents.value.length }})
+					</h2>
+					<h2
+						v-if="!view.isUserAdmin()"
+						class="text-base font-medium text-gray-900"
+					>
+						Classmates ({{ view.currentClassroomStudents.value.length }})
 					</h2>
 					<div
 						class="w-full mt-6 space-y-4 overflow-y-auto"
@@ -96,11 +116,14 @@
 										<p class="text-sm font-medium text-gray-900 truncate">
 											{{ student.name }}
 										</p>
-										<p class="text-sm text-gray-500 truncate">
+										<p
+											v-if="view.isUserAdmin()"
+											class="text-sm text-gray-500 truncate"
+										>
 											{{ student.email }}
 										</p>
 									</div>
-									<div>
+									<div v-if="view.isUserAdmin()">
 										<Icon
 											name="trash"
 											class="w-4 h-4 transition-all cursor-pointer hover:text-red-500"

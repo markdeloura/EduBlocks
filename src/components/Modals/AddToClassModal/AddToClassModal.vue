@@ -40,7 +40,7 @@
 					class="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
 				>
 					<div class="px-4 pt-5 pb-4 space-y-4 bg-white sm:p-6">
-						<h1 class="mb-6 text-xl font-semibold">
+						<h1 class="mb-4 text-xl font-semibold">
 							Join Classroom
 						</h1>
 						<h1 class="w-full font-semibold text-center text-9xl">
