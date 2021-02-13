@@ -4,6 +4,8 @@ import { App } from "vue";
 import CreateProjectModal from "@/components/Modals/CreateProjectModal/CreateProjectModal.vue";
 import ImportProjectModal from "@/components/Modals/ImportProjectModal/ImportProjectModal.vue";
 import CreateClassModal from "@/components/Modals/CreateClassModal/CreateClassModal.vue";
+import AddToClassModal from "@/components/Modals/AddToClassModal/AddToClassModal.vue";
+import JoinClassModal from "@/components/Modals/JoinClassModal/JoinClassModal.vue";
 
 // Register all modals globally
 export default {
@@ -11,5 +13,7 @@ export default {
 		app.component("CreateProjectModal", CreateProjectModal);
 		app.component("ImportProjectModal", ImportProjectModal);
 		app.component("CreateClassModal", CreateClassModal);
+		app.component("AddToClassModal", AddToClassModal);
+		app.component("JoinClassModal", JoinClassModal);
 	}
 };

@@ -26,7 +26,7 @@
 				</div>
 			</div>
 		</div>
-		<div>
+		<div v-if="files.fileList.value.length >= 1">
 			<PageHeading
 				title="Recent Projects"
 				class="mb-4"

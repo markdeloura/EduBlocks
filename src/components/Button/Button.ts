@@ -35,7 +35,7 @@ export class Button {
 				currentVariant.push("bg-red-500", "hover:bg-red-700", "focus:ring-red-500");
 				break;
 			case Variants.Light:
-				currentVariant.push("bg-white", "hover:bg-gray-50", "focus:ring-white");
+				currentVariant.push("bg-white", "border-gray-300", "text-gray-700", "hover:bg-gray-50", "focus:ring-pink-500");
 				break;
 		}
 

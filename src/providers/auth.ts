@@ -68,6 +68,20 @@ class Authentication {
 			this.currentUser.value = null;
 		});
 	}
+
+	public upgradeToV4Account(): void {
+		const userRef: firebase.default.firestore.DocumentReference = this.db.collection("users").doc(this.currentUser.value?.uid);
+		userRef.get().then((snapshot: firebase.default.firestore.DocumentSnapshot) => {
+			if (!snapshot.exists) {
+				userRef.set({
+					uid: this.currentUser.value?.uid,
+					image: this.currentUser.value?.photoURL,
+					name: this.currentUser.value?.displayName,
+					email: this.currentUser.value?.email
+				});
+			}
+		});
+	}
 }
 
 export const authentication: Authentication = new Authentication();
@@ -75,5 +89,6 @@ export const authentication: Authentication = new Authentication();
 authentication.auth.onAuthStateChanged((user: firebase.default.User | null) => {
 	if (user) { 
 		authentication.currentUser.value = user;
+		authentication.upgradeToV4Account();
 	}
 });
