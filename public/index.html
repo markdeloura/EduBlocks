@@ -4,10 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
-    <link rel="stylesheet" href="/css/icons.css" />
-    <link rel="stylesheet" href="/css/output.css" />
+    <link rel="icon" href="/images/icons/icon-512x512.png">
+    <link rel="apple-touch-icon" href="/images/icons/icon-512x512.png"> 
+    <link rel="icon" href="/images/icons/icon-512x512.png">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/icons.css">
+    <link rel="stylesheet" href="/css/output.css">
+    <link rel="manifest" href="/manifest.json">
     <script src="/blockly/blockly_compressed.js"></script>
     <script src="/blockly/python_compressed.js"></script>
     <script src="/blockly/msg/js/en.js"></script>
@@ -21,6 +24,13 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('<%= BASE_URL %>service-worker.js')
+        });
+      }
+    </script>
   </body>
 </html>
 
