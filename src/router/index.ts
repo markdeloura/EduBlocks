@@ -6,6 +6,7 @@ import Login from "../views/Login/Login.vue";
 import Projects from "../views/Projects/Projects.vue";
 import Classroom from "../views/Classroom/Classroom.vue";
 import ClassroomDetail from "../views/Classroom/ClassroomDetail.vue";
+import ClassroomAssignment from "../views/Classroom/ClassroomAssignment.vue";
 import JoinClassroom from "../views/Classroom/JoinClassroom.vue";
 
 const routes: Array<RouteRecordRaw> = [
@@ -38,6 +39,11 @@ const routes: Array<RouteRecordRaw> = [
 		path: "/classroom/:classID",
 		name: "ClassroomDetail",
 		component: ClassroomDetail,
+	},
+	{
+		path: "/classroom/:classID/assignment/:assignmentID",
+		name: "ClassroomAssignment",
+		component: ClassroomAssignment,
 	},
 	{
 		path: "/classroom/join/:classID",

@@ -8,6 +8,7 @@ import { getToolboxXml } from "@/platforms/blocks";
 import { isSlideOverNavOpen } from "@/components/SlideoverNav/SlideoverNav";
 import { authentication } from "@/providers/auth";
 import { files } from "@/providers/files";
+import { classroom } from "@/views/Classroom/Classroom";
 
 /**
  * Define template reference for the blockly div component
@@ -93,7 +94,7 @@ export class Editor {
 		this.state.saveButton = true;
 		this.state.splitSwitch = true;
 		this.state.blocksSwitch = true;
-		this.state.pythonSwitch = true;
+		this.state.pythonSwitch = true;	
 	}
 
 	/**

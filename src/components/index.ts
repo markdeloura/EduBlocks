@@ -18,6 +18,7 @@ import MenuItem from "@/components/MenuItem/MenuItem.vue";
 import Select from "@/components/Select/Select.vue";
 import SelectCard from "@/components/SelectCard/SelectCard.vue";
 import Trinket from "@/components/Trinket/Trinket.vue";
+import Textarea from "@/components/Textarea/Textarea.vue";
 import PageHeading from "@/components/PageHeading/PageHeading.vue";
 
 // Register all components globally
@@ -40,6 +41,7 @@ export default {
 		app.component("Select", Select);
 		app.component("SelectCard", SelectCard);
 		app.component("Trinket", Trinket);
+		app.component("Textarea", Textarea);
 		app.component("PageHeading", PageHeading);
 	}
 };

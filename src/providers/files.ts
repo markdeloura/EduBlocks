@@ -17,6 +17,16 @@ interface FirebaseFile {
 	metadata: firebase.default.storage.FullMetadata;
 }
 
+export interface FirebaseFileDropdownValue {
+	title: string;
+	url: string;
+}
+
+export interface FirebaseFileDropdown {
+	title: string;
+	value: FirebaseFileDropdownValue;
+}
+
 class Files {    
 	public isLoading: Ref<boolean> = ref(false);
 
@@ -47,6 +57,21 @@ class Files {
 				});
 			});
 		}
+	}
+
+	public async getAllFilesFromFirebaseForDropdown(): Promise<Array<FirebaseFileDropdown>> {
+		const files: Array<FirebaseFileDropdown> = [];
+		if (authentication.currentUser.value) {
+			const ref: firebase.default.storage.Reference = firebase.default.storage().ref(`blocks/${authentication.currentUser.value.uid}`);
+			await ref.listAll().then((res: firebase.default.storage.ListResult) => {
+				res.items.forEach((itemRef: firebase.default.storage.Reference) => {
+					itemRef.getDownloadURL().then((url: string) => {
+						files.push({ title: itemRef.name, value: {title: itemRef.name, url} });
+					});
+				});
+			});
+		}
+		return files;
 	}
 
 	public deleteFirebaseFile(ref: firebase.default.storage.Reference): void {

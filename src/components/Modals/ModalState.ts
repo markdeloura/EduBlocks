@@ -7,6 +7,7 @@ class ModalState {
 	public createProjectModal: boolean = false
 	public importProjectModal: boolean = false
 	public createClassModal: boolean = false
+	public createAssignmentModal: boolean = false
 	public addToClassModal: boolean = false
 	public joinClassModal: boolean = false
 }

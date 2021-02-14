@@ -21,13 +21,14 @@
 			</div>
 			<select
 				v-model="selected"
-				class="block w-full border-gray-300 appearance-none sm:text-sm rounded-md focus:border-pink-500 focus:outline-none focus:ring-pink-500"
+				class="block w-full border-gray-300 rounded-md appearance-none sm:text-sm focus:border-pink-500 focus:outline-none focus:ring-pink-500"
 				:class="[icon || image ? 'pl-10' : '']"
 				@change="$emit('update:modelValue', $event.target.value)"
 			>
 				<option
 					v-for="option in options"
 					:key="option"
+					:value="option.value"
 				>
 					{{ option.title }}
 				</option>

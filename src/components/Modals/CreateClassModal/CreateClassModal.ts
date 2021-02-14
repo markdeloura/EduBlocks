@@ -11,24 +11,25 @@ class CreateClassModalState {
 
 interface Option {
 	title: string;
+	value: string;
 }
 
 export class CreateClassModal {
 	public state: CreateClassModalState = reactive(new CreateClassModalState())
 
 	public iconOptions: Array<Option> = [
-		{ title: "raspberrypi"},
-		{ title: "python"},
-		{ title: "microbit"},
-		{ title: "circuitpython"},
+		{ title: "Raspberry Pi", value: "raspberrypi"},
+		{ title: "Python", value: "python"},
+		{ title: "BBC micro:bit", value: "microbit"},
+		{ title: "CircuitPython", value: "circuitpython"},
 
 	]
 
 	public colourOptions: Array<Option> = [
-		{ title: "Blue"},
-		{ title: "Green"},
-		{ title: "Red"},
-		{ title: "Purple"},
+		{ title: "Blue", value: "Blue"},
+		{ title: "Green", value: "Green"},
+		{ title: "Red", value: "Red"},
+		{ title: "Purple", value: "Purple"},
 	]
 
 	public create(): void {

@@ -11,6 +11,7 @@ export enum Platform {
 const Python: PlatformOptions = reactive({
 	id: 1,
 	title: Platform.Python,
+	value: Platform.Python,
 	image: "/images/platforms/Python 3.png",
 	color: "bg-navy-500"
 })
@@ -18,6 +19,7 @@ const Python: PlatformOptions = reactive({
 const MicroBit: PlatformOptions = reactive({
 	id: 2,
 	title: Platform.MicroBit,
+	value: Platform.MicroBit,
 	image: "/images/platforms/BBC micro:bit.png",
 	color: "bg-green-400"
 })
@@ -25,6 +27,7 @@ const MicroBit: PlatformOptions = reactive({
 const RaspberryPi: PlatformOptions = reactive({
 	id: 3,
 	title: Platform.RaspberryPi,
+	value: Platform.RaspberryPi,
 	image: "/images/platforms/Raspberry Pi.png",
 	color: "bg-pink-600"
 })
@@ -32,6 +35,7 @@ const RaspberryPi: PlatformOptions = reactive({
 const CircuitPython: PlatformOptions = reactive({
 	id: 4,
 	title: Platform.CircuitPython,
+	value: Platform.CircuitPython,
 	image: "/images/platforms/CircuitPython.png",
 	color: "bg-purple-500"
 })

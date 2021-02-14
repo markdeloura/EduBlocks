@@ -3,11 +3,15 @@ import { ref, Ref } from "vue";
 import * as firebase from "firebase/app";
 import router from "@/router";
 import { modalState } from "@/components/Modals/ModalState";
+import { editor, xmlCode } from "../Editor/Editor";
+import { projects } from "@/views/Projects/Projects";
+import { state } from "@/state";
 
 export default class Classroom {
 	public classrooms: Ref<Array<firebase.default.firestore.DocumentData>> = ref([]);
 	public currentClassroom: Ref<firebase.default.firestore.DocumentData | undefined> = ref();
 	public currentClassroomStudents: Ref<Array<firebase.default.firestore.DocumentData | undefined>> = ref([]);
+	public currentClassroomAdmins: Ref<Array<firebase.default.firestore.DocumentData | undefined>> = ref([]);
 	public joinError: Ref<boolean> = ref(false);
 	public currentJoinCode: Ref<string> = ref("");
 	public currentJoinLink: Ref<string> = ref("");
@@ -36,13 +40,19 @@ export default class Classroom {
 		});
 	}
 
-	public getClassroom(id: string): void {
+	public async getClassroom(id: string): Promise<void> {
 		this.currentClassroomStudents.value = [];
-		authentication.db.collection("classrooms").doc(id).get().then((doc: firebase.default.firestore.DocumentSnapshot) => {
+		this.currentClassroomAdmins.value = [];
+		await authentication.db.collection("classrooms").doc(id).get().then((doc: firebase.default.firestore.DocumentSnapshot) => {
 			this.currentClassroom.value = { id: doc.id, data: doc.data() };
 			this.currentClassroom.value?.data.students.forEach((student: string) => {
 				this.getUserDetails(student).then((data: firebase.default.firestore.DocumentData | undefined) => {
 					this.currentClassroomStudents.value.push(data);
+				});
+			});
+			this.currentClassroom.value?.data.admins.forEach((admin: string) => {
+				this.getUserDetails(admin).then((data: firebase.default.firestore.DocumentData | undefined) => {
+					this.currentClassroomAdmins.value.push({title: data?.name, value: data?.name});
 				});
 			});
 		});
@@ -78,6 +88,12 @@ export default class Classroom {
 
 	public leaveClassroom(): void {
 		this.removeStudentFromClass(authentication.currentUser.value?.uid).then(() => {
+			router.push({path: "/classroom"});
+		});
+	}
+
+	public deleteClassroom(): void {
+		authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).delete().then(() => {
 			router.push({path: "/classroom"});
 		});
 	}
@@ -128,6 +144,24 @@ export default class Classroom {
 			students: [],
 			assignments: []
 		});
+	}
+
+	public async createNewAssignment(title: string, description: string, due: Date, teacher: string, marks: number, xml: string, fileTitle: string | undefined): Promise<void> {
+		await authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).update({
+			assignments: firebase.default.firestore.FieldValue.arrayUnion({title, description, due, teacher, marks, xmlCode: xml, fileTitle, submissions: []})
+		});
+	}
+
+	public goToAssignment(id: number): void {
+		router.push({path: `/classroom/${this.currentClassroom.value?.id}/assignment/${id}`});
+	}
+
+	public openAssignmentCode(xml: string | undefined, title: string | undefined): void {
+		if (xml && title) {
+			xmlCode.value = xml;
+			state.mode = projects.getPlatformFromFileName(title);
+			editor.load();
+		}
 	}
 }
 

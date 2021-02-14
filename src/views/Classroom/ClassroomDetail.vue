@@ -15,12 +15,33 @@
 						icon="plus"
 						variant="Primary"
 						class="h-11"
+						@click="modalState.createAssignmentModal = true"
 					/>
 					<div
 						v-if="!view.isUserAdmin()"
 						class="h-11"
 					/>
 				</PageHeading>
+				<ListItem
+					v-for="(assignment, index) in view.currentClassroom.value.data.assignments"
+					:key="assignment"
+					icon="python"
+					variant="Green"
+					:item1="assignment.title"
+					:item3="`Due: ${assignment.due.replace('T', ' @ ')}`"
+					item2="Not Submitted"
+					@rowClick="view.goToAssignment(index)"
+				>
+					<Icon
+						name="trash"
+						class="w-5 h-5 text-gray-400 transition-all cursor-pointer hover:text-red-500"
+					/>
+					<Icon
+						name="chevron-right"
+						class="w-5 h-5 text-pink-500 transition-all cursor-pointer hover:text-pink-600"
+						@click="view.goToAssignment(index)"
+					/>
+				</ListItem>
 			</div>
 			<div class="sticky flex flex-col w-64 h-full space-y-6 xl:w-80">
 				<div class="flex-none w-full p-6 bg-white rounded-lg shadow">
@@ -72,6 +93,7 @@
 						<a
 							v-if="view.isUserAdmin()"
 							class="block w-full px-4 py-2 text-sm font-medium text-center text-gray-700 transition-all bg-white border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-gray-50"
+							@click="view.deleteClassroom()"
 						>
 							Delete Classroom
 						</a>
@@ -139,6 +161,7 @@
 		</div>
 	</div>
 	<AddToClassModal :code="view.currentJoinCode.value" />
+	<CreateAssignmentModal />
 </template>
 
 <script lang="ts">

@@ -18,7 +18,15 @@
 						>
 					</div>
 				</div>
+				{{ classroom.assignmentEditMode.value }}
 				<div
+					v-if="classroom.assignmentEditMode.value"
+					class="relative z-0 flex items-center justify-center flex-1 px-2 font-medium text-gray-400 sm:absolute sm:inset-0"
+				>
+					You're editing an assignment task!
+				</div>
+				<div
+					v-else
 					class="relative z-0 flex items-center justify-center flex-1 px-2 text-gray-400 sm:absolute sm:inset-0"
 				>
 					<span>{{ state.mode }}</span>
@@ -45,13 +53,14 @@ import { defineComponent } from "vue";
 import { EditorNav } from "./EditorNav";
 import { state } from "@/state";
 import { editor } from "@/views/Editor/Editor";
+import { classroom } from "@/views/Classroom/Classroom";
 
 export default defineComponent({
 	name: "EditorNav",
 	setup() {
 		const component: EditorNav = new EditorNav();
 
-		return { component, state, editor };
+		return { component, state, editor, classroom };
 	}
 });
 </script>
