@@ -7,6 +7,8 @@ import { editor, xmlCode } from "../Editor/Editor";
 import { projects } from "@/views/Projects/Projects";
 import { state } from "@/state";
 
+export const assignmentActive: Ref<boolean> = ref(false);
+
 export default class Classroom {
 	public classrooms: Ref<Array<firebase.default.firestore.DocumentData>> = ref([]);
 	public currentClassroom: Ref<firebase.default.firestore.DocumentData | undefined> = ref();
@@ -156,11 +158,13 @@ export default class Classroom {
 		router.push({path: `/classroom/${this.currentClassroom.value?.id}/assignment/${id}`});
 	}
 
-	public openAssignmentCode(xml: string | undefined, title: string | undefined): void {
+	public openAssignmentCode(xml: string | undefined, title: string | undefined, assignmentID: number): void {
 		if (xml && title) {
 			xmlCode.value = xml;
 			state.mode = projects.getPlatformFromFileName(title);
-			editor.load();
+			state.filename = "Assignment Task";
+			assignmentActive.value = true;
+			router.push({path: "/editor", query: { assignmentID }});
 		}
 	}
 }

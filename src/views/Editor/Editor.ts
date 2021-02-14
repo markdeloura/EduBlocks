@@ -8,7 +8,7 @@ import { getToolboxXml } from "@/platforms/blocks";
 import { isSlideOverNavOpen } from "@/components/SlideoverNav/SlideoverNav";
 import { authentication } from "@/providers/auth";
 import { files } from "@/providers/files";
-import { classroom } from "@/views/Classroom/Classroom";
+import { assignmentActive, classroom } from "@/views/Classroom/Classroom";
 
 /**
  * Define template reference for the blockly div component
@@ -40,6 +40,7 @@ class EditorState {
 	public blocksSwitch: boolean = true;
 	public pythonSwitch: boolean = true;
 	public runButton: boolean = true;
+	public resetButton: boolean = true;
 	public stopButton: boolean = false;
 	public shareButton: boolean = true;
 	public saveButton: boolean = true;
@@ -91,10 +92,12 @@ export class Editor {
 		this.state.stopButton = false;
 		this.state.runButton = true;
 		this.state.shareButton = true;
+		this.state.resetButton = true;
 		this.state.saveButton = true;
 		this.state.splitSwitch = true;
 		this.state.blocksSwitch = true;
 		this.state.pythonSwitch = true;	
+		assignmentActive.value = false;
 	}
 
 	/**
@@ -143,6 +146,10 @@ export class Editor {
 	public clear(): void {
 		this.reset(true);
 		this.loadBlockly();
+	}
+
+	public goBackToAssignment(): void {
+		classroom.goToAssignment(Number(router.currentRoute.value.query.assignmentID));
 	}
 
 	public async switchView(view: Views): Promise<void> {

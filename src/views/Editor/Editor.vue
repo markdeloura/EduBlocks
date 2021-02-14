@@ -51,7 +51,7 @@
 				<div class="ml-auto h-11 pb-2 -mt-0.5 flex space-x-4">
 					<div class="space-x-4">
 						<div
-							v-if="files.hasSaved.value"
+							v-if="files.hasSaved.value && !assignmentActive"
 							class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-green-500 rounded"
 						>
 							<Icon
@@ -61,7 +61,7 @@
 							Saved!
 						</div>
 						<div
-							v-if="!files.hasSaved.value && view.state.saveButton"
+							v-if="!files.hasSaved.value && view.state.saveButton && !assignmentActive"
 							class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-gray-600 transition-all rounded cursor-pointer hover:text-pink-500"
 							@click="view.save()"
 						>
@@ -70,17 +70,35 @@
 						</div>
 					</div>
 					<div
-						v-if="view.state.shareButton && authentication.currentUser.value"
+						v-if="assignmentActive"
+						class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-gray-600 transition-all rounded cursor-pointer hover:text-pink-500"
+						@click="view.goBackToAssignment()"
+					>
+						<Icon
+							name="arrow_left"
+							class="w-5 h-5 mt-0.5 mr-2 -ml-1"
+						/>
+						Back to assignment
+					</div>
+					<div
+						v-if="assignmentActive"
+						class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-gray-600 transition-all rounded cursor-pointer hover:text-pink-500"
+					>
+						<i class="w-5 h-5 mr-2 -ml-1 text-lg far fa-save -mt-0.5 fa-fw" />
+						Save assignment
+					</div>
+					<div
+						v-if="view.state.shareButton && authentication.currentUser.value && !assignmentActive"
 						class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-gray-600 transition-all rounded cursor-pointer hover:text-pink-500"
 					>
 						<Icon
 							name="share"
-						
 							class="w-5 h-5 mt-0.5 mr-2 -ml-1"
 						/>
 						Share
 					</div>
 					<div
+						v-if="view.state.resetButton && !assignmentActive"
 						class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-gray-600 transition-all rounded cursor-pointer hover:text-pink-500"
 						@click="view.clear()"
 					>
@@ -145,6 +163,8 @@ import { codemirror } from "vue-codemirror-lite";
 import { files } from "@/providers/files";
 import { authentication } from "@/providers/auth";
 import { isPortrait } from "@/providers/mobile";
+import { assignmentActive } from "@/views/Classroom/Classroom";
+import router from "@/router/index";
 import "codemirror/mode/python/python";
 import "@/assets/edublocks.css";
 
@@ -158,13 +178,14 @@ export default defineComponent({
 
 		onMounted(() => {
 			view.checkForMode();
+			console.log(router.currentRoute.value);
 		});
 
 		onBeforeUnmount(() => {
 			view.reset();
 		});
 
-		return { view, state, Views, pythonCode, files, xmlCode, authentication, isPortrait };
+		return { view, state, Views, pythonCode, files, xmlCode, authentication, isPortrait, assignmentActive };
 	}
 });
 </script>

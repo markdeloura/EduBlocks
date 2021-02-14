@@ -66,7 +66,7 @@
 					<div class="mt-4 space-y-4">
 						<a
 							class="block w-full px-4 py-2 text-sm font-medium text-center text-white transition-all bg-pink-500 border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-pink-600"
-							@click="view.openAssignmentCode(view.currentClassroom.value.data.assignments[assignment].xmlCode, view.currentClassroom.value.data.assignments[assignment].fileTitle)"
+							@click="view.openAssignmentCode(view.currentClassroom.value.data.assignments[assignment].xmlCode, view.currentClassroom.value.data.assignments[assignment].fileTitle, assignment)"
 						>
 							Open Your Code
 						</a>
