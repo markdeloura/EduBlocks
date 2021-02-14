@@ -95,7 +95,7 @@
 						style="height: calc(100% - 3rem)"
 					>
 						<ul
-							class="-my-5 divide-y divide-gray-200"
+							class="-my-3 divide-y divide-gray-200"
 						>
 							<li
 								v-for="student in view.currentClassroomStudents.value"
@@ -108,7 +108,7 @@
 								>
 									<div class="flex-shrink-0">
 										<img
-											class="w-8 h-8 rounded-full"
+											class="object-cover w-8 h-8 rounded-full"
 											:src="student.image"
 										>
 									</div>

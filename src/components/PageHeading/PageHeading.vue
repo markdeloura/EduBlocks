@@ -8,7 +8,7 @@
 				{{ title }}
 			</h2>
 		</div>
-		<div class="flex flex-row-reverse mt-4 space-x-4 xl:mt-0 xl:ml-4">
+		<div class="flex flex-row-reverse mt-4 space-x-4 xl:mt-0 xl:ml-4 xl:flex-row">
 			<slot />
 		</div>
 	</div>
