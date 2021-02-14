@@ -1,5 +1,8 @@
 <template>
-	<Modal :state="modalState.importProjectModal">
+	<Modal
+		:state="modalState.importProjectModal"
+		@close="modalState.importProjectModal = false"
+	>
 		<template #content>
 			<div>
 				<h1 class="mb-2 text-xl font-semibold">

@@ -1,5 +1,8 @@
 <template>
-	<Modal :state="modalState.createProjectModal">
+	<Modal
+		:state="modalState.createProjectModal"
+		@close="modalState.createProjectModal = false"
+	>
 		<template #content>
 			<h1 class="mb-6 text-xl font-semibold">
 				Create new project

@@ -1,5 +1,8 @@
 <template>
-	<Modal :state="modalState.addToClassModal">
+	<Modal
+		:state="modalState.addToClassModal"
+		@close="modalState.addToClassModal = false"
+	>
 		<template #content>
 			<h1 class="mb-4 text-xl font-semibold">
 				Join Classroom

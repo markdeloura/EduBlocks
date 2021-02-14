@@ -16,7 +16,7 @@
 					v-show="state"
 					class="fixed inset-0 transition-opacity cursor-pointer"
 					aria-hidden="true"
-					@click="closeModal()"
+					@click="this.$emit('close')"
 				>
 					<div class="absolute inset-0 bg-gray-400 opacity-70" />
 				</div>
@@ -53,21 +53,12 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Data } from "@/types";
 
 export default defineComponent({
 	name: "Modal",
 	props: {
 		state: Boolean
 	},
-	setup(props: Data) {
-		function closeModal(): void {
-			let state: any = props.state;
-			state = false;
-			state;
-		}
-
-		return { closeModal };
-	}
+	emits: ["close"]
 });
 </script>

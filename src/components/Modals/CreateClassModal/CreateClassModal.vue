@@ -1,5 +1,8 @@
 <template>
-	<Modal :state="modalState.createClassModal">
+	<Modal
+		:state="modalState.createClassModal"
+		@close="modalState.createClassModal = false"
+	>
 		<template #content>
 			<h1 class="mb-6 text-xl font-semibold">
 				Create new class
