@@ -13,7 +13,6 @@ import ListItem from "@/components/ListItem/ListItem.vue";
 import MainNav from "@/components/MainNav/MainNav.vue";
 import SlideoverNav from "@/components/SlideoverNav/SlideoverNav.vue";
 import Header from "@/components/Header/Header.vue";
-import RouterTab from "@/components/RouterTab/RouterTab.vue";
 import MenuItem from "@/components/MenuItem/MenuItem.vue";
 import Select from "@/components/Select/Select.vue";
 import SelectCard from "@/components/SelectCard/SelectCard.vue";
@@ -36,7 +35,6 @@ export default {
 		app.component("MainNav", MainNav);
 		app.component("SlideoverNav", SlideoverNav);
 		app.component("Header", Header);
-		app.component("RouterTab", RouterTab);
 		app.component("MenuItem", MenuItem);
 		app.component("Select", Select);
 		app.component("SelectCard", SelectCard);
