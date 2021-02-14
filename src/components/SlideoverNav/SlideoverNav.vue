@@ -27,7 +27,7 @@
 							/>
 						</div>
 					</div>
-					<div class="w-full p-4 border-r-2 nav-height">
+					<div class="w-full p-4 py-6 border-r-2 nav-height">
 						<nav class="flex flex-col h-full">
 							<div class="h-full space-y-1">
 								<MenuItem

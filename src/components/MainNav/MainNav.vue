@@ -7,7 +7,7 @@
 					:key="option"
 					:icon="option.icon"
 					:text="option.text"
-					:class="[router.currentRoute.value.name === option.text ? 'bg-white border-gray-300' : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900 cursor-pointer']"
+					:class="[router.currentRoute.value.name === option.text ? 'bg-white border-gray-300' : 'text-gray-400 hover:bg-gray-50 hover:text-gray-600 cursor-pointer text-opacity-75']"
 					@click="router.push({path: option.path})"
 				/>
 			</div>
@@ -16,7 +16,7 @@
 					class="mt-1 space-y-1"
 				>
 					<a
-						class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md cursor-pointer group hover:text-gray-900 hover:bg-gray-50"
+						class="flex items-center px-3 py-2 text-sm font-medium text-gray-400 text-opacity-75 transition-all rounded-md cursor-pointer group hover:text-gray-600 hover:bg-gray-50"
 					>
 						<span class="truncate">
 							Report an issue
@@ -24,7 +24,7 @@
 					</a>
 
 					<a
-						class="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md cursor-pointer group hover:text-gray-900 hover:bg-gray-50"
+						class="flex items-center px-3 py-2 text-sm font-medium text-gray-400 text-opacity-75 transition-all rounded-md cursor-pointer group hover:text-gray-600 hover:bg-gray-50"
 					>
 						<span class="truncate">
 							Help & Support

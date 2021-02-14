@@ -1,11 +1,12 @@
 <template>
 	<div
 		v-if="!files.isLoading.value && files.fileList.value.length > 0"
-		class="w-full h-full px-4 py-6 xl:px-8"
+		class="w-full h-full px-4 pb-6 xl:px-8"
 	>
 		<PageHeading
 			title="My Projects"
 			sticky
+			class="pt-6"
 		>
 			<Button
 				text="Import"
