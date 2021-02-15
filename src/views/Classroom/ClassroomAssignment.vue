@@ -38,16 +38,6 @@
 						</h1>
 						<p>{{ view.currentClassroom.value.data.assignments[assignment].description }}</p>
 					</div>
-					<!-- <div>
-						<h1 class="mb-2 text-lg font-bold">
-							Starter Code:
-						</h1>
-						<Button
-							text="Open Starter Code"
-							icon="folder"
-							variant="Primary"
-						/>
-					</div> -->
 					<div>
 						<h1 class="mb-2 text-lg font-bold">
 							Your Comments:
@@ -75,12 +65,19 @@
 						>
 							Submit Assignment
 						</a>
-						<div>
+						<a
+							v-if="view.isUserAdmin()"
+							class="block w-full px-4 py-2 text-sm font-medium text-center text-gray-700 transition-all bg-white border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-gray-50"
+							@click="view.deleteAssignment(assignment)"
+						>
+							Delete Assignment
+						</a>
+						<!-- <div>
 							<h1 class="font-medium">
 								Results:
 							</h1>
 							<span class="text-sm">0/{{ view.currentClassroom.value.data.assignments[assignment].marks }} Marks</span>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

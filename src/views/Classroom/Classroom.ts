@@ -3,7 +3,7 @@ import { ref, Ref } from "vue";
 import * as firebase from "firebase/app";
 import router from "@/router";
 import { modalState } from "@/components/Modals/ModalState";
-import { editor, xmlCode } from "../Editor/Editor";
+import { xmlCode } from "../Editor/Editor";
 import { projects } from "@/views/Projects/Projects";
 import { state } from "@/state";
 
@@ -97,6 +97,14 @@ export default class Classroom {
 	public deleteClassroom(): void {
 		authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).delete().then(() => {
 			router.push({path: "/classroom"});
+		});
+	}
+
+	public deleteAssignment(id: number): void {
+		authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).update({
+			assignments: firebase.default.firestore.FieldValue.arrayRemove(this.currentClassroom.value?.data.assignments[id])
+		}).then(() => {
+			router.push({path: `/classroom/${this.currentClassroom.value?.id}`});
 		});
 	}
 

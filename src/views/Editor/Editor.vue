@@ -164,7 +164,6 @@ import { files } from "@/providers/files";
 import { authentication } from "@/providers/auth";
 import { isPortrait } from "@/providers/mobile";
 import { assignmentActive } from "@/views/Classroom/Classroom";
-import router from "@/router/index";
 import "codemirror/mode/python/python";
 import "@/assets/edublocks.css";
 
@@ -178,7 +177,6 @@ export default defineComponent({
 
 		onMounted(() => {
 			view.checkForMode();
-			console.log(router.currentRoute.value);
 		});
 
 		onBeforeUnmount(() => {
