@@ -60,7 +60,6 @@ export default class Classroom {
 			});
 			this.currentClassroom.value?.data.assignments.forEach((assignment: string) => {
 				authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).collection("assignments").doc(assignment).get().then((doc: firebase.default.firestore.DocumentSnapshot) => {
-					console.log(doc.data());
 					this.currentClassroomAssignments.value.push({id: doc.id, data: doc.data()});
 				});
 			});
@@ -202,8 +201,6 @@ export default class Classroom {
 	}
 
 	public async createAssignmentSubmission(): Promise<void> {
-		console.log(router.currentRoute.value.query.classroomID?.toString());
-		console.log(router.currentRoute.value.query.assignmentID?.toString());
 		await authentication.db.collection("classrooms").doc(router.currentRoute.value.query.classroomID?.toString()).collection("assignments").doc(router.currentRoute.value.query.assignmentID?.toString()).collection("submissions").add({
 			IDs: { uid: authentication.currentUser.value?.uid, assignmentID: router.currentRoute.value.query.assignmentID?.toString() },
 			xmlCode: xmlCode.value,
