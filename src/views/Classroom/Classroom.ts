@@ -14,6 +14,7 @@ export default class Classroom {
 	public currentClassroom: Ref<firebase.default.firestore.DocumentData | undefined> = ref();
 	public currentClassroomStudents: Ref<Array<firebase.default.firestore.DocumentData | undefined>> = ref([]);
 	public currentClassroomAdmins: Ref<Array<firebase.default.firestore.DocumentData | undefined>> = ref([]);
+	public currentClassroomAssignments: Ref<Array<firebase.default.firestore.DocumentData | undefined>> = ref([]);
 	public joinError: Ref<boolean> = ref(false);
 	public currentJoinCode: Ref<string> = ref("");
 	public currentJoinLink: Ref<string> = ref("");
@@ -55,6 +56,12 @@ export default class Classroom {
 			this.currentClassroom.value?.data.admins.forEach((admin: string) => {
 				this.getUserDetails(admin).then((data: firebase.default.firestore.DocumentData | undefined) => {
 					this.currentClassroomAdmins.value.push({title: data?.name, value: data?.name});
+				});
+			});
+			this.currentClassroom.value?.data.assignments.forEach((assignment: string) => {
+				authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).collection("assignments").doc(assignment).get().then((doc: firebase.default.firestore.DocumentSnapshot) => {
+					console.log(doc.data());
+					this.currentClassroomAssignments.value.push({id: doc.id, data: doc.data()});
 				});
 			});
 		});
@@ -157,8 +164,19 @@ export default class Classroom {
 	}
 
 	public async createNewAssignment(title: string, description: string, due: Date, teacher: string, marks: number, xml: string, fileTitle: string | undefined): Promise<void> {
-		await authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).update({
-			assignments: firebase.default.firestore.FieldValue.arrayUnion({title, description, due, teacher, marks, xmlCode: xml, fileTitle, submissions: []})
+		await authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).collection("assignments").add({
+			title,
+			description,
+			due,
+			teacher,
+			marks,
+			xmlCode: xml,
+			fileTitle,
+			submissions: []
+		}).then((doc: firebase.default.firestore.DocumentReference) => {
+			authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).update({
+				assignments: firebase.default.firestore.FieldValue.arrayUnion(doc.id)
+			});
 		});
 	}
 
@@ -166,14 +184,62 @@ export default class Classroom {
 		router.push({path: `/classroom/${this.currentClassroom.value?.id}/assignment/${id}`});
 	}
 
+	public async saveToAssignment(): Promise<void> {
+		await authentication.db.collection("classrooms").doc(router.currentRoute.value.query.classroomID?.toString()).collection("assignments").doc(router.currentRoute.value.query.assignmentID?.toString()).collection("submissions").where("IDs", "==", {assignmentID: router.currentRoute.value.query.assignmentID?.toString(), uid: authentication.currentUser.value?.uid}).get().then((snapshot: firebase.default.firestore.QuerySnapshot) => {
+			if (snapshot.docs.length > 0) {
+				snapshot.forEach((doc: firebase.default.firestore.QueryDocumentSnapshot) => {
+					if (doc.data()) {
+						doc.ref.update({
+							xmlCode: xmlCode.value
+						});
+					}
+				});
+			}
+			else {
+				this.createAssignmentSubmission();
+			}
+		});
+	}
+
+	public async createAssignmentSubmission(): Promise<void> {
+		console.log(router.currentRoute.value.query.classroomID?.toString());
+		console.log(router.currentRoute.value.query.assignmentID?.toString());
+		await authentication.db.collection("classrooms").doc(router.currentRoute.value.query.classroomID?.toString()).collection("assignments").doc(router.currentRoute.value.query.assignmentID?.toString()).collection("submissions").add({
+			IDs: { uid: authentication.currentUser.value?.uid, assignmentID: router.currentRoute.value.query.assignmentID?.toString() },
+			xmlCode: xmlCode.value,
+			submitted: false,
+			markedByTeacher: false,
+			marks: 0
+		}).then((doc: firebase.default.firestore.DocumentReference) => {
+			authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).collection("assignments").doc(router.currentRoute.value.query.assignmentID?.toString()).update({
+				submissions: firebase.default.firestore.FieldValue.arrayUnion(doc.id)
+			});
+		});
+	}
+
 	public openAssignmentCode(xml: string | undefined, title: string | undefined, assignmentID: number): void {
-		if (xml && title) {
-			xmlCode.value = xml;
-			state.mode = projects.getPlatformFromFileName(title);
-			state.filename = "Assignment Task";
-			assignmentActive.value = true;
-			router.push({path: "/editor", query: { assignmentID }});
-		}
+		authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).collection("assignments").doc(this.currentClassroomAssignments.value[Number(router.currentRoute.value.params.assignmentID)]?.id).collection("submissions").where("IDs", "==", {assignmentID: this.currentClassroomAssignments.value[Number(router.currentRoute.value.params.assignmentID)]?.id, uid: authentication.currentUser.value?.uid}).get().then((snapshot: firebase.default.firestore.QuerySnapshot) => {
+			if (snapshot.docs.length > 0) {
+				snapshot.forEach((doc: firebase.default.firestore.QueryDocumentSnapshot) => {
+					if (doc.data()) {
+						xmlCode.value = doc.data().xmlCode;
+						if (title) {
+							state.mode = projects.getPlatformFromFileName(title);
+						}
+						assignmentActive.value = true;
+						router.push({path: "/editor", query: { assignmentID, classroomID: this.currentClassroom.value?.id }});
+					}
+				});
+			}
+			else {
+				if (xml && title) {
+					xmlCode.value = xml;
+					state.mode = projects.getPlatformFromFileName(title);
+					assignmentActive.value = true;
+					router.push({path: "/editor", query: { assignmentID, classroomID: this.currentClassroom.value?.id }});
+				}
+			}
+		});
 	}
 }
 

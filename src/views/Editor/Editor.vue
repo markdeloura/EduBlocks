@@ -72,7 +72,7 @@
 					<div
 						v-if="assignmentActive"
 						class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-gray-600 transition-all rounded cursor-pointer hover:text-pink-500"
-						@click="view.goBackToAssignment()"
+						@click="this.$router.back()"
 					>
 						<Icon
 							name="arrow_left"
@@ -83,6 +83,7 @@
 					<div
 						v-if="assignmentActive"
 						class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-gray-600 transition-all rounded cursor-pointer hover:text-pink-500"
+						@click="view.createSubmission()"
 					>
 						<i class="w-5 h-5 mr-2 -ml-1 text-lg far fa-save -mt-0.5 fa-fw" />
 						Save assignment

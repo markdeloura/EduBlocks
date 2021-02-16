@@ -1,12 +1,12 @@
 <template>
 	<div
-		v-if="view.currentClassroom.value"
+		v-if="view.currentClassroomAssignments.value[assignment]"
 		class="w-full h-full px-4 py-6 xl:px-8"
 	>
 		<div class="flex flex-row w-full h-full space-x-6">
 			<div class="flex-1 w-full h-full">
 				<PageHeading
-					:title="view.currentClassroom.value.data.assignments[assignment].title"
+					:title="view.currentClassroomAssignments.value[assignment].data.title"
 					with-info
 				>
 					<div class="flex items-center mt-2 text-sm text-gray-500">
@@ -14,29 +14,29 @@
 							name="clock"
 							class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
 						/>
-						{{ view.currentClassroom.value.data.assignments[assignment].due.replace("T", " @ ") }}
+						Due: {{ view.currentClassroomAssignments.value[assignment].data.due.replace('T', ' @ ') }}
 					</div>
 					<div class="flex items-center mt-2 text-sm text-gray-500">
 						<Icon
 							name="check"
 							class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
 						/>
-						{{ view.currentClassroom.value.data.assignments[assignment].marks }} Marks Available
+						{{ view.currentClassroomAssignments.value[assignment].data.marks }} Marks Available
 					</div>
 					<div class="flex items-center mt-2 text-sm text-gray-500">
 						<Icon
 							name="user"
 							class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
 						/>
-						{{ view.currentClassroom.value.data.assignments[assignment].teacher }}
+						{{ view.currentClassroomAssignments.value[assignment].data.teacher }}
 					</div>
 				</PageHeading>
 				<div class="space-y-8">
 					<div>
 						<h1 class="mb-2 text-lg font-bold">
-							Info from {{ view.currentClassroom.value.data.assignments[assignment].teacher }}:
+							Info from {{ view.currentClassroomAssignments.value[assignment].data.teacher }}:
 						</h1>
-						<p>{{ view.currentClassroom.value.data.assignments[assignment].description }}</p>
+						<p>{{ view.currentClassroomAssignments.value[assignment].data.description }}</p>
 					</div>
 					<div>
 						<h1 class="mb-2 text-lg font-bold">
@@ -56,7 +56,7 @@
 					<div class="mt-4 space-y-4">
 						<a
 							class="block w-full px-4 py-2 text-sm font-medium text-center text-white transition-all bg-pink-500 border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-pink-600"
-							@click="view.openAssignmentCode(view.currentClassroom.value.data.assignments[assignment].xmlCode, view.currentClassroom.value.data.assignments[assignment].fileTitle, assignment)"
+							@click="view.openAssignmentCode(view.currentClassroomAssignments.value[assignment].data.xmlCode, view.currentClassroomAssignments.value[assignment].data.fileTitle, view.currentClassroomAssignments.value[assignment].id)"
 						>
 							Open Your Code
 						</a>
@@ -72,12 +72,6 @@
 						>
 							Delete Assignment
 						</a>
-						<!-- <div>
-							<h1 class="font-medium">
-								Results:
-							</h1>
-							<span class="text-sm">0/{{ view.currentClassroom.value.data.assignments[assignment].marks }} Marks</span>
-						</div> -->
 					</div>
 				</div>
 			</div>

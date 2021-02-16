@@ -43,7 +43,7 @@ export class CreateAssignmentModal {
 				blob.text().then((xmlCode: string) => {
 					classroom.createNewAssignment(this.state.title, this.state.description, this.state.due, this.state.teacher, this.state.marks, xmlCode, this.state.fileSelection?.title).finally(() => {
 						modalState.createAssignmentModal = false;
-						location.reload();
+						// location.reload();
 					});  
 				});
 			});

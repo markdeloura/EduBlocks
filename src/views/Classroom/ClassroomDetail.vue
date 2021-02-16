@@ -23,13 +23,13 @@
 					/>
 				</PageHeading>
 				<ListItem
-					v-for="(assignment, index) in view.currentClassroom.value.data.assignments"
+					v-for="(assignment, index) in view.currentClassroomAssignments.value"
 					:key="assignment"
 					icon="python"
 					variant="Green"
-					:item1="assignment.title"
-					:item3="`Due: ${assignment.due.replace('T', ' @ ')}`"
+					:item1="assignment.data.title"
 					item2="Not Submitted"
+					:item3="`Due: ${assignment.data.due.replace('T', ' @ ')}`"
 					@rowClick="view.goToAssignment(index)"
 				>
 					<Icon
@@ -160,6 +160,7 @@
 			</div>
 		</div>
 	</div>
+	{{ view.currentClassroomAssignments.value }}
 	<AddToClassModal :code="view.currentJoinCode.value" />
 	<CreateAssignmentModal />
 </template>

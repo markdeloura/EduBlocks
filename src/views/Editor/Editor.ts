@@ -116,6 +116,12 @@ export class Editor {
 		window.dispatchEvent(new Event("resize"));
 	}
 
+	public createSubmission(): void {
+		classroom.saveToAssignment().then(() => {
+			router.back();
+		});
+	}
+
 	public run(): void {
 		this.state.output = true;
 		this.state.pythonEditor = false;
@@ -146,10 +152,6 @@ export class Editor {
 	public clear(): void {
 		this.reset(true);
 		this.loadBlockly();
-	}
-
-	public goBackToAssignment(): void {
-		classroom.goToAssignment(Number(router.currentRoute.value.query.assignmentID));
 	}
 
 	public async switchView(view: Views): Promise<void> {
