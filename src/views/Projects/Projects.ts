@@ -1,6 +1,7 @@
-import { files } from "@/providers/files";
+import { files, FirebaseFile } from "@/providers/files";
 import { Platform } from "@/platforms/platforms";
 import router from "@/router/index";
+import { DropdownOptions } from "@/types";
 
 export default class Projects {
 	public getFirebaseFiles(): any {
@@ -9,6 +10,20 @@ export default class Projects {
 
 	public goToLoginPage(): void {
 		router.push({path: "/login"});
+	}
+
+	public getDropdownOptions(file: FirebaseFile): Array<DropdownOptions> {
+		return [
+			{ icon: "folder", title: "Open", action: (): void => { 
+				files.openFirebaseFile(file); 
+			}},
+			{ icon: "share", title: "Share", action: (): void => { 
+				files.openFirebaseFile(file); 
+			}},
+			{ icon: "trash", title: "Delete", action: (): void => { 
+				files.deleteFirebaseFile(file.ref); 
+			}},
+		];
 	}
 
 	public removePlatformFromFileName(name: string): string {

@@ -1,6 +1,7 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/database";
 import { FirebaseConfig, FirebaseProviders } from "@/types";
 import router from "@/router/index";
 import { ref, Ref } from "vue";
@@ -22,6 +23,8 @@ class Authentication {
 	public auth: firebase.default.auth.Auth = firebase.default.auth();
 
 	public db: firebase.default.firestore.Firestore = firebase.default.firestore();
+
+	public realtime: firebase.default.database.Database = firebase.default.database();
 
 	public currentUser: Ref<firebase.default.User | null> = ref(this.auth.currentUser);
 

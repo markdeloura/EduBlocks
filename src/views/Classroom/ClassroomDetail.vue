@@ -160,7 +160,6 @@
 			</div>
 		</div>
 	</div>
-	{{ view.currentClassroomAssignments.value }}
 	<AddToClassModal :code="view.currentJoinCode.value" />
 	<CreateAssignmentModal />
 </template>

@@ -22,32 +22,21 @@
 				@click="modalState.createProjectModal = true"
 			/>
 		</PageHeading>
-		<div>
-			<ListItem
-				v-for="file in files.fileList.value"
-				:key="file"
-				:item1="view.removePlatformFromFileName(file.label)"
-				:item2="view.getPlatformFromFileName(file.label)"
-				:item3="`${file.metadata.size.toString()} Bytes`"
-				:icon="view.getPlatformIconFromFileName(file.label)"
-				:variant="view.getPlatformVariantFromFileName(file.label)"
-				@rowClick="files.openFirebaseFile(file)"
-			>
-				<Icon
-					name="trash"
-					class="w-5 h-5 text-gray-400 transition-all cursor-pointer hover:text-red-500"
-					@click="view.delete(file.ref)"
+		<div class="pb-6">
+			<ul class="bg-white border divide-y rounded-md">
+				<ListItem
+					v-for="file in files.fileList.value.slice(0, 8)"
+					:key="file"
+					:item1="view.removePlatformFromFileName(file.label)"
+					:item2="view.getPlatformFromFileName(file.label)"
+					:item3="`${file.metadata.size.toString()} Bytes`"
+					:item4="file.metadata.contentType"
+					:icon="view.getPlatformIconFromFileName(file.label)"
+					:variant="view.getPlatformVariantFromFileName(file.label)"
+					:dropdown-options="view.getDropdownOptions(file)"
+					@rowClick="files.openFirebaseFile(file)"
 				/>
-				<Icon
-					name="link"
-					class="w-5 h-5 text-gray-400 transition-all cursor-pointer hover:text-blue-500"
-				/>
-				<Icon
-					name="chevron-right"
-					class="w-5 h-5 text-pink-500 transition-all cursor-pointer hover:text-pink-600"
-					@click="files.openFirebaseFile(file)"
-				/>
-			</ListItem>
+			</ul>
 		</div>
 	</div>
 

@@ -19,7 +19,7 @@
 					@click="modalState.createClassModal = true;"
 				/>
 			</PageHeading>
-			<div v-if="view.classrooms.value">
+			<!-- <div v-if="view.classrooms.value">
 				<ListItem
 					v-for="classroom in view.classrooms.value"
 					:key="classroom"
@@ -42,13 +42,55 @@
 						name="chevron-right"
 						class="w-5 h-5 text-pink-500 transition-all cursor-pointer hover:text-pink-600"
 					/>
-				</ListItem>
-			</div>
+				</ListItem> -->
+			<ul class="bg-white border-2 divide-y rounded-md">
+				<div class="flex items-center px-4 py-4">
+					<div class="flex items-center flex-1 min-w-0">
+						<div class="flex-shrink-0">
+							<div class="w-10 h-10 bg-blue-500 rounded-full" />
+						</div>
+						<div class="flex-1 min-w-0 px-4 md:grid md:grid-cols-4 md:gap-4">
+							<div>
+								<p class="font-medium truncate text-md">
+									Hello World 2.0
+								</p>
+							</div>
+							<div class="hidden mt-1 md:block">
+								<div>
+									<p class="text-sm text-gray-500">
+										22 Students
+									</p>
+								</div>
+							</div>
+							<div class="hidden mt-1 md:block">
+								<div>
+									<p class="text-sm text-gray-500">
+										0 Assignments
+									</p>
+								</div>
+							</div>
+							<div class="hidden mt-1 md:block">
+								<div>
+									<p class="text-sm text-gray-500">
+										Mrs Smith
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<Icon
+							name="dots_vertical"
+							class="w-5 h-5 text-pink-500"
+						/>
+					</div>
+				</div>
+			</ul>
 		</div>
-		<h1 v-else>
-			Please login...
-		</h1>
 	</div>
+	<h1>
+		Please login...
+	</h1>
 	<JoinClassModal />
 </template>
 

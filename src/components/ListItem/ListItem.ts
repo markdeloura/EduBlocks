@@ -1,3 +1,4 @@
+import { ref, Ref } from "vue";
 import { Data } from "@/types";
 
 export enum Variants {
@@ -7,6 +8,8 @@ export enum Variants {
 	Red = "Red",
 	Purple = "Purple",
 }
+
+export const isDropdownOpen: Ref<boolean> = ref(false);
 
 /**
  * Main ListItem class
@@ -19,6 +22,10 @@ export class ListItem {
 
 	constructor(props: Data) {
 		this.variant = props.variant as Variants;
+	}
+
+	public closeDropdown(): void {
+		isDropdownOpen.value = false;
 	}
 	
 	/**

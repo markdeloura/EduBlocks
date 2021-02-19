@@ -18,3 +18,9 @@ export enum FirebaseProviders {
 	Apple = "Apple",
 	Microsoft = "Microsoft"
 }
+
+export interface DropdownOptions {
+	icon: string;
+	title: string;
+	action: () => void;
+}

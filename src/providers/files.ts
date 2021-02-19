@@ -10,7 +10,7 @@ import { projects } from "@/views/Projects/Projects";
 import { editor } from "@/views/Editor/Editor";
 import { saveAs } from "file-saver";
 
-interface FirebaseFile {
+export interface FirebaseFile {
 	label: string;
 	ref: firebase.default.storage.Reference;
 	downloadURL: string;

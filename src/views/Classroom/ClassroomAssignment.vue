@@ -1,6 +1,6 @@
 <template>
 	<div
-		v-if="view.currentClassroomAssignments.value[assignment]"
+		v-if="view.currentClassroomAssignments.value.length > 0"
 		class="w-full h-full px-4 py-6 xl:px-8"
 	>
 		<div class="flex flex-row w-full h-full space-x-6">
@@ -54,12 +54,12 @@
 						Your Code
 					</h2>
 					<div class="mt-4 space-y-4">
-						<a
-							class="block w-full px-4 py-2 text-sm font-medium text-center text-white transition-all bg-pink-500 border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-pink-600"
+						<Button
+							variant="Primary"
+							text="Open your code"
+							class="w-full"
 							@click="view.openAssignmentCode(view.currentClassroomAssignments.value[assignment].data.xmlCode, view.currentClassroomAssignments.value[assignment].data.fileTitle, view.currentClassroomAssignments.value[assignment].id)"
-						>
-							Open Your Code
-						</a>
+						/>
 						<a
 							class="block w-full px-4 py-2 text-sm font-medium text-center text-gray-700 transition-all bg-white border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-gray-50"
 						>

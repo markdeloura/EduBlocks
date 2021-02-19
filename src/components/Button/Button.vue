@@ -1,15 +1,15 @@
 <template>
 	<button
 		type="button"
-		class="inline-flex items-center px-4 py-2 text-base font-medium text-center text-white transition-all border border-transparent rounded-md shadow-sm appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2"
+		class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2"
 		:class="component.getVariant()"
 	>
 		<Icon
 			v-if="icon"
 			:name="icon"
-			class="mr-2 -ml-1 w-7 h-7"
+			class="w-6 h-6 mr-2 -ml-1 text-white"
 		/>
-		<span class="w-full">{{ text }}</span>
+		<span>{{ text }}</span>
 	</button>
 </template>
 

@@ -1,13 +1,7 @@
 <template>
-	<div
-		class="grid w-full h-16 grid-rows-1 px-1 transition-all cursor-pointer hover:bg-gray-100"
-		:class="[isDesktopLayout ? 'grid-cols-4' : 'grid-cols-2']"
-	>
-		<div
-			class="w-full h-full"
-			@click="this.$emit('rowClick')"
-		>
-			<div class="flex flex-wrap items-center h-full space-x-4">
+	<div>
+		<div class="flex items-center px-4 py-4">
+			<div class="flex items-center flex-1 min-w-0">
 				<div class="flex-shrink-0">
 					<div
 						class="flex flex-wrap content-center justify-center w-10 h-10 font-extrabold rounded-full"
@@ -20,29 +14,80 @@
 						/>
 					</div>
 				</div>
-				<div class="flex-1 min-w-0">
-					<p class="pr-4 text-lg font-medium text-gray-700 truncate">
-						{{ item1 }}
-					</p>
+				<div class="flex-1 min-w-0 px-4 md:grid md:grid-cols-4 md:gap-4">
+					<div>
+						<p class="font-medium truncate text-md">
+							{{ item1 }}
+						</p>
+					</div>
+					<div class="hidden mt-1 md:block">
+						<div>
+							<p class="text-sm text-gray-500">
+								{{ item2 }}
+							</p>
+						</div>
+					</div>
+					<div class="hidden mt-1 md:block">
+						<div>
+							<p class="text-sm text-gray-500">
+								{{ item3 }}
+							</p>
+						</div>
+					</div>
+					<div class="hidden mt-1 md:block">
+						<div>
+							<p class="text-sm text-gray-500">
+								{{ item4 }}
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div
-			v-if="isDesktopLayout"
-			class="flex flex-wrap content-center w-full h-full pl-10 text-gray-400"
-			@click="this.$emit('rowClick')"
-		>
-			{{ item2 }}
-		</div>
-		<div
-			v-if="isDesktopLayout"
-			class="flex flex-wrap content-center w-full h-full pl-10 text-gray-400"
-			@click="this.$emit('rowClick')"
-		>
-			{{ item3 }}
-		</div>
-		<div class="flex flex-wrap content-center justify-end w-full h-full space-x-8 text-gray-400">
-			<slot />
+			<div v-click-outside="closeDropdown">
+				<div
+					class="relative flex items-center justify-end"
+				>
+					<button
+						class="inline-flex items-center justify-center w-8 h-8 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+						@click="isOn = !isOn"
+					>
+						<Icon
+							name="dots_vertical"
+							class="w-5 h-5"
+						/>
+					</button>
+					<transition
+						enter-active-class="transition duration-100 ease-out"
+						enter-from-class="transform scale-95 opacity-0"
+						enter-to-class="transform scale-100 opacity-100"
+						leave-active-class="transition duration-75 ease-in"
+						leave-from-class="transform scale-100 opacity-100"
+						leave-to-class="transform scale-95 opacity-0"
+					>
+						<div
+							v-if="isOn"
+							class="absolute top-0 z-10 w-48 mx-3 mt-1 origin-top-right bg-white border divide-y divide-gray-200 rounded-md shadow-lg right-7 ring-1 ring-black ring-opacity-5"
+						>
+							<div
+								v-for="option in dropdownOptions"
+								:key="option"
+								class="py-1"
+							>
+								<a
+									class="flex items-center px-4 py-2 text-sm text-gray-500 cursor-pointer group hover:bg-gray-100 hover:text-gray-900"
+									@click="option.action"
+								>
+									<Icon
+										class="w-5 h-5 mr-3 text-gray-600 group-hover:text-gray-500"
+										:name="option.icon"
+									/>
+									{{ option.title }}
+								</a>
+							</div>
+						</div>
+					</transition>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -50,7 +95,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { Data } from "@/types";
-import { ListItem } from "./ListItem";
+import { ListItem, isDropdownOpen } from "./ListItem";
 import { isDesktopLayout } from "@/providers/mobile";
 
 export default defineComponent({
@@ -60,13 +105,25 @@ export default defineComponent({
 		item1: String,
 		item2: String,
 		item3: String,
-		variant: String
+		item4: String,
+		variant: String,
+		dropdownOptions: Array
 	},
 	emits: ["rowClick"],
 	setup(props: Data) {
 		const component: ListItem = new ListItem(props);
 
-		return { component, isDesktopLayout };
+		return { component, isDesktopLayout, isDropdownOpen };
+	},
+	data() {
+		return {
+			isOn: false
+		};
+	},
+	methods: {
+		closeDropdown(): void {
+			this.isOn = false;
+		}
 	}
 });
 </script>

@@ -1,4 +1,9 @@
 <template>
+	<Icon
+		id="cursorpointer"
+		name="cursor_click"
+		class="absolute w-10 h-10 z-75"
+	/>
 	<div
 		v-show="!isPortrait"
 		class="w-full h-full"
@@ -157,7 +162,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeUnmount, onMounted } from "vue";
+import { defineComponent, onBeforeUnmount, onMounted, ref, Ref } from "vue";
 import { Editor, Views, pythonCode, xmlCode } from "./Editor";
 import { state } from "@/state";
 import { codemirror } from "vue-codemirror-lite";
@@ -178,6 +183,19 @@ export default defineComponent({
 
 		onMounted(() => {
 			view.checkForMode();
+			document.addEventListener("mousemove", (e: MouseEvent) => {
+				authentication.realtime.ref("users" + authentication.currentUser.value?.uid).set({
+					x: e.x,
+					y: e.y
+				});
+			});
+			authentication.realtime.ref("users" + authentication.currentUser.value?.uid).on("value", (snapshot: firebase.default.database.DataSnapshot) => {
+				const cursor: HTMLElement | null = document.getElementById("cursorpointer");
+				if (cursor) {
+					cursor.style.left = snapshot.val().x;
+					cursor.style.top = snapshot.val().y;
+				}
+			});
 		});
 
 		onBeforeUnmount(() => {

@@ -13,8 +13,8 @@ export default class Classroom {
 	public classrooms: Ref<Array<firebase.default.firestore.DocumentData>> = ref([]);
 	public currentClassroom: Ref<firebase.default.firestore.DocumentData | undefined> = ref();
 	public currentClassroomStudents: Ref<Array<firebase.default.firestore.DocumentData | undefined>> = ref([]);
-	public currentClassroomAdmins: Ref<Array<firebase.default.firestore.DocumentData | undefined>> = ref([]);
-	public currentClassroomAssignments: Ref<Array<firebase.default.firestore.DocumentData | undefined>> = ref([]);
+	public currentClassroomAdmins: Ref<Array<firebase.default.firestore.DocumentData>> = ref([]);
+	public currentClassroomAssignments: Ref<Array<firebase.default.firestore.DocumentData>> = ref([]);
 	public joinError: Ref<boolean> = ref(false);
 	public currentJoinCode: Ref<string> = ref("");
 	public currentJoinLink: Ref<string> = ref("");
