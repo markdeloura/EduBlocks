@@ -61,5 +61,47 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
    this.setHelpUrl("");
     }
   };
+
+  Blocks['select'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("<select");
+      this.appendValueInput("class")
+          .setCheck(null);
+      this.appendDummyInput()
+          .appendField(">");
+      this.appendStatementInput("content")
+          .setCheck(null);
+      this.appendDummyInput()
+          .appendField("</select>");
+      this.setInputsInline(true);
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour("#29C598");
+   this.setTooltip("Create a select box");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blocks['option'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("<option ");
+      this.appendValueInput("attributes")
+          .setCheck(null);
+      this.appendDummyInput()
+          .appendField(">");
+      this.appendValueInput("content")
+          .setCheck(null);
+      this.appendDummyInput()
+          .appendField("</option>");
+      this.setInputsInline(true);
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour("#29C598");
+   this.setTooltip("Select option");
+   this.setHelpUrl("");
+    }
+  };
 }
 

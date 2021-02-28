@@ -8,6 +8,7 @@ import Classroom from "../views/Classroom/Classroom.vue";
 import ClassroomDetail from "../views/Classroom/ClassroomDetail.vue";
 import ClassroomAssignment from "../views/Classroom/ClassroomAssignment.vue";
 import JoinClassroom from "../views/Classroom/JoinClassroom.vue";
+import Preview from "../views/Preview/Preview.vue";
 
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -61,6 +62,14 @@ const routes: Array<RouteRecordRaw> = [
 			layout: "BlankLayout"
 		}
 	},
+	{
+		path: "/website",
+		name: "Preview",
+		component: Preview,
+		meta: {
+			layout: "BlankLayout"
+		}
+	}
 ];
 
 const router: Router = createRouter({

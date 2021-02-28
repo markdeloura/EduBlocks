@@ -15,32 +15,25 @@ export default function define(HTML: Blockly.BlockGenerators) {
 
   HTML['html'] = function(block) {
     var statements_content = HTMLGenerator.statementToCode(block, 'content');
-    var code = `<html>
-    ${statements_content}
-    </html>`;
+    var code = `<html>${statements_content}</html>`;
     return code;
   };
 
   HTML['head'] = function(block) {
     var statements_content = HTMLGenerator.statementToCode(block, 'content');
-    var code = `<head>
-    ${statements_content}
-    </head>`;
+    var code = `<head>${statements_content}</head>`;
     return code;
   };
 
   HTML['title'] = function(block) {
     var value_content = HTMLGenerator.valueToCode(block, 'content', 0);
-    // TODO: Assemble JavaScript into code variable.
     var code = `<title>${value_content}</title>\n`;
     return code;
   };
 
   HTML['body'] = function(block) {
     var statements_content = HTMLGenerator.statementToCode(block, 'content');
-    var code = `<body>
-    ${statements_content}
-    </body>`;
+    var code = `<body>${statements_content}</body>`;
     return code;
   };
 }

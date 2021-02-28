@@ -3,4 +3,12 @@
   <block type="li"></block>
   <block type="ul"></block>
   <block type="ol"></block>
+  <block type="select"></block>
+  <block type="option">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text">Option 1</field>
+      </shadow>
+    </value>
+  </block>
 </category>
