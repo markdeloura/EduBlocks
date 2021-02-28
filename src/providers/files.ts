@@ -148,13 +148,23 @@ class Files {
 		}
 	}
 
-	public saveLocalFile(): void {
-		const blob: Blob = new Blob([xmlCode.value], {type: "text/xml;charset=utf-8"});
+	public saveLocalFile(xml: string, filename: string): void {
+		const blob: Blob = new Blob([xml], {type: "text/xml;charset=utf-8"});
 		let file: string = "untitled.xml";
-		if (state.filename) {
-			file = `${state.filename}.xml`;
+		if (filename) {
+			file = `${filename}.xml`;
 		}
 		saveAs(blob, file);
+	}
+
+	public exportFirebaseFile(file: FirebaseFile): void {
+		fetch(file.downloadURL).then((response: Response) => {
+			return response.blob();
+		}).then((blob: Blob) => {
+			blob.text().then((xml: string) => {
+				this.saveLocalFile(xml, projects.removePlatformFromFileName(file.label));
+			});
+		});
 	}
 
 	public openFirebaseFile(file: FirebaseFile): void {

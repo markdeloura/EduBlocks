@@ -157,7 +157,7 @@ export class Editor {
 			files.saveFirebaseFile();
 		}
 		else { 
-			files.saveLocalFile();
+			files.saveLocalFile(xmlCode.value, state.filename);
 		 }
 	}
 

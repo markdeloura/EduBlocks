@@ -129,6 +129,22 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
         }
     };
 
+    Blocks['onclick'] = {
+        init: function() {
+          this.appendDummyInput()
+              .appendField("onclick=\"");
+          this.appendValueInput("content")
+              .setCheck(null);
+          this.appendDummyInput()
+              .appendField("\"");
+          this.setInputsInline(true);
+          this.setOutput(true, null);
+          this.setColour("#00CA4D");
+       this.setTooltip("Run function on click");
+       this.setHelpUrl("");
+        }
+    };
+
     Blocks['attributes'] = {
         init: function() {
           var inputsC = 1;    
@@ -164,7 +180,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
                   this.getSourceBlock().plus_();
                   } ));
               }
-              else if(this.inputsC == 5){
+              else if(this.inputsC == 20){
                   this.appendValueInput('in1')
                   .appendField(new Blockly.FieldImage(
                       "https://fonts.gstatic.com/s/i/materialiconsoutlined/remove/v4/24px.svg?download=true",

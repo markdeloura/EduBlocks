@@ -23,6 +23,9 @@ export default class Projects {
 			{ icon: "trash", title: "Delete", action: (): void => { 
 				files.deleteFirebaseFile(file.ref); 
 			}},
+			{ icon: "download", title: "Export", action: (): void => { 
+				files.exportFirebaseFile(file); 
+			}},
 		];
 	}
 

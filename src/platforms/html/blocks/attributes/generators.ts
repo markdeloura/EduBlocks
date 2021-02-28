@@ -45,7 +45,13 @@ export default function define(HTML: Blockly.BlockGenerators) {
 
   HTML['type'] = function(block) {
     var value_content = HTMLGenerator.valueToCode(block, 'content', 0);
-    var code = `placeholder="${value_content}"`;
+    var code = `type="${value_content}"`;
+    return [code, 0];
+  };
+
+  HTML['onclick'] = function(block) {
+    var value_content = HTMLGenerator.valueToCode(block, 'content', 0);
+    var code = `onclick="${value_content}"`;
     return [code, 0];
   };
 

@@ -57,4 +57,11 @@
       </shadow>
     </value>
   </block>
+  <block type="onclick">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text"></field>
+      </shadow>
+    </value>
+  </block>
 </category>
