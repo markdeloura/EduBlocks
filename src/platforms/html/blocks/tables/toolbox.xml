@@ -1,0 +1,7 @@
+<category name="Tables" colour="#FF4A76" iconclass="blocklyTreeIconCustom layout">
+  <label text="Tables" web-class="myLabelStyle"></label>
+  <block type="table"></block>
+  <block type="table_header"></block>
+  <block type="table_row"></block>
+  <block type="table_data"></block>
+</category>

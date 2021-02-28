@@ -1,0 +1,60 @@
+<category name="Attributes" colour="#00CA4D" iconclass="blocklyTreeIconCustom attributes">
+  <label text="Attributes" web-class="myLabelStyle"></label>
+  <block type="attributes"></block>
+  <block type="id">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text">elementid</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="class">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text">classname</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="style">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text"></field>
+      </shadow>
+    </value>
+  </block>
+  <block type="height">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text"></field>
+      </shadow>
+    </value>
+  </block>
+  <block type="width">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text"></field>
+      </shadow>
+    </value>
+  </block>
+  <block type="value">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text"></field>
+      </shadow>
+    </value>
+  </block>
+  <block type="placeholder">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text"></field>
+      </shadow>
+    </value>
+  </block>
+  <block type="type">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text"></field>
+      </shadow>
+    </value>
+  </block>
+</category>

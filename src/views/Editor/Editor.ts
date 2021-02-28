@@ -9,6 +9,8 @@ import { isSlideOverNavOpen } from "@/components/SlideoverNav/SlideoverNav";
 import { authentication } from "@/providers/auth";
 import { files } from "@/providers/files";
 import { assignmentActive, classroom } from "@/views/Classroom/Classroom";
+import { HTMLGenerator } from "@/platforms/html/html-generator";
+import pretty from "pretty";
 
 /**
  * Define template reference for the blockly div component
@@ -21,7 +23,7 @@ export const blocklyDiv: Ref = ref();
 export enum Views {
 	Split = "Split",
 	Blocks = "Blocks",
-	Python = "Python",
+	Code = "Code",
 }
 
 /**
@@ -31,14 +33,15 @@ class EditorState {
 	public mode: Platform | undefined;
 	public view: Views = Views.Split;
 	public blockly: boolean = true;
-	public pythonEditor: boolean = true;
+	public codeEditor: boolean = true;
 	public nav: boolean = true;
 	public toolbar: boolean = true;
 	public output: boolean = false;
+	public HTMLPreview: boolean = false;
 	public readOnly: boolean = false;
 	public splitSwitch: boolean = true;
 	public blocksSwitch: boolean = true;
-	public pythonSwitch: boolean = true;
+	public codeSwitch: boolean = true;
 	public runButton: boolean = true;
 	public resetButton: boolean = true;
 	public stopButton: boolean = false;
@@ -66,6 +69,11 @@ export class Editor {
 		if (state.mode === Platform.None) {
 			this.goHome();
 		}
+		if (state.mode === Platform.HTML) {
+			this.state.HTMLPreview = true;
+			this.state.codeEditor = false;
+			this.state.runButton = false;
+		}
 	}
 
 	/**
@@ -77,6 +85,10 @@ export class Editor {
 		}
 		else {
 			state.mode = Platform.None;
+		}
+		if (state.mode === Platform.HTML) {
+			this.state.HTMLPreview = true;
+			this.state.codeEditor = false;
 		}
 		state.filename = "";
 		pythonCode.value = "";
@@ -96,7 +108,7 @@ export class Editor {
 		this.state.saveButton = true;
 		this.state.splitSwitch = true;
 		this.state.blocksSwitch = true;
-		this.state.pythonSwitch = true;	
+		this.state.codeSwitch = true;	
 		assignmentActive.value = false;
 	}
 
@@ -124,18 +136,18 @@ export class Editor {
 
 	public run(): void {
 		this.state.output = true;
-		this.state.pythonEditor = false;
+		this.state.codeEditor = false;
 		this.state.blocksSwitch = false;
-		this.state.pythonSwitch = false;
+		this.state.codeSwitch = false;
 		this.state.runButton = false;
 		this.state.stopButton = true;
 	}
 
 	public stop(): void {
 		this.state.output = false;
-		this.state.pythonEditor = true;
+		this.state.codeEditor = true;
 		this.state.blocksSwitch = true;
-		this.state.pythonSwitch = true;
+		this.state.codeSwitch = true;
 		this.state.runButton = true;
 		this.state.stopButton = false;
 	}
@@ -154,26 +166,51 @@ export class Editor {
 		this.loadBlockly();
 	}
 
+	public encodeURL(text: string): string {
+		return encodeURI(text);
+	}
+
 	public async switchView(view: Views): Promise<void> {
 		switch (view) {
 			case Views.Split:
-				this.state.blockly = true;
-				this.state.pythonEditor = true;
+				if (state.mode === Platform.HTML) {
+					this.state.blockly = true;
+					this.state.HTMLPreview = true;
+					this.state.codeEditor = false;
+				}
+				else {
+					this.state.blockly = true;
+					this.state.codeEditor = true;
+				}
 				this.state.view = Views.Split;
 				await window.dispatchEvent(new Event("resize"));
 				await this.resizeWindow();
 				break;
 			case Views.Blocks:
-				this.state.blockly = true;
-				this.state.pythonEditor = false;
+				if (state.mode === Platform.HTML) {
+					this.state.blockly = true;
+					this.state.HTMLPreview = false;
+					this.state.codeEditor = false;
+				}
+				else {
+					this.state.blockly = true;
+					this.state.codeEditor = false;
+				}
 				this.state.view = Views.Blocks;
 				await window.dispatchEvent(new Event("resize"));
 				await this.resizeWindow();
 				break;
-			case Views.Python:
-				this.state.blockly = false; 
-				this.state.pythonEditor = true;
-				this.state.view = Views.Python;
+			case Views.Code:
+				if (state.mode === Platform.HTML) {
+					this.state.blockly = false;
+					this.state.HTMLPreview = false;
+					this.state.codeEditor = true;
+				}
+				else {
+					this.state.blockly = false; 
+					this.state.codeEditor = true;
+				}
+				this.state.view = Views.Code;
 				break;
 		}
 	}
@@ -190,21 +227,21 @@ export class Editor {
 		  "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"events_start_here\" id=\"DI_start_here\" x=\"" +
 		  25 +
 		  "\" y=\"33\" deletable=\"false\" movable=\"false\"></block></xml>";
-	
-		if (typeof xml === "string") {
+		if (state.mode !== Platform.HTML) {
+			if (typeof xml === "string") {
 		  start = xml.search("DI_start_here");
 	
 		  if (start < 0) {
-				const firstBlockPosition: number = xml.search("<block");
-				const startBlockXml: string =
+					const firstBlockPosition: number = xml.search("<block");
+					const startBlockXml: string =
 			  "<block type=\"events_start_here\" id=\"DI_start_here\" x=\"" +
 			  25 +
 			  "\" y=\"33\" deletable=\"false\" movable=\"false\">";
 	
-				if (firstBlockPosition < 0) {
+					if (firstBlockPosition < 0) {
 			  // No Blocks
-				}
-				else {
+					}
+					else {
 			  const posFromEndOfString: number = -1 * "</xml>".length;
 			  newXml =
 				xml.slice(0, firstBlockPosition) +
@@ -213,18 +250,25 @@ export class Editor {
 				xml.slice(firstBlockPosition, posFromEndOfString) +
 				"</next></block>" +
 				xml.slice(posFromEndOfString);
-				}
-				const textToDom: Element = Blockly.Xml.textToDom(newXml);
-				Blockly.Xml.domToWorkspace(textToDom, Blockly.mainWorkspace);
+					}
+					const textToDom: Element = Blockly.Xml.textToDom(newXml);
+					Blockly.Xml.domToWorkspace(textToDom, Blockly.mainWorkspace);
 		  }
+				else {
+					const textToDom: Element = Blockly.Xml.textToDom(xml);
+					Blockly.Xml.domToWorkspace(textToDom, Blockly.mainWorkspace);
+		  }
+			}
 			else {
-				const textToDom: Element = Blockly.Xml.textToDom(xml);
-				Blockly.Xml.domToWorkspace(textToDom, Blockly.mainWorkspace);
-		  }
-		}
-		else {
 		  const textToDom: Element = Blockly.Xml.textToDom(newXml);
 		  Blockly.Xml.domToWorkspace(textToDom, Blockly.mainWorkspace);
+			}
+		}
+		else {
+			if (typeof xml === "string") {
+				const textToDom: Element = Blockly.Xml.textToDom(xml);
+				Blockly.Xml.domToWorkspace(textToDom, Blockly.mainWorkspace);
+			}
 		}
 	  }
 	
@@ -261,15 +305,22 @@ export class Editor {
 		  blocklyDiv.value,
 		  options
 		);
-	
-		blocklyWorkspace.addChangeListener(Blockly.Events.disableOrphans);
+		
+		if (state.mode !== Platform.HTML) {
+			blocklyWorkspace.addChangeListener(Blockly.Events.disableOrphans);
+		}
 		
 		blocklyWorkspace.addChangeListener(() => {
 			xmlCode.value = Blockly.Xml.domToPrettyText(
 				Blockly.Xml.workspaceToDom(blocklyWorkspace)
 		  );
 		  if (!blocklyWorkspace.isDragging()) {
-				pythonCode.value = Blockly.Python.workspaceToCode(blocklyWorkspace);
+			  	if (state.mode === Platform.HTML) {
+					pythonCode.value = pretty(HTMLGenerator.workspaceToCode(blocklyWorkspace));
+				}
+				else {
+					pythonCode.value = Blockly.Python.workspaceToCode(blocklyWorkspace);
+				}
 				if (files.isFirebaseFile.value) {
 					files.saveFirebaseFile();
 				}

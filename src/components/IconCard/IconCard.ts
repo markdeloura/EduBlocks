@@ -6,6 +6,7 @@ export enum Variants {
 	Green = "Green",
 	Red = "Red",
 	Purple = "Purple",
+	Yellow = "Yellow",
 }
 
 /**
@@ -43,6 +44,9 @@ export class IconCard {
 				break;
 			case Variants.Green:
 				currentVariant.push("bg-green-100", "text-green-500");
+				break;
+			case Variants.Yellow:
+				currentVariant.push("bg-yellow-100", "text-yellow-500");
 				break;
 		}
 

@@ -1,0 +1,24 @@
+<category name="Forms" colour="#00C0EA" iconclass="blocklyTreeIconCustom layout">
+  <label text="Forms" web-class="myLabelStyle"></label>
+  <block type="form"></block>
+  <block type="input"></block>
+  <block type="button">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text">Submit</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="label">
+    <value name="for">
+      <shadow type="textinline">
+        <field name="text"></field>
+      </shadow>
+    </value>
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text">Label</field>
+      </shadow>
+    </value>
+  </block>
+</category>

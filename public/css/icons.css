@@ -61,12 +61,56 @@
     content: "\f52c";
 }
 
+.smallLabel>.blocklyFlyoutLabelText {
+    font-size: medium;
+}
+
 .blocklyTreeIconCustom.radio::before {
     content: "\f519";
 }
 
 .blocklyTreeIconCustom.display::before {
     content: "\f00a";
+}
+
+.blocklyTreeIconCustom.page::before {
+    content: "\f0c5";
+}
+
+.blocklyTreeIconCustom.tables::before {
+    content: "\f0ce";
+}
+
+.blocklyTreeIconCustom.structure::before {
+    content: "\f1b2";
+}
+
+.blocklyTreeIconCustom.background::before {
+    content: "\f5fd";
+}
+
+.blocklyTreeIconCustom.forms::before {
+    content: "\f46d";
+}
+
+.blocklyTreeIconCustom.script::before {
+    content: "\f121";
+}
+
+.blocklyTreeIconCustom.media::before {
+    content: "\f008";
+}
+
+.blocklyTreeIconCustom.text::before {
+    content: "\f1dc";
+}
+
+.blocklyTreeIconCustom.attributes::before {
+    content: "\f0fe";
+}
+
+.blocklyTreeIconCustom.style::before {
+    content: "\f53f";
 }
 
 .blocklyTreeIconCustom.buttons::before {
@@ -187,40 +231,6 @@
 
 .blocklyTreeIconCustom.loops::before {
     content: "\f2f9";
-}
-
-.blocklyTreeIconClosedLtr {
-    background: none !important;
-    font-family: 'Font Awesome\ 5 Free';
-    font-weight: 900;
-    font-size: 1.3rem;
-    margin: 0 .25em;
-    width: 30px !important;
-    height: 100% !important;
-    line-height: 45px;
-    min-height: 45px;
-    vertical-align: middle;
-}
-
-.blocklyTreeIconOpen {
-    background: none !important;
-    font-family: 'Font Awesome\ 5 Free';
-    font-weight: 900;
-    font-size: 1.3rem;
-    margin: 0 .25em;
-    width: 30px !important;
-    height: 100% !important;
-    line-height: 45px;
-    min-height: 45px;
-    vertical-align: middle;
-}
-
-.blocklyTreeIconOpen::before {
-    content: "\f0ab";
-}
-
-.blocklyTreeIconClosedLtr::before {
-    content: "\f0a9";
 }
 
 .blocklyTreeIconCustom.definitions::before {

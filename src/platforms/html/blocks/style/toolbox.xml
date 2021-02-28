@@ -1,0 +1,238 @@
+<category name="Style" colour="#AD40FF" iconclass="blocklyTreeIconCustom text">
+  <label text="Style" web-class="myLabelStyle"></label>
+  <block type="style_block"></block>
+  <block type="stylesheet_link">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text">URL</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="element_style">
+    <value name="element">
+      <shadow type="textinline">
+        <field name="text">.classname</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="pseudo"></block>
+  <block type="color_picker"></block>
+  <block type="rgba">
+    <value name="r">
+      <shadow type="textinline">
+        <field name="text">r</field>
+      </shadow>
+    </value>
+    <value name="g">
+      <shadow type="textinline">
+        <field name="text">g</field>
+      </shadow>
+    </value>
+    <value name="b">
+      <shadow type="textinline">
+        <field name="text">b</field>
+      </shadow>
+    </value>
+    <value name="a">
+      <shadow type="textinline">
+        <field name="text">a</field>
+      </shadow>
+    </value>
+  </block>
+
+  <category name="Text" colour="#AD40FF" iconclass="blocklyTreeIconCustom text">
+    <label text="Text" web-class="myLabelStyle"></label>
+    <block type="text_color">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">#ff0066</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="font_family">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">serif</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="font_size_value">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">20</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="font_size_text">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">20</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_align"></block>
+    <block type="text_transform"></block>
+    <block type="text_decoration"></block>
+    <block type="text_shadow">
+      <value name="h">
+        <shadow type="textinline">
+          <field name="text">h-shadow</field>
+        </shadow>
+      </value>
+      <value name="v">
+        <shadow type="textinline">
+          <field name="text">v-shadow</field>
+        </shadow>
+      </value>
+      <value name="blur">
+        <shadow type="textinline">
+          <field name="text">radius</field>
+        </shadow>
+      </value>
+      <value name="color">
+        <shadow type="textinline">
+          <field name="text">#ff0066</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+  <category name="Display" colour="#AD40FF" iconclass="blocklyTreeIconCustom text">
+    <label text="Display" web-class="myLabelStyle"></label>
+    <block type="display"></block>
+    <block type="overflow"></block>
+    <block type="float"></block>
+    <block type="element_height">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">20</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="element_width">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">20</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+  <category name="Spacing" colour="#AD40FF" iconclass="blocklyTreeIconCustom text">
+    <label text="Spacing" web-class="myLabelStyle"></label>
+    <block type="margin_direction">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">20</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="margin">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">20</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="padding_direction">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">20</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="padding">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">20</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+  <category name="Background" colour="#AD40FF" iconclass="blocklyTreeIconCustom background">
+    <label text="Background" web-class="myLabelStyle"></label>
+    <block type="background_color">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">#ff0066</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="background_image">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">URL</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="background_repeat"></block>
+    <block type="background_position"></block>
+    <block type="background_size"></block>
+    <block type="background_clip"></block>
+  </category>
+  <category name="Border" colour="#AD40FF" iconclass="blocklyTreeIconCustom border">
+    <label text="Border" web-class="myLabelStyle"></label>
+    <block type="border_set">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">1</field>
+        </shadow>
+      </value>
+      <value name="color">
+        <shadow type="textinline">
+          <field name="text">#ff0066</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="border_direction_set">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">1</field>
+        </shadow>
+      </value>
+      <value name="color">
+        <shadow type="textinline">
+          <field name="text">#ff0066</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="border_radius">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">5</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="border_radius_direction">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">5</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+  <category name="Other" colour="#AD40FF" iconclass="blocklyTreeIconCustom text">
+    <label text="Other" web-class="myLabelStyle"></label>
+    <block type="cursor"></block>
+    <block type="box_shadow">
+      <value name="h">
+        <shadow type="textinline">
+          <field name="text">h-shadow</field>
+        </shadow>
+      </value>
+      <value name="v">
+        <shadow type="textinline">
+          <field name="text">v-shadow</field>
+        </shadow>
+      </value>
+      <value name="blur">
+        <shadow type="textinline">
+          <field name="text">radius</field>
+        </shadow>
+      </value>
+      <value name="color">
+        <shadow type="textinline">
+          <field name="text">#ff0066</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+</category>

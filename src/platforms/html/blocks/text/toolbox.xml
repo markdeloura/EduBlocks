@@ -1,0 +1,35 @@
+<category name="Text" colour="#448EFF" iconclass="blocklyTreeIconCustom text">
+  <label text="Text" web-class="myLabelStyle"></label>
+  <block type="heading">
+    <value name="type">
+      <shadow type="sliderinline"></shadow>
+    </value>
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text">Heading</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="paragraph">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text">Paragraph</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="span">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text">Span</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="link">
+    <value name="url">
+      <shadow type="textinline">
+        <field name="text">URL</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="textinline"></block>
+</category>

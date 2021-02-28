@@ -1,9 +1,9 @@
 <template>
-	<Icon
+	<!-- <Icon
 		id="cursorpointer"
 		name="cursor_click"
 		class="absolute w-10 h-10 z-75"
-	/>
+	/> -->
 	<div
 		v-show="!isPortrait"
 		class="w-full h-full"
@@ -40,16 +40,16 @@
 						Blocks
 					</div>
 					<div
-						v-if="view.state.pythonSwitch"
+						v-if="view.state.codeSwitch"
 						class="flex flex-wrap content-center justify-center h-full transition-all border-2 rounded-t-lg cursor-pointer w-28"
-						:class="[view.state.view === Views.Python ? 'bg-white' : 'bg-gray-100 border-transparent opacity-30']"
-						@click="view.switchView(Views.Python)"
+						:class="[view.state.view === Views.Code ? 'bg-white' : 'bg-gray-100 border-transparent opacity-30']"
+						@click="view.switchView(Views.Code)"
 					>
 						<Icon
 							name="code"
 							class="w-5 h-5 mt-0.5 mr-2 -ml-1"
 						/>
-						Python
+						Code
 					</div>
 				</div>
 			
@@ -140,9 +140,9 @@
 					<Blockly />
 				</div>
 				<div
-					v-if="view.state.pythonEditor"
+					v-if="view.state.codeEditor"
 					class="w-1/2 h-full overflow-x-auto bg-gray-900 rounded-md"
-					:class="[view.state.view === Views.Python ? 'w-full rounded-tl-none relative' : '']"
+					:class="[view.state.view === Views.Code ? 'w-full rounded-tl-none relative' : '']"
 				>
 					<codemirror
 						:value="pythonCode"
@@ -154,6 +154,15 @@
 						class="w-full h-full rounded"
 					/>
 				</div>
+				<div
+					v-if="view.state.HTMLPreview"
+					class="w-1/2 h-full overflow-x-auto bg-white border-2 rounded-md"
+				>
+					<iframe
+						class="w-full h-full"
+						:srcdoc="pythonCode"
+					/>
+				</div>
 				<Trinket v-if="view.state.output" />
 			</div>
 		</div>
@@ -162,7 +171,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeUnmount, onMounted, ref, Ref } from "vue";
+import { defineComponent, onBeforeUnmount, onMounted } from "vue";
 import { Editor, Views, pythonCode, xmlCode } from "./Editor";
 import { state } from "@/state";
 import { codemirror } from "vue-codemirror-lite";
@@ -183,19 +192,19 @@ export default defineComponent({
 
 		onMounted(() => {
 			view.checkForMode();
-			document.addEventListener("mousemove", (e: MouseEvent) => {
-				authentication.realtime.ref("users" + authentication.currentUser.value?.uid).set({
-					x: e.x,
-					y: e.y
-				});
-			});
-			authentication.realtime.ref("users" + authentication.currentUser.value?.uid).on("value", (snapshot: firebase.default.database.DataSnapshot) => {
-				const cursor: HTMLElement | null = document.getElementById("cursorpointer");
-				if (cursor) {
-					cursor.style.left = snapshot.val().x;
-					cursor.style.top = snapshot.val().y;
-				}
-			});
+			// document.addEventListener("mousemove", (e: MouseEvent) => {
+			// 	authentication.realtime.ref("users/" + authentication.currentUser.value?.uid).set({
+			// 		x: e.x,
+			// 		y: e.y
+			// 	});
+			// });
+			// authentication.realtime.ref("users/" + authentication.currentUser.value?.uid).on("value", (snapshot: firebase.default.database.DataSnapshot) => {
+			// 	const cursor: HTMLElement | null = document.getElementById("cursorpointer");
+			// 	if (cursor) {
+			// 		cursor.style.left = snapshot.val().x;
+			// 		cursor.style.top = snapshot.val().y;
+			// 	}
+			// });
 		});
 
 		onBeforeUnmount(() => {

@@ -1,0 +1,32 @@
+<category name="Media" colour="#ED2CD5" iconclass="blocklyTreeIconCustom text">
+  <label text="Media" web-class="myLabelStyle"></label>
+  <block type="iframe">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text">URL</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="video">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text">URL</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="audio">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text">URL</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="image">
+    <value name="content">
+      <shadow type="textinline">
+        <field name="text">URL</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="media_controls"></block>
+</category>

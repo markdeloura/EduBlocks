@@ -6,6 +6,7 @@ import { modalState } from "@/components/Modals/ModalState";
 import { xmlCode } from "../Editor/Editor";
 import { projects } from "@/views/Projects/Projects";
 import { state } from "@/state";
+import { DropdownOptions } from "@/types";
 
 export const assignmentActive: Ref<boolean> = ref(false);
 
@@ -235,6 +236,24 @@ export default class Classroom {
 					assignmentActive.value = true;
 					router.push({path: "/editor", query: { assignmentID, classroomID: this.currentClassroom.value?.id }});
 				}
+			}
+		});
+	}
+
+	public getDropdownOptions(classroom: firebase.default.firestore.DocumentData): Array<DropdownOptions> {
+		return [
+			{ icon: "arrow_circle_right", title: "Open", action: (): void => { 
+				router.push({path: `/classroom/${classroom.id}`}); 
+			}}
+		];
+	}
+
+	public submitAssignment(): void {
+		authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).collection("assignments").doc(this.currentClassroomAssignments.value[Number(router.currentRoute.value.params.assignmentID)]?.id).collection("submissions").where("IDs", "==", {assignmentID: this.currentClassroomAssignments.value[Number(router.currentRoute.value.params.assignmentID)]?.id, uid: authentication.currentUser.value?.uid}).get().then((snapshot: firebase.default.firestore.QuerySnapshot) => {
+			if (snapshot.docs.length > 0) {
+				snapshot.forEach((doc: firebase.default.firestore.QueryDocumentSnapshot) => {
+					// Hello
+				});
 			}
 		});
 	}

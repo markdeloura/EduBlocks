@@ -40,6 +40,9 @@ export default class Projects {
 		else if (name.includes("(RPi)")) {
 			output = name.replace("(RPi)", "");
 		}
+		else if (name.includes("(HTML)")) {
+			output = name.replace("(HTML)", "");
+		}
 		return output;
 	}
 
@@ -56,6 +59,9 @@ export default class Projects {
 		}
 		else if (name.includes("(RPi)")) {
 			output = Platform.RaspberryPi;
+		}
+		else if (name.includes("(HTML)")) {
+			output = Platform.HTML;
 		}
 		return output;
 	}
@@ -74,6 +80,9 @@ export default class Projects {
 		else if (name.includes("(RPi)")) {
 			output = "Red";
 		}
+		else if (name.includes("(HTML)")) {
+			output = "Yellow";
+		}
 		return output;
 	}
 
@@ -90,6 +99,9 @@ export default class Projects {
 		}
 		else if (name.includes("(RPi)")) {
 			output = "raspberrypi";
+		}
+		else if (name.includes("(HTML)")) {
+			output = "html";
 		}
 		return output;
 	}

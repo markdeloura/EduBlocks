@@ -1,0 +1,8 @@
+<category name="Script" colour="#FFAA00" iconclass="blocklyTreeIconCustom layout">
+  <label text="Script" web-class="myLabelStyle"></label>
+  <block type="script">
+    <value name="content">
+      <block type="multiline"></block>
+    </value>
+  </block>
+</category>

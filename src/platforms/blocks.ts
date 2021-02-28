@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { state } from "@/state"
 import { Platform } from "@/platforms/platforms"
+import { HTMLGenerator } from "./html/html-generator"
 
 export let toolboxXML: string;
 
@@ -314,6 +315,88 @@ export async function getToolboxXml() {
       Blockly.Python as any
     );
     toolboxXML += require("@/platforms/circuitpython/blocks/cpx/toolbox.xml");
+  }
+
+  if (state.mode === "HTML") { 
+    (await import("@/platforms/html/blocks/page/definitions")).default(
+      Blockly.Blocks
+    );
+    (await import("@/platforms/html/blocks/page/generators")).default(
+      HTMLGenerator as any
+    );
+    toolboxXML += require("@/platforms/html/blocks/page/toolbox.xml");
+
+    (await import("@/platforms/html/blocks/structure/definitions")).default(
+      Blockly.Blocks
+    );
+    (await import("@/platforms/html/blocks/structure/generators")).default(
+      HTMLGenerator as any
+    );
+    toolboxXML += require("@/platforms/html/blocks/structure/toolbox.xml");
+
+    (await import("@/platforms/html/blocks/text/definitions")).default(
+      Blockly.Blocks
+    );
+    (await import("@/platforms/html/blocks/text/generators")).default(
+      HTMLGenerator as any
+    );
+    toolboxXML += require("@/platforms/html/blocks/text/toolbox.xml");
+
+    (await import("@/platforms/html/blocks/attributes/definitions")).default(
+      Blockly.Blocks
+    );
+    (await import("@/platforms/html/blocks/attributes/generators")).default(
+      HTMLGenerator as any
+    );
+    toolboxXML += require("@/platforms/html/blocks/attributes/toolbox.xml");
+
+    (await import("@/platforms/html/blocks/style/definitions")).default(
+      Blockly.Blocks
+    );
+    (await import("@/platforms/html/blocks/style/generators")).default(
+      HTMLGenerator as any
+    );
+    toolboxXML += require("@/platforms/html/blocks/style/toolbox.xml");
+
+    (await import("@/platforms/html/blocks/media/definitions")).default(
+      Blockly.Blocks
+    );
+    (await import("@/platforms/html/blocks/media/generators")).default(
+      HTMLGenerator as any
+    );
+    toolboxXML += require("@/platforms/html/blocks/media/toolbox.xml");
+
+    (await import("@/platforms/html/blocks/forms/definitions")).default(
+      Blockly.Blocks
+    );
+    (await import("@/platforms/html/blocks/forms/generators")).default(
+      HTMLGenerator as any
+    );
+    toolboxXML += require("@/platforms/html/blocks/forms/toolbox.xml");
+    
+    (await import("@/platforms/html/blocks/tables/definitions")).default(
+      Blockly.Blocks
+    );
+    (await import("@/platforms/html/blocks/tables/generators")).default(
+      HTMLGenerator as any
+    );
+    toolboxXML += require("@/platforms/html/blocks/tables/toolbox.xml");
+
+    (await import("@/platforms/html/blocks/lists/definitions")).default(
+      Blockly.Blocks
+    );
+    (await import("@/platforms/html/blocks/lists/generators")).default(
+      HTMLGenerator as any
+    );
+    toolboxXML += require("@/platforms/html/blocks/lists/toolbox.xml");
+
+    (await import("@/platforms/html/blocks/script/definitions")).default(
+      Blockly.Blocks
+    );
+    (await import("@/platforms/html/blocks/script/generators")).default(
+      HTMLGenerator as any
+    );
+    toolboxXML += require("@/platforms/html/blocks/script/toolbox.xml");
   }
 
   toolboxXML += "</xml>";

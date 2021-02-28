@@ -6,6 +6,7 @@ export enum Platform {
 	MicroBit = "BBC micro:bit",
 	RaspberryPi = "Raspberry Pi",
 	CircuitPython = "CircuitPython",
+	HTML = "HTML",
 } 
 
 const Python: PlatformOptions = reactive({
@@ -16,21 +17,22 @@ const Python: PlatformOptions = reactive({
 	color: "bg-navy-500"
 })
 
-const MicroBit: PlatformOptions = reactive({
+const HTML: PlatformOptions = reactive({
 	id: 2,
+	title: Platform.HTML,
+	value: Platform.HTML,
+	image: "/images/platforms/HTML.png",
+	color: "bg-blue-500"
+})
+
+const MicroBit: PlatformOptions = reactive({
+	id: 3,
 	title: Platform.MicroBit,
 	value: Platform.MicroBit,
 	image: "/images/platforms/BBC micro:bit.png",
 	color: "bg-green-400"
 })
 
-const RaspberryPi: PlatformOptions = reactive({
-	id: 3,
-	title: Platform.RaspberryPi,
-	value: Platform.RaspberryPi,
-	image: "/images/platforms/Raspberry Pi.png",
-	color: "bg-pink-600"
-})
 
 const CircuitPython: PlatformOptions = reactive({
 	id: 4,
@@ -40,6 +42,14 @@ const CircuitPython: PlatformOptions = reactive({
 	color: "bg-purple-500"
 })
 
+const RaspberryPi: PlatformOptions = reactive({
+	id: 5,
+	title: Platform.RaspberryPi,
+	value: Platform.RaspberryPi,
+	image: "/images/platforms/Raspberry Pi.png",
+	color: "bg-pink-600"
+})
+
 interface PlatformOptions {
 	id: number;
 	title: Platform;
@@ -47,4 +57,4 @@ interface PlatformOptions {
 	color: string;
 }
 
-export const platforms: Array<PlatformOptions> = [ Python, MicroBit, RaspberryPi, CircuitPython];
+export const platforms: Array<PlatformOptions> = [ Python, HTML, MicroBit, CircuitPython, RaspberryPi];

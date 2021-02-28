@@ -22,6 +22,7 @@ export class CreateClassModal {
 		{ title: "Python", value: "python"},
 		{ title: "BBC micro:bit", value: "microbit"},
 		{ title: "CircuitPython", value: "circuitpython"},
+		{ title: "HTML", value: "html"},
 
 	]
 

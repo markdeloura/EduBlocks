@@ -12,7 +12,7 @@
   <block type="webtypeanything">
       <value name="stuff">
         <shadow type="textinline">
-          <field name="text">     </field>
+          <field name="text"></field>
         </shadow>
       </value>
   </block>

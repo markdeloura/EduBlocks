@@ -133,6 +133,9 @@ class Files {
 				case Platform.CircuitPython:
 					platformTitle = "CircuitPython";
 					break;
+				case Platform.HTML:
+					platformTitle = "HTML";
+					break;
 			}
 			const ref: firebase.default.storage.Reference = firebase.default.storage().ref(`blocks/${authentication.currentUser.value.uid}/${state.filename}(${platformTitle})`);
 			ref.putString(xmlCode.value).then(() => {
@@ -146,7 +149,7 @@ class Files {
 	}
 
 	public saveLocalFile(): void {
-		const blob: Blob = new Blob([xmlCode.value], {type: "text/plain;charset=utf-8"});
+		const blob: Blob = new Blob([xmlCode.value], {type: "text/xml;charset=utf-8"});
 		let file: string = "untitled.xml";
 		if (state.filename) {
 			file = `${state.filename}.xml`;

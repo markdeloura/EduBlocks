@@ -1,0 +1,6 @@
+<category name="Lists" colour="#29C598" iconclass="blocklyTreeIconCustom layout">
+  <label text="Lists" web-class="myLabelStyle"></label>
+  <block type="li"></block>
+  <block type="ul"></block>
+  <block type="ol"></block>
+</category>
