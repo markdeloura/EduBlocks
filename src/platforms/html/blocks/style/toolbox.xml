@@ -42,6 +42,7 @@
 
   <category name="Text" colour="#AD40FF" iconclass="blocklyTreeIconCustom text">
     <label text="Text" web-class="myLabelStyle"></label>
+    <label text="External" web-class="smallLabel"></label>
     <block type="text_color">
       <value name="content">
         <shadow type="textinline">
@@ -95,9 +96,65 @@
         </shadow>
       </value>
     </block>
+    <label text="Inline" web-class="smallLabel"></label>
+    <block type="text_color_inline">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">#ff0066</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="font_family_inline">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">serif</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="font_size_value_inline">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">20</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="font_size_text_inline">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">20</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_align_inline"></block>
+    <block type="text_transform_inline"></block>
+    <block type="text_decoration_inline"></block>
+    <block type="text_shadow_inline">
+      <value name="h">
+        <shadow type="textinline">
+          <field name="text">h-shadow</field>
+        </shadow>
+      </value>
+      <value name="v">
+        <shadow type="textinline">
+          <field name="text">v-shadow</field>
+        </shadow>
+      </value>
+      <value name="blur">
+        <shadow type="textinline">
+          <field name="text">radius</field>
+        </shadow>
+      </value>
+      <value name="color">
+        <shadow type="textinline">
+          <field name="text">#ff0066</field>
+        </shadow>
+      </value>
+    </block>
   </category>
+  
   <category name="Display" colour="#AD40FF" iconclass="blocklyTreeIconCustom text">
     <label text="Display" web-class="myLabelStyle"></label>
+    <label text="External" web-class="smallLabel"></label>
     <block type="display"></block>
     <block type="overflow"></block>
     <block type="float"></block>
@@ -115,9 +172,29 @@
         </shadow>
       </value>
     </block>
+
+    <label text="Inline" web-class="smallLabel"></label>
+    <block type="display_inline"></block>
+    <block type="overflow_inline"></block>
+    <block type="float_inline"></block>
+    <block type="element_height_inline">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">20</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="element_width_inline">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">20</field>
+        </shadow>
+      </value>
+    </block>
   </category>
   <category name="Spacing" colour="#AD40FF" iconclass="blocklyTreeIconCustom text">
     <label text="Spacing" web-class="myLabelStyle"></label>
+    <label text="External" web-class="smallLabel"></label>
     <block type="margin_direction">
       <value name="content">
         <shadow type="textinline">
@@ -146,9 +223,39 @@
         </shadow>
       </value>
     </block>
+    <label text="Inline" web-class="smallLabel"></label>
+    <block type="margin_direction_inline">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">20</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="margin_inline">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">20</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="padding_direction_inline">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">20</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="padding_inline">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">20</field>
+        </shadow>
+      </value>
+    </block>
   </category>
   <category name="Background" colour="#AD40FF" iconclass="blocklyTreeIconCustom background">
     <label text="Background" web-class="myLabelStyle"></label>
+    <label text="External" web-class="smallLabel"></label>
     <block type="background_color">
       <value name="content">
         <shadow type="textinline">
@@ -167,9 +274,29 @@
     <block type="background_position"></block>
     <block type="background_size"></block>
     <block type="background_clip"></block>
+    <label text="Inline" web-class="smallLabel"></label>
+    <block type="background_color_inline">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">#ff0066</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="background_image_inline">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">URL</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="background_repeat_inline"></block>
+    <block type="background_position_inline"></block>
+    <block type="background_size_inline"></block>
+    <block type="background_clip_inline"></block>
   </category>
   <category name="Border" colour="#AD40FF" iconclass="blocklyTreeIconCustom border">
     <label text="Border" web-class="myLabelStyle"></label>
+    <label text="External" web-class="smallLabel"></label>
     <block type="border_set">
       <value name="content">
         <shadow type="textinline">
@@ -208,11 +335,76 @@
         </shadow>
       </value>
     </block>
+    <label text="Inline" web-class="smallLabel"></label>
+    <block type="border_set_inline">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">1</field>
+        </shadow>
+      </value>
+      <value name="color_inline">
+        <shadow type="textinline">
+          <field name="text">#ff0066</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="border_direction_set_inline">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">1</field>
+        </shadow>
+      </value>
+      <value name="color">
+        <shadow type="textinline">
+          <field name="text">#ff0066</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="border_radius_inline">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">5</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="border_radius_direction_inline">
+      <value name="content">
+        <shadow type="textinline">
+          <field name="text">5</field>
+        </shadow>
+      </value>
+    </block>
   </category>
   <category name="Other" colour="#AD40FF" iconclass="blocklyTreeIconCustom text">
     <label text="Other" web-class="myLabelStyle"></label>
+    <label text="External" web-class="smallLabel"></label>
     <block type="cursor"></block>
     <block type="box_shadow">
+      <value name="h">
+        <shadow type="textinline">
+          <field name="text">h-shadow</field>
+        </shadow>
+      </value>
+      <value name="v">
+        <shadow type="textinline">
+          <field name="text">v-shadow</field>
+        </shadow>
+      </value>
+      <value name="blur">
+        <shadow type="textinline">
+          <field name="text">radius</field>
+        </shadow>
+      </value>
+      <value name="color">
+        <shadow type="textinline">
+          <field name="text">#ff0066</field>
+        </shadow>
+      </value>
+    </block>
+
+    <label text="Inline" web-class="smallLabel"></label>
+    <block type="cursor_inline"></block>
+    <block type="box_shadow_inline">
       <value name="h">
         <shadow type="textinline">
           <field name="text">h-shadow</field>
