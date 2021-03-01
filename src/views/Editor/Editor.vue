@@ -96,6 +96,7 @@
 					<div
 						v-if="view.state.shareButton && authentication.currentUser.value && !assignmentActive"
 						class="flex flex-wrap content-center justify-center h-full px-2 font-semibold text-gray-600 transition-all rounded cursor-pointer hover:text-pink-500"
+						@click="view.openShare()"
 					>
 						<Icon
 							name="share"
@@ -168,6 +169,7 @@
 		</div>
 	</div>
 	<SlideoverNav />
+	<ShareModal />
 </template>
 
 <script lang="ts">

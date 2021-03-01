@@ -10,6 +10,7 @@ class ModalState {
 	public createAssignmentModal: boolean = false
 	public addToClassModal: boolean = false
 	public joinClassModal: boolean = false
+	public shareModal: boolean = false
 }
 
 /**

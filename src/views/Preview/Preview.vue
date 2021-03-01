@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent, onBeforeMount } from "vue";
 import Preview from "./Preview";
 
 export default defineComponent({
@@ -11,7 +11,7 @@ export default defineComponent({
 	setup() {
 		const view: Preview = new Preview();
 
-		onMounted(() => {
+		onBeforeMount(() => {
 			view.setHTML();
 		});
 

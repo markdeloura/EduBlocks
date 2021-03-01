@@ -170,6 +170,10 @@ export class Editor {
 		return encodeURI(text);
 	}
 
+	public openShare(): void {
+		modalState.shareModal = true;
+	}
+
 	public async switchView(view: Views): Promise<void> {
 		switch (view) {
 			case Views.Split:
