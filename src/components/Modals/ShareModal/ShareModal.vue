@@ -35,11 +35,14 @@
 					</a>
 				</nav>
 			</div>
-			<div>
-				<div
-					v-if="component.currentTab.value === 3 && state.mode === Platform.HTML"
-					class="flex mt-1 rounded-md shadow-sm"
-				>
+			<div
+				v-if="component.currentTab.value === 3 && state.mode === Platform.HTML"
+				class="space-y-4"
+			>
+				<p class="text-sm text-gray-600">
+					Hello
+				</p>
+				<div class="flex mt-1 rounded-md shadow-sm">
 					<div class="relative flex items-stretch flex-grow focus-within:z-10">
 						<input
 							v-model="component.websiteURL.value"
@@ -58,13 +61,11 @@
 			</div>
 		</template>
 		<template #buttons>
-			<button
-				type="button"
-				class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-pink-500 border border-transparent rounded-md shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:ml-3 sm:w-auto sm:text-sm"
+			<Button
+				text="Close"
+				variant="Primary"
 				@click="modalState.shareModal = false"
-			>
-				Close
-			</button>
+			/>
 		</template>
 	</Modal>
 </template>
@@ -72,7 +73,7 @@
 <script lang="ts">
 import { defineComponent, watchEffect } from "vue";
 import { modalState } from "@/components/Modals/ModalState";
-import { platforms, Platform } from "@/platforms/platforms";
+import { Platform } from "@/platforms/platforms";
 import { state } from "@/state";
 import { editor } from "@/views/Editor/Editor.ts";
 import { ShareModal } from "./ShareModal";

@@ -28,11 +28,25 @@
 				label="Due Date"
 				type="datetime-local"
 			/>
-			<Select
-				v-model="component.state.teacher"
-				label="Set By"
-				:options="classroom.currentClassroomAdmins.value"
-			/>
+			<div>
+				<label
+					class="block text-sm font-medium text-gray-700"
+				>
+					Set by
+				</label>
+				<select
+					v-model="component.state.teacher"
+					class="block w-full mt-1 border-gray-300 rounded-md appearance-none sm:text-sm focus:border-pink-500 focus:outline-none focus:ring-pink-500"
+				>
+					<option
+						v-for="admin in classroom.currentClassroomAdmins.value"
+						:key="admin"
+						:value="admin.value"
+					>
+						{{ admin.title }}
+					</option>
+				</select>
+			</div>
 			<Input
 				v-model="component.state.marks"
 				label="Total Marks"
@@ -40,7 +54,6 @@
 			/>
 			<div>
 				<label
-					for="email"
 					class="block text-sm font-medium text-gray-700"
 				>
 					Starter Project
@@ -60,20 +73,17 @@
 			</div>
 		</template>
 		<template #buttons>
-			<button
-				type="button"
-				class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-pink-500 border border-transparent rounded-md shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:ml-3 sm:w-auto sm:text-sm"
+			<Button
+				text="Create Assignment"
+				variant="Primary"
+				class="ml-4"
 				@click="component.create()"
-			>
-				Create Assignment
-			</button>
-			<button
-				type="button"
-				class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 rounded-md hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+			/>
+			<Button
+				text="Cancel"
+				variant="Light"
 				@click="modalState.createAssignmentModal = false"
-			>
-				Cancel
-			</button>
+			/>
 		</template>
 	</Modal>
 </template>
@@ -85,11 +95,9 @@ import { modalState } from "@/components/Modals/ModalState";
 import { classroom } from "@/views/Classroom/Classroom";
 import router from "@/router/index";
 import { files, FirebaseFileDropdown } from "@/providers/files";
-import Select from "@/components/Select/Select.vue";
 
 export default defineComponent({
 	name: "CreateAssignmentModal",
-	components: { Select },
 	setup() {
 		const component: CreateAssignmentModal = new CreateAssignmentModal();
 

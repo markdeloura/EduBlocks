@@ -1,5 +1,5 @@
 <template>
-	<div class="flex items-center px-4 py-4 cursor-pointer">
+	<div class="flex items-center px-4 py-4 transition-all cursor-pointer hover:bg-gray-100 hover:bg-opacity-30">
 		<div
 			class="flex items-center flex-1 min-w-0"
 			@click="this.$emit('rowClick')"
@@ -50,7 +50,7 @@
 				class="relative flex items-center justify-end"
 			>
 				<button
-					class="inline-flex items-center justify-center w-8 h-8 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+					class="inline-flex items-center justify-center w-8 h-8 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
 					@click="isOn = !isOn"
 				>
 					<Icon

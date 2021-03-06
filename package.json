@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@blockly/block-plus-minus": "^2.0.19",
+    "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/postcss7-compat": "^2.0.3",
     "@types/file-saver": "^2.0.1",
     "@types/pretty": "^2.0.0",

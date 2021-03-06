@@ -20,6 +20,10 @@ import Trinket from "@/components/Trinket/Trinket.vue";
 import Textarea from "@/components/Textarea/Textarea.vue";
 import PageHeading from "@/components/PageHeading/PageHeading.vue";
 
+// Skeleton Components
+import IconCardSkeleton from "@/components/IconCard/IconCardSkeleton.vue";
+import ListItemSkeleton from "@/components/ListItem/ListItemSkeleton.vue";
+
 // Register all components globally
 export default {
 	install(app: App): void {
@@ -41,5 +45,8 @@ export default {
 		app.component("Trinket", Trinket);
 		app.component("Textarea", Textarea);
 		app.component("PageHeading", PageHeading);
+
+		app.component("IconCardSkeleton", IconCardSkeleton);
+		app.component("ListItemSkeleton", ListItemSkeleton);
 	}
 };

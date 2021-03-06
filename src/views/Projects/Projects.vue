@@ -1,7 +1,7 @@
 <template>
 	<div
-		v-if="!files.isLoading.value && files.fileList.value.length > 0"
-		class="w-full h-full px-4 pb-6 xl:px-8"
+		v-if="authentication.currentUser.value"
+		class="flex flex-col w-full h-full px-4 pb-6 xl:px-8"
 	>
 		<PageHeading
 			title="My Projects"
@@ -11,7 +11,7 @@
 			<Button
 				text="Import"
 				icon="document_add"
-				class="text-pink-500 shadow-none h-11 hover:opacity-75"
+				variant="Light"
 				@click="files.importFile()"
 			/>
 			<Button
@@ -23,7 +23,10 @@
 			/>
 		</PageHeading>
 		<div class="pb-6">
-			<ul class="bg-white border divide-y rounded-md">
+			<ul
+				v-if="!files.isLoading.value && files.fileList.value.length > 0"
+				class="bg-white border divide-y rounded-md"
+			>
 				<ListItem
 					v-for="file in files.fileList.value.slice(0, 8)"
 					:key="file"
@@ -37,59 +40,47 @@
 					@rowClick="files.openFirebaseFile(file)"
 				/>
 			</ul>
+			<ul
+				v-if="files.isLoading.value"
+				class="bg-white border divide-y rounded-md"
+			>
+				<ListItemSkeleton
+					v-for="n in 5"
+					:key="n"
+				/>
+			</ul>
 		</div>
-	</div>
-
-	<div
-		v-if="!files.isLoading.value && files.fileList.value.length < 1 && authentication.currentUser.value"
-		class="flex flex-wrap content-center justify-center w-full h-full"
-	>
-		<div class="space-y-6">
-			<div class="space-y-4">
-				<div class="flex h-16 p-2 bg-white border-2 rounded-md w-96">
-					<div class="mr-4 bg-blue-200 rounded-full w-11 h-11" />
-					<div class="h-full py-1 space-y-1">
-						<div class="w-64 h-4 bg-gray-300 rounded-full animate-pulse" />
-						<div class="w-40 h-4 bg-gray-100 rounded-full animate-pulse" />
-					</div>
+		<div
+			v-if="!files.isLoading.value && files.fileList.value.length < 1 && authentication.currentUser.value"
+			class="flex flex-wrap content-center justify-center w-full h-full"
+		>
+			<div class="flex flex-wrap justify-center space-y-8">
+				<img
+					src="/images/illustrations/no-files.svg"
+					class="h-48"
+				>
+				<div class="w-full space-y-2 text-center">
+					<h1 class="block text-2xl font-semibold">
+						No Projects Found :(
+					</h1>
+					<p class="text-lg text-gray-400">
+						Using your EduBlocks Cloud Account, you can <br> easily save and share projects
+					</p>
 				</div>
-				<div class="flex h-16 p-2 bg-white border-2 rounded-md w-96">
-					<div class="mr-4 bg-green-200 rounded-full w-11 h-11" />
-					<div class="h-full py-1 space-y-1">
-						<div class="w-64 h-4 bg-gray-300 rounded-full animate-pulse" />
-						<div class="w-40 h-4 bg-gray-100 rounded-full animate-pulse" />
-					</div>
+				<div class="flex justify-center w-full space-x-4">
+					<Button
+						text="Import"
+						icon="document_add"
+						variant="Light"
+						@click="files.importFile()"
+					/>
+					<Button
+						text="New Project"
+						icon="plus"
+						variant="Primary"
+						@click="modalState.createProjectModal = true"
+					/>
 				</div>
-				<div class="flex h-16 p-2 bg-white border-2 rounded-md w-96">
-					<div class="mr-4 bg-red-200 rounded-full w-11 h-11" />
-					<div class="h-full py-1 space-y-1">
-						<div class="w-64 h-4 bg-gray-300 rounded-full animate-pulse" />
-						<div class="w-40 h-4 bg-gray-100 rounded-full animate-pulse" />
-					</div>
-				</div>
-			</div>
-			<div class="w-full space-y-2 text-center">
-				<h1 class="block text-2xl font-semibold">
-					No Projects Found :(
-				</h1>
-				<p class="text-lg text-gray-400">
-					Using your EduBlocks Cloud Account, you can <br> easily save and share projects
-				</p>
-			</div>
-			<div class="flex justify-center w-full space-x-4">
-				<Button
-					text="Import"
-					icon="document_add"
-					class="text-pink-500 shadow-none h-11 hover:opacity-75"
-					@click="files.importFile()"
-				/>
-				<Button
-					text="New Project"
-					icon="plus"
-					variant="Primary"
-					class=" h-11"
-					@click="modalState.createProjectModal = true"
-				/>
 			</div>
 		</div>
 	</div>
@@ -97,10 +88,11 @@
 		v-if="!authentication.currentUser.value"
 		class="flex flex-wrap content-center justify-center w-full h-full"
 	>
-		<div class="space-y-6">
-			<div class="flex justify-center w-full">
-				<i class="text-gray-300 text-9xl fas fa-cloud-upload-alt" />
-			</div>
+		<div class="flex flex-wrap justify-center space-y-8">
+			<img
+				src="/images/illustrations/login.svg"
+				class="h-48"
+			>
 			<div class="w-full space-y-2 text-center">
 				<h1 class="block text-2xl font-semibold">
 					Sorry! You need an account
@@ -113,14 +105,13 @@
 				<Button
 					text="Open Local File"
 					icon="document_add"
-					class="text-pink-500 shadow-none h-11 hover:opacity-75"
+					variant="Light"
 					@click="files.importFile()"
 				/>
 				<Button
 					text="Login/Register"
 					icon="login"
 					variant="Primary"
-					class="h-11"
 					@click="view.goToLoginPage()"
 				/>
 			</div>

@@ -17,13 +17,11 @@
 			/>
 		</template>
 		<template #buttons>
-			<button
-				type="button"
-				class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-pink-500 border border-transparent rounded-md shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:ml-3 sm:w-auto sm:text-sm"
+			<Button
+				text="Import & Open"
+				variant="Primary"
 				@click="component.importAndOpen()"
-			>
-				Import & Open
-			</button>
+			/>
 		</template>
 	</Modal>
 </template>

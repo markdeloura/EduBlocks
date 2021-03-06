@@ -7,11 +7,11 @@
 					:key="option"
 					:icon="option.icon"
 					:text="option.text"
-					:class="[router.currentRoute.value.name === option.text ? 'bg-white border-gray-300' : 'text-gray-400 hover:bg-gray-50 hover:text-gray-600 cursor-pointer text-opacity-75']"
+					:class="[router.currentRoute.value.meta.title === option.text ? 'bg-white border-gray-300' : 'text-gray-400 hover:bg-gray-50 hover:text-gray-600 cursor-pointer text-opacity-75']"
 					@click="router.push({path: option.path})"
 				/>
 			</div>
-			<div class="">
+			<div>
 				<div
 					class="mt-1 space-y-1"
 				>

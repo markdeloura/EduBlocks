@@ -17,6 +17,7 @@ export default class Classroom {
 	public currentClassroomAdmins: Ref<Array<firebase.default.firestore.DocumentData>> = ref([]);
 	public currentClassroomAssignments: Ref<Array<firebase.default.firestore.DocumentData>> = ref([]);
 	public joinError: Ref<boolean> = ref(false);
+	public isLoading: Ref<boolean> = ref(false);
 	public currentJoinCode: Ref<string> = ref("");
 	public currentJoinLink: Ref<string> = ref("");
 
@@ -26,6 +27,7 @@ export default class Classroom {
 
 	public getClassrooms(): void {
 		this.classrooms.value = [];
+		this.isLoading.value = true;
 		authentication.db.collection("classrooms").where("admins", "array-contains", authentication.currentUser.value?.uid).get().then((querySnapshot: firebase.default.firestore.QuerySnapshot) => {
 			querySnapshot.forEach((doc: firebase.default.firestore.DocumentSnapshot) => {
 				const data: any = doc.data();
@@ -33,6 +35,8 @@ export default class Classroom {
 					this.classrooms.value.push({id: doc.id, data: data});
 				}
 			});        
+		}).finally(() => {
+			this.isLoading.value = false;
 		});
 		authentication.db.collection("classrooms").where("students", "array-contains", authentication.currentUser.value?.uid).get().then((querySnapshot: firebase.default.firestore.QuerySnapshot) => {
 			querySnapshot.forEach((doc: firebase.default.firestore.DocumentSnapshot) => {
@@ -41,12 +45,15 @@ export default class Classroom {
 					this.classrooms.value.push({id: doc.id, data: data});
 				}
 			});        
-		});
+		}).finally(() => {
+			this.isLoading.value = false;
+		});;
 	}
 
 	public async getClassroom(id: string): Promise<void> {
 		this.currentClassroomStudents.value = [];
 		this.currentClassroomAdmins.value = [];
+		this.isLoading.value = true;
 		await authentication.db.collection("classrooms").doc(id).get().then((doc: firebase.default.firestore.DocumentSnapshot) => {
 			this.currentClassroom.value = { id: doc.id, data: doc.data() };
 			this.currentClassroom.value?.data.students.forEach((student: string) => {
@@ -64,6 +71,8 @@ export default class Classroom {
 					this.currentClassroomAssignments.value.push({id: doc.id, data: doc.data()});
 				});
 			});
+		}).finally(() => {
+			this.isLoading.value = false;
 		});
 	}
 
@@ -107,8 +116,8 @@ export default class Classroom {
 		});
 	}
 
-	public deleteAssignment(id: number): void {
-		authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).update({
+	public async deleteAssignment(id: number): Promise<void> {
+		await authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).update({
 			assignments: firebase.default.firestore.FieldValue.arrayRemove(this.currentClassroom.value?.data.assignments[id])
 		}).then(() => {
 			router.push({path: `/classroom/${this.currentClassroom.value?.id}`});
@@ -177,6 +186,8 @@ export default class Classroom {
 			authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).update({
 				assignments: firebase.default.firestore.FieldValue.arrayUnion(doc.id)
 			});
+		}).finally(() => {
+			location.reload();
 		});
 	}
 
@@ -244,6 +255,19 @@ export default class Classroom {
 		return [
 			{ icon: "arrow_circle_right", title: "Open", action: (): void => { 
 				router.push({path: `/classroom/${classroom.id}`}); 
+			}}
+		];
+	}
+
+	public getAssignmentDropdownOptions(id: number): Array<DropdownOptions> {
+		return [
+			{ icon: "folder", title: "Open", action: (): void => { 
+				this.goToAssignment(id);
+			}},
+			{ icon: "trash", title: "Delete", action: (): void => { 
+				this.deleteAssignment(id).finally(() => {
+					location.reload();
+				});
 			}}
 		];
 	}

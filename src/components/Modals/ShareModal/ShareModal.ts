@@ -11,9 +11,33 @@ export class ShareModal {
 	public currentTab: Ref = ref(1);
 	public shareURL: Ref = ref("");
 	public websiteURL: Ref = ref("");
+	public hasCopied: Ref<boolean> = ref(false);
 
 	public copyLink(url: string): void{
 		navigator.clipboard.writeText(url);
+	}
+
+	public generateShareURL(): void {
+		const content: object = {
+			dynamicLinkInfo: {
+				domainUriPrefix: "https://project.edublocks.org",
+				link: `http://${location.host}/website/?html=${encodeURI(pythonCode.value)}`
+			},
+			suffix: {
+				option: "SHORT"
+			}
+		};
+		fetch(`https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=${process.env.VUE_APP_API_KEY}`, {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(content)
+		}).then((response: Response) => {
+			response.json().then((json: any) => {
+				this.websiteURL.value = json.shortLink;
+			});
+		});
 	}
 
 	public generateWebsite(): void {

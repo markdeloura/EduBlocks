@@ -8,19 +8,21 @@
 				<Button
 					text="Join Class"
 					icon="link"
-					class="text-pink-500 shadow-none h-11 hover:opacity-75"
+					variant="Light"
 					@click="modalState.joinClassModal = true;"
 				/>
 				<Button
 					text="New Class"
 					icon="plus"
 					variant="Primary"
-					class="h-11"
 					@click="modalState.createClassModal = true;"
 				/>
 			</PageHeading>
-			<div v-if="view.classrooms.value">
-				<ul class="bg-white border divide-y rounded-md">
+			<div>
+				<ul
+					v-if="!view.isLoading.value && view.classrooms.value.length > 0"
+					class="bg-white border divide-y rounded-md"
+				>
 					<ListItem
 						v-for="classroom in view.classrooms.value"
 						:key="classroom"
@@ -34,11 +36,44 @@
 						@rowClick="router.push({path: `/classroom/${classroom.id}`})"
 					/>
 				</ul>
+				<ul
+					v-if="view.isLoading.value"
+					class="bg-white border divide-y rounded-md"
+				>
+					<ListItemSkeleton
+						v-for="n in 5"
+						:key="n"
+					/>
+				</ul>
 			</div>
 		</div>
-		<h1 v-else>
-			Please login...
-		</h1>
+		<div
+			v-else
+			class="flex flex-wrap content-center justify-center w-full h-full"
+		>
+			<div class="flex flex-wrap justify-center space-y-8">
+				<img
+					src="/images/illustrations/login.svg"
+					class="h-48"
+				>
+				<div class="w-full space-y-2 text-center">
+					<h1 class="block text-2xl font-semibold">
+						Sorry! You need an account
+					</h1>
+					<p class="text-lg text-gray-400">
+						Create a free EduBlocks Cloud Account, to <br> join and create classrooms.
+					</p>
+				</div>
+				<div class="flex justify-center w-full space-x-4">
+					<Button
+						text="Login/Register"
+						icon="login"
+						variant="Primary"
+						@click="router.push({path: '/login'})"
+					/>
+				</div>
+			</div>
+		</div>
 		<JoinClassModal />
 	</div>
 </template>

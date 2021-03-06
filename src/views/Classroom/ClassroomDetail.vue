@@ -1,10 +1,10 @@
 <template>
 	<div
 		v-if="view.currentClassroom.value"
-		class="w-full h-full px-4 py-6 xl:px-8"
+		class="flex w-full h-full px-4 py-6 xl:px-8"
 	>
 		<div class="flex flex-row w-full h-full space-x-6">
-			<div class="flex-1 w-full h-full">
+			<div class="flex flex-col flex-1 w-full h-full">
 				<PageHeading
 					title="Assignments"
 					sticky
@@ -22,26 +22,42 @@
 						class="h-11"
 					/>
 				</PageHeading>
-				<ListItem
-					v-for="(assignment, index) in view.currentClassroomAssignments.value"
-					:key="assignment"
-					icon="python"
-					variant="Green"
-					:item1="assignment.data.title"
-					item2="Not Submitted"
-					:item3="`Due: ${assignment.data.due.replace('T', ' @ ')}`"
-					@rowClick="view.goToAssignment(index)"
+				<div v-if="view.currentClassroomAssignments.value.length > 0 && !view.isLoading.value">
+					<ul
+						class="bg-white border divide-y rounded-md"
+					>
+						<ListItem
+							v-for="(assignment, index) in view.currentClassroomAssignments.value"
+							:key="assignment"
+							icon="python"
+							variant="Green"
+							:item1="assignment.data.title"
+							item2="Not Submitted"
+							:item3="`Due: ${assignment.data.due.replace('T', ' @ ')}`"
+							:dropdown-options="view.getAssignmentDropdownOptions(index)"
+							@rowClick="view.goToAssignment(index)"
+						/>
+					</ul>
+				</div>
+				<div
+					v-else
+					class="flex flex-wrap content-center justify-center w-full h-full"
 				>
-					<Icon
-						name="trash"
-						class="w-5 h-5 text-gray-400 transition-all cursor-pointer hover:text-red-500"
-					/>
-					<Icon
-						name="chevron-right"
-						class="w-5 h-5 text-pink-500 transition-all cursor-pointer hover:text-pink-600"
-						@click="view.goToAssignment(index)"
-					/>
-				</ListItem>
+					<div class="flex flex-wrap justify-center space-y-8">
+						<img
+							src="/images/illustrations/no-assignments.svg"
+							class="h-48"
+						>
+						<div class="w-full space-y-2 text-center">
+							<h1 class="block text-2xl font-semibold">
+								No Assignments
+							</h1>
+							<p class="text-lg text-gray-400">
+								There's currently no assignments in this classroom. 
+							</p>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="sticky flex flex-col w-64 h-full space-y-6 xl:w-80">
 				<div class="flex-none w-full p-6 bg-white rounded-lg shadow">

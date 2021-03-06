@@ -37,7 +37,7 @@ class Files {
 	public fileList: Ref<Array<FirebaseFile>> = ref([]);
 
 	public firebaseBlocksRef: firebase.default.storage.Reference = firebase.default.storage().ref(`blocks/${authentication.currentUser.value?.uid}`);
-    
+    	
 	public async getAllFilesFromFirebase(): Promise<void> {
 		this.fileList.value = [];
 		this.isLoading.value = true;

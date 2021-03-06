@@ -8,7 +8,6 @@
 				text="Add Project"
 				icon="plus"
 				variant="Primary"
-				class="h-11"
 			/>
 		</PageHeading>
 	</div>

@@ -23,16 +23,16 @@ export class Button {
 
 		switch (this.variant) {
 			case Variants.Primary:
-				currentVariant.push("bg-pink-500", "hover:bg-pink-600", "focus:ring-pink-500");
+				currentVariant.push("bg-pink-500", "hover:bg-pink-600", "focus:ring-pink-500", "text-white");
 				break;
 			case Variants.Secondary:
-				currentVariant.push("bg-navy-500", "hover:bg-navy-700", "focus:ring-navy-500");
+				currentVariant.push("bg-navy-500", "hover:bg-navy-700", "focus:ring-navy-500", "text-white");
 				break;
 			case Variants.Success:
-				currentVariant.push("bg-green-500", "hover:bg-green-700", "focus:ring-green-500");
+				currentVariant.push("bg-green-500", "hover:bg-green-700", "focus:ring-green-500", "text-white");
 				break;
 			case Variants.Error:
-				currentVariant.push("bg-red-500", "hover:bg-red-700", "focus:ring-red-500");
+				currentVariant.push("bg-red-500", "hover:bg-red-700", "focus:ring-red-500", "text-white");
 				break;
 			case Variants.Light:
 				currentVariant.push("bg-white", "border-gray-300", "text-gray-700", "hover:bg-gray-50", "focus:ring-pink-500");

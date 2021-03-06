@@ -26,13 +26,15 @@
 				</div>
 			</div>
 		</div>
-		<div v-if="files.fileList.value.length >= 1">
+		<div v-if="!files.isLoading.value && authentication.currentUser.value && files.fileList.value.length > 0">
 			<PageHeading
 				title="Recent Projects"
 				class="mb-4"
 			/>
 			<div class="w-full pb-1 overflow-x-auto">
-				<div class="grid w-full grid-flow-col gap-5 auto-cols-max">
+				<div
+					class="grid w-full grid-flow-col gap-5 auto-cols-max"
+				>
 					<IconCard
 						v-for="file in files.fileList.value.slice(0, 4)"
 						:key="file"
@@ -41,6 +43,35 @@
 						:title="projects.removePlatformFromFileName(file.label)"
 						:subtitle="projects.getPlatformFromFileName(file.label)"
 						@click="files.openFirebaseFile(file)"
+					/>
+				</div>
+			</div>
+		</div>
+		<div v-if="files.isLoading.value && authentication.currentUser.value && files.fileList.value.length === 0">
+			<PageHeading
+				title="Recent Projects"
+				class="mb-4"
+			/>
+			<div class="w-full pb-1 overflow-x-auto">
+				<div
+					class="grid w-full grid-flow-col gap-5 auto-cols-max"
+				>
+					<IconCard
+						v-for="file in files.fileList.value.slice(0, 4)"
+						:key="file"
+						:icon="projects.getPlatformIconFromFileName(file.label)"
+						:variant="projects.getPlatformVariantFromFileName(file.label)"
+						:title="projects.removePlatformFromFileName(file.label)"
+						:subtitle="projects.getPlatformFromFileName(file.label)"
+						@click="files.openFirebaseFile(file)"
+					/>
+				</div>
+				<div
+					class="grid w-full grid-flow-col gap-5 auto-cols-max"
+				>
+					<IconCardSkeleton
+						v-for="n in 4"
+						:key="n"
 					/>
 				</div>
 			</div>
