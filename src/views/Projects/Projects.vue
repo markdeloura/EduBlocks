@@ -1,12 +1,11 @@
 <template>
 	<div
 		v-if="authentication.currentUser.value"
-		class="flex flex-col w-full h-full px-4 pb-6 xl:px-8"
+		class="flex flex-col w-full h-full px-4 py-6 xl:px-8"
 	>
 		<PageHeading
 			title="My Projects"
 			sticky
-			class="pt-6"
 		>
 			<Button
 				text="Import"
@@ -18,7 +17,6 @@
 				text="New Project"
 				icon="plus"
 				variant="Primary"
-				class=" h-11"
 				@click="modalState.createProjectModal = true"
 			/>
 		</PageHeading>

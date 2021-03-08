@@ -20,6 +20,9 @@ export default class Classroom {
 	public isLoading: Ref<boolean> = ref(false);
 	public currentJoinCode: Ref<string> = ref("");
 	public currentJoinLink: Ref<string> = ref("");
+	public currentSubmission: Ref<firebase.default.firestore.DocumentData> = ref({});
+	public studentComments: Ref<string> = ref("");
+	public submittedAssignments: Ref<Array<firebase.default.firestore.DocumentData>> = ref([]);
 
 	public init(): void {
 		this.getClassrooms();
@@ -53,6 +56,7 @@ export default class Classroom {
 	public async getClassroom(id: string): Promise<void> {
 		this.currentClassroomStudents.value = [];
 		this.currentClassroomAdmins.value = [];
+		this.currentClassroomAssignments.value = [];
 		this.isLoading.value = true;
 		await authentication.db.collection("classrooms").doc(id).get().then((doc: firebase.default.firestore.DocumentSnapshot) => {
 			this.currentClassroom.value = { id: doc.id, data: doc.data() };
@@ -82,6 +86,32 @@ export default class Classroom {
 			user = doc.data();
 		});
 		return user;
+	}
+
+	public findStudent(id: string): firebase.default.firestore.DocumentData {
+		let studentInfo: firebase.default.firestore.DocumentData = {};
+		this.currentClassroomStudents.value.forEach((student: firebase.default.firestore.DocumentData | undefined) => {
+			if (student?.uid === id) {
+				studentInfo = student;
+			}
+		});
+		return studentInfo;
+	}
+
+	public getStudentsWithNoSubmission(): Array<string> {
+		const userIDs: Array<string> = [];
+		this.currentClassroomStudents.value.forEach((student: firebase.default.firestore.DocumentData | undefined) => {
+			userIDs.push(student?.uid);
+		});
+		userIDs.forEach((user: string) => {
+			const userID: string = user;
+			this.submittedAssignments.value.forEach((assignment: firebase.default.firestore.DocumentData) => {
+				if (userID === assignment.data.IDs.uid) {
+					userIDs.splice(userIDs.indexOf(userID), 1);
+				}
+			});
+		});
+		return userIDs;
 	}
 
 	public addStudentToClass(classID: string): void {
@@ -212,13 +242,29 @@ export default class Classroom {
 		});
 	}
 
+	public async saveStudentComment(): Promise<void> {
+		await authentication.db.collection("classrooms").doc(router.currentRoute.value.params.classID?.toString()).collection("assignments").doc(this.currentClassroom.value?.data.assignments[Number(router.currentRoute.value.params.assignmentID.toString())]).collection("submissions").where("IDs", "==", {assignmentID: this.currentClassroom.value?.data.assignments[Number(router.currentRoute.value.params.assignmentID.toString())], uid: authentication.currentUser.value?.uid}).get().then((snapshot: firebase.default.firestore.QuerySnapshot) => {
+			if (snapshot.docs.length > 0) {
+				snapshot.forEach((doc: firebase.default.firestore.QueryDocumentSnapshot) => {
+					if (doc.data()) {
+						doc.ref.update({
+							studentComments: this.studentComments.value
+						});
+					}
+				});
+			}
+		});
+	}
+
 	public async createAssignmentSubmission(): Promise<void> {
 		await authentication.db.collection("classrooms").doc(router.currentRoute.value.query.classroomID?.toString()).collection("assignments").doc(router.currentRoute.value.query.assignmentID?.toString()).collection("submissions").add({
 			IDs: { uid: authentication.currentUser.value?.uid, assignmentID: router.currentRoute.value.query.assignmentID?.toString() },
 			xmlCode: xmlCode.value,
 			submitted: false,
 			markedByTeacher: false,
-			marks: 0
+			marks: 0,
+			studentComments: "",
+			teacherComments: "",
 		}).then((doc: firebase.default.firestore.DocumentReference) => {
 			authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).collection("assignments").doc(router.currentRoute.value.query.assignmentID?.toString()).update({
 				submissions: firebase.default.firestore.FieldValue.arrayUnion(doc.id)
@@ -251,6 +297,34 @@ export default class Classroom {
 		});
 	}
 
+	public getAssignmentSubmission(): void {
+		this.currentSubmission.value = {};
+		this.studentComments.value = "";
+		console.log(this.currentClassroom.value?.data.assignments[1]);
+		authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).collection("assignments").doc(this.currentClassroom.value?.data.assignments[Number(router.currentRoute.value.params.assignmentID.toString())]).collection("submissions").where("IDs", "==", {assignmentID: this.currentClassroom.value?.data.assignments[Number(router.currentRoute.value.params.assignmentID.toString())], uid: authentication.currentUser.value?.uid}).get().then((snapshot: firebase.default.firestore.QuerySnapshot) => {
+			if (snapshot.docs.length > 0) {
+				snapshot.forEach((doc: firebase.default.firestore.QueryDocumentSnapshot) => {
+					if (doc.data()) {
+						this.currentSubmission.value = {id: doc.id, data: doc.data()};
+						this.studentComments.value = this.currentSubmission.value.data.studentComments;
+					}
+				});
+			}
+		});
+	}
+
+	public getSubmittedAssignments(): void {
+		authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).collection("assignments").doc(this.currentClassroom.value?.data.assignments[Number(router.currentRoute.value.params.assignmentID.toString())]).collection("submissions").where("submitted", "==", true).get().then((snapshot: firebase.default.firestore.QuerySnapshot) => {
+			if (snapshot.docs.length > 0) {
+				snapshot.forEach((doc: firebase.default.firestore.QueryDocumentSnapshot) => {
+					if (doc.data()) {
+						this.submittedAssignments.value.push({id: doc.id, data: doc.data()});
+					}
+				});
+			}
+		});
+	}
+
 	public getDropdownOptions(classroom: firebase.default.firestore.DocumentData): Array<DropdownOptions> {
 		return [
 			{ icon: "arrow_circle_right", title: "Open", action: (): void => { 
@@ -273,12 +347,14 @@ export default class Classroom {
 	}
 
 	public submitAssignment(): void {
-		authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).collection("assignments").doc(this.currentClassroomAssignments.value[Number(router.currentRoute.value.params.assignmentID)]?.id).collection("submissions").where("IDs", "==", {assignmentID: this.currentClassroomAssignments.value[Number(router.currentRoute.value.params.assignmentID)]?.id, uid: authentication.currentUser.value?.uid}).get().then((snapshot: firebase.default.firestore.QuerySnapshot) => {
-			if (snapshot.docs.length > 0) {
-				snapshot.forEach((doc: firebase.default.firestore.QueryDocumentSnapshot) => {
-					// Hello
-				});
-			}
+		this.saveStudentComment();
+		authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).collection("assignments").doc(this.currentClassroom.value?.data.assignments[Number(router.currentRoute.value.params.assignmentID.toString())]).collection("submissions").doc(this.currentSubmission.value.id).update({
+			submitted: true
+		}).then(() => {
+			this.getClassroom(router.currentRoute.value.params.classID.toString()).finally(() => {
+				this.getAssignmentSubmission();
+				this.getSubmittedAssignments();
+			});
 		});
 	}
 }

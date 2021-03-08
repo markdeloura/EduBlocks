@@ -6,6 +6,7 @@
 		>
 			<div class="flex-shrink-0">
 				<div
+					v-if="icon"
 					class="flex flex-wrap content-center justify-center w-10 h-10 font-extrabold rounded-full"
 					:class="component.getVariant()"
 				>
@@ -14,6 +15,15 @@
 						class="w-5 h-5 fill-current"
 						is-filled
 					/>
+				</div>
+				<div
+					v-if="image"
+					class="w-10 h-10 rounded-full"
+				>
+					<img
+						class="object-cover w-full h-full rounded-full"
+						:src="image"
+					>
 				</div>
 			</div>
 			<div class="flex-1 min-w-0 px-4 md:grid md:grid-cols-4 md:gap-4">
@@ -107,6 +117,7 @@ export default defineComponent({
 		item2: String,
 		item3: String,
 		item4: String,
+		image: String,
 		variant: String,
 		dropdownOptions: Array
 	},

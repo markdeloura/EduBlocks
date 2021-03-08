@@ -6,12 +6,20 @@
 				class="object-cover w-full h-full transition-all group-hover:opacity-75"
 			>
 		</div>
-		<h1 class="text-sm font-medium text-pink-500">
-			{{ subtitle }}
-		</h1>
-		<h1 class="mb-2 text-lg font-semibold leading-tight">
+		<h1 class="text-lg font-semibold leading-tight">
 			{{ title }}
 		</h1>
+		<div class="flex mb-1 space-x-2">
+			<h1 class="text-sm font-medium text-pink-500">
+				{{ subtitle }}
+			</h1>
+			<h1
+				v-if="type"
+				class="flex items-center px-2 text-xs font-medium text-white bg-gray-400 rounded-md"
+			>
+				{{ type }}
+			</h1>
+		</div>
 	</div>
 </template>
 
@@ -23,7 +31,8 @@ export default defineComponent({
 	props: {
 		image: String,
 		subtitle: String,
-		title: String
+		title: String,
+		type: String,
 	}
 });
 </script>

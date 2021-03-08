@@ -1,5 +1,5 @@
 <template>
-	<div class="w-full h-full px-4 py-6 xl:px-8">
+	<div class="flex flex-col w-full h-full px-4 py-6 xl:px-8">
 		<PageHeading
 			title="Showcase"
 			sticky

@@ -9,7 +9,7 @@
 				{{ title }}
 			</h2>
 		</div>
-		<div class="flex flex-row-reverse mt-4 space-x-4 xl:mt-0 xl:ml-4 xl:flex-row">
+		<div class="flex mt-4 space-x-4 md:mt-0 md:ml-4">
 			<slot />
 		</div>
 	</div>
@@ -21,11 +21,11 @@
 			<h2 class="mb-2 text-2xl font-bold leading-7 text-gray-900 sm:truncate">
 				{{ title }}
 			</h2>
-			<div class="flex flex-col mt-4 sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">
+			<div class="flex mt-4 space-x-6 md:mt-0">
 				<slot />
 			</div>
 		</div>
-		<div class="flex flex-row-reverse mt-4 space-x-4 xl:mt-0 xl:ml-4 xl:flex-row h-11" />
+		<div class="flex mt-4 space-x-4 h-11" />
 	</div>
 </template>
 
