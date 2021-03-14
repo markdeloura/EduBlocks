@@ -31,7 +31,7 @@ import { defineComponent, watchEffect } from "vue";
 import { modalState } from "@/components/Modals/ModalState";
 import { platforms, Platform } from "@/platforms/platforms";
 import { state } from "@/state";
-import { editor } from "@/views/Editor/Editor.ts";
+import { editor } from "@/views/Editor/Editor";
 import { ImportProjectModal } from "./ImportProjectModal";
 
 export default defineComponent({

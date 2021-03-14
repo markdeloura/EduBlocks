@@ -9,6 +9,7 @@ import CreateAssignmentModal from "@/components/Modals/CreateAssignmentModal/Cre
 import AddToClassModal from "@/components/Modals/AddToClassModal/AddToClassModal.vue";
 import JoinClassModal from "@/components/Modals/JoinClassModal/JoinClassModal.vue";
 import ShareModal from "@/components/Modals/ShareModal/ShareModal.vue";
+import ClassroomSubmissionModal from "@/components/Modals/ClassroomSubmissionModal/ClassroomSubmissionModal.vue";
 
 // Register all modals globally
 export default {
@@ -21,5 +22,6 @@ export default {
 		app.component("AddToClassModal", AddToClassModal);
 		app.component("JoinClassModal", JoinClassModal);
 		app.component("ShareModal", ShareModal);
+		app.component("ClassroomSubmissionModal", ClassroomSubmissionModal);
 	}
 };

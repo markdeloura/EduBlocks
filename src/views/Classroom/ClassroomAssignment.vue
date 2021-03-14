@@ -141,44 +141,52 @@
 							/>
 						</div>
 					</div>
-					<div
-						v-if="view.isUserAdmin()"
-						class="w-full py-6 bg-white rounded-lg shadow"
-					>
-						<h1 class="mx-4 mb-6 text-lg font-bold">
-							Student Work:
-						</h1>
-						<div
-							v-if="view.submittedAssignments.value.length > 0"
-							class="mb-6"
-						>
-							<h1 class="mx-4 mb-3">
-								Submitted:
+					<div class="space-y-8">
+						<div>
+							<h1 class="mb-2 text-lg font-bold">
+								Description:
 							</h1>
-							<ListItem
-								v-for="submission in view.submittedAssignments.value"
-								:key="submission"
-								:item1="view.findStudent(submission.data.IDs.uid).name"
-								item2="Submitted"
-								:item3="submission.data.markedByTeacher ? 'Marked' : 'Not Marked'"
-								:item4="`${submission.data.marks}/${view.currentClassroomAssignments.value[assignment].data.marks} Marks`"
-								:image="view.findStudent(submission.data.IDs.uid).image"
-							/>
+							<p>{{ view.currentClassroomAssignments.value[assignment].data.description }}</p>
 						</div>
-						<div v-if="view.getStudentsWithNoSubmission().length > 0">
-							<h1 class="mx-4 mb-3">
-								Not Submitted:
+						<div
+							v-if="view.isUserAdmin()"
+							class="w-full py-6 space-y-6 bg-white rounded-lg shadow"
+						>
+							<h1 class="mx-4 text-lg font-bold">
+								Student Work:
 							</h1>
-							<ListItem
-								v-for="student in view.getStudentsWithNoSubmission()"
-								:key="student"
-								:item1="view.findStudent(student).name"
-								item2="Not Submitted"
-								item3="Not Marked"
-								:item4="`0/${view.currentClassroomAssignments.value[assignment].data.marks} Marks`"
-								:image="view.findStudent(student).image"
-								class="opacity-50"
-							/>
+							<div
+								v-if="view.submittedAssignments.value.length > 0"
+							>
+								<h1 class="mx-4 mb-3">
+									Submitted:
+								</h1>
+								<ListItem
+									v-for="(submission, index) in view.submittedAssignments.value"
+									:key="index"
+									:item1="view.findStudent(submission.data.IDs.uid).name"
+									item2="Submitted"
+									:item3="submission.data.markedByTeacher ? 'Marked' : 'Not Marked'"
+									:item4="`${submission.data.marks}/${view.currentClassroomAssignments.value[assignment].data.marks} Marks`"
+									:image="view.findStudent(submission.data.IDs.uid).image"
+									@rowClick="view.openSubmission(index)"
+								/>
+							</div>
+							<div v-if="view.getStudentsWithNoSubmission().length > 0">
+								<h1 class="mx-4 mb-3">
+									Not Submitted:
+								</h1>
+								<ListItem
+									v-for="student in view.getStudentsWithNoSubmission()"
+									:key="student"
+									:item1="view.findStudent(student).name"
+									item2="Not Submitted"
+									item3="Not Marked"
+									:item4="`0/${view.currentClassroomAssignments.value[assignment].data.marks} Marks`"
+									:image="view.findStudent(student).image"
+									class="opacity-50"
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -315,6 +323,7 @@
 		</div>
 	</div>
 	<AddToClassModal :code="view.currentJoinCode.value" />
+	<ClassroomSubmissionModal :current-index="view.currentIndex.value" />
 </template>
 
 <script lang="ts">

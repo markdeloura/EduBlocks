@@ -11,6 +11,7 @@ class ModalState {
 	public addToClassModal: boolean = false
 	public joinClassModal: boolean = false
 	public shareModal: boolean = false
+	public classroomSubmissionModal: boolean = false
 }
 
 /**

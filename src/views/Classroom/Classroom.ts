@@ -7,6 +7,7 @@ import { xmlCode } from "../Editor/Editor";
 import { projects } from "@/views/Projects/Projects";
 import { state } from "@/state";
 import { DropdownOptions } from "@/types";
+import { Platform } from "@/platforms/platforms";
 
 export const assignmentActive: Ref<boolean> = ref(false);
 
@@ -23,6 +24,7 @@ export default class Classroom {
 	public currentSubmission: Ref<firebase.default.firestore.DocumentData> = ref({});
 	public studentComments: Ref<string> = ref("");
 	public submittedAssignments: Ref<Array<firebase.default.firestore.DocumentData>> = ref([]);
+	public currentIndex: Ref<number> = ref(0);
 
 	public init(): void {
 		this.getClassrooms();
@@ -99,19 +101,25 @@ export default class Classroom {
 	}
 
 	public getStudentsWithNoSubmission(): Array<string> {
-		const userIDs: Array<string> = [];
+		const studentIDs: Array<string> = [];
+		const assignmentIDs: Array<string> = [];
+		const studentsWithNoSubmissions: Array<string> = [];
+		
 		this.currentClassroomStudents.value.forEach((student: firebase.default.firestore.DocumentData | undefined) => {
-			userIDs.push(student?.uid);
+			studentIDs.push(student?.uid);
 		});
-		userIDs.forEach((user: string) => {
-			const userID: string = user;
-			this.submittedAssignments.value.forEach((assignment: firebase.default.firestore.DocumentData) => {
-				if (userID === assignment.data.IDs.uid) {
-					userIDs.splice(userIDs.indexOf(userID), 1);
-				}
-			});
+
+		this.submittedAssignments.value.forEach((assignment: firebase.default.firestore.DocumentData | undefined) => {
+			assignmentIDs.push(assignment?.data.IDs.uid);
 		});
-		return userIDs;
+
+		studentIDs.forEach((id: string) => {
+			if (!assignmentIDs.includes(id)) {
+				studentsWithNoSubmissions.push(id);
+			}
+		});
+
+		return studentsWithNoSubmissions;
 	}
 
 	public addStudentToClass(classID: string): void {
@@ -297,10 +305,15 @@ export default class Classroom {
 		});
 	}
 
+	public openSubmittedCode(xml: string, filename: string): void {
+		xmlCode.value = xml;
+		state.mode = projects.getPlatformFromFileName(filename);
+		router.push({path: "/editor"});
+	}
+
 	public getAssignmentSubmission(): void {
 		this.currentSubmission.value = {};
 		this.studentComments.value = "";
-		console.log(this.currentClassroom.value?.data.assignments[1]);
 		authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).collection("assignments").doc(this.currentClassroom.value?.data.assignments[Number(router.currentRoute.value.params.assignmentID.toString())]).collection("submissions").where("IDs", "==", {assignmentID: this.currentClassroom.value?.data.assignments[Number(router.currentRoute.value.params.assignmentID.toString())], uid: authentication.currentUser.value?.uid}).get().then((snapshot: firebase.default.firestore.QuerySnapshot) => {
 			if (snapshot.docs.length > 0) {
 				snapshot.forEach((doc: firebase.default.firestore.QueryDocumentSnapshot) => {
@@ -346,6 +359,12 @@ export default class Classroom {
 		];
 	}
 
+	public editSubmission(): void {
+		if (this.submittedAssignments.value[this.currentIndex.value].data) {
+			console.log(this.submittedAssignments.value[this.currentIndex.value].data);
+		}
+	}
+
 	public submitAssignment(): void {
 		this.saveStudentComment();
 		authentication.db.collection("classrooms").doc(this.currentClassroom.value?.id).collection("assignments").doc(this.currentClassroom.value?.data.assignments[Number(router.currentRoute.value.params.assignmentID.toString())]).collection("submissions").doc(this.currentSubmission.value.id).update({
@@ -357,6 +376,13 @@ export default class Classroom {
 			});
 		});
 	}
+
+	public openSubmission(index: number): void {
+		this.currentIndex.value = index;
+		modalState.classroomSubmissionModal = true;
+	}
 }
 
 export const classroom: Classroom = new Classroom();
+
+export let currentAssignment: Ref;
