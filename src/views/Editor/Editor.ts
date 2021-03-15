@@ -174,6 +174,17 @@ export class Editor {
 		modalState.shareModal = true;
 	}
 
+	public downloadHex(): void {
+		let filename: string = "";
+		if (state.filename) {
+			filename = state.filename;
+		}
+		else {
+			filename = "untitled";
+		}
+		fsUniversalHex(pythonCode.value, filename);
+	}
+
 	public async switchView(view: Views): Promise<void> {
 		switch (view) {
 			case Views.Split:

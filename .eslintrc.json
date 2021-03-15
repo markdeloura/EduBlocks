@@ -66,6 +66,7 @@
           "@typescript-eslint/array-type": ["error", { "default": "generic" }],
           "@typescript-eslint/no-inferrable-types": "off",
           "no-magic-numbers": "off",
+          "vue/this-in-template": 0,
           "@typescript-eslint/naming-convention": ["error",
               { "selector": "interface", "format": ["PascalCase"] },
               { "selector": "enum", "format": ["PascalCase"] },

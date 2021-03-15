@@ -113,7 +113,7 @@
 						Reset
 					</div>
 					<div
-						v-if="view.state.stopButton"
+						v-if="view.state.stopButton && state.mode === Platform.Python"
 						class="flex flex-wrap content-center justify-center h-full px-4 font-semibold text-red-500 bg-red-200 border-2 border-red-400 rounded cursor-pointer"
 						@click="view.stop()"
 					>
@@ -121,12 +121,20 @@
 						Stop
 					</div>
 					<div
-						v-if="view.state.runButton"
+						v-if="view.state.runButton && state.mode === Platform.Python"
 						class="flex flex-wrap content-center justify-center h-full px-4 font-semibold text-green-500 bg-green-100 border-2 border-green-300 rounded cursor-pointer"
 						@click="view.run()"
 					>
 						<i class="w-5 h-5 mt-1 mr-2 -ml-1 text-md fas fa-play fa-fw" />
 						Run
+					</div>
+					<div
+						v-if="state.mode === Platform.MicroBit"
+						class="flex flex-wrap content-center justify-center h-full px-4 font-semibold text-green-500 bg-green-100 border-2 border-green-300 rounded cursor-pointer"
+						@click="view.downloadHex()"
+					>
+						<i class="w-5 h-5 mt-1 mr-2 -ml-1 text-md fas fa-download fa-fw" />
+						Download
 					</div>
 				</div>
 			</div>
@@ -183,6 +191,7 @@ import { isPortrait } from "@/providers/mobile";
 import { assignmentActive } from "@/views/Classroom/Classroom";
 import "codemirror/mode/python/python";
 import "@/assets/edublocks.css";
+import { Platform } from "@/platforms/platforms";
 
 export default defineComponent({
 	name: "Editor",
@@ -213,7 +222,7 @@ export default defineComponent({
 			view.reset();
 		});
 
-		return { view, state, Views, pythonCode, files, xmlCode, authentication, isPortrait, assignmentActive };
+		return { view, state, Views, pythonCode, files, xmlCode, authentication, isPortrait, assignmentActive, Platform };
 	}
 });
 </script>
