@@ -1,6 +1,5 @@
 import React = require('preact');
 import {Component} from 'preact';
-import Auth from './Auth';
 import {navLabels} from './Page';
 import { GlobalVars } from './Page';
 
@@ -51,7 +50,6 @@ export default class Nav extends Component<Props, {}> {
                     {this.props.platformImg && <img src={this.props.platformImg} class='Nav__platformImg' height={50}/>}
                     <img class='logo' src='https://i.ibb.co/2Zp0pyw/weblogo.png'/>
                 </a>
-                <Auth openAuth={this.props.openAuth} closeAuth={this.props.closeAuth}/>
                 <input id="filename" class='brand' placeholder={navLabels[7]}
                        style='width: 200px; color:black; margin-left: 5px; float:right;'
                        onChange={(e) => this.props.onFileChange((e.target as any).value)}/>
