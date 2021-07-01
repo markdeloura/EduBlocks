@@ -228,6 +228,10 @@ export default class Page extends Component<Props, State> {
             this.selectPlatform(platformKey);
         }
 
+        // MAD: I added this to immediately throw us into CircuitPython split mode
+        this.selectPlatform("CircuitPython");
+        this.splitView(true);
+
         if( locURL.indexOf('#share') >= 0){
             if( locURL.indexOf('?Python') >= 0){
                 this.selectPlatform("Python");
