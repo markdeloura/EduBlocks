@@ -228,7 +228,7 @@ export default class Page extends Component<Props, State> {
             this.selectPlatform(platformKey);
         }
 
-        // MAD: I added this to immediately throw us into CircuitPython split mode
+        // MAD: I added this to immediately throw us into CircuitPython & split mode
         this.selectPlatform("CircuitPython");
         this.splitView(true);
 
@@ -268,7 +268,7 @@ export default class Page extends Component<Props, State> {
     }
     
     }
-
+/*
     private toggleView(): 0 {
         switch (this.state.viewMode) {
             case ViewModeBlockly:
@@ -278,7 +278,7 @@ export default class Page extends Component<Props, State> {
                 return this.switchView(ViewModeBlockly);
         }
     }
-
+*/
     private switchView(viewMode: ViewMode): 0 {
         switch (viewMode) {
             case ViewModeBlockly:
@@ -983,13 +983,13 @@ export default class Page extends Component<Props, State> {
             let blocklyEditor = document.getElementById('blockly') as HTMLBodyElement;
             let pythonEditor = document.getElementById('python') as HTMLBodyElement;
             let editorElement = document.getElementById('editor') as HTMLBodyElement;
-            let toggleElement = document.getElementById('toggleViewButton') as HTMLBodyElement;
-            let exitElement = document.getElementById('ExitSplit') as HTMLBodyElement;
+            //let toggleElement = document.getElementById('toggleViewButton') as HTMLBodyElement;
+            //let exitElement = document.getElementById('ExitSplit') as HTMLBodyElement;
 
             blocklyEditor.style.width = "60%";
             editorElement.style.width = "40%";
-            toggleElement.style.display = "none";
-            exitElement.style.display = "block";
+            //toggleElement.style.display = "none";
+            //exitElement.style.display = "block";
 
             window.dispatchEvent(new Event('resize'))
 
@@ -1007,11 +1007,11 @@ export default class Page extends Component<Props, State> {
             split = false;
             let editorElement = document.getElementById('editor') as HTMLBodyElement;
             let blocklyEditor = document.getElementById('blockly') as HTMLBodyElement;
-            let exitElement = document.getElementById('ExitSplit') as HTMLBodyElement;
-            let toggleElement = document.getElementById('toggleViewButton') as HTMLBodyElement;
+            //let exitElement = document.getElementById('ExitSplit') as HTMLBodyElement;
+            //let toggleElement = document.getElementById('toggleViewButton') as HTMLBodyElement;
             
-            toggleElement.style.display = "block";
-            exitElement.style.display = "none";
+            //toggleElement.style.display = "block";
+            //exitElement.style.display = "none";
 
             window.dispatchEvent(new Event('resize'))
 
@@ -1205,27 +1205,6 @@ export default class Page extends Component<Props, State> {
                 />
 
                 <section id='workspace'>
-                    <button
-                        id='toggleViewButton'
-                        class='toggleViewButton'
-                        onClick={() => this.toggleView()}
-                    >
-
-                        {this.state.viewMode}
-
-                    </button>
-
-                    <button
-                        id='ExitSplit'
-                        class="toggleViewButton"
-                        style="display: none;"
-                        onClick={() => this.splitView(false)}
-                    >
-
-                        Exit Split View
-
-                    </button>
-                    
 
                     <BlocklyView
                         visible={this.state.viewMode === 'blocks'}
