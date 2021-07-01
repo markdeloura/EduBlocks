@@ -83,7 +83,7 @@ export let classroom = "";
 
 
 export let navLabels: string[] = new Array();
-navLabels = ["New", "Open", "Save", "Samples", "Extras", "Run", "Login", "Untitled", "Download Hex", "Download", "Themes", "Share"];
+navLabels = ["New TEST", "Open Blocks XML File", "Save Blocks XML File", "Samples DELETE", "Extras DELETE", "Run", "Login", "Untitled", "Download Hex", "Save Python File", "Themes", "Share"];
 
 export let generic: string[] = new Array();
 generic = ["Open", 

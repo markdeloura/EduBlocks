@@ -1,7 +1,7 @@
 import React = require('preact');
 import {Component} from 'preact';
 import {navLabels} from './Page';
-import { GlobalVars } from './Page';
+// import { GlobalVars } from './Page';
 
 interface Props {
     platformImg?: string;
@@ -67,7 +67,7 @@ export default class Nav extends Component<Props, {}> {
 
                     <a class='button icon-folder-open' title='Open a file' href='javascript:void(0)'
                        onClick={() => this.props.openCode()}>
-                        {GlobalVars.openFiles}
+                        {navLabels[1]}
                     </a>
 
                     <a class='button icon-floppy' title='Save a file' href='javascript:void(0)'
@@ -81,7 +81,7 @@ export default class Nav extends Component<Props, {}> {
           </a>*/}
 
                    
-
+{/*
                     <a class='button icon-book' title='Samples' href='javascript:void(0)'
                        onClick={() => this.props.openSamples()}>
                         {navLabels[3]}
@@ -91,7 +91,7 @@ export default class Nav extends Component<Props, {}> {
                        onClick={() => this.props.onFunction()}>
                         {navLabels[4]}
                     </a>
-
+*/}
                     {sendCode &&
                     <a class='button icon-play button-green' title='Run your code' href='javascript:void(0)'
                        onClick={() => sendCode()}>
