@@ -67,7 +67,19 @@
       </value>
   </block>
   <block type="varprint">
-  <value name="var">
+    <value name="var">
+        <shadow type="textinline">
+          <field name="text">Variable</field>
+        </shadow>
+      </value>
+  </block>
+  <block type="printnewvar">
+    <value name="text">
+        <shadow type="textinline">
+          <field name="text">Hello World</field>
+        </shadow>
+      </value>
+    <value name="var">
         <shadow type="textinline">
           <field name="text">Variable</field>
         </shadow>

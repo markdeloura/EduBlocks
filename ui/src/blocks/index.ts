@@ -95,10 +95,11 @@ export async function getToolBoxXml(extensions: Extension[]) {
     (await import('./circuitpython/pwm/generators')).default(Blockly.Python as any);
     toolBoxXml += fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'circuitpython', 'pwm', 'toolbox.xml'));
 
+/* MAD: Removed Dotstar
     (await import('./circuitpython/dotstar/definitions')).default(Blockly.Blocks);
     (await import('./circuitpython/dotstar/generators')).default(Blockly.Python as any);
     toolBoxXml += fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'circuitpython', 'dotstar', 'toolbox.xml'));
-
+*/
     (await import('./circuitpython/advanced/definitions')).default(Blockly.Blocks);
     (await import('./circuitpython/advanced/generators')).default(Blockly.Python as any);
     toolBoxXml += fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'circuitpython', 'advanced', 'toolbox.xml'));

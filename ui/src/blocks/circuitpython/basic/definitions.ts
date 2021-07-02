@@ -415,6 +415,21 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     },
   };
 
+  Blocks["printnewvar"] = {
+    init: function () {
+      this.appendDummyInput().appendField('print("');
+      this.appendValueInput("text").setCheck(null);
+      this.appendDummyInput().appendField('", ');
+      this.appendValueInput("var").setCheck(null);
+      this.appendDummyInput().appendField(')');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(maincolour);
+      this.setTooltip("Use this to print a string and variable value to the output box.");
+      this.setHelpUrl("");
+    },
+  };
+  
   Blocks['equalsblock'] = {
     init: function () {
       this.appendDummyInput()
