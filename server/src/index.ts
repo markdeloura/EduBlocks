@@ -159,7 +159,6 @@ app.get('/', (req, res, next) => {
 
 app.use(express.static(ui));
 
-app.listen(8081, () => {
-  console.log('EduBlocks Connect now listening on port 8081!')
-  console.log('Launch http://app.edublocks.org and select the "Raspberry Pi" mode to get started!')
+app.listen(process.env.PORT || 8081, () => {
+  console.log('EduBlocks now listening on port ', process.env.PORT || 8081);
 });
