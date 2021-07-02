@@ -9,6 +9,19 @@
         </shadow>
       </value>
     </block>
+    <label text="Neopixels" web-class="myLabelStyle"></label>
+    <block type="cpx_neopixel_set">
+      <value name="index">
+        <shadow type="textinline">
+          <field name="text">0</field>
+        </shadow>
+      </value>
+      <value name="color">
+        <shadow type="textinline">
+          <field name="text">255, 0, 128</field>
+        </shadow>
+      </value>
+    </block>
     <label text="Slide Switch" web-class="myLabelStyle"></label>
     <block type="switch"></block>
     <label text="Taps" web-class="myLabelStyle"></label>

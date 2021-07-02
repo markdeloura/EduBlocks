@@ -27,6 +27,26 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     }
   };
 
+  Blocks['cpx_neopixel_set'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("cpx.pixels[");
+      this.appendValueInput("index")
+          .setCheck(null);
+      this.appendDummyInput()
+          .appendField("] = (")
+      this.appendValueInput("color")
+          .setCheck(null);
+      this.appendDummyInput()
+          .appendField(")");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(cpxcol);
+      this.setTooltip("Set CPX Neopixel Color");
+      this.setHelpUrl("");
+    }
+  };
+
   Blocks['switch'] = {
     init: function() {
       this.appendDummyInput()
