@@ -4,9 +4,9 @@
     "description": "EduBlocks UI",
     "scripts": {
         "clean": "rm -rf build",
-        "build": "tsc && browserify -t brfs -t folderify build/main.js -o dist/main.js",
+        "build": "node_modules/.bin/tsc && browserify -t brfs -t folderify build/main.js -o dist/main.js",
         "watch": "parallel watchify tsc-watch",
-        "tsc-watch": "tsc --watch",
+        "tsc-watch": "node_modules/.bin/tsc --watch",
         "watchify": "sleep 5 && watchify -t brfs -t folderify build/main.js -o dist/main.js",
         "lint": "tslint src/**/*.ts"
     },
