@@ -15,28 +15,48 @@ export default function define(Python: Blockly.BlockGenerators) {
     };
 
     Python['fesim_update'] = function (block) {
-        const code = 'import board\n';
+        // Get parameters
+        let variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('var'), Blockly.Variables.NAME_TYPE);
+        
+        // Assemble Python into code variable.
+        let code = variable_name + '.update()\n';
         return code;
     };
 
     Python['fesim_streaming'] = function (block) {
-        const code = 'import board\n';
-        return code;
+        // Get parameters
+        let variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('var'), Blockly.Variables.NAME_TYPE);
+        
+        // Assemble Python into code variable.
+        let code = variable_name + '.streaming';
+        return [code, Blockly.Python.ORDER_ATOMIC];
     };
 
     Python['fesim_new_data'] = function (block) {
-        const code = 'import board\n';
-        return code;
+        // Get parameters
+        let variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('var'), Blockly.Variables.NAME_TYPE);
+        
+        // Assemble Python into code variable.
+        let code = variable_name + '.new_data';
+        return [code, Blockly.Python.ORDER_ATOMIC];
     };
 
     Python['fesim_data'] = function (block) {
-        const code = 'import board\n';
-        return code;
+        // Get parameters
+        let variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('var'), Blockly.Variables.NAME_TYPE);
+        
+        // Assemble Python into code variable.
+        let code = variable_name + '.data';
+        return [code, Blockly.Python.ORDER_ATOMIC];
     };
 
     Python['fesim_event'] = function (block) {
-        const code = 'import board\n';
-        return code;
+        // Get parameters
+        let variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('var'), Blockly.Variables.NAME_TYPE);
+        
+        // Assemble Python into code variable.
+        let code = variable_name + '.event';
+        return [code, Blockly.Python.ORDER_ATOMIC];
     };            
 }
 
