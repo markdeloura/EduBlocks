@@ -8,5 +8,5 @@ build
 /edublocks
 edublocks*.tar.xz
 dist
-package.json
 .vscode/
+node_modules
