@@ -634,6 +634,10 @@ button{
     content: "\f02d";
 }
 
+.blocklyTreeIconCustom.fesim::before {
+    content: "\f02d";
+}
+
 
 .blocklyTreeIconCustom.robot::before {
     content: "\f1b9";

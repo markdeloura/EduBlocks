@@ -1,0 +1,6 @@
+<category name="FE Sim" colour="#ff0066" iconclass="blocklyTreeIconCustom fesim">
+
+  <label text="Imports" web-class="myLabelStyle"></label>
+
+  <block type="JUNK_JUNK"></block>
+</category>
