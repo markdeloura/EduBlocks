@@ -1,6 +1,13 @@
-<category name="FE Sim" colour="#ff0066" iconclass="blocklyTreeIconCustom fesim">
+<category name="FE Sim" colour="#ff6666" iconclass="blocklyTreeIconCustom fesim">
 
-  <label text="Imports" web-class="myLabelStyle"></label>
+  <!-- <label text="Imports" web-class="myLabelStyle"></label> -->
 
-  <block type="JUNK_JUNK"></block>
+  <block type="fesim_import"></block>
+  <block type="fesim_init_provider"></block>
+  <block type="fesim_update"></block>
+  <block type="fesim_streaming"></block>
+  <block type="fesim_new_data"></block>
+  <block type="fesim_data"></block>
+  <block type="fesim_event"></block>
+
 </category>
