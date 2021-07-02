@@ -1,15 +1,17 @@
 import fs = require('fs');
 import path = require('path');
 import express = require('express');
-const expressWs = require('express-ws');
+//const expressWs = require('express-ws');
 const bodyParser = require('body-parser');
-import { initProcess } from './process';
-import { Packet } from './common/protocol';
+//import { initProcess } from './process';
+// import { Packet } from './common/protocol';
 
+/*
 interface EduBlocksClient {
   pos: number;
   sendPacket(packet: Packet): void;
 }
+*/
 
 const homeDirPath = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']!;
 const eduBlocksWorkingPath = path.join(homeDirPath, '.edublocks');
@@ -22,8 +24,8 @@ const ui = path.join(__dirname, '..', '..', 'ui');
 const scriptPath = path.join(eduBlocksWorkingPath, 'output.py');
 const packagePath = path.join(__dirname, '..', 'package.json');
 
-const beforeScriptPath = path.join(__dirname, '..', '..', 'script-includes', 'before.py');
-const afterScriptPath = path.join(__dirname, '..', '..', 'script-includes', 'after.py');
+//const beforeScriptPath = path.join(__dirname, '..', '..', 'script-includes', 'before.py');
+//const afterScriptPath = path.join(__dirname, '..', '..', 'script-includes', 'after.py');
 
 const version = JSON.parse(fs.readFileSync(packagePath, 'utf8')).version;
 
@@ -34,7 +36,7 @@ const app = express();
 
 // For parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
-
+/*
 expressWs(app);
 
 let proc = initProcess('ipython3', []);
@@ -141,7 +143,7 @@ app.ws('/terminal', (ws, req) => {
     clients.splice(index, 1);
   });
 });
-
+*/
 app.get('/', (req, res, next) => {
   const indexPath = path.join(ui, 'index.html');
 

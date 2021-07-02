@@ -1,3 +1,4 @@
+/*
 const pty = require('node-pty');
 import { ITerminal } from 'node-pty/src/interfaces';
 
@@ -56,3 +57,4 @@ function initProcess(cmd: string, args: any[]) {
 export {
   initProcess,
 };
+*/
