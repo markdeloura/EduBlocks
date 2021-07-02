@@ -736,6 +736,23 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     }
   };
 
+  Blocks['isorisnot'] = {
+    init: function() {
+      this.appendValueInput("var")
+          .setCheck(null);
+      this.appendDummyInput()
+          .appendField(new Blockly.FieldDropdown([["is", "is"], ["is not", "is not"]]), "op")
+      this.appendDummyInput()
+          .appendField(new Blockly.FieldDropdown([["True", "True"], ["False", "False"], ["None", "None"]]), "value")
+      this.setInputsInline(true);
+      this.setOutput(true, null);
+      this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
+      this.setColour(maincolour);
+      this.setTooltip("");
+      this.setHelpUrl("");
+    }
+  };
+
   Blocks['not'] = {
     init: function () {
       this.appendDummyInput()

@@ -296,7 +296,14 @@ export default function define(Python: Blockly.BlockGenerators) {
     return [code, Blockly.Python.ORDER_ATOMIC];
   };
   Python['andor'] = Python['internal'];
+  Python['isorisnot'] = function (block) {
+    var value_var = Blockly.Python.valueToCode(block, 'var', Blockly.Python.ORDER_ATOMIC);
+    var choose_op = block.getFieldValue('op');
+    var choose_value = block.getFieldValue('value');
 
+    const code = value_var + ' ' + choose_op + ' ' + choose_value;
+    return [code, Blockly.Python.ORDER_ATOMIC];
+  };
   Python['not'] = function (block) {
     var value_bool = Blockly.Python.valueToCode(block, 'bool', Blockly.Python.ORDER_ATOMIC);
     const code = 'not ' +  value_bool;

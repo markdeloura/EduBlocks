@@ -111,6 +111,13 @@
       </shadow>
     </value>
   </block>
+  <block type="isorisnot">
+    <value name="var">
+      <shadow type="textinline">
+        <field name="text">Variable</field>
+      </shadow>
+    </value>
+  </block>
   <block type="not">
     <value name="bool">
       <shadow type="textinline">
