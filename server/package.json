@@ -4,9 +4,9 @@
     "description": "",
     "main": "src/index.ts",
     "scripts": {
-        "build": "node_modules/.bin/tsc",
-        "watch": "node_modules/.bin/tsc && node build/index.js",
-        "lint": "node_modules/.bin/tslint src/**/*.ts",
+        "build": "node_modules/typescript/bin/tsc",
+        "watch": "node_modules/typescript/bin/tsc && node build/index.js",
+        "lint": "node_modules/typescript/bin/tslint src/**/*.ts",
         "start": "node build/index.js"
     },
     "author": "",
