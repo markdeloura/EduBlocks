@@ -58,13 +58,17 @@ export default class Nav extends Component<Props, {}> {
 
 
                 <div class='menu' id="menubar">
-                    
 
+                    <a class='button icon-book' title='Samples' href='javascript:void(0)'
+                       onClick={() => this.props.openSamples()}>
+                        {navLabels[3]}
+                    </a>                    
+{/*
                     <a class='button icon-plus' id="new" title='Create new file' href='javascript:void(0)'
                        onClick={() => this.props.newCode()}>
                         {navLabels[0]}
                     </a>
-
+*/}
                     <a class='button icon-folder-open' title='Open a file' href='javascript:void(0)'
                        onClick={() => this.props.openCode()}>
                         {navLabels[1]}
@@ -81,12 +85,8 @@ export default class Nav extends Component<Props, {}> {
           </a>*/}
 
                    
-{/*
-                    <a class='button icon-book' title='Samples' href='javascript:void(0)'
-                       onClick={() => this.props.openSamples()}>
-                        {navLabels[3]}
-                    </a>
 
+{/*
                     <a class='button icon-cog' title='Settings' href='javascript:void(0)'
                        onClick={() => this.props.onFunction()}>
                         {navLabels[4]}
