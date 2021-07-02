@@ -4,9 +4,9 @@
     "description": "EduBlocks is a visual block based programming tool",
     "main": "index.js",
     "scripts": {
-        "heroku-prebuild": "[ -d server/node_modules ] && ls server/node_modules",
-        "heroku-postbuild": "[ -d server/node_modules ] && ls server/node_modules",
-        "heroku-cleanup": "[ -d server/node_modules ] && ls server/node_modules",
+        "heroku-prebuild":  "echo server && ls server",
+        "heroku-postbuild": "echo server && ls server",
+        "heroku-cleanup":   "echo server && ls server",
 
         "test": "echo \"Error: no test specified\" && exit 1",
         "preinstall": "cd ui; yarn install; cd ../server; yarn install",
