@@ -304,6 +304,14 @@ export default function define(Python: Blockly.BlockGenerators) {
     const code = value_var + ' ' + choose_op + ' ' + choose_value;
     return [code, Blockly.Python.ORDER_ATOMIC];
   };
+  Python['inornotin'] = function(block) {
+    var value_first = Blockly.Python.valueToCode(block, 'first', Blockly.Python.ORDER_ATOMIC);
+    var choose_op = block.getFieldValue('op');
+    var value_last = Blockly.Python.valueToCode(block, 'last', Blockly.Python.ORDER_ATOMIC);
+    // Assemble Python into code variable.
+    var code = value_first + ' ' + choose_op + ' ' + value_last;
+    return [code, Blockly.Python.ORDER_ATOMIC];
+  };
   Python['not'] = function (block) {
     var value_bool = Blockly.Python.valueToCode(block, 'bool', Blockly.Python.ORDER_ATOMIC);
     const code = 'not ' +  value_bool;

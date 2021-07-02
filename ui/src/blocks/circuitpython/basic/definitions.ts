@@ -753,6 +753,23 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     }
   };
 
+  Blocks['inornotin'] = {
+    init: function() {
+      this.appendValueInput("first")
+        .setCheck(null);
+      this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["in", "in"], ["not in", "not in"]]), "op")
+      this.appendValueInput("last")
+          .setCheck(null);
+      this.setInputsInline(true);
+      this.setOutput(true, null);
+      this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
+      this.setColour(maincolour);
+      this.setTooltip("");
+      this.setHelpUrl("");
+    }
+  };
+
   Blocks['not'] = {
     init: function () {
       this.appendDummyInput()

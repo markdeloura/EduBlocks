@@ -118,6 +118,18 @@
       </shadow>
     </value>
   </block>
+  <block type="inornotin">
+    <value name="first">
+      <shadow type="textinline">
+        <field name="text">Variable</field>
+      </shadow>
+    </value>
+    <value name="last">
+      <shadow type="textinline">
+        <field name="text">Variable</field>
+      </shadow>
+    </value>
+  </block>
   <block type="not">
     <value name="bool">
       <shadow type="textinline">
