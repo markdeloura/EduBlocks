@@ -4,11 +4,11 @@
     "description": "EduBlocks UI",
     "scripts": {
         "clean": "rm -rf build",
-        "build": "./node_modules/typescript/bin/tsc && browserify -t brfs -t folderify build/main.js -o dist/main.js",
+        "build": "tsc && browserify -t brfs -t folderify build/main.js -o dist/main.js",
         "watch": "parallel watchify tsc-watch",
-        "tsc-watch": "./node_modules/typescript/bin/tsc --watch",
+        "tsc-watch": "tsc --watch",
         "watchify": "sleep 5 && watchify -t brfs -t folderify build/main.js -o dist/main.js",
-        "lint": "./node_modules/typescript/bin/tslint src/**/*.ts"
+        "lint": "tslint src/**/*.ts"
     },
     "repository": "https://github.com/AllAboutCode/EduBlocks",
     "keywords": [
