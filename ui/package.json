@@ -18,7 +18,7 @@
         "demo"
     ],
     "author": "AllAboutCode",
-    "license": "GitHub",
+    "license": "AGPL-3.0-only",
     "devDependencies": {
         "brfs": "^2.0.2",
         "browserify": "^16.5.0",
