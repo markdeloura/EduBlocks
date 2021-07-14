@@ -1,0 +1,389 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="Wi1yVTeH^KAf!g]wtwjl">my_color</variable>
+  </variables>
+  <block type="import_time" id="l*+s_DxkaEsZ3Y}-I3]6" x="149" y="95">
+    <next>
+      <block type="import_cpx" id="~rX;gxz5j,2-Ypl[}psh">
+        <next>
+          <block type="whileout" id="#^2lGxjD9Q:*-G6Ip~tX">
+            <value name="cond">
+              <shadow type="textinline" id="4/7T4$T}=x!f9:{[zD9h">
+                <field name="text">True</field>
+              </shadow>
+            </value>
+            <statement name="DO">
+              <block type="printnewvar" id="[2O#B0JnYPT==Z:g5o#H">
+                <value name="text">
+                  <shadow type="textinline" id="_fBmBIEEMkuPz9Y]pUrc">
+                    <field name="text">Button A is:</field>
+                  </shadow>
+                </value>
+                <value name="var">
+                  <shadow type="textinline" id="eR7jD6]3.ahVei{[T*z;">
+                    <field name="text">Variable</field>
+                  </shadow>
+                  <block type="button" id="(4;-hXFxM;5h,BODJ/m9">
+                    <field name="button">a</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="printnewvar" id="Z]nGQCv0j)2ERs;!WcaZ">
+                    <value name="text">
+                      <shadow type="textinline" id="kcS29JJgHCIAqIpi3_TN">
+                        <field name="text">Button B is:</field>
+                      </shadow>
+                    </value>
+                    <value name="var">
+                      <shadow type="textinline" id="sBdg7l7[Q)IfxLDmLL0_">
+                        <field name="text">Variable</field>
+                      </shadow>
+                      <block type="button" id="dEGdp_D?.adva$t?fM@d">
+                        <field name="button">b</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="ifinline" id="XCMBATN3#El4Am6Xo=[U">
+                        <value name="iftext">
+                          <shadow type="textinline" id="fJ^EuX5p;peseH2Oc+_Q">
+                            <field name="text">True</field>
+                          </shadow>
+                        </value>
+                        <statement name="ifstate">
+                          <block type="cpx_neopixel_set" id="0kaiV/CUYWu1MQ5{#L(T">
+                            <value name="index">
+                              <shadow type="textinline" id="GM}.e=zCO~%|**6D,}lx">
+                                <field name="text">0</field>
+                              </shadow>
+                            </value>
+                            <value name="color">
+                              <shadow type="textinline" id="X9)_%{?B~pD}3vWe#x=S">
+                                <field name="text">(255, 0, 128)</field>
+                              </shadow>
+                              <block type="colors_blue" id="YarEoH;LRPVXE{A`B}}:"/>
+                            </value>
+                            <next>
+                              <block type="cpx_neopixel_set" id="WJHZ4y0m,W;}gXF=Z-~9">
+                                <value name="index">
+                                  <shadow type="textinline" id="D:/vq8I1$`6hm6gH~5.X">
+                                    <field name="text">1</field>
+                                  </shadow>
+                                </value>
+                                <value name="color">
+                                  <shadow type="textinline" id="?YzWQe;[vWKczo@+Y`vd">
+                                    <field name="text">(255, 0, 128)</field>
+                                  </shadow>
+                                  <block type="colors_blue" id=";mpSE44VQ/$2s%Eh[bVS"/>
+                                </value>
+                                <next>
+                                  <block type="cpx_neopixel_set" id="W5v9TCl*]|6zS$-}WlOP">
+                                    <value name="index">
+                                      <shadow type="textinline" id="|+;^Orjacu?B[i[1ROh#">
+                                        <field name="text">2</field>
+                                      </shadow>
+                                    </value>
+                                    <value name="color">
+                                      <shadow type="textinline">
+                                        <field name="text">(255, 0, 128)</field>
+                                      </shadow>
+                                      <block type="colors_blue" id="gD0,UnqgZuAFxIGeoXIA"/>
+                                    </value>
+                                    <next>
+                                      <block type="cpx_neopixel_set" id="{X`Y1@#e2^M*M~$KnSzF">
+                                        <value name="index">
+                                          <shadow type="textinline" id="2)fn%rC=k#:`vm^L|tz0">
+                                            <field name="text">3</field>
+                                          </shadow>
+                                        </value>
+                                        <value name="color">
+                                          <shadow type="textinline">
+                                            <field name="text">(255, 0, 128)</field>
+                                          </shadow>
+                                          <block type="colors_blue" id="+~,[c%`u!QomGf!SavsT"/>
+                                        </value>
+                                        <next>
+                                          <block type="cpx_neopixel_set" id="b]pPbg_7.kH,:dM%,UFn">
+                                            <value name="index">
+                                              <shadow type="textinline" id="`;W3;r;r:hf7:x$Q;P$+">
+                                                <field name="text">4</field>
+                                              </shadow>
+                                            </value>
+                                            <value name="color">
+                                              <shadow type="textinline">
+                                                <field name="text">(255, 0, 128)</field>
+                                              </shadow>
+                                              <block type="colors_blue" id="w8Zd|3gYBHo=AuR?|EyZ"/>
+                                            </value>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="else" id="bcI=bloL1H-bzK6f~D$/">
+                            <statement name="DO">
+                              <block type="cpx_neopixel_set" id=":27#J$cy|-q3/qUK1Rf2">
+                                <value name="index">
+                                  <shadow type="textinline" id="(n_r6SLrDH3zE]TDH]rD">
+                                    <field name="text">0</field>
+                                  </shadow>
+                                </value>
+                                <value name="color">
+                                  <shadow type="textinline" id="gX4oH!*le-.g@q.BV)6N">
+                                    <field name="text">(255, 0, 128)</field>
+                                  </shadow>
+                                  <block type="colors_black" id="lF-/rKRqjJgqf,Vkp%]?"/>
+                                </value>
+                                <next>
+                                  <block type="cpx_neopixel_set" id="9iZLRCorkOI`e(@8+|Go">
+                                    <value name="index">
+                                      <shadow type="textinline" id="wxZrBFC}7eCxg~$BSmAV">
+                                        <field name="text">1</field>
+                                      </shadow>
+                                    </value>
+                                    <value name="color">
+                                      <shadow type="textinline">
+                                        <field name="text">(255, 0, 128)</field>
+                                      </shadow>
+                                      <block type="colors_black" id="m@@TejLB,(vvaE5$=!}C"/>
+                                    </value>
+                                    <next>
+                                      <block type="cpx_neopixel_set" id="/`_]|#KS(m/QNi@kHS{U">
+                                        <value name="index">
+                                          <shadow type="textinline" id="pN,S*Jy,0%hodo.i`Sh_">
+                                            <field name="text">2</field>
+                                          </shadow>
+                                        </value>
+                                        <value name="color">
+                                          <shadow type="textinline">
+                                            <field name="text">(255, 0, 128)</field>
+                                          </shadow>
+                                          <block type="colors_black" id="S`iiG:QG,0dQ^9|l#:AS"/>
+                                        </value>
+                                        <next>
+                                          <block type="cpx_neopixel_set" id="P^3YZOQd_#wAZX78^UvK">
+                                            <value name="index">
+                                              <shadow type="textinline" id="W(oOgHKR(P-)BtokL_q4">
+                                                <field name="text">3</field>
+                                              </shadow>
+                                            </value>
+                                            <value name="color">
+                                              <shadow type="textinline">
+                                                <field name="text">(255, 0, 128)</field>
+                                              </shadow>
+                                              <block type="colors_black" id="~D,~7A%P3@+,XR?Q19V^"/>
+                                            </value>
+                                            <next>
+                                              <block type="cpx_neopixel_set" id="jO:d_+r}{U(G6y*2~iXu">
+                                                <value name="index">
+                                                  <shadow type="textinline" id="|7.eOfnOy)+=rN~M].Za">
+                                                    <field name="text">4</field>
+                                                  </shadow>
+                                                </value>
+                                                <value name="color">
+                                                  <shadow type="textinline">
+                                                    <field name="text">(255, 0, 128)</field>
+                                                  </shadow>
+                                                  <block type="colors_black" id="Wj]L}a1!c%IFX_7H_PK*"/>
+                                                </value>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="ifinline" id="S*Ix5nDv;5[d}*IF/TGM">
+                                <value name="iftext">
+                                  <shadow type="textinline" id="4W{jPkBH%3nV~NpCA-?-">
+                                    <field name="text">True</field>
+                                  </shadow>
+                                </value>
+                                <statement name="ifstate">
+                                  <block type="cpx_neopixel_set" id=",-U92HhN3iW]zBfgqS:S">
+                                    <value name="index">
+                                      <shadow type="textinline" id="5`P+|0Jq9{QA^x|pRjC?">
+                                        <field name="text">5</field>
+                                      </shadow>
+                                    </value>
+                                    <value name="color">
+                                      <shadow type="textinline" id="3c37`AJ,pv3cETC{@|=k">
+                                        <field name="text">(255, 0, 128)</field>
+                                      </shadow>
+                                      <block type="colors_red" id="JLD[).c)*fvx;o_2,LiC"/>
+                                    </value>
+                                    <next>
+                                      <block type="cpx_neopixel_set" id="]wt]/|yZL)o+Q-utk!In">
+                                        <value name="index">
+                                          <shadow type="textinline" id="?l,~_HP)r@Z5$kN=C[@U">
+                                            <field name="text">6</field>
+                                          </shadow>
+                                        </value>
+                                        <value name="color">
+                                          <shadow type="textinline" id="j._}TF%FN^v*WSpct)|c">
+                                            <field name="text">(255, 0, 128)</field>
+                                          </shadow>
+                                          <block type="colors_red" id="9YOh|P/uGKIPL/#}=(dR"/>
+                                        </value>
+                                        <next>
+                                          <block type="cpx_neopixel_set" id="fWHJK5/{SI%FQ+bX!F=Y">
+                                            <value name="index">
+                                              <shadow type="textinline" id="zK[P-Kp#uJQ+GO1w?s_c">
+                                                <field name="text">7</field>
+                                              </shadow>
+                                            </value>
+                                            <value name="color">
+                                              <shadow type="textinline" id="?8qo/W(YBV[8se(1e9J@">
+                                                <field name="text">(255, 0, 128)</field>
+                                              </shadow>
+                                              <block type="colors_red" id="mA1mD817~s6yhj8-aFFE"/>
+                                            </value>
+                                            <next>
+                                              <block type="cpx_neopixel_set" id="E=Ay4`kZc~4T#Gb|:$l]">
+                                                <value name="index">
+                                                  <shadow type="textinline" id="OaX5pHfphu2*ci,-vF(J">
+                                                    <field name="text">8</field>
+                                                  </shadow>
+                                                </value>
+                                                <value name="color">
+                                                  <shadow type="textinline" id="~`JQaOofhqVe|r:~Qh%a">
+                                                    <field name="text">(255, 0, 128)</field>
+                                                  </shadow>
+                                                  <block type="colors_red" id="RDTm3DwLrSyFWdT7mC`7"/>
+                                                </value>
+                                                <next>
+                                                  <block type="cpx_neopixel_set" id="fU/t}M;PyRX.p/Nyb?-O">
+                                                    <value name="index">
+                                                      <shadow type="textinline" id="fkF1kD+*G-s)-]zMl`[P">
+                                                        <field name="text">9</field>
+                                                      </shadow>
+                                                    </value>
+                                                    <value name="color">
+                                                      <shadow type="textinline" id="rJi54wi#2}^Uwa*rBvM0">
+                                                        <field name="text">(255, 0, 128)</field>
+                                                      </shadow>
+                                                      <block type="colors_red" id="oX,luLe4izm_g.zbtOC_"/>
+                                                    </value>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="else" id="A+Iz7$EQm}^D^$+m*!6D">
+                                    <statement name="DO">
+                                      <block type="cpx_neopixel_set" id="M6|6(KvRGuiQdBDFQ,SH">
+                                        <value name="index">
+                                          <shadow type="textinline" id="sN*_eq%bS!ect@OtfcSE">
+                                            <field name="text">5</field>
+                                          </shadow>
+                                        </value>
+                                        <value name="color">
+                                          <shadow type="textinline">
+                                            <field name="text">(255, 0, 128)</field>
+                                          </shadow>
+                                          <block type="colors_black" id="hQ4p?L;@D+e+{,tBmjJ}"/>
+                                        </value>
+                                        <next>
+                                          <block type="cpx_neopixel_set" id="5{v:najv3!fAEWm20AMa">
+                                            <value name="index">
+                                              <shadow type="textinline" id="Wokms/sUzm2eBPoHn;$d">
+                                                <field name="text">6</field>
+                                              </shadow>
+                                            </value>
+                                            <value name="color">
+                                              <shadow type="textinline">
+                                                <field name="text">(255, 0, 128)</field>
+                                              </shadow>
+                                              <block type="colors_black" id="F+AoE0|}d2/~gXC~/q2R"/>
+                                            </value>
+                                            <next>
+                                              <block type="cpx_neopixel_set" id="lvi@k)*Rrn,2wDG^fh!_">
+                                                <value name="index">
+                                                  <shadow type="textinline" id=".zUyp:OPoEfy68z3/9wX">
+                                                    <field name="text">7</field>
+                                                  </shadow>
+                                                </value>
+                                                <value name="color">
+                                                  <shadow type="textinline">
+                                                    <field name="text">(255, 0, 128)</field>
+                                                  </shadow>
+                                                  <block type="colors_black" id="rjcT#n6Hdx$|8pkaB)/s"/>
+                                                </value>
+                                                <next>
+                                                  <block type="cpx_neopixel_set" id="8,yH@/;}{~$.G*RL$eU(">
+                                                    <value name="index">
+                                                      <shadow type="textinline" id="^q!OevCLnU:pQw}-RVZ(">
+                                                        <field name="text">8</field>
+                                                      </shadow>
+                                                    </value>
+                                                    <value name="color">
+                                                      <shadow type="textinline">
+                                                        <field name="text">(255, 0, 128)</field>
+                                                      </shadow>
+                                                      <block type="colors_black" id="u2RT7iV%qFw!fK8A)5!-"/>
+                                                    </value>
+                                                    <next>
+                                                      <block type="cpx_neopixel_set" id="?~?*AuT]X^Ewd8GZccMu">
+                                                        <value name="index">
+                                                          <shadow type="textinline" id="5IilQ0LbdhDqwPp}dkql">
+                                                            <field name="text">9</field>
+                                                          </shadow>
+                                                        </value>
+                                                        <value name="color">
+                                                          <shadow type="textinline">
+                                                            <field name="text">(255, 0, 128)</field>
+                                                          </shadow>
+                                                          <block type="colors_black" id="(hEmOn%D!NXg]:#vCV;q"/>
+                                                        </value>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="sleepnew" id="jGIjzA=f*0|mz6uDgq}k">
+                                        <value name="sleep">
+                                          <shadow type="textinline" id="^T.}wakRM!-XS%tiWNpg">
+                                            <field name="text">0.1</field>
+                                          </shadow>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

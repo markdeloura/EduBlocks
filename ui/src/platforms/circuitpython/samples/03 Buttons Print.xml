@@ -1,0 +1,63 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="Wi1yVTeH^KAf!g]wtwjl">my_color</variable>
+  </variables>
+  <block type="import_time" id="l*+s_DxkaEsZ3Y}-I3]6" x="149" y="95">
+    <next>
+      <block type="import_cpx" id="~rX;gxz5j,2-Ypl[}psh">
+        <next>
+          <block type="whileout" id="#^2lGxjD9Q:*-G6Ip~tX">
+            <value name="cond">
+              <shadow type="textinline" id="4/7T4$T}=x!f9:{[zD9h">
+                <field name="text">True</field>
+              </shadow>
+            </value>
+            <statement name="DO">
+              <block type="printnewvar" id="[2O#B0JnYPT==Z:g5o#H">
+                <value name="text">
+                  <shadow type="textinline" id="_fBmBIEEMkuPz9Y]pUrc">
+                    <field name="text">Button A is:</field>
+                  </shadow>
+                </value>
+                <value name="var">
+                  <shadow type="textinline" id="eR7jD6]3.ahVei{[T*z;">
+                    <field name="text">Variable</field>
+                  </shadow>
+                  <block type="button" id="(4;-hXFxM;5h,BODJ/m9">
+                    <field name="button">a</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="printnewvar" id="Z]nGQCv0j)2ERs;!WcaZ">
+                    <value name="text">
+                      <shadow type="textinline" id="kcS29JJgHCIAqIpi3_TN">
+                        <field name="text">Button B is:</field>
+                      </shadow>
+                    </value>
+                    <value name="var">
+                      <shadow type="textinline" id="sBdg7l7[Q)IfxLDmLL0_">
+                        <field name="text">Variable</field>
+                      </shadow>
+                      <block type="button" id="dEGdp_D?.adva$t?fM@d">
+                        <field name="button">b</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="sleepnew" id="]^(f:pk#c^$UtHs62~$Y">
+                        <value name="sleep">
+                          <shadow type="textinline" id="11~+`WHGgRg?3VV6gaH*">
+                            <field name="text">0.1</field>
+                          </shadow>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

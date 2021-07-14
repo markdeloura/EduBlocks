@@ -1,0 +1,55 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="import_time" id="l*+s_DxkaEsZ3Y}-I3]6" x="149" y="95">
+    <next>
+      <block type="import_cpx" id="~rX;gxz5j,2-Ypl[}psh">
+        <next>
+          <block type="whileout" id="#^2lGxjD9Q:*-G6Ip~tX">
+            <value name="cond">
+              <shadow type="textinline" id="4/7T4$T}=x!f9:{[zD9h">
+                <field name="text">True</field>
+              </shadow>
+            </value>
+            <statement name="DO">
+              <block type="cpx_neopixel_fill" id="rQ)[]ou?I5iHmk-K9XPB">
+                <value name="color">
+                  <shadow type="textinline" id="~z20=j=1XW?s12X^YbVV">
+                    <field name="text">(255, 0, 128)</field>
+                  </shadow>
+                  <block type="colors_magenta" id="eG7jWlO@M!?K[1G`?3::"/>
+                </value>
+                <next>
+                  <block type="sleepnew" id="$!^bmpav~[$%{sdga#p!">
+                    <value name="sleep">
+                      <shadow type="textinline" id="tDPt!2x%m/PT*:@P;7Ry">
+                        <field name="text">1</field>
+                      </shadow>
+                    </value>
+                    <next>
+                      <block type="cpx_neopixel_fill" id="kN!KGF[CcYktO^ez=prw">
+                        <value name="color">
+                          <shadow type="textinline" id="H69e(3BXXgMwZr%k.OMn">
+                            <field name="text">(255, 0, 128)</field>
+                          </shadow>
+                          <block type="colors_black" id="8k0SGlx%0I/upz~/P,L6"/>
+                        </value>
+                        <next>
+                          <block type="sleepnew" id="]^(f:pk#c^$UtHs62~$Y">
+                            <value name="sleep">
+                              <shadow type="textinline" id="11~+`WHGgRg?3VV6gaH*">
+                                <field name="text">1</field>
+                              </shadow>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

@@ -1,0 +1,18 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="import_time" id="l*+s_DxkaEsZ3Y}-I3]6" x="122" y="77">
+    <next>
+      <block type="import_cpx" id="~rX;gxz5j,2-Ypl[}psh">
+        <next>
+          <block type="cpx_neopixel_fill" id="rQ)[]ou?I5iHmk-K9XPB">
+            <value name="color">
+              <shadow type="textinline" id="~z20=j=1XW?s12X^YbVV">
+                <field name="text">(255, 0, 128)</field>
+              </shadow>
+              <block type="colors_magenta" id="eG7jWlO@M!?K[1G`?3::"/>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
