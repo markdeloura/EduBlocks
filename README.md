@@ -1,7 +1,11 @@
 <div style="text-align:center"><img src ="misc/edublock-logo_Final_edublocks_Blue-pink.png" /></div>
 
-Welcome to the EduBlocks GitHub Repository!
+This is the Future Engineers Modified EduBlocks GitHub Repository!
 ===========================================
+
+About this Build
+----------------
+This modified build of EduBlocks has been set up to work with the Future Engineers TechRise simulator. It's been patched to jump straight into the CircuitPython version, and to always run in split mode. Categories have been added to interact with the Python module for the Future Engineers flight data simulator and for Circuit Playground NeoPixel colors, and various blocks have been added or manipulated in other categories to make things a little bit easier for this specific purpose.
 
 About EduBlocks
 ---------------
