@@ -21,6 +21,13 @@ export default function define(Python: Blockly.BlockGenerators) {
     return code;
   };
 
+  Python['cpx_neopixel_fill'] = function(block) {
+    var text_colour = Blockly.Python.valueToCode(block, 'color', Blockly.Python.ORDER_ATOMIC);
+    // Assemble Python into code variable.
+    var code = 'cpx.pixels.fill((' +text_colour+ '))\n';
+    return code;
+  };
+
   Python['switch'] = function(block) {
     // TODO: Assemble Python into code variable.
     var code = 'cpx.switch';
