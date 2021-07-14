@@ -34,11 +34,9 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.appendValueInput("index")
           .setCheck(null);
       this.appendDummyInput()
-          .appendField("] = (")
+          .appendField("] = ")
       this.appendValueInput("color")
           .setCheck(null);
-      this.appendDummyInput()
-          .appendField(")");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(cpxcol);
@@ -50,11 +48,11 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
   Blocks['cpx_neopixel_fill'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("cpx.pixels.fill((");
+          .appendField("cpx.pixels.fill(");
       this.appendValueInput("color")
           .setCheck(null);
       this.appendDummyInput()
-          .appendField("))");
+          .appendField(")");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(cpxcol);

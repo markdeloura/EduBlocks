@@ -16,14 +16,14 @@
     </value>
   <value name="text1">
       <shadow type="textinline">
-        <field name="text">255, 0, 128</field>
+        <field name="text">(255, 0, 128)</field>
       </shadow>
     </value>
 </block>
   <block type="fill">
   <value name="text">
     <shadow type="textinline">
-      <field name="text"></field>
+      <field name="text">(255, 0, 128)</field>
     </shadow>
   </value> 
   </block>

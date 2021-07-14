@@ -638,6 +638,9 @@ button{
     content: "\f02d";
 }
 
+.blocklyTreeIconCustom.colors::before {
+    content: "\f02d";
+}
 
 .blocklyTreeIconCustom.robot::before {
     content: "\f1b9";

@@ -18,14 +18,14 @@
       </value>
       <value name="color">
         <shadow type="textinline">
-          <field name="text">255, 0, 128</field>
+          <field name="text">(255, 0, 128)</field>
         </shadow>
       </value>
     </block>
     <block type="cpx_neopixel_fill">
       <value name="color">
         <shadow type="textinline">
-          <field name="text">255, 0, 128</field>
+          <field name="text">(255, 0, 128)</field>
         </shadow>
       </value>
     </block>

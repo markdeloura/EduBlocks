@@ -111,6 +111,10 @@ export async function getToolBoxXml(extensions: Extension[]) {
     (await import('./circuitpython/fesim/definitions')).default(Blockly.Blocks);
     (await import('./circuitpython/fesim/generators')).default(Blockly.Python as any);
     toolBoxXml += fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'circuitpython', 'fesim', 'toolbox.xml'));
+
+    (await import('./circuitpython/colors/definitions')).default(Blockly.Blocks);
+    (await import('./circuitpython/colors/generators')).default(Blockly.Python as any);
+    toolBoxXml += fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'circuitpython', 'colors', 'toolbox.xml'));
   }
 
   if (extensions.indexOf('micro:bit General') !== -1) {

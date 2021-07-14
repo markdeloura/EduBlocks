@@ -28,7 +28,7 @@ export default function define(Python: Blockly.BlockGenerators) {
     var text_neonum = Blockly.Python.valueToCode(block, 'text', Blockly.Python.ORDER_ATOMIC);
     var text_colour = Blockly.Python.valueToCode(block, 'text1', Blockly.Python.ORDER_ATOMIC);
     // TODO: Assemble Python into code variable.
-    var code = variable_name+ '[' +text_neonum+ '] = (' +text_colour+ ')\n';
+    var code = variable_name+ '[' +text_neonum+ '] = ' +text_colour+ '\n';
     return code;
 };
 

@@ -1,0 +1,29 @@
+<category name="Colors" colour="#FF4A60" iconclass="blocklyTreeIconCustom colors">
+
+    <block type="colors_black"></block>
+    <block type="colors_red"></block>
+    <block type="colors_green"></block>
+    <block type="colors_blue"></block>
+    <block type="colors_yellow"></block>
+    <block type="colors_cyan"></block>
+    <block type="colors_magenta"></block>
+    <block type="colors_white"></block>
+    <block type="colors_custom">
+        <value name="redval">
+            <shadow type="textinline">
+              <field name="text">0</field>
+            </shadow>
+        </value>
+        <value name="greenval">
+            <shadow type="textinline">
+                <field name="text">0</field>
+            </shadow>
+        </value>
+        <value name="blueval">
+            <shadow type="textinline">
+                <field name="text">0</field>
+            </shadow>
+        </value>
+    </block>
+
+</category>

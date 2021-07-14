@@ -43,11 +43,9 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.appendValueInput("text")
           .setCheck(null);
       this.appendDummyInput()
-          .appendField("] = (")
+          .appendField("] = ")
       this.appendValueInput("text1")
           .setCheck(null);
-      this.appendDummyInput()
-          .appendField(")");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(150);

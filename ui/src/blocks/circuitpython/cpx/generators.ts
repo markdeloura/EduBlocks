@@ -17,14 +17,14 @@ export default function define(Python: Blockly.BlockGenerators) {
     var text_neonum = Blockly.Python.valueToCode(block, 'index', Blockly.Python.ORDER_ATOMIC);
     var text_colour = Blockly.Python.valueToCode(block, 'color', Blockly.Python.ORDER_ATOMIC);
     // Assemble Python into code variable.
-    var code = 'cpx.pixels[' +text_neonum+ '] = (' +text_colour+ ')\n';
+    var code = 'cpx.pixels[' +text_neonum+ '] = ' +text_colour+ '\n';
     return code;
   };
 
   Python['cpx_neopixel_fill'] = function(block) {
     var text_colour = Blockly.Python.valueToCode(block, 'color', Blockly.Python.ORDER_ATOMIC);
     // Assemble Python into code variable.
-    var code = 'cpx.pixels.fill((' +text_colour+ '))\n';
+    var code = 'cpx.pixels.fill(' +text_colour+ ')\n';
     return code;
   };
 
