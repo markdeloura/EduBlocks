@@ -1,0 +1,727 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="$)/H741uTeY=CRFL}d@F">sim_data</variable>
+    <variable id="$+0FA60w_4Zqb(3:e?#0">pixels</variable>
+    <variable id=":+nPFyKw{UGlEeYP+s-G">event_string</variable>
+    <variable id="bXFm,v~m6pfV*tfJw6a=">event</variable>
+    <variable id="6gxDvcVffX!_eDDeRbkE">pre_event</variable>
+  </variables>
+  <block type="typeanything" id="E97cxLkz=HGh@}gK=r?1" x="26" y="-28">
+    <comment id="undefined" pinned="false" h="80" w="160">UP Aerospace data demonstration
+
+FE simulator demo UART in, USB Out
+RECEIVE data from the Future Engineers simulator over UART (RX pin)
+ECHO (PRINT) the data back to the serial monitor (USB)
+
+SHOW current status based on event string with neopixels
+
+Requires a USB to TTL (UART) device like this USB to TTL Serial Cable:
+https://www.adafruit.com/product/954
+
+Connect the Tx wire (green wire on the USB to TTL Serial cable)
+to the RX pad on the Circuit Playground Express
+Connect the Ground wire (black wire on the USB to TTL Serial cable)
+to the GND (ground) pad on the Circuit Playground Express
+
+# Declare FE_sim_data object, provider argument must be supplied:
+sim_data = FE_sim_data.FESimData(provider='up_aerospace')
+
+
+# at the top of the loop, run the update() method for the FE_sim_data object
+sim_data.update()
+
+# check if the data is currently streaming...
+if sim_data.streaming:
+
+if sim_data.new_data:
+    # print the data to the serial monitor
+    print(sim_data.data)
+    # print the event to the serial monitor
+    print(sim_data.event)
+
+Written by Arnold Martin for Future Engineers
+    </comment>
+    <value name="stuff">
+      <shadow type="textinline" id="q1Pw2u7!hcF2Lb:ry{ko">
+        <field name="text">#---</field>
+      </shadow>
+    </value>
+    <next>
+      <block type="typeanything" id="|4e7/N:*A~=o(A%$UB*(">
+        <comment id="undefined" pinned="false" h="80" w="160">SPDX-FileCopyrightText: 2021 Future Engineers LLC
+
+SPDX-License-Identifier: MIT
+        </comment>
+        <value name="stuff">
+          <shadow type="textinline" id="i#WEU$r+q0p4CWKUmBzo">
+            <field name="text">#---</field>
+          </shadow>
+        </value>
+        <next>
+          <block type="import_board" id="hoUN}!z.Vhi[9To!P4_Q">
+            <next>
+              <block type="import_time" id="WNIP#6*I3$xADjKY?l:Z">
+                <next>
+                  <block type="importneo" id="M@#oLQ*FaFEx)pPaaTQ!">
+                    <next>
+                      <block type="fesim_import" id="DruPmiU$M.tyR$y!n#xH">
+                        <next>
+                          <block type="fesim_init_provider" id="tM/GN(s7DM5U)}gDoCQ3">
+                            <field name="var" id="$)/H741uTeY=CRFL}d@F">sim_data</field>
+                            <field name="provider">up_aerospace</field>
+                            <comment id="undefined" pinned="false" h="80" w="160">setup FE_sim_data object for up aerospace rocket flight</comment>
+                            <next>
+                              <block type="setneo" id="f7}=v=bxl!YtpF_,:`YM">
+                                <field name="NAME" id="$+0FA60w_4Zqb(3:e?#0">pixels</field>
+                                <comment id="undefined" pinned="false" h="80" w="160">declare neopixels to visualize events</comment>
+                                <value name="text">
+                                  <shadow type="textinline" id="}|B${T`N4Hs#X3Lm_7PQ">
+                                    <field name="text">board.NEOPIXEL, 10, brightness=0.2</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="fill" id="o}mB/x4WJ,7?cLa6G9!O">
+                                    <field name="NAME" id="$+0FA60w_4Zqb(3:e?#0">pixels</field>
+                                    <value name="text">
+                                      <shadow type="textinline" id="f10a`y3;{_!lIXNvKgVB">
+                                        <field name="text">0xff0000</field>
+                                      </shadow>
+                                      <block type="colors_red" id="UVX?lNR1;]pm7kh%nK!h"/>
+                                    </value>
+                                    <next>
+                                      <block type="variables_set" id="zBG7lT}9H+L57JxysQ?Z">
+                                        <field name="VAR" id="bXFm,v~m6pfV*tfJw6a=">event</field>
+                                        <field name="NAME">=</field>
+                                        <value name="varset">
+                                          <shadow type="textinline" id="7Z[{Y0ilaAKV/kblg}Bj">
+                                            <field name="text">None</field>
+                                          </shadow>
+                                        </value>
+                                        <next>
+                                          <block type="variables_set" id="lqloG9DDg{7x:/pAA~0!">
+                                            <field name="VAR" id="6gxDvcVffX!_eDDeRbkE">pre_event</field>
+                                            <field name="NAME">=</field>
+                                            <value name="varset">
+                                              <shadow type="textinline" id="8G?dhR}pTeX3Ukd~ljp2">
+                                                <field name="text">None</field>
+                                              </shadow>
+                                            </value>
+                                            <next>
+                                              <block type="variables_set" id="j+~jf1^Ak}y$S4ull!c.">
+                                                <field name="VAR" id=":+nPFyKw{UGlEeYP+s-G">event_string</field>
+                                                <field name="NAME">=</field>
+                                                <value name="varset">
+                                                  <shadow type="textinline" id="4u].~(%!RW`q)MG#nJ`p">
+                                                    <field name="text">'LIFTOFF BURNOUT DESPIN GRAVSTART SEPARATION GRAVEND DROGUE MAIN'</field>
+                                                  </shadow>
+                                                </value>
+                                                <next>
+                                                  <block type="whileout" id="5b(x$]L~W.Hi9SO%pA*4">
+                                                    <value name="cond">
+                                                      <shadow type="textinline" id="2Q]U+%4-brmkMLFW14vW">
+                                                        <field name="text">True</field>
+                                                      </shadow>
+                                                    </value>
+                                                    <statement name="DO">
+                                                      <block type="fesim_update" id="M0ADvGzU^.#B|j4ao^5V">
+                                                        <field name="var" id="$)/H741uTeY=CRFL}d@F">sim_data</field>
+                                                        <comment id="undefined" pinned="false" h="80" w="160">read the serial data from FE_sim_data object</comment>
+                                                        <next>
+                                                          <block type="ifinline" id="6@}p8w}|W|M,HI922dEh">
+                                                            <value name="iftext">
+                                                              <shadow type="textinline" id="~=1qU-,i#$X2CXk1!hxp">
+                                                                <field name="text">True</field>
+                                                              </shadow>
+                                                              <block type="fesim_streaming" id="FRBlqkQFYG{6du/YN#Yt">
+                                                                <field name="var" id="$)/H741uTeY=CRFL}d@F">sim_data</field>
+                                                              </block>
+                                                            </value>
+                                                            <statement name="ifstate">
+                                                              <block type="ifinline" id="FCh?T*4vVYxS^~IWp){c">
+                                                                <value name="iftext">
+                                                                  <shadow type="textinline" id="]x!5r]2j8yCHKSLFmgH;">
+                                                                    <field name="text">True</field>
+                                                                  </shadow>
+                                                                  <block type="fesim_new_data" id="9sh*QPXNuAw`JgZ[[c5W">
+                                                                    <field name="var" id="$)/H741uTeY=CRFL}d@F">sim_data</field>
+                                                                  </block>
+                                                                </value>
+                                                                <statement name="ifstate">
+                                                                  <block type="varprint" id=":m$%4D0AaLS*j9h=n6]q">
+                                                                    <value name="var">
+                                                                      <shadow type="textinline" id="xb$VYUe%(fD^V@$gHwo~">
+                                                                        <field name="text">Variable</field>
+                                                                      </shadow>
+                                                                      <block type="fesim_data" id="*9#%51fdCBY0L]!~8DBi">
+                                                                        <field name="var" id="$)/H741uTeY=CRFL}d@F">sim_data</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="varprint" id="PUkz[kQoaZ;J{3@Q#=.m">
+                                                                        <value name="var">
+                                                                          <shadow type="textinline" id="vKv]U^Om.qMRua3zUd}#">
+                                                                            <field name="text">Variable</field>
+                                                                          </shadow>
+                                                                          <block type="fesim_event" id="EQ}YVQJE_|r0=A?U}_yg">
+                                                                            <field name="var" id="$)/H741uTeY=CRFL}d@F">sim_data</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <next>
+                                                                          <block type="variables_set" id="r4n[Lw`vi12CqHbV)#k5">
+                                                                            <field name="VAR" id="bXFm,v~m6pfV*tfJw6a=">event</field>
+                                                                            <field name="NAME">=</field>
+                                                                            <comment id="undefined" pinned="false" h="80" w="160">events arrive as a continuous string
+LIFTOFF BURNOUT DESPIN GRAVSTART SEPARATION GRAVEND DROGUE MAIN'
+                                                                            </comment>
+                                                                            <value name="varset">
+                                                                              <shadow type="textinline" id="gcHTjG8_(O+:-t^n;H3W">
+                                                                                <field name="text"/>
+                                                                              </shadow>
+                                                                              <block type="fesim_event" id="?51`_fZ;G/cS-i`[?(:!">
+                                                                                <field name="var" id="$)/H741uTeY=CRFL}d@F">sim_data</field>
+                                                                              </block>
+                                                                            </value>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </statement>
+                                                                <next>
+                                                                  <block type="ifinline" id=")OW[%uAWOmA(A/M^*O^G">
+                                                                    <comment id="undefined" pinned="false" h="80" w="160">if statement to check for change in the event data</comment>
+                                                                    <value name="iftext">
+                                                                      <shadow type="textinline" id="yyL1faMG-nSpg|bM#rZX">
+                                                                        <field name="text">True</field>
+                                                                      </shadow>
+                                                                      <block type="internal" id="4I1x@-.?LE}9-h0I%ahb">
+                                                                        <field name="choose">!=</field>
+                                                                        <value name="first">
+                                                                          <shadow type="textinline" id="XB,pdYbCC#h/;k^jaGTi">
+                                                                            <field name="text">0</field>
+                                                                          </shadow>
+                                                                          <block type="variables_get" id="{ZTz#ke=};8hajFeV8Kl">
+                                                                            <field name="VAR" id="bXFm,v~m6pfV*tfJw6a=">event</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <value name="last">
+                                                                          <shadow type="textinline" id="^hc%Jg/1F=(ElvgKU8Fp">
+                                                                            <field name="text">0</field>
+                                                                          </shadow>
+                                                                          <block type="variables_get" id="Q%11!v9Q;?@:V,iK^zJS">
+                                                                            <field name="VAR" id="6gxDvcVffX!_eDDeRbkE">pre_event</field>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </value>
+                                                                    <statement name="ifstate">
+                                                                      <block type="ifinline" id="29h+crM$):+:6X[C@6xE">
+                                                                        <comment id="undefined" pinned="false" h="80" w="160">check that it is a good event and not bad DATA</comment>
+                                                                        <value name="iftext">
+                                                                          <shadow type="textinline" id="uR#i9JJwTxulyr:K4X?Q">
+                                                                            <field name="text">True</field>
+                                                                          </shadow>
+                                                                          <block type="inornotin" id="-^.]u=W-={eJ@T*@yqGC">
+                                                                            <field name="op">in</field>
+                                                                            <value name="first">
+                                                                              <shadow type="textinline" id=";j2ClY7x`[e;gyMVNq,}">
+                                                                                <field name="text">Variable</field>
+                                                                              </shadow>
+                                                                              <block type="variables_get" id="30l[SI{j/6BF?=-T)j_P">
+                                                                                <field name="VAR" id="bXFm,v~m6pfV*tfJw6a=">event</field>
+                                                                              </block>
+                                                                            </value>
+                                                                            <value name="last">
+                                                                              <shadow type="textinline" id="-f5i}gl1C3vv}66z_=}6">
+                                                                                <field name="text">Variable</field>
+                                                                              </shadow>
+                                                                              <block type="variables_get" id="mGvLjEry?#)Pj(-nK^dC">
+                                                                                <field name="VAR" id=":+nPFyKw{UGlEeYP+s-G">event_string</field>
+                                                                              </block>
+                                                                            </value>
+                                                                          </block>
+                                                                        </value>
+                                                                        <statement name="ifstate">
+                                                                          <block type="variables_set" id="WHZ6Kqtop@,5.U!KTEYQ">
+                                                                            <field name="VAR" id="6gxDvcVffX!_eDDeRbkE">pre_event</field>
+                                                                            <field name="NAME">=</field>
+                                                                            <comment id="undefined" pinned="false" h="80" w="160">reset the previous event</comment>
+                                                                            <value name="varset">
+                                                                              <shadow type="textinline" id="D=d`f`4G#DsJ^NmzIZ#}">
+                                                                                <field name="text">0</field>
+                                                                              </shadow>
+                                                                              <block type="variables_get" id="ed$jx2ds}$:V}wk.B11h">
+                                                                                <field name="VAR" id="bXFm,v~m6pfV*tfJw6a=">event</field>
+                                                                              </block>
+                                                                            </value>
+                                                                            <next>
+                                                                              <block type="ifinline" id="7=C/1MIk~.HKzqy#he|p">
+                                                                                <comment id="undefined" pinned="false" h="80" w="160">if...elif responding to up_aerospace event data</comment>
+                                                                                <value name="iftext">
+                                                                                  <shadow type="textinline" id="$G+27$%O+|ruKm~:-=F;">
+                                                                                    <field name="text">True</field>
+                                                                                  </shadow>
+                                                                                  <block type="inornotin" id="9-EoiYvY?lO6Ori}zq-#">
+                                                                                    <field name="op">in</field>
+                                                                                    <value name="first">
+                                                                                      <shadow type="textinline" id="%u7O!#;qB}!z8x`9j195">
+                                                                                        <field name="text">'MAIN'</field>
+                                                                                      </shadow>
+                                                                                    </value>
+                                                                                    <value name="last">
+                                                                                      <shadow type="textinline" id="pe%KlJzN)11IA:?U_H+w">
+                                                                                        <field name="text">Variable</field>
+                                                                                      </shadow>
+                                                                                      <block type="variables_get" id="SvnsWm2{5fHS{Cq.*GuH">
+                                                                                        <field name="VAR" id="bXFm,v~m6pfV*tfJw6a=">event</field>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                  </block>
+                                                                                </value>
+                                                                                <statement name="ifstate">
+                                                                                  <block type="printnew" id="bWywz3qSbLPScHFs*-2w">
+                                                                                    <value name="text">
+                                                                                      <shadow type="textinline" id="F*P^HvMWD{Su+qWk.-0K">
+                                                                                        <field name="text">Main chute deployed, floating gently to Earth</field>
+                                                                                      </shadow>
+                                                                                    </value>
+                                                                                    <next>
+                                                                                      <block type="fill" id="LDUr!V0*}[CU7tn9]9Z[">
+                                                                                        <field name="NAME" id="$+0FA60w_4Zqb(3:e?#0">pixels</field>
+                                                                                        <value name="text">
+                                                                                          <shadow type="textinline" id=",zA0CJ.dS?pV/HGX[*u-">
+                                                                                            <field name="text">0xff0000</field>
+                                                                                          </shadow>
+                                                                                          <block type="colors_cyan" id="i4H]}{Y=Z2-:LK_CY/MC"/>
+                                                                                        </value>
+                                                                                      </block>
+                                                                                    </next>
+                                                                                  </block>
+                                                                                </statement>
+                                                                                <next>
+                                                                                  <block type="elifinline" id="D58WK*b4V;/!CVC0)y{Y">
+                                                                                    <value name="iftext">
+                                                                                      <shadow type="textinline" id="ax6zo;Pq{q(ASfp4=$F_">
+                                                                                        <field name="text">True</field>
+                                                                                      </shadow>
+                                                                                      <block type="inornotin" id="g|RCY|6=~MAKyWVRez(v">
+                                                                                        <field name="op">in</field>
+                                                                                        <value name="first">
+                                                                                          <shadow type="textinline" id="~@qnY|E{XoW7-cS6.6ES">
+                                                                                            <field name="text">'DROGUE'</field>
+                                                                                          </shadow>
+                                                                                        </value>
+                                                                                        <value name="last">
+                                                                                          <shadow type="textinline">
+                                                                                            <field name="text">Variable</field>
+                                                                                          </shadow>
+                                                                                          <block type="variables_get" id="#2#w9@bQC1#$jE2CRzDm">
+                                                                                            <field name="VAR" id="bXFm,v~m6pfV*tfJw6a=">event</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                    <statement name="ifstate">
+                                                                                      <block type="printnew" id="5lO^.sVv?ij3dY]Vo?Ev">
+                                                                                        <value name="text">
+                                                                                          <shadow type="textinline" id="!LV?9Ry6qTXgiIhR5LS$">
+                                                                                            <field name="text">Drogue chute deployed</field>
+                                                                                          </shadow>
+                                                                                        </value>
+                                                                                        <next>
+                                                                                          <block type="fill" id="K#ne9jX9MO0{?h]MR#M3">
+                                                                                            <field name="NAME" id="$+0FA60w_4Zqb(3:e?#0">pixels</field>
+                                                                                            <value name="text">
+                                                                                              <shadow type="textinline" id="IG3/U[yz`M_Lur+#W1t;">
+                                                                                                <field name="text">0xff0000</field>
+                                                                                              </shadow>
+                                                                                              <block type="colors_custom" id="Li(R30jN^lGOAWqi}4_K">
+                                                                                                <value name="redval">
+                                                                                                  <shadow type="textinline" id="E}F#fnA#q1ocne=HuVHP">
+                                                                                                    <field name="text">255</field>
+                                                                                                  </shadow>
+                                                                                                </value>
+                                                                                                <value name="greenval">
+                                                                                                  <shadow type="textinline" id="qX(f%wA|48_ERm;O@Vyp">
+                                                                                                    <field name="text">128</field>
+                                                                                                  </shadow>
+                                                                                                </value>
+                                                                                                <value name="blueval">
+                                                                                                  <shadow type="textinline" id="lTBmw0J_$Ahc(euM8;~s">
+                                                                                                    <field name="text">0</field>
+                                                                                                  </shadow>
+                                                                                                </value>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                          </block>
+                                                                                        </next>
+                                                                                      </block>
+                                                                                    </statement>
+                                                                                    <next>
+                                                                                      <block type="elifinline" id="P-!2#SfymwZ}uD9fE74_">
+                                                                                        <value name="iftext">
+                                                                                          <shadow type="textinline" id="EaArkk!CCHpH7xNGe|1.">
+                                                                                            <field name="text">True</field>
+                                                                                          </shadow>
+                                                                                          <block type="inornotin" id="b}fJGKc/k!+k;c3jk+h.">
+                                                                                            <field name="op">in</field>
+                                                                                            <value name="first">
+                                                                                              <shadow type="textinline" id="ksc@O}Fr72vZq@;(vg=V">
+                                                                                                <field name="text">'GRAVEND'</field>
+                                                                                              </shadow>
+                                                                                            </value>
+                                                                                            <value name="last">
+                                                                                              <shadow type="textinline">
+                                                                                                <field name="text">Variable</field>
+                                                                                              </shadow>
+                                                                                              <block type="variables_get" id="-P;R+SZ2A9duJP8b[E(;">
+                                                                                                <field name="VAR" id="bXFm,v~m6pfV*tfJw6a=">event</field>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                        <statement name="ifstate">
+                                                                                          <block type="printnew" id="XU$A5SFb@]0[:qm@Hz2!">
+                                                                                            <value name="text">
+                                                                                              <shadow type="textinline" id=".*bjg~`D%g51nbsB?/GD">
+                                                                                                <field name="text">Microgravity complete, re-entering Earth's atmosphere</field>
+                                                                                              </shadow>
+                                                                                            </value>
+                                                                                            <next>
+                                                                                              <block type="fill" id="#UmkRg^gXrXY]+*duAqb">
+                                                                                                <field name="NAME" id="$+0FA60w_4Zqb(3:e?#0">pixels</field>
+                                                                                                <value name="text">
+                                                                                                  <shadow type="textinline" id="{(;i0f@_F4arfi9i/?=C">
+                                                                                                    <field name="text">0xff0000</field>
+                                                                                                  </shadow>
+                                                                                                  <block type="colors_yellow" id="UfZi}^;o4)Z@gM;81iRX"/>
+                                                                                                </value>
+                                                                                              </block>
+                                                                                            </next>
+                                                                                          </block>
+                                                                                        </statement>
+                                                                                        <next>
+                                                                                          <block type="elifinline" id="j|sRK(,Nbw,7}xv~`TAq">
+                                                                                            <value name="iftext">
+                                                                                              <shadow type="textinline" id="t2s]!TE`:Oq%kNTtzK`g">
+                                                                                                <field name="text">True</field>
+                                                                                              </shadow>
+                                                                                              <block type="inornotin" id="%?ra%5V`;yUiN{y%OfH:">
+                                                                                                <field name="op">in</field>
+                                                                                                <value name="first">
+                                                                                                  <shadow type="textinline" id="7P?B?WS5+6KeUifjJuXn">
+                                                                                                    <field name="text">'SEPARATION'</field>
+                                                                                                  </shadow>
+                                                                                                </value>
+                                                                                                <value name="last">
+                                                                                                  <shadow type="textinline">
+                                                                                                    <field name="text">Variable</field>
+                                                                                                  </shadow>
+                                                                                                  <block type="variables_get" id="`vQym.?%S3?!6K%A#M]i">
+                                                                                                    <field name="VAR" id="bXFm,v~m6pfV*tfJw6a=">event</field>
+                                                                                                  </block>
+                                                                                                </value>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                            <statement name="ifstate">
+                                                                                              <block type="printnew" id="I3J8m7x`N3NT-V_:2grA">
+                                                                                                <value name="text">
+                                                                                                  <shadow type="textinline" id="TCxoN#y@pP3-JC+,M:Yk">
+                                                                                                    <field name="text">Booster separation, still in microgravity</field>
+                                                                                                  </shadow>
+                                                                                                </value>
+                                                                                              </block>
+                                                                                            </statement>
+                                                                                            <next>
+                                                                                              <block type="elifinline" id="?tJYLq{n.*~}7Q5VT+J+">
+                                                                                                <value name="iftext">
+                                                                                                  <shadow type="textinline" id="Uatp$P:$~P7b;RZI}9K^">
+                                                                                                    <field name="text">True</field>
+                                                                                                  </shadow>
+                                                                                                  <block type="inornotin" id=",7dg6KtxEeN(nEu:^Pkb">
+                                                                                                    <field name="op">in</field>
+                                                                                                    <value name="first">
+                                                                                                      <shadow type="textinline" id="N}2ue,t[)5bE$W$soJLz">
+                                                                                                        <field name="text">'GRAVSTART'</field>
+                                                                                                      </shadow>
+                                                                                                    </value>
+                                                                                                    <value name="last">
+                                                                                                      <shadow type="textinline">
+                                                                                                        <field name="text">Variable</field>
+                                                                                                      </shadow>
+                                                                                                      <block type="variables_get" id="bxWbw{Abewh#Na5W9#qa">
+                                                                                                        <field name="VAR" id="bXFm,v~m6pfV*tfJw6a=">event</field>
+                                                                                                      </block>
+                                                                                                    </value>
+                                                                                                  </block>
+                                                                                                </value>
+                                                                                                <statement name="ifstate">
+                                                                                                  <block type="printnew" id="~s^4I8Z@H.yt:aHuNg|5">
+                                                                                                    <value name="text">
+                                                                                                      <shadow type="textinline" id="WP2(u2#*Kj=1-kIt/9BS">
+                                                                                                        <field name="text">Microgravity has begun</field>
+                                                                                                      </shadow>
+                                                                                                    </value>
+                                                                                                    <next>
+                                                                                                      <block type="fill" id="G}#N85|ZE-AW.j=U(dac">
+                                                                                                        <field name="NAME" id="$+0FA60w_4Zqb(3:e?#0">pixels</field>
+                                                                                                        <value name="text">
+                                                                                                          <shadow type="textinline" id="~:Omtf@?{6U#Jxm~ZuJ}">
+                                                                                                            <field name="text">0xff0000</field>
+                                                                                                          </shadow>
+                                                                                                          <block type="colors_blue" id="gB!S#^[8Inh`5h|WeKXz"/>
+                                                                                                        </value>
+                                                                                                      </block>
+                                                                                                    </next>
+                                                                                                  </block>
+                                                                                                </statement>
+                                                                                                <next>
+                                                                                                  <block type="elifinline" id="Q+6jX)M%c63i!#O/mc_o">
+                                                                                                    <value name="iftext">
+                                                                                                      <shadow type="textinline" id="Q8UaKADE`61VA,c34J5L">
+                                                                                                        <field name="text">True</field>
+                                                                                                      </shadow>
+                                                                                                      <block type="inornotin" id="Wn+nn@t7_UoT~8-|[21m">
+                                                                                                        <field name="op">in</field>
+                                                                                                        <value name="first">
+                                                                                                          <shadow type="textinline" id="_!@apYl9q##aF}^9BJEB">
+                                                                                                            <field name="text">'DESPIN'</field>
+                                                                                                          </shadow>
+                                                                                                        </value>
+                                                                                                        <value name="last">
+                                                                                                          <shadow type="textinline">
+                                                                                                            <field name="text">Variable</field>
+                                                                                                          </shadow>
+                                                                                                          <block type="variables_get" id="c,i`w0#,sF+g7-RK8f){">
+                                                                                                            <field name="VAR" id="bXFm,v~m6pfV*tfJw6a=">event</field>
+                                                                                                          </block>
+                                                                                                        </value>
+                                                                                                      </block>
+                                                                                                    </value>
+                                                                                                    <statement name="ifstate">
+                                                                                                      <block type="printnew" id="@oYtHTr`WLMuPML$-Nhr">
+                                                                                                        <value name="text">
+                                                                                                          <shadow type="textinline" id="c4J(ZY$QW+?^;=-UN9R*">
+                                                                                                            <field name="text">Rocket despin complete</field>
+                                                                                                          </shadow>
+                                                                                                        </value>
+                                                                                                        <next>
+                                                                                                          <block type="fill" id="zj;Y2;q[*Gg}LAWwmlyf">
+                                                                                                            <field name="NAME" id="$+0FA60w_4Zqb(3:e?#0">pixels</field>
+                                                                                                            <value name="text">
+                                                                                                              <shadow type="textinline" id="+-2ZNbOJf%/QN;=JmN7V">
+                                                                                                                <field name="text">0xff0000</field>
+                                                                                                              </shadow>
+                                                                                                              <block type="colors_yellow" id="(.L-JocISl!j/~h;:OMY"/>
+                                                                                                            </value>
+                                                                                                          </block>
+                                                                                                        </next>
+                                                                                                      </block>
+                                                                                                    </statement>
+                                                                                                    <next>
+                                                                                                      <block type="elifinline" id="w2v7wR^/L83(m@Sg`;bY">
+                                                                                                        <value name="iftext">
+                                                                                                          <shadow type="textinline" id="5hGp4-t.zrU5esMGFGp+">
+                                                                                                            <field name="text">True</field>
+                                                                                                          </shadow>
+                                                                                                          <block type="inornotin" id="V?!U=EDpgtC5lW*M=Wgc">
+                                                                                                            <field name="op">in</field>
+                                                                                                            <value name="first">
+                                                                                                              <shadow type="textinline" id="*vEaC^,hsO*v4b8)-Q2b">
+                                                                                                                <field name="text">'BURNOUT'</field>
+                                                                                                              </shadow>
+                                                                                                            </value>
+                                                                                                            <value name="last">
+                                                                                                              <shadow type="textinline">
+                                                                                                                <field name="text">Variable</field>
+                                                                                                              </shadow>
+                                                                                                              <block type="variables_get" id="8/TONz_2=SAL)F*=o4.]">
+                                                                                                                <field name="VAR" id="bXFm,v~m6pfV*tfJw6a=">event</field>
+                                                                                                              </block>
+                                                                                                            </value>
+                                                                                                          </block>
+                                                                                                        </value>
+                                                                                                        <statement name="ifstate">
+                                                                                                          <block type="printnew" id=")Pea3c*|9[}0(nok/TR:">
+                                                                                                            <value name="text">
+                                                                                                              <shadow type="textinline" id=";/_k`LI^c?_5Ekcl3cdz">
+                                                                                                                <field name="text">Booster burnout</field>
+                                                                                                              </shadow>
+                                                                                                            </value>
+                                                                                                            <next>
+                                                                                                              <block type="fill" id="1ORN`@g/k5x=0[EO);.4">
+                                                                                                                <field name="NAME" id="$+0FA60w_4Zqb(3:e?#0">pixels</field>
+                                                                                                                <value name="text">
+                                                                                                                  <shadow type="textinline" id="QNi/a_|nvc-([MAP//q~">
+                                                                                                                    <field name="text">0xff0000</field>
+                                                                                                                  </shadow>
+                                                                                                                  <block type="colors_custom" id="D~kL]6W9^2zF3Jik9f-`">
+                                                                                                                    <value name="redval">
+                                                                                                                      <shadow type="textinline" id="||jFoxoeGU:Qpu!P37w;">
+                                                                                                                        <field name="text">255</field>
+                                                                                                                      </shadow>
+                                                                                                                    </value>
+                                                                                                                    <value name="greenval">
+                                                                                                                      <shadow type="textinline" id="vcAe8K7D#gd7dU^%Y%y{">
+                                                                                                                        <field name="text">128</field>
+                                                                                                                      </shadow>
+                                                                                                                    </value>
+                                                                                                                    <value name="blueval">
+                                                                                                                      <shadow type="textinline" id="VysPl2Y=,X,5IfF7}+:q">
+                                                                                                                        <field name="text">0</field>
+                                                                                                                      </shadow>
+                                                                                                                    </value>
+                                                                                                                  </block>
+                                                                                                                </value>
+                                                                                                              </block>
+                                                                                                            </next>
+                                                                                                          </block>
+                                                                                                        </statement>
+                                                                                                        <next>
+                                                                                                          <block type="elifinline" id="QYotzpJM.gTzGxs_EPeB">
+                                                                                                            <value name="iftext">
+                                                                                                              <shadow type="textinline" id=":7~~+N@YyB`e{fGd^e-O">
+                                                                                                                <field name="text">True</field>
+                                                                                                              </shadow>
+                                                                                                              <block type="inornotin" id="LjAoAH;/`BA|[O2g2NO;">
+                                                                                                                <field name="op">in</field>
+                                                                                                                <value name="first">
+                                                                                                                  <shadow type="textinline" id="@lLdBVO$tJc%;)5H#Lvr">
+                                                                                                                    <field name="text">'LIFTOFF'</field>
+                                                                                                                  </shadow>
+                                                                                                                </value>
+                                                                                                                <value name="last">
+                                                                                                                  <shadow type="textinline">
+                                                                                                                    <field name="text">Variable</field>
+                                                                                                                  </shadow>
+                                                                                                                  <block type="variables_get" id="qtWBUJK?K@z]pYb4jjrV">
+                                                                                                                    <field name="VAR" id="bXFm,v~m6pfV*tfJw6a=">event</field>
+                                                                                                                  </block>
+                                                                                                                </value>
+                                                                                                              </block>
+                                                                                                            </value>
+                                                                                                            <statement name="ifstate">
+                                                                                                              <block type="printnew" id="G9-v]dJ|/0a4BUzy%F{0">
+                                                                                                                <value name="text">
+                                                                                                                  <shadow type="textinline" id="mx*S}eh`e_pabCKJd(~S">
+                                                                                                                    <field name="text">Booster is burning, we have liftoff</field>
+                                                                                                                  </shadow>
+                                                                                                                </value>
+                                                                                                                <next>
+                                                                                                                  <block type="fill" id="Bp%q=HxJ]=oS-#^w-a^=">
+                                                                                                                    <field name="NAME" id="$+0FA60w_4Zqb(3:e?#0">pixels</field>
+                                                                                                                    <value name="text">
+                                                                                                                      <shadow type="textinline" id="omSTb}?5]!*]qX@Ou):/">
+                                                                                                                        <field name="text">0xff0000</field>
+                                                                                                                      </shadow>
+                                                                                                                      <block type="colors_red" id="k!ouh/^vtPo0hiwTh#z("/>
+                                                                                                                    </value>
+                                                                                                                  </block>
+                                                                                                                </next>
+                                                                                                              </block>
+                                                                                                            </statement>
+                                                                                                            <next>
+                                                                                                              <block type="else" id="JyM7J91ki_V:D[+RW:+8">
+                                                                                                                <statement name="DO">
+                                                                                                                  <block type="fill" id="9w8Tbe_(#^8xIJQ*(yyA">
+                                                                                                                    <field name="NAME" id="$+0FA60w_4Zqb(3:e?#0">pixels</field>
+                                                                                                                    <value name="text">
+                                                                                                                      <shadow type="textinline" id="BW7y~mAHNsulg}70{B:7">
+                                                                                                                        <field name="text">0xff0000</field>
+                                                                                                                      </shadow>
+                                                                                                                      <block type="colors_black" id="4#neK(,PjhPgpf%R.t!e"/>
+                                                                                                                    </value>
+                                                                                                                  </block>
+                                                                                                                </statement>
+                                                                                                              </block>
+                                                                                                            </next>
+                                                                                                          </block>
+                                                                                                        </next>
+                                                                                                      </block>
+                                                                                                    </next>
+                                                                                                  </block>
+                                                                                                </next>
+                                                                                              </block>
+                                                                                            </next>
+                                                                                          </block>
+                                                                                        </next>
+                                                                                      </block>
+                                                                                    </next>
+                                                                                  </block>
+                                                                                </next>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </statement>
+                                                                      </block>
+                                                                    </statement>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </statement>
+                                                            <next>
+                                                              <block type="else" id="{(!4-$HW_;p}*s!Hu1(_">
+                                                                <statement name="DO">
+                                                                  <block type="fill" id="GM540kA_S}`GE`mV-S_~">
+                                                                    <field name="NAME" id="$+0FA60w_4Zqb(3:e?#0">pixels</field>
+                                                                    <value name="text">
+                                                                      <shadow type="textinline" id="4gw(=V0XQnb9O,xvwEOE">
+                                                                        <field name="text">0xff0000</field>
+                                                                      </shadow>
+                                                                      <block type="colors_green" id="j-7y;FJ;KY@0e.T+Ja+4"/>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="variables_set" id="}`5DP:fJoTF[BCvg$3/$">
+                                                                        <field name="VAR" id="6gxDvcVffX!_eDDeRbkE">pre_event</field>
+                                                                        <field name="NAME">=</field>
+                                                                        <value name="varset">
+                                                                          <shadow type="textinline" id="]Z445i;P;!Uq{!n)_?yW">
+                                                                            <field name="text">None</field>
+                                                                          </shadow>
+                                                                        </value>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </statement>
+                                                                <next>
+                                                                  <block type="sleepnew" id="O%P*f/Z.4f)jQs^{Llhp">
+                                                                    <comment id="undefined" pinned="false" h="80" w="160">sleep for a bit to prevent data overflow in MU</comment>
+                                                                    <value name="sleep">
+                                                                      <shadow type="textinline" id=".XRo:byO[Nd%]#ASgE:C">
+                                                                        <field name="text">0.01</field>
+                                                                      </shadow>
+                                                                    </value>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </statement>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
